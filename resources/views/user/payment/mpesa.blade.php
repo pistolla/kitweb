@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-inner">
-                        <h1 class="title">{{$pt}}</h1> 
+                        <h1 class="title">Mpesa Paybill</h1> 
                     </div>
                 </div>
             </div>
@@ -20,19 +20,23 @@
                     @csrf
                     <input type="hidden" name="gateway" value="{{$data->gateway_id}}"/>
                     <div class="panel panel-default">
-                        <div class="panel-body">
-                            <ul class="list-group text-center">
-                                <li class="list-group-item"><img src="{{asset('assets/images/gateway')}}/{{$data->gateway_id}}.jpg" style="max-width:100px; max-height:100px; margin:0 auto;"/></li>
-                                <li class="list-group-item">Amount: <strong>{{$data->amount}} {{$gnl->cur}}</strong></li>
-                                <li class="list-group-item">Charge: <strong>{{$data->charge}} {{$gnl->cur}}</strong></li>
-                                <li class="list-group-item">Payable: <strong>{{$data->charge + $data->amount}} {{$gnl->cur}}</strong></li>
-                                <li class="list-group-item">In USD: <strong>${{$data->usd_amo}}</strong></li>
-                            </ul>
-                        </div>
-                        <div class="panel-footer">
-                            <button type="submit" class="submit-btn" style="width:100%;">
-                                Pay Now
-                            </button>
+                        <div class="panel-body p-5">
+                            <div class="card-body d-flex">
+                                <div class="media-body">
+                                    <img src="{{asset('/images/gateway')}}/{{$data->gateway_id}}.jpg" style="max-width:200px; max-height:200px; margin:0 auto;"/>
+                                </div>
+                                <div>
+                                    <ul class="list-group text-center">
+                                        <li class="list-group-item borderless">PAYBILL: <strong>{{ $data->paybill }}</strong></li>
+                                        <li class="list-group-item borderless">ACCOUNT: <strong>{{ $data->account }}</strong></li>
+                                        <li class="list-group-item borderless">AMOUNT: <strong>{{ $data->amount }}</strong></li>
+                                    </ul>
+                                    <button type="submit" class="submit-btn" style="width:100%;">
+                                        PAY NOW
+                                    </button>
+                                </div>
+                            </div>
+                            
                         </div>
                     </div>
                 </form>

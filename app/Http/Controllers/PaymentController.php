@@ -51,30 +51,9 @@ class PaymentController extends Controller
 
     public function depositMpesa()
     {
-        $gnl = General::first();
-        
-        $track = Session::get('Track');
-        
-        $data = Deposit::where('trx', $track)->orderBy('id', 'DESC')->first();
-        
-        if(is_null($data))
-        {
-            return redirect()->route('user.balance')->with('alert', 'Invalid Deposit Request');            
-        }
-        if ($data->status != 0) 
-        {
-            return redirect()->route('user.balance')->with('alert', 'Invalid Deposit Request');
-        }
-        
-        $gatewayData = Gateway::where('id', $data->gateway_id)->first();
-        
-        if ($data->gateway_id == 101) 
-        {        
-            $paypal['amount'] = $data->usd_amo;
-            $paypal['sendto'] = $gatewayData->val1;
-            $paypal['track'] = $track;
-            return view('user.payment.mpesa', compact('paypal','gnl'));
-        }
+        $mpesaApi = new MpesaPayments();
+
+        $mpesaApi->lipanampesastkpush();
     }
     
     public function depositConfirm()
@@ -98,10 +77,11 @@ class PaymentController extends Controller
         
         if ($data->gateway_id == 101) 
         {        
-            $paypal['amount'] = $data->usd_amo;
-            $paypal['sendto'] = $gatewayData->val1;
-            $paypal['track'] = $track;
-            return view('user.payment.mpesa', compact('paypal','gnl'));
+            $data['amount'] = $data->usd_amo;
+            $data['paybill'] = $gatewayData->val1;
+            $data['track'] = $track;
+            $data['account'] = Auth::user()->name;
+            return view('user.payment.mpesa', compact('data','gnl'));
         } elseif ($data->gateway_id == 102) 
         {        
             $paypal['amount'] = $data->usd_amo;

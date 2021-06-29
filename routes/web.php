@@ -36,13 +36,12 @@ Route::post('/ipncoingate', 'PaymentController@ipnCoinGate')->name('ipn.coingate
 Route::get('/cron-ad', 'VisitorController@cronAd'); 
 
 //Advertise API
+
+
 Route::get('/ads/{publisher}/{type}', 'VisitorController@getAdvertise')->name('adsUrl'); 
+
+
 Route::get('/ad-clicked/{publisher}/{hash}', 'VisitorController@adClicked')->name('adClicked'); 
-
-
-
-
-
 Route::get('/', 'VisitorController@index')->name('user.index'); 
 Route::get('/blog', 'VisitorController@blog')->name('user.blog'); 
 Route::get('/blog/{post}', 'VisitorController@blogPost')->name('user.blog-post'); 

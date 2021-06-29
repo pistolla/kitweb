@@ -1,6 +1,6 @@
 <?php
 
-class DarajaApi {
+class MpesaPayments {
     const Consumer_Key = 'T17ylo4YGMhQWMxG56kYnAZctAR3AVfn';
     const Consumer_Secret = 'zBORtg98xsYAK377';
     const Public_Key = '';
