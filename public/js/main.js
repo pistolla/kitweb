@@ -120,5 +120,7 @@
 	//Activate bootstrip tooltips
 	$("[data-toggle='tooltip']").tooltip();
 
-
+    $(".reply-popup").click(function(){
+        $(".reply-box").toggle();
+      });
 }(jQuery));	

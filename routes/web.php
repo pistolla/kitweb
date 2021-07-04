@@ -268,9 +268,6 @@ Route::prefix('admin')->group(function() {
      Route::post('/testim-heading', 'FrontendController@testimHeading')->name('admin.testim-heading');
      Route::post('/stat-section', 'FrontendController@statHeading')->name('admin.stat-section');
      Route::post('/faq-heading', 'FrontendController@faqHeading')->name('admin.faq-heading');
-
-  
-        
     });
    });
 
@@ -283,4 +280,33 @@ Route::prefix('admin')->group(function() {
 });
 
 
+//Feed Auth
+Route::prefix('feed')->group(function() {
+    Route::get('/', 'CommunityController@showLoginForm')->name('feed.login')->middleware('guest:feed');
+    Route::post('/login', 'CommunityControllerr@login')->name('feed.loginpost')->middleware('guest:feed');
+    Route::get('/register', 'CommunityController@showRegistrationForm')->name('feed.register')->middleware('guest:feed');
+    Route::post('/register-post', 'CommunityController@register')->name('feed.registerpost')->middleware('guest:feed');
+    Route::post('/logout', 'CommunityController@logout')->name('feed.logout');
+   
+    //Feed verification
+    Route::get('/verification', 'CommunityController@memberVerification')->name('feed.verify');       
+    Route::post('/send-vcode', 'CommunityController@sendVcode')->name('feed.send-vcode');        
+    Route::post('/email-verify', 'CommunityController@emailVerify')->name('feed.email-verify');        
+    Route::post('/sms-verify', 'CommunityController@smsVerify')->name('feed.sms-verify'); 
 
+    //Password Reset
+    Route::get('/password-reset', 'CommunityController@resetEmail')->name('feed.password.resetreq');        
+    Route::post('/password-sendemail', 'CommunityController@sendEmail')->name('feed.password.sendemail');        
+    Route::get('/password-reset/{token}', 'CommunityController@resetForm')->name('feed.password.resetform');        
+    Route::post('/reset-password', 'CommunityController@resetPassword')->name('feed.password.resetpassword');
+
+    //Public Forums
+    Route::get('/dashboard', 'CommunityController@dashboard')->name('feed.dashboard');
+    
+  });
+  Route::group(['middleware' => ['auth:feed','fverify']], function() {
+    Route::group(['prefix' => 'feed'], function () 
+    {
+        Route::get('/create-activity', 'CommunityController@createActivity')->name('feed.newactivity');         
+    });
+});

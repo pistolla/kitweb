@@ -48,7 +48,7 @@
                     </li>
                     
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/') }}/contact">Contact</a>
+                        <a class="nav-link" href="{{ route('feed.dashboard') }}">Community</a>
                     </li>
                 </ul>
                 <!-- /.navbar-nav -->

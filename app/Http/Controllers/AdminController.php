@@ -143,7 +143,7 @@ class AdminController extends Controller
                 $height = Image::make($req->photo)->height();
                 if($req->width == $width && $req->height == $height)
                 {
-                    $photo = 'assets/ads/'.$adtype['slag'].'.png';
+                    $photo = '/ads/'.$adtype['slag'].'.png';
                     Image::make($req->photo)->save($photo);
 
                 }
@@ -280,15 +280,15 @@ class AdminController extends Controller
             
         if($request->hasFile('logo'))
         {
-            Image::make($request->logo)->save('assets/images/logo/logo.png');
+            Image::make($request->logo)->save('/images/logo/logo.png');
         }
         if($request->hasFile('icon'))
         {
-            Image::make($request->icon)->resize(128, 128)->save('assets/images/logo/icon.png');
+            Image::make($request->icon)->resize(128, 128)->save('/images/logo/icon.png');
         }
         if($request->hasFile('bread'))
         {
-            Image::make($request->bread)->save('assets/ads/default.jpg');
+            Image::make($request->bread)->save('/ads/default.jpg');
         }
         
         return back()->with('success','Logo and Icon, Default Ad Updated successfully.');
@@ -420,7 +420,7 @@ class AdminController extends Controller
         if($request->hasFile('gateimg'))
         {
             $imgname = $gateway->id.'.jpg';
-            $npath = 'assets/images/gateway/'.$imgname;
+            $npath = '/images/gateway/'.$imgname;
             Image::make($request->gateimg)->resize(200, 200)->save($npath);
         }
         
@@ -776,11 +776,5 @@ class AdminController extends Controller
         return view('admin.publisher.banned', compact('users','pt'));
     }
     //Publisher Manage
-
-
-
-
-
-
 }
                                                 

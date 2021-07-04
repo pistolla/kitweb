@@ -54,6 +54,10 @@ return [
             'driver' => 'session',
             'provider' => 'publishers',
         ],
+        'feed' => [
+            'driver' => 'session',
+            'provider' => 'members',
+        ],
     ],
 
     /*
@@ -86,7 +90,10 @@ return [
             'driver' => 'eloquent',
             'model' => App\Publisher::class,
         ],
-
+        'members' => [
+            'driver' => 'eloquent',
+            'model' => App\Member::class,
+        ],
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
