@@ -25,26 +25,7 @@
             </div>
             <div class="collapse navbar-collapse" id="mirex">
                 <ul class="navbar-nav ml-auto">
-                @if(Auth::guard('feed')->check())
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('feed.dashboard') }}"> Home</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" 
-                        role="button" aria-haspopup="true" aria-expanded="false">
-                        {{Auth::guard('feed')->user()->name}} <span class="caret"></span></a>
-                        <div class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                            <a class="dropdown-item" href="{{route('feed.profile-data')}}">Profile</a>
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                            onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();">
-                            Logout </a>
-                            <form id="logout-form" action="{{ route('feed.logout') }}" method="POST" style="display: none;">
-                                @csrf
-                            </form>
-                        </div>
-                    </li>
-                    @endif
+                
                     @if(Auth::guard('publisher')->check())
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('publisher.dashboard') }}"> Dashboard</a>
@@ -115,19 +96,31 @@
                         <a class="nav-link" href="{{url('/')}}#Service">Service</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{url('/')}}#About">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{url('/')}}#Testimonials">Testimonials</a>
-                    </li>
-                    
-                    <li class="nav-item">
                         <a class="nav-link" href="{{route('user.blog')}}">Blog</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{url('/contact')}}">Contact</a>
+                        <a class="nav-link" href="{{ route('feed.dashboard') }}">Community</a>
                     </li>
-                    @endif   
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url('/')}}#About">About</a>
+                    </li>
+                    @endif
+                    @if(Auth::guard('feed')->check())
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" 
+                        role="button" aria-haspopup="true" aria-expanded="false">
+                        {{Auth::guard('feed')->user()->name}} <span class="caret"></span></a>
+                        <div class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+                            Logout </a>
+                            <form id="logout-form" action="{{ route('feed.logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </div>
+                    </li>
+                    @endif
                 </ul>
             </div>
             @if(!Auth::check())

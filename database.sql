@@ -246,6 +246,27 @@ CREATE TABLE `publishers` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+CREATE TABLE `members` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `username` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `country` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `city` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `mobile` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tauth` int(11) NOT NULL DEFAULT '1',
+  `tfver` int(11) NOT NULL DEFAULT '1',
+  `emailv` int(11) NOT NULL,
+  `smsv` int(11) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT '1',
+  `vsent` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `vercode` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `secretcode` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 CREATE TABLE `sliders` (
   `id` int(10) UNSIGNED NOT NULL,
   `heading` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -272,6 +293,27 @@ INSERT INTO `socials` (`id`, `icon`, `link`, `created_at`, `updated_at`) VALUES
 CREATE TABLE `subscribes` (
   `id` int(10) UNSIGNED NOT NULL,
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+CREATE TABLE `likes` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `member_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+CREATE TABLE `comments` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `member_id` int(11) DEFAULT NULL,
+  `text` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+CREATE TABLE `activities` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `member_id` int(11) DEFAULT NULL,
+  `heading` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `details` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -388,6 +430,15 @@ ALTER TABLE `sliders`
   ADD PRIMARY KEY (`id`);
 ALTER TABLE `socials`
   ADD PRIMARY KEY (`id`);
+ALTER TABLE `members`
+  ADD UNIQUE KEY `members_email_unique` (`email`),
+  ADD UNIQUE KEY `members_username_unique` (`username`);
+ALTER TABLE `likes`
+  ADD PRIMARY KEY (`id`);
+ALTER TABLE `comments`
+  ADD PRIMARY KEY (`id`);
+ALTER TABLE `activities`
+  ADD PRIMARY KEY (`id`);
 ALTER TABLE `subscribes`
   ADD PRIMARY KEY (`id`);
 ALTER TABLE `testimonials`
@@ -429,6 +480,14 @@ ALTER TABLE `password_resets`
 ALTER TABLE `plans`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 ALTER TABLE `publishers`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+ALTER TABLE `members`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  ALTER TABLE `likes`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  ALTER TABLE `comments`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  ALTER TABLE `activities`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 ALTER TABLE `sliders`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;

@@ -283,7 +283,7 @@ Route::prefix('admin')->group(function() {
 //Feed Auth
 Route::prefix('feed')->group(function() {
     Route::get('/', 'CommunityController@showLoginForm')->name('feed.login')->middleware('guest:feed');
-    Route::post('/login', 'CommunityControllerr@login')->name('feed.loginpost')->middleware('guest:feed');
+    Route::post('/login', 'CommunityController@login')->name('feed.loginpost')->middleware('guest:feed');
     Route::get('/register', 'CommunityController@showRegistrationForm')->name('feed.register')->middleware('guest:feed');
     Route::post('/register-post', 'CommunityController@register')->name('feed.registerpost')->middleware('guest:feed');
     Route::post('/logout', 'CommunityController@logout')->name('feed.logout');
@@ -307,6 +307,10 @@ Route::prefix('feed')->group(function() {
   Route::group(['middleware' => ['auth:feed','fverify']], function() {
     Route::group(['prefix' => 'feed'], function () 
     {
-        Route::get('/create-activity', 'CommunityController@createActivity')->name('feed.newactivity');         
+        Route::get('/create-activity', 'CommunityController@createActivity')->name('feed.newactivity');
+        Route::get('/like-activity', 'CommunityController@likeActivity')->name('feed.postlikes');
+        Route::get('/dislike-activity', 'CommunityController@dislikeActivity')->name('feed.postdislikes');
+        Route::get('/like-comment', 'CommunityController@likeComment')->name('feed.commentdislikes');
+        Route::get('/dislike-comment', 'CommunityController@dislikeComment')->name('feed.commentdislikes');         
     });
 });
