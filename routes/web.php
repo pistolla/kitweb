@@ -312,5 +312,6 @@ Route::prefix('feed')->group(function() {
         Route::get('/dislike-activity', 'CommunityController@dislikeActivity')->name('feed.postdislikes');
         Route::get('/like-comment', 'CommunityController@likeComment')->name('feed.commentdislikes');
         Route::get('/dislike-comment', 'CommunityController@dislikeComment')->name('feed.commentdislikes');         
+        Route::get('/create-comment', 'CommunityController@createComment')->name('feed.commentpost');         
     });
 });

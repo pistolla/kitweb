@@ -30,6 +30,7 @@
         <div class="comment-box add-comment">
           <form class="contact-form" method="POST" action="{{ route('feed.newactivity') }}">
           @csrf
+          <input type="text" class="form-control" placeholder="Add a title" name="heading" required autofocus/>
           <textarea class="form-control" placeholder="Add a public comment" name="details" rows="10"></textarea>
             <button type="submit" class="btn btn-default">Post</button>
             <button type="cancel" class="btn btn-default">Cancel</button>
@@ -132,7 +133,7 @@
               <form class="contact-form" method="POST" action="{{ route('feed.commentpost') }}">
                     @csrf
                     <input type="hidden" name="activity" value="{{ $activity->id }}" />
-                    <input type="text" placeholder="Add a public reply" name="Add Comment">
+                    <input type="text" placeholder="Add a public reply" name="comment">
                     <button type="submit" class="btn btn-default">Reply</button>
                     <button type="cancel" class="btn btn-default reply-popup">Cancel</button>
               </form>

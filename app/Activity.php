@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Member;
 use App\Like;
+use App\Comment;
 
 class Activity extends Model
 {
@@ -24,5 +25,10 @@ class Activity extends Model
     public function likes()
     {
         return $this->hasMany(Like::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }

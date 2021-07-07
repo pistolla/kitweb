@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use Auth;
 use App\Activity;
 use App\Member;
+use App\Like;
+use App\Comment;
 use App\Adtype;
 use App\General;
 use App\Wmethod;
@@ -25,7 +27,22 @@ class CommunityController extends Controller
 
     public function createActivity(Request $req)
     {
-        
+        $this->validate($req, ['heading' => 'required', 'details' => 'required']);
+        $post['heading'] = $req->heading;
+        $post['details'] = $req->details;
+
+        Activity::create($post);
+        return back()->with('success','Your post is now available');
+    }
+
+    public function createComment(Request $req)
+    {
+        $this->validate($req, ['activity' => 'required', 'comment' => 'required']);
+        $post['activity_id'] = $req->activity;
+        $post['text'] = $req->comment;
+
+        Comment::create($post);
+        return back()->with('success','Your have added a comment');
     }
 
     public function subscribe(Request $req)

@@ -8,7 +8,7 @@ class Comment extends Model
 {
     use SelfReferenceTrait;
 
-    protected $fillable = array('text', 'member_id');
+    protected $fillable = array('text', 'member_id', 'activity_id', 'blog_id');
 
     public function member()
     {
