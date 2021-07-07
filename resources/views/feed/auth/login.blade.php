@@ -33,10 +33,10 @@
                     @csrf
                         <div class="row form-row">
                             @include('layouts.error')
-                            <input placeholder="Enter Email Address" type="text" class="input-field" name="username" value="{{ old('username') }}" required autofocus>
+                            <input placeholder="Enter username" type="text" class="input-field" name="username" value="{{ old('username') }}" required autofocus>
                         </div>
                         <div class="row form-row">
-                            <input type="text" placeholder="Enter Password" class="input-field" name="password" required>
+                            <input type="password" placeholder="Enter Password" class="input-field" name="password" required>
                         </div>
                         <div class="row form-row">
                         <a class="float-right" href="{{ route('feed.password.resetreq') }}">
