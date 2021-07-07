@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Member;
+use App\Like;
 use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model

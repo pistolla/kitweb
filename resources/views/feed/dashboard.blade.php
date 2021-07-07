@@ -31,7 +31,7 @@
           <form class="contact-form" method="POST" action="{{ route('feed.newactivity') }}">
           @csrf
           <input type="text" class="form-control" placeholder="Add a title" name="heading" required autofocus/>
-          <textarea class="form-control" placeholder="Add a public comment" name="details" rows="10"></textarea>
+          <textarea class="form-control" placeholder="Add a public comment" name="details" rows="5"></textarea>
             <button type="submit" class="btn btn-default">Post</button>
             <button type="cancel" class="btn btn-default">Cancel</button>
           </form>
@@ -49,8 +49,8 @@
           </span>       
           <p class="comment-txt">{{ $post->details }}</p>
           <div class="comment-meta">
-          @auth
-              @if (!$post->likedBy(auth()->user()))
+          @if(Auth::guard('feed')->check())
+              @if (!$post->likedBy($post->member))
                 <form action="{{ route('feed.postlikes', $post) }}" method="post" class="mr-1">
                     @csrf
                     <button class="comment-like"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> {{$post->likes->count()}}</button>
@@ -62,7 +62,7 @@
                     <button class="comment-dislike"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>{{ $post->likes->count()}}</button>
                 </form>
               @endif
-            @endauth 
+            @endif 
             <button class="comment-reply"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</button>         
           </div>
           @foreach ($post->comments as $comment)
@@ -75,8 +75,8 @@
             </span>       
             <p class="comment-txt more">{{ $comment->text }}</p>
             <div class="comment-meta">
-            @auth
-              @if (!$post->likedBy(auth()->user()))
+            @if(Auth::guard('feed')->check())
+              @if (!$post->likedBy($comment->member))
                 <form action="{{ route('feed.commentlikes', $comment) }}" method="post" class="mr-1">
                     @csrf
                     <button class="comment-like"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> {{$comment->likes->count()}}</button>
@@ -88,7 +88,7 @@
                     <button class="comment-dislike"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>{{ $comment->likes->count()}}</button>
                 </form>
               @endif
-            @endauth
+            @endif
             <button class="comment-reply"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</button>         
             </div>
           </div>
@@ -109,8 +109,8 @@
           </span>       
           <p class="comment-txt more">{{ $activity->details }}</p>
           <div class="comment-meta">
-            @auth
-              @if (!$activity->likedBy(auth()->user()))
+          @if(Auth::guard('feed')->check())
+              @if (!$activity->likedBy($activity->member))
                 <form action="{{ route('feed.postlikes', $activity) }}" method="post" class="mr-1">
                     @csrf
                     <button class="comment-like"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> {{$activity->likes->count()}}</button>
@@ -122,7 +122,7 @@
                     <button class="comment-dislike"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>{{ $activity->likes->count()}}</button>
                 </form>
               @endif
-            @endauth
+            @endif
             <button class="comment-reply reply-popup"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</button>         
           </div>
           <div class="comment-box add-comment reply-box">
@@ -133,7 +133,7 @@
               <form class="contact-form" method="POST" action="{{ route('feed.commentpost') }}">
                     @csrf
                     <input type="hidden" name="activity" value="{{ $activity->id }}" />
-                    <input type="text" placeholder="Add a public reply" name="comment">
+                    <textarea class="form-control" placeholder="Add a public reply" rows="2" name="comment"></textarea>
                     <button type="submit" class="btn btn-default">Reply</button>
                     <button type="cancel" class="btn btn-default reply-popup">Cancel</button>
               </form>

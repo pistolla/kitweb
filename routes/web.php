@@ -307,11 +307,11 @@ Route::prefix('feed')->group(function() {
   Route::group(['middleware' => ['auth:feed','fverify']], function() {
     Route::group(['prefix' => 'feed'], function () 
     {
-        Route::get('/create-activity', 'CommunityController@createActivity')->name('feed.newactivity');
-        Route::get('/like-activity', 'CommunityController@likeActivity')->name('feed.postlikes');
-        Route::get('/dislike-activity', 'CommunityController@dislikeActivity')->name('feed.postdislikes');
-        Route::get('/like-comment', 'CommunityController@likeComment')->name('feed.commentdislikes');
-        Route::get('/dislike-comment', 'CommunityController@dislikeComment')->name('feed.commentdislikes');         
-        Route::get('/create-comment', 'CommunityController@createComment')->name('feed.commentpost');         
+        Route::post('/create-activity', 'CommunityController@createActivity')->name('feed.newactivity');
+        Route::post('/like-activity', 'CommunityController@likeActivity')->name('feed.postlikes');
+        Route::delete('/dislike-activity', 'CommunityController@dislikeActivity')->name('feed.postdislikes');
+        Route::post('/like-comment', 'CommunityController@likeComment')->name('feed.commentlikes');
+        Route::delete('/dislike-comment', 'CommunityController@dislikeComment')->name('feed.commentdislikes');         
+        Route::post('/create-comment', 'CommunityController@createComment')->name('feed.commentpost');         
     });
 });

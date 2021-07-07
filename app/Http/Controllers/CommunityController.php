@@ -30,6 +30,7 @@ class CommunityController extends Controller
         $this->validate($req, ['heading' => 'required', 'details' => 'required']);
         $post['heading'] = $req->heading;
         $post['details'] = $req->details;
+        $post['member_id'] = $request->user()->id;
 
         Activity::create($post);
         return back()->with('success','Your post is now available');
@@ -40,6 +41,7 @@ class CommunityController extends Controller
         $this->validate($req, ['activity' => 'required', 'comment' => 'required']);
         $post['activity_id'] = $req->activity;
         $post['text'] = $req->comment;
+        $post['member_id'] = $request->user()->id;
 
         Comment::create($post);
         return back()->with('success','Your have added a comment');
@@ -66,7 +68,7 @@ class CommunityController extends Controller
         ]);
 
         if (!$post->likes()->onlyTrashed()->where('member_id', $request->user()->id)->count()) {
-            Mail::to($post->member)->send(new PostLiked(auth()->user(), $post));
+            // Mail::to($post->member)->send(new PostLiked(auth()->user(), $post));
         }
 
         return back();
