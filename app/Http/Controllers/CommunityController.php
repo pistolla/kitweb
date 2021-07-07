@@ -20,8 +20,12 @@ class CommunityController extends Controller
 {
     public function dashboard(Request $req)
     {
-        $post = Activity::latest()->with(['member', 'comments', 'likes'])->first();
+        
         $activities = Activity::latest()->with(['member', 'comments', 'likes'])->paginate(20);
+        $post = null;
+        if($activities){
+            $post = $activities->shift();
+        }
         return view('feed.dashboard', compact('activities','post'));
     }
 
@@ -30,7 +34,7 @@ class CommunityController extends Controller
         $this->validate($req, ['heading' => 'required', 'details' => 'required']);
         $post['heading'] = $req->heading;
         $post['details'] = $req->details;
-        $post['member_id'] = $request->user()->id;
+        $post['member_id'] = $req->user()->id;
 
         Activity::create($post);
         return back()->with('success','Your post is now available');
@@ -41,7 +45,7 @@ class CommunityController extends Controller
         $this->validate($req, ['activity' => 'required', 'comment' => 'required']);
         $post['activity_id'] = $req->activity;
         $post['text'] = $req->comment;
-        $post['member_id'] = $request->user()->id;
+        $post['member_id'] = $req->user()->id;
 
         Comment::create($post);
         return back()->with('success','Your have added a comment');
@@ -64,7 +68,8 @@ class CommunityController extends Controller
         }
 
         $post->likes()->create([
-            'user_id' => $request->user()->id,
+            'member_id' => $request->user()->id,
+            'activity_id' => $post->id,
         ]);
 
         if (!$post->likes()->onlyTrashed()->where('member_id', $request->user()->id)->count()) {
@@ -76,19 +81,20 @@ class CommunityController extends Controller
 
     public function dislikeActivity(Activity $post, Request $request)
     {
-        $request->user()->likes()->where('post_id', $post->id)->delete();
+        $request->user()->likes()->where('activity_id', $post->id)->delete();
 
         return back();
     }
 
-    public function likeComment(Activity $post, Request $request)
+    public function likeComment(Comment $post, Request $request)
     {
         if ($post->likedBy($request->user())) {
             return response(null, 409);
         }
 
         $post->likes()->create([
-            'user_id' => $request->user()->id,
+            'member_id' => $request->user()->id,
+            'comment_id' => $post->id,
         ]);
 
         if (!$post->likes()->onlyTrashed()->where('member_id', $request->user()->id)->count()) {
@@ -100,7 +106,7 @@ class CommunityController extends Controller
 
     public function dislikeComment(Activity $post, Request $request)
     {
-        $request->user()->likes()->where('post_id', $post->id)->delete();
+        $request->user()->likes()->where('activity_id', $post->id)->delete();
 
         return back();
     }

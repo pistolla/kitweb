@@ -17,14 +17,14 @@
           <div class="panel panel-info">
     <div class="panel-body">
       <div class="comments">
-        <div class="comments-details">
-          <p class="total-comments comments-sort h3">Live Feed
+        <div class="comments-details d-flex">
+          <span class="total-comments comments-sort h2">Live Feed</span>
           @if(!Auth::guard('feed')->check())
-          <span class="pull-right mr-1">
+          <span class="pull-right ml-auto">
               <a class="btn btn-info" href="{{route('feed.login')}}">Login as member to post <i class="fa fa-lock"></i></a>
           </span> 
           @endif
-          </p>  
+            
         </div>
         @if(Auth::guard('feed')->check())
         <div class="comment-box add-comment">
@@ -39,7 +39,7 @@
         @endif
         <div class="comment-box">
           <span class="commenter-pic">
-            <img src="{{ url('/images/community/member-placeholder.png') }}" class="img-fluid">
+            <img src="{{ asset('/images/logo/icon.png') }}" class="img-fluid">
           </span>
           <span class="commenter-name">
             <a href="#">{{ $post->heading }}</a>
@@ -48,44 +48,62 @@
             <small> <span class="comment-time"></span></small>
           </span>       
           <p class="comment-txt">{{ $post->details }}</p>
-          <div class="comment-meta">
+          <div class="comment-meta d-flex justify-content-end">
           @if(Auth::guard('feed')->check())
               @if (!$post->likedBy($post->member))
                 <form action="{{ route('feed.postlikes', $post) }}" method="post" class="mr-1">
                     @csrf
-                    <button class="comment-like"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> {{$post->likes->count()}}</button>
+                    <input type="hidden" name="activity" value="{{$post->id}}">
+                    <button class="comment-like"><i class="fa fa-thumbs-up" aria-hidden="true"></i> {{$post->likes->count()}}</button>
                 </form>
               @else
                 <form action="{{ route('feed.postdislikes', $post) }}" method="post" class="mr-1">
                     @csrf
                     @method('DELETE')
-                    <button class="comment-dislike"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>{{ $post->likes->count()}}</button>
+                    <input type="hidden" name="activity" value="{{$post->id}}">
+                    <button class="comment-dislike"><i class="fa fa-thumbs-down" aria-hidden="true"></i>{{ $post->dislikes->count()}}</button>
                 </form>
               @endif
             @endif 
-            <button class="comment-reply"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</button>         
+            <button class="comment-reply reply-popup" id="{{$post->id}}"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</button>         
+          </div>
+          <div class="comment-box add-comment reply-box" id="reply-{{$post->id}}">
+            <span class="commenter-pic">
+              <img src="{{ asset('/images/logo/icon.png') }}" class="img-fluid">
+            </span>
+            <span class="commenter-name">
+              <form class="contact-form" method="POST" action="{{ route('feed.commentpost') }}">
+                    @csrf
+                    <input type="hidden" name="activity" value="{{ $post->id }}" />
+                    <textarea class="form-control" placeholder="Add a public reply" rows="2" name="comment"></textarea>
+                    <button type="submit" class="btn btn-default">Reply</button>
+                    <button type="cancel" class="btn btn-default reply-popup">Cancel</button>
+              </form>
+            </span>
           </div>
           @foreach ($post->comments as $comment)
           <div class="comment-box replied">
             <span class="commenter-pic">
-              <img src="{{ url('/images/community/member-placeholder.png') }}" class="img-fluid">
+              <img src="{{ asset('/images/logo/icon.png') }}" class="img-fluid">
             </span>
             <span class="commenter-name">
               <a href="#">{{ $comment->member->username }}</a> <span class="comment-time">{{ $comment->created_at->diffForHumans()}}</span>
             </span>       
             <p class="comment-txt more">{{ $comment->text }}</p>
-            <div class="comment-meta">
+            <div class="comment-meta d-flex justify-content-end">
             @if(Auth::guard('feed')->check())
               @if (!$post->likedBy($comment->member))
                 <form action="{{ route('feed.commentlikes', $comment) }}" method="post" class="mr-1">
                     @csrf
-                    <button class="comment-like"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> {{$comment->likes->count()}}</button>
+                    <input type="hidden" name="comment" value="{{$comment->id}}">
+                    <button class="comment-like"><i class="fa fa-thumbs-up" aria-hidden="true"></i> {{$comment->likes->count()}}</button>
                 </form>
               @else
-                <form action="{{ route('feed.commentdislikes', $activity) }}" method="post" class="mr-1">
+                <form action="{{ route('feed.commentdislikes', $comment) }}" method="post" class="mr-1">
                     @csrf
                     @method('DELETE')
-                    <button class="comment-dislike"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>{{ $comment->likes->count()}}</button>
+                    <input type="hidden" name="comment" value="{{$comment->id}}">
+                    <button class="comment-dislike"><i class="fa fa-thumbs-down" aria-hidden="true"></i>{{ $comment->likes->count()}}</button>
                 </form>
               @endif
             @endif
@@ -99,7 +117,7 @@
         @foreach ($activities as $activity)
         <div class="comment-box">
           <span class="commenter-pic">
-            <img src="{{ url('/images/community/member-placeholder.png') }}" class="img-fluid">
+            <img src="{{ asset('/images/logo/icon.png') }}" class="img-fluid">
           </span>
           <span class="commenter-name">
             <a href="#">{{ $activity->heading }}</a>
@@ -108,26 +126,26 @@
             <small> <span class="comment-time"></span></small>
           </span>       
           <p class="comment-txt more">{{ $activity->details }}</p>
-          <div class="comment-meta">
+          <div class="comment-meta d-flex justify-content-end">
           @if(Auth::guard('feed')->check())
               @if (!$activity->likedBy($activity->member))
                 <form action="{{ route('feed.postlikes', $activity) }}" method="post" class="mr-1">
                     @csrf
-                    <button class="comment-like"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> {{$activity->likes->count()}}</button>
+                    <button class="comment-like"><i class="fa fa-thumbs-up" aria-hidden="true"></i> {{$activity->likes->count()}}</button>
                 </form>
               @else
                 <form action="{{ route('feed.postdislikes', $activity) }}" method="post" class="mr-1">
                     @csrf
                     @method('DELETE')
-                    <button class="comment-dislike"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>{{ $activity->likes->count()}}</button>
+                    <button class="comment-dislike"><i class="fa fa-thumbs-down" aria-hidden="true"></i>{{ $activity->likes->count()}}</button>
                 </form>
               @endif
             @endif
-            <button class="comment-reply reply-popup"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</button>         
+            <button class="comment-reply reply-popup" id="{{$post->id}}"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</button>         
           </div>
-          <div class="comment-box add-comment reply-box">
+          <div class="comment-box add-comment reply-box" id="reply-{{$activity->id}}">
             <span class="commenter-pic">
-              <img src="{{ url('/images/community/member-placeholder.png') }}" class="img-fluid">
+              <img src="{{ asset('/images/logo/icon.png') }}" class="img-fluid">
             </span>
             <span class="commenter-name">
               <form class="contact-form" method="POST" action="{{ route('feed.commentpost') }}">

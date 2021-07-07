@@ -19,7 +19,7 @@ class MemberVerify
             }
             else
             {
-                return redirect()->route('feed.verify');
+                return redirect()->route('feed.loginpost');
             }
         }
     }

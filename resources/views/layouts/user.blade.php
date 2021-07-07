@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> {{$gnl->title}} | {{$gnl->subtitle}} </title>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="shortcut icon" href="{{asset('/images/logo/icon.png')}}" type="image/x-icon">
     <link rel="stylesheet" href="{{asset('/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('/css/fontawesome.min.css')}}">
@@ -102,7 +103,7 @@
                         <a class="nav-link" href="{{ route('feed.dashboard') }}">Community</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{url('/')}}#About">About</a>
+                        <a class="nav-link" href="{{url('/contact')}}">About</a>
                     </li>
                     @endif
                     @if(Auth::guard('feed')->check())

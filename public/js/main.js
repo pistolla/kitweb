@@ -121,6 +121,8 @@
 	$("[data-toggle='tooltip']").tooltip();
 
     $(".reply-popup").click(function(){
-        $(".reply-box").toggle();
+        var btnId = this.id;
+        var replyBox = "#reply-"+btnId;
+        $(replyBox).toggle();
       });
 }(jQuery));	

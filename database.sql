@@ -299,12 +299,17 @@ CREATE TABLE `subscribes` (
 CREATE TABLE `likes` (
   `id` int(10) UNSIGNED NOT NULL,
   `member_id` int(11) DEFAULT NULL,
+  `activity_id` int(11) DEFAULT NULL,
+  `comment_id` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 CREATE TABLE `comments` (
   `id` int(10) UNSIGNED NOT NULL,
   `member_id` int(11) DEFAULT NULL,
+  `parent_id` int(11) DEFAULT NULL,
+  `activity_id` int(11) DEFAULT NULL,
   `text` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL

@@ -26,6 +26,11 @@ class Activity extends Model
     {
         return $this->hasMany(Like::class);
     }
+    
+    public function dislikes()
+    {
+        return $this->belongsTo(Like::class)->onlyTrashed();
+    }
 
     public function comments()
     {
