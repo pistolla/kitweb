@@ -103,11 +103,20 @@
                         <a class="nav-link" href="{{ route('feed.dashboard') }}">Community</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{url('/contact')}}">About</a>
+                        <a class="nav-link" href="{{route('contact')}}">About</a>
                     </li>
                     @endif
-                    @if(Auth::guard('feed')->check())
-                    <li class="nav-item dropdown">
+                    
+                </ul>
+            </div>
+            @if(!Auth::check())
+            <div class="right-btn-wrapper d-flex">
+                <a href="{{route('login')}}" class="boxed-btn btn-rounded">Advertiser</a>
+                <a href="{{ route('publisher.login') }}"  class="boxed-btn btn-rounded">Publisher</a>
+            </div>
+            @endauth
+            @if(Auth::guard('feed')->check())
+                    <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" 
                         role="button" aria-haspopup="true" aria-expanded="false">
                         {{Auth::guard('feed')->user()->name}} <span class="caret"></span></a>
@@ -120,16 +129,8 @@
                                 @csrf
                             </form>
                         </div>
-                    </li>
+                    </div>
                     @endif
-                </ul>
-            </div>
-            @if(!Auth::check())
-            <div class="right-btn-wrapper">
-                <a href="{{route('login')}}" class="boxed-btn btn-rounded">Advertiser</a>
-                <a href="{{ route('publisher.login') }}"  class="boxed-btn btn-rounded">Publisher</a>
-            </div>
-            @endauth
             <div class="responsive-mobile-menu">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mirex" aria-controls="mirex"
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -154,6 +155,7 @@
     </div>
 </div>
 
+<script src="{{asset('/js/jquery-3.2.1.min.js')}}"></script>
 <script src="{{asset('/js/jquery.js')}}"></script>
 <script src="{{asset('/js/popper.min.js')}}"></script>    
 <script src="{{asset('/js/bootstrap.min.js')}}"></script>

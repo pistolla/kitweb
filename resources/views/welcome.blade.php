@@ -38,18 +38,16 @@
                         <a class="nav-link" href="#Service">Service</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#About">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#Testimonials">Testimonials</a>
-                    </li>
-                    <li class="nav-item">
                     <a class="nav-link" href="{{ route('user.blog') }}">Blog</a>
                     </li>
                     
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('feed.dashboard') }}">Community</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('contact')}}">About</a>
+                    </li>
+                    
                 </ul>
                 <!-- /.navbar-nav -->
             </div>

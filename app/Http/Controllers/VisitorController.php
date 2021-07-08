@@ -20,6 +20,7 @@ use App\Subscribe;
 use Carbon\Carbon;
 use App\Testimonial;
 use App\Category;
+use App\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -32,7 +33,7 @@ class VisitorController extends Controller
         $testimonials = Testimonial::all();
         $socials = Social::all();
         $posts = Blog::orderBy('id','DESC')->select('id', 'photo', 'heading')->take(3)->get();
-        return view('welcome', compact('front','sliders','posts','socials','testimonials','faqs'));
+        return view('welcome', compact('front','sliders','posts','socials','testimonials'));
     }
     public function blog()
     {
@@ -46,7 +47,7 @@ class VisitorController extends Controller
         $categorys = Category::all();
         if(isset($post))
         {
-            $related = Blog::where('category_id', $post->category->id)->take(5)->get();
+            $related = Blog::where('category_id', $post->category->id)->with('comments')->take(5)->get();
             return view('post', compact('post','categorys', 'related'));
         }
         else
@@ -471,11 +472,11 @@ class VisitorController extends Controller
     public function blogComment(Blog $post, Request $req)
     {
         $this->validate($req, ['comment' => 'required']);
-        $post['blog_id'] = $post->id;
-        $post['text'] = $req->comment;
-        $post['member_id'] = $req->user()->id;
+        $arr['blog_id'] = $post->id;
+        $arr['text'] = $req->comment;
+        $arr['member_id'] = $req->user()->id;
 
-        Comment::create($post);
+        Comment::create($arr);
         return back()->with('success','Your have added a comment');
     }
 

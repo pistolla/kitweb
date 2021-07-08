@@ -73,7 +73,7 @@
             <img src="/images/user-icon.jpg" class="img-fluid">
           </span>
           <span class="commenter-name">
-            <form class="form" method="POST" action="{{ route('blog.blogcomment')}}" name="contact-form">
+            <form class="form" method="POST" action="{{ route('blog.blogcomment',$post)}}" name="contact-form">
               @csrf
               <input type="text" placeholder="Add a public comment" name="comment">
               <button type="submit" class="btn btn-default">Comment</button>

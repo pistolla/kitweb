@@ -49,10 +49,10 @@ Route::get('/contact', 'VisitorController@contactForm')->name('contact');
 Route::post('/contact-message', 'VisitorController@contactMessage')->name('contact.message');   
 Route::post('/subscriber', 'VisitorController@subscriber')->name('subscriber');
 
-Route::group(['middleware' => ['auth.member']], function() {
+Route::group(['middleware' => ['auth.member:feed']], function() {
     Route::group(['prefix' => 'blog'], function () 
     {
-        Route::post('/blog-comment', 'VisitorController@blogComment')->name('blog.blogcomment');   
+        Route::post('/blog-comment/{blog}', 'VisitorController@blogComment')->name('blog.blogcomment');   
         Route::post('/sub-comment', 'VisitorController@subComment')->name('blog.comment');   
         Route::post('/blog-comment-like', 'VisitorController@commentLikes')->name('blog.commentlikes');   
         Route::post('/blog-comment-dislike', 'VisitorController@commentDislikes')->name('blog.commentdislikes');
@@ -317,7 +317,7 @@ Route::prefix('feed')->group(function() {
     Route::get('/search-post', 'CommunityController@searchPost')->name('feed.searchpost');
     
   });
-  Route::group(['middleware' => ['member.auth','fverify']], function() {
+  Route::group(['middleware' => []], function() {
     Route::group(['prefix' => 'feed'], function () 
     {
         Route::post('/create-activity', 'CommunityController@createActivity')->name('feed.newactivity');

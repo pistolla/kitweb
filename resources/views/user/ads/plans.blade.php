@@ -101,7 +101,7 @@
             <div class="modal-body">
                 <form action="{{route('user.get-plan')}}" method="POST">
                     @csrf
-                    <input type="hidden" name="plan" id="planId"/>
+                    <input type="hidden" name="plan" id="planId" class="hiddenPlan"/>
                 <h4><strong id="planPrice"></strong> {{$gnl->cur}} Will be deducted from your balance.</h4>
                     <div class="form-group">
                         <button type="submit" class="submit-btn" style="width:100%;">Purchase This Plan</button>
@@ -124,7 +124,7 @@
         $(document).on('click','.depoButton', function(){
             $('#ModalLabel').text($(this).data('name'));
             $('#planPrice').text($(this).data('price'));
-            $('#planId').val($(this).data('plan'));
+            $('.hiddenPlan').val($(this).data('plan'));
         });
     });
 </script>
