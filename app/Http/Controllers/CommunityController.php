@@ -29,6 +29,20 @@ class CommunityController extends Controller
         return view('feed.dashboard', compact('activities','post'));
     }
 
+    public function searchPost(Request $req)
+    {
+        $search = $req->input('search');
+        $activities = Activity::query()
+            ->where('heading', 'LIKE', "%{$search}%")
+            ->orWhere('details', 'LIKE', "%{$search}%")
+            ->with(['member', 'comments', 'likes'])->paginate(20);
+        $post = null;
+        if($activities){
+            $post = $activities->shift();
+        }
+        return view('feed.dashboard', compact('activities','post'));
+    }
+
     public function createActivity(Request $req)
     {
         $this->validate($req, ['heading' => 'required', 'details' => 'required']);

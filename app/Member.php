@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 use App\Activity;
 use App\Like;
+use App\LinkedSocialAccount;
 
 class Member extends Authenticatable
 {
@@ -38,5 +39,10 @@ class Member extends Authenticatable
     public function likes()
     {
         return $this->hasMany(Like::class);
+    }
+
+    public function accounts()
+    {
+        return $this->hasMany(LinkedSocialAccount::class);
     }
 }

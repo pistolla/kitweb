@@ -11,7 +11,7 @@
     <title>{{$gnl->title}} - Admin</title>
   </head>
   <body>
-  <section class="login-content" style="background-color:#{{$gnl->color}};">
+  <section class="login-content" style="background: no-repeat center/100% url('{{ url('/images/logo/logo-background.jpg') }}'); background-size: cover;">
       <div class="logo">
         <img src="{{asset('/images/logo/logo.png')}}" alt="logo" class="logo-default" style="max-width: 160px;">
       </div>

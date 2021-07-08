@@ -467,4 +467,79 @@ class VisitorController extends Controller
             return redirect()->route('login')->with('alert', 'Invalid Reset Link');
         }
     }
+
+
+    public function blogComment(Blog $post, Request $req)
+    {
+        $this->validate($req, ['comment' => 'required']);
+        $post['blog_id'] = $post->id;
+        $post['text'] = $req->comment;
+        $post['member_id'] = $req->user()->id;
+
+        Comment::create($post);
+        return back()->with('success','Your have added a comment');
+    }
+
+    public function subComment(Comment $post, Request $req)
+    {
+        $this->validate($req, ['comment' => 'required']);
+        $post['parent_id'] = $post->id;
+        $post['text'] = $req->comment;
+        $post['member_id'] = $req->user()->id;
+
+        Comment::create($post);
+        return back()->with('success','Your have added a comment');
+    }
+
+
+    public function likeBlog(Blog $post, Request $request)
+    {
+        if ($post->likedBy($request->user())) {
+            return response(null, 409);
+        }
+
+        $post->likes()->create([
+            'member_id' => $request->user()->id,
+            'blog_id' => $post->id,
+        ]);
+
+        if (!$post->likes()->onlyTrashed()->where('member_id', $request->user()->id)->count()) {
+            // Mail::to($post->member)->send(new PostLiked(auth()->user(), $post));
+        }
+
+        return back();
+    }
+
+    public function dislikeBlog(Blog $post, Request $request)
+    {
+        $request->user()->likes()->where('blog_id', $post->id)->delete();
+
+        return back();
+    }
+
+    public function commentLikes(Comment $post, Request $request)
+    {
+        if ($post->likedBy($request->user())) {
+            return response(null, 409);
+        }
+
+        $post->likes()->create([
+            'member_id' => $request->user()->id,
+            'comment_id' => $post->id,
+        ]);
+
+        if (!$post->likes()->onlyTrashed()->where('member_id', $request->user()->id)->count()) {
+            Mail::to($post->member)->send(new PostLiked(auth()->user(), $post));
+        }
+
+        return back();
+    }
+
+    public function commentDislikes(Blog $post, Request $request)
+    {
+        $request->user()->likes()->where('activity_id', $post->id)->delete();
+
+        return back();
+    }
+
 }

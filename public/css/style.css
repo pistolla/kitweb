@@ -1765,7 +1765,6 @@ ul {
       margin-top: -230px;
     position: relative;
     z-index: 1;
-    margin-bottom: 60px;
      }
       .blog-details-page-conent .blog-details-img img {
         border-radius: 10px; }
@@ -2308,7 +2307,6 @@ ul {
     background-color: transparent;
     border: none;
     position: relative;
-    margin-bottom: 50px;
 }
 .comments .commenter-pic {
     width: 50px;

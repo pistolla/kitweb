@@ -267,6 +267,14 @@ CREATE TABLE `members` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+CREATE TABLE `linked_social_accounts` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `member_id` int(11) NOT NULL,
+  `provider_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `provider_id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 CREATE TABLE `sliders` (
   `id` int(10) UNSIGNED NOT NULL,
   `heading` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -298,25 +306,26 @@ CREATE TABLE `subscribes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 CREATE TABLE `likes` (
   `id` int(10) UNSIGNED NOT NULL,
-  `member_id` int(11) DEFAULT NULL,
-  `activity_id` int(11) DEFAULT NULL,
-  `comment_id` int(11) DEFAULT NULL,
+  `member_id` int(10) DEFAULT NULL,
+  `activity_id` int(10) DEFAULT NULL,
+  `comment_id` int(10) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 CREATE TABLE `comments` (
   `id` int(10) UNSIGNED NOT NULL,
-  `member_id` int(11) DEFAULT NULL,
-  `parent_id` int(11) DEFAULT NULL,
-  `activity_id` int(11) DEFAULT NULL,
+  `member_id` int(10) DEFAULT NULL,
+  `parent_id` int(10) DEFAULT NULL,
+  `activity_id` int(10) DEFAULT NULL,
+  `blog_id` int(10) UNSIGNED NULL,
   `text` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 CREATE TABLE `activities` (
   `id` int(10) UNSIGNED NOT NULL,
-  `member_id` int(11) DEFAULT NULL,
+  `member_id` int(10) DEFAULT NULL,
   `heading` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `details` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -436,8 +445,11 @@ ALTER TABLE `sliders`
 ALTER TABLE `socials`
   ADD PRIMARY KEY (`id`);
 ALTER TABLE `members`
+  ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `members_email_unique` (`email`),
   ADD UNIQUE KEY `members_username_unique` (`username`);
+ALTER TABLE `linked_social_accounts`
+  ADD PRIMARY KEY (`id`);
 ALTER TABLE `likes`
   ADD PRIMARY KEY (`id`);
 ALTER TABLE `comments`
@@ -488,11 +500,13 @@ ALTER TABLE `publishers`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 ALTER TABLE `members`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-  ALTER TABLE `likes`
+ALTER TABLE `linked_social_accounts`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-  ALTER TABLE `comments`
+ALTER TABLE `likes`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-  ALTER TABLE `activities`
+ALTER TABLE `comments`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+ALTER TABLE `activities`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 ALTER TABLE `sliders`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;

@@ -17,4 +17,24 @@ class Blog extends Model
     {
         return $this->belongsTo('App\Admin');
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+
+    public function dislikes()
+    {
+        return $this->belongsTo(Like::class)->onlyTrashed();
+    }
+
+    public function likedBy(Member $member)
+    {
+        return $this->likes->contains('member_id', $member->id);
+    }
 }

@@ -49,6 +49,13 @@
                         <div class="row form-row">
                             <a href="{{route('feed.register')}}" class="btn btn-info btn-sm">Register</a>
                         </div>
+                        <br />
+                        <div class="row form-row mt-2">
+                        <a href="{{url('/login/facebook')}}" class="btn btn-block bg-white border border-primary rounded ">
+                            <span class="fa fa-facebook-official text-primary px-2"></span>
+                            Log In with Facebook
+                        </a>
+                        </div>
                     </form>
                 </div>
             </div>

@@ -11,6 +11,26 @@
         <!-- Current Tasks -->
         <div class="row">
           <div class="col-lg-3 mb-4">
+            <div class="blog-sidebar">
+              <div class='MainAdverTiseMentDiv' data-publisher="1" data-adsize="728x90"></div> 
+              <script class="adScriptClass" src="http://localhost//ads/ad.js"></script>
+            <div class="widget widget_search mb-2">
+                  <form action="{{ route('feed.searchpost')}}" method="GET" class="search-form input-group">
+                    @csrf
+                      <input type="search" class="form-control widget_input" name="search" placeholder="Search">
+                      <button type="submit"><i class="far fa-search" araia-hidden="true"></i></button>
+                  </form>
+              </div>
+              <div class="widget widget_categorie">
+                  <ul class="list-unstyled">
+                  <li><a href="#"><i class="far fa-caret-right"></i>Trending</a></li>
+                  <li><a href="#"><i class="far fa-caret-right"></i>Most recent</a></li>
+                  <li><a href="#"><i class="far fa-caret-right"></i>Related</a></li>
+                  </ul>
+              </div>
+              <div class="widget">
+              </div>
+            </div>
           </div>
           <div class="col-lg-9 col-sm-12 mb-4">
 
@@ -18,7 +38,7 @@
     <div class="panel-body">
       <div class="comments">
         <div class="comments-details d-flex">
-          <span class="total-comments comments-sort h2">Live Feed</span>
+          <span class="total-comments comments-sort h2">Members Posts</span>
           @if(!Auth::guard('feed')->check())
           <span class="pull-right ml-auto">
               <a class="btn btn-info" href="{{route('feed.login')}}">Login as member to post <i class="fa fa-lock"></i></a>
@@ -31,7 +51,7 @@
           <form class="contact-form" method="POST" action="{{ route('feed.newactivity') }}">
           @csrf
           <input type="text" class="form-control" placeholder="Add a title" name="heading" required autofocus/>
-          <textarea class="form-control" placeholder="Add a public comment" name="details" rows="5"></textarea>
+          <textarea class="form-control" placeholder="Add a public comment" name="details" rows="3"></textarea>
             <button type="submit" class="btn btn-default">Post</button>
             <button type="cancel" class="btn btn-default">Cancel</button>
           </form>

@@ -24,15 +24,32 @@
                <div class="col-lg-8 col-md-12 single-blog-details-inner-wrapper">
                     <div class="single-blog-details-post"><!-- single blog page -->
                         <div class="content">
-                            <!-- <h4 class="title">{{$post->heading}}</h4> -->
-                            <div class="post-meta d-flex">
-                                <div>
-                                <span class="time"><i class="far fa-user">Admin</i></span>
-                                </div>
-                                <div>
+                        <div class="post-meta d-flex justify-content-between">
+                                <div class="mr-auto">
+                                <span class="time ml-1"><i class="far fa-user">Admin</i></span>
+                                
                                 <span class="time"><i class="far fa-calendar"></i> {{$post->created_at->diffForHumans()}}</span>
                                 </div>
+                                <div class="ml-auto">
+                            @if(Auth::guard('feed')->check())
+                                @if (auth()->user() && !$post->likedBy(auth()->user()))
+                                  <form action="{{ route('feed.postlikes', $post) }}" method="post" class="mr-1">
+                                      @csrf
+                                      <input type="hidden" name="activity" value="{{$post->id}}">
+                                      <button class="comment-like"><i class="fa fa-thumbs-up" aria-hidden="true"></i> {{$post->likes->count()}}</button>
+                                  </form>
+                                @else
+                                  <form action="{{ route('feed.postdislikes', $post) }}" method="post" class="mr-1">
+                                      @csrf
+                                      @method('DELETE')
+                                      <input type="hidden" name="activity" value="{{$post->id}}">
+                                      <button class="comment-dislike"><i class="fa fa-thumbs-down" aria-hidden="true"></i>{{ $post->dislikes}}</button>
+                                  </form>
+                                @endif
+                              @endif 
+                              </div>
                             </div>
+                            
                             <p>{!!$post->details!!}</p>
                         </div>
                     </div> 
@@ -42,12 +59,12 @@
     <div class="col-12">
       <div class="comments">
         <div class="comments-details">
-          <span class="total-comments comments-sort">117 Comments</span>
+          <span class="total-comments comments-sort">{{$post->comments->count()}} Comments</span>
           <span class="dropdown">
               <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">Sort By <span class="caret"></span></button>
               <div class="dropdown-menu">
                 <a href="#" class="dropdown-item">Top Comments</a>
-              <a href="#" class="dropdown-item">Newest First</a>
+                <a href="#" class="dropdown-item">Newest First</a>
               </div>
           </span>     
         </div>
@@ -56,77 +73,60 @@
             <img src="/images/user-icon.jpg" class="img-fluid">
           </span>
           <span class="commenter-name">
-            <input type="text" placeholder="Add a public comment" name="Add Comment">
-            <button type="submit" class="btn btn-default">Comment</button>
-            <button type="cancel" class="btn btn-default">Cancel</button>
+            <form class="form" method="POST" action="{{ route('blog.blogcomment')}}" name="contact-form">
+              @csrf
+              <input type="text" placeholder="Add a public comment" name="comment">
+              <button type="submit" class="btn btn-default">Comment</button>
+              <button type="cancel" class="btn btn-default">Cancel</button>
+            </form>
           </span>
         </div>
-        <div class="comment-box">
-          <span class="commenter-pic">
-            <img src="/images/user-icon.jpg" class="img-fluid">
-          </span>
-          <span class="commenter-name">
-            <a href="#">Happy markuptag</a> <span class="comment-time">2 hours ago</span>
-          </span>       
-          <p class="comment-txt more">Suspendisse massa enim, condimentum sit amet maximus quis, pulvinar sit amet ante. Fusce eleifend dui mi, blandit vehicula orci iaculis ac.</p>
-          <div class="comment-meta">
-            <button class="comment-like"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 99</button>
-            <button class="comment-dislike"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> 149</button> 
-            <button class="comment-reply reply-popup"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</button>         
-          </div>
-          <div class="comment-box add-comment reply-box">
-            <span class="commenter-pic">
-              <img src="/images/user-icon.jpg" class="img-fluid">
-            </span>
-            <span class="commenter-name">
-              <input type="text" placeholder="Add a public reply" name="Add Comment">
-              <button type="submit" class="btn btn-default">Reply</button>
-              <button type="cancel" class="btn btn-default reply-popup">Cancel</button>
-            </span>
-          </div>
-        </div>
-        <div class="comment-box">
-          <span class="commenter-pic">
-            <img src="/images/user-icon.jpg" class="img-fluid">
-          </span>
-          <span class="commenter-name">
-            <a href="#">Happy markuptag</a> <span class="comment-time">2 hours ago</span>
-          </span>       
-          <p class="comment-txt more">Suspendisse massa enim, condimentum sit amet maximus quis, pulvinar sit amet ante. Fusce eleifend dui mi, blandit vehicula orci iaculis ac.</p>
-          <div class="comment-meta">
-            <button class="comment-like"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 99</button>
-            <button class="comment-dislike"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> 149</button> 
-            <button class="comment-reply"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</button>         
-          </div>
+
+        @foreach ($post->comments as $comment)
           <div class="comment-box replied">
             <span class="commenter-pic">
+              <img src="{{ asset('/images/logo/icon.png') }}" class="img-fluid">
+            </span>
+            <span class="commenter-name">
+              <a href="#">{{ $comment->member->username }}</a> <span class="comment-time">{{ $comment->created_at->diffForHumans()}}</span>
+            </span>       
+            <p class="comment-txt more">{{ $comment->text }}</p>
+            <div class="comment-meta d-flex justify-content-end">
+            
+              @if (!$post->likedBy($comment->member))
+                <form action="{{ route('blog.commentlikes', $comment) }}" method="post" class="mr-1">
+                    @csrf
+                    <input type="hidden" name="comment" value="{{$comment->id}}">
+                    <button class="comment-like"><i class="fa fa-thumbs-up" aria-hidden="true"></i> {{$comment->likes->count()}}</button>
+                </form>
+              @else
+                <form action="{{ route('blog.commentdislikes', $comment) }}" method="post" class="mr-1">
+                    @csrf
+                    @method('DELETE')
+                    <input type="hidden" name="comment" value="{{$comment->id}}">
+                    <button class="comment-dislike"><i class="fa fa-thumbs-down" aria-hidden="true"></i>{{ $comment->dislikes->count()}}</button>
+                </form>
+              @endif
+            
+            <button class="comment-reply reply-popup"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</button>         
+            </div>
+            <div class="comment-box add-comment reply-box">
+            <span class="commenter-pic">
               <img src="/images/user-icon.jpg" class="img-fluid">
             </span>
             <span class="commenter-name">
-              <a href="#">Happy markuptag</a> <span class="comment-time">2 hours ago</span>
-            </span>       
-            <p class="comment-txt more">Suspendisse massa enim, condimentum sit amet maximus quis, pulvinar sit amet ante. Fusce eleifend dui mi, blandit vehicula orci iaculis ac.</p>
-            <div class="comment-meta">
-              <button class="comment-like"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 99</button>
-              <button class="comment-dislike"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> 149</button> 
-              <button class="comment-reply"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</button>         
-            </div>
-            <div class="comment-box replied">
-              <span class="commenter-pic">
-                <img src="/images/user-icon.jpg" class="img-fluid">
-              </span>
-              <span class="commenter-name">
-                <a href="#">Happy markuptag</a> <span class="comment-time">2 hours ago</span>
-              </span>       
-              <p class="comment-txt more">Suspendisse massa enim, condimentum sit amet maximus quis, pulvinar sit amet ante. Fusce eleifend dui mi, blandit vehicula orci iaculis ac.</p>
-              <div class="comment-meta">
-                <button class="comment-like"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 99</button>
-                <button class="comment-dislike"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> 149</button> 
-                <button class="comment-reply"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</button>         
-              </div>
-            </div>
+              <form action="{{ route('blog.comment', $comment) }}" method="post" class="mr-1">
+                @csrf
+                <input type="text" placeholder="Add a public reply" name="comment">
+                <button type="submit" class="btn btn-default">Reply</button>
+                <button type="cancel" class="btn btn-default reply-popup">Cancel</button>
+              </form>
+            </span>
           </div>
-        </div>
+
+            
+          </div>
+          @endforeach
       </div>
     </div>
   </div>

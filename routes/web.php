@@ -35,19 +35,31 @@ Route::post('/ipncoingate', 'PaymentController@ipnCoinGate')->name('ipn.coingate
 //Cron To Validate Ad
 Route::get('/cron-ad', 'VisitorController@cronAd'); 
 
+// Social Auth
+Route::get('login/{provider}', 'Auth\SocialAccountController@redirectToProvider');
+Route::get('login/{provider}/callback', 'Auth\SocialAccountController@handleProviderCallback');
+
 //Advertise API
-
-
 Route::get('/ads/{publisher}/{type}', 'VisitorController@getAdvertise')->name('adsUrl'); 
-
-
 Route::get('/ad-clicked/{publisher}/{hash}', 'VisitorController@adClicked')->name('adClicked'); 
 Route::get('/', 'VisitorController@index')->name('user.index'); 
 Route::get('/blog', 'VisitorController@blog')->name('user.blog'); 
 Route::get('/blog/{post}', 'VisitorController@blogPost')->name('user.blog-post'); 
 Route::view('/contact', 'contact');
 Route::post('/contact-message', 'VisitorController@contactMessage')->name('contact.message');   
-Route::post('/subscriber', 'VisitorController@subscriber')->name('subscriber');   
+Route::post('/subscriber', 'VisitorController@subscriber')->name('subscriber');
+
+Route::group(['middleware' => ['auth.member']], function() {
+    Route::group(['prefix' => 'blog'], function () 
+    {
+        Route::post('/blog-comment', 'VisitorController@blogComment')->name('blog.blogcomment');   
+        Route::post('/sub-comment', 'VisitorController@subComment')->name('blog.comment');   
+        Route::post('/blog-comment-like', 'VisitorController@commentLikes')->name('blog.commentlikes');   
+        Route::post('/blog-comment-dislike', 'VisitorController@commentDislikes')->name('blog.commentdislikes');
+        Route::post('/blog-like', 'VisitorController@likeBlog')->name('blog.likes');   
+        Route::post('/blog-dislike', 'VisitorController@dislikeBlog')->name('blog.dislikes');
+    });
+});   
 
 Route::get('/404', function () {
     return view('404');
@@ -302,9 +314,10 @@ Route::prefix('feed')->group(function() {
 
     //Public Forums
     Route::get('/dashboard', 'CommunityController@dashboard')->name('feed.dashboard');
+    Route::get('/search-post', 'CommunityController@searchPost')->name('feed.searchpost');
     
   });
-  Route::group(['middleware' => ['auth:feed','fverify']], function() {
+  Route::group(['middleware' => ['member.auth','fverify']], function() {
     Route::group(['prefix' => 'feed'], function () 
     {
         Route::post('/create-activity', 'CommunityController@createActivity')->name('feed.newactivity');
