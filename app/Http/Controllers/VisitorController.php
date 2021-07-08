@@ -30,7 +30,6 @@ class VisitorController extends Controller
         $front = Frontend::first();
         $sliders = Slider::all();
         $testimonials = Testimonial::all();
-        $faqs = Faq::all();
         $socials = Social::all();
         $posts = Blog::orderBy('id','DESC')->select('id', 'photo', 'heading')->take(3)->get();
         return view('welcome', compact('front','sliders','posts','socials','testimonials','faqs'));
@@ -540,6 +539,13 @@ class VisitorController extends Controller
         $request->user()->likes()->where('activity_id', $post->id)->delete();
 
         return back();
+    }
+
+    public function contactForm()
+    {
+        $front = Frontend::first();
+        $faqs = Faq::all();
+        return view('contact', compact('front','faqs'));
     }
 
 }

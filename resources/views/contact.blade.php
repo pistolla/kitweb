@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="breadcrumb-inner">
-                    <h1 class="title">Contact</h1>
+                    <h1 class="title">Who we are</h1>
                 </div>
             </div>
         </div>
@@ -61,6 +61,72 @@
         </div>
     </div>
 </section>
+<section class="faq-area">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="section-title extra">
+                    <h2 class="title">{{ $front->faq_heading }}</h2>
+                    <p>{!! $front->faq_details !!}</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="left-content-wrapper">
+                    <div id="accordion">
+                        @foreach($faqs as $key => $faq)   
+                        @if($key%2 != 0) 
+                        <div class="card">
+                            <div class="card-header" id="heading{{ $key }}">
+                                <a  data-toggle="collapse" data-target="#collapse{{ $key }}" aria-expanded="false" aria-controls="collapse{{ $key }}">
+                                    {{ $faq->heading }}
+                                </a>
+                            </div>
+                            
+                            <div id="collapse{{ $key }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                                <div class="card-body">
+                                    {!!$faq->details!!}
+                                </div>
+                            </div>
+                        </div>
+                        @endif
+                        @endforeach 
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="right-content-wrapper">
+                    <div id="accordion_2">
+                        @foreach($faqs as $key => $faq)   
+                        @if($key%2 == 0)     
+                        <div class="card">
+                            <div class="card-header" id="heading{{ $key }}_2">
+                                <a  data-toggle="collapse" data-target="#collapse{{ $key }}_2" aria-expanded="false" aria-controls="collapse{{ $key }}_2">
+                                    {{ $faq->heading }}
+                                </a>
+                            </div>
+                            <div id="collapse{{ $key }}_2" class="collapse" aria-labelledby="heading{{ $key }}_2" data-parent="#accordion_2">
+                                <div class="card-body">
+                                    {!!$faq->details!!}
+                                </div>
+                            </div>
+                        </div>
+                        @endif
+                        @endforeach 
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 text-center">
+                <div class="btn-wrapper">
+                    <a href="{{ url('/') }}/contact" class="boxed-btn btn-rounded">Any question?</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- faq area end -->
+
 @endsection
 @section('page_scripts')
 <script>

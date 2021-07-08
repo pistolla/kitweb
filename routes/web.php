@@ -45,7 +45,7 @@ Route::get('/ad-clicked/{publisher}/{hash}', 'VisitorController@adClicked')->nam
 Route::get('/', 'VisitorController@index')->name('user.index'); 
 Route::get('/blog', 'VisitorController@blog')->name('user.blog'); 
 Route::get('/blog/{post}', 'VisitorController@blogPost')->name('user.blog-post'); 
-Route::view('/contact', 'contact');
+Route::get('/contact', 'VisitorController@contactForm')->name('contact');
 Route::post('/contact-message', 'VisitorController@contactMessage')->name('contact.message');   
 Route::post('/subscriber', 'VisitorController@subscriber')->name('subscriber');
 

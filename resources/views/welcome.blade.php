@@ -53,7 +53,7 @@
                 </ul>
                 <!-- /.navbar-nav -->
             </div>
-            <div class="right-btn-wrapper">
+            <div class="right-btn-wrapper d-flex">
                 <a href="{{ route('login') }}" class="boxed-btn btn-rounded">Advertiser</a>
                 <a href="{{  route('publisher.login')  }}"  class="boxed-btn btn-rounded">Publisher</a>
             </div>
@@ -68,11 +68,6 @@
 </nav>
 
 <div class="header-area header-bg">
-<div class="sonar-wrapper">
-                    <div class="sonar-emitter">
-                        <div class="sonar-wave"></div>
-                    </div>
-                </div>
     <div class="container">
         <div class="row justify-content-center text-center">
             <div class="col-lg-12">
@@ -80,7 +75,13 @@
                     <h1 class="title">{{ $front->banner_heading }}</h1>
                     <p class="wow fadeInDown">{!! $front->banner_details !!}</p>
                     <div class="btn-wrapper">
-                        <a href="{{ route('login') }}" class="boxed-btn btn-rounded">JOIN US</a>
+                        <a href="{{ route('feed.login') }}" class="boxed-btn btn-rounded">JOIN US</a>
+                    </div>
+                    <div class="btn-wrapper">
+                        <a href="" class="boxed-btn btn-rounded"><i class="fa fa-facebook"></i>Like Our Page</a>
+                    </div>
+                    <div class="btn-wrapper">
+                        <a href="" class="boxed-btn btn-rounded"><i class="fa fa-twitter"></i>Follow US</a>
                     </div>
                 </div>
                 
@@ -225,71 +226,6 @@ viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
     </div>
 </section>
 
-<section class="faq-area">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <div class="section-title extra">
-                    <h2 class="title">{{ $front->faq_heading }}</h2>
-                    <p>{!! $front->faq_details !!}</p>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="left-content-wrapper">
-                    <div id="accordion">
-                        @foreach($faqs as $key => $faq)   
-                        @if($key%2 != 0) 
-                        <div class="card">
-                            <div class="card-header" id="heading{{ $key }}">
-                                <a  data-toggle="collapse" data-target="#collapse{{ $key }}" aria-expanded="false" aria-controls="collapse{{ $key }}">
-                                    {{ $faq->heading }}
-                                </a>
-                            </div>
-                            
-                            <div id="collapse{{ $key }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                                <div class="card-body">
-                                    {!!$faq->details!!}
-                                </div>
-                            </div>
-                        </div>
-                        @endif
-                        @endforeach 
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="right-content-wrapper">
-                    <div id="accordion_2">
-                        @foreach($faqs as $key => $faq)   
-                        @if($key%2 == 0)     
-                        <div class="card">
-                            <div class="card-header" id="heading{{ $key }}_2">
-                                <a  data-toggle="collapse" data-target="#collapse{{ $key }}_2" aria-expanded="false" aria-controls="collapse{{ $key }}_2">
-                                    {{ $faq->heading }}
-                                </a>
-                            </div>
-                            <div id="collapse{{ $key }}_2" class="collapse" aria-labelledby="heading{{ $key }}_2" data-parent="#accordion_2">
-                                <div class="card-body">
-                                    {!!$faq->details!!}
-                                </div>
-                            </div>
-                        </div>
-                        @endif
-                        @endforeach 
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-12 text-center">
-                <div class="btn-wrapper">
-                    <a href="{{ url('/') }}/contact" class="boxed-btn btn-rounded">Any question?</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- faq area end -->
 
 <section class="marketing-area gray-bg">
     <div class="container">
@@ -336,7 +272,6 @@ viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
                             <li><a href="{{ url('/') }}">Home</a></li>
                             <li><a href="#Service">Service</a></li>
                             <li><a href="#About">About</a></li>
-                            <li><a href="#Testimonials">Testimonials</a></li>
                             <li><a href="{{ url('/') }}#Contact">Contact</a> </li>
                         </ul>
                     </div>

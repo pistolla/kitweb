@@ -1035,7 +1035,7 @@ ul {
 ------------------------------*/
 .header-area {
   position: relative;
-  padding: 315px 0 323px 0; }
+  padding: 315px 0 200px 0; }
   .header-area .scroll-down {
     position: absolute;
     left: 20px;
@@ -1693,7 +1693,7 @@ ul {
     Blog Pages
 ---------------------*/
 .blog-page-conent {
-  padding: 120px 0 90px 0; }
+  padding: 0px 0 90px 0; }
   .blog-page-conent .single-blog-post {
     margin-bottom: 30px;
     -webkit-transition: all 0.3s ease-in;
@@ -2208,8 +2208,7 @@ ul {
 /*Shrinking for mobile*/
 @media (max-width: 768px) {
   .waves {
-    height:40px;
-    min-height:40px;
+    display: none;
   }
 }
 
