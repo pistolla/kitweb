@@ -30,10 +30,6 @@
             <div class="collapse navbar-collapse" id="mirex">
                 <!-- navbar collapse start -->
                 <ul class="navbar-nav">
-                    <!-- navbar- nav -->
-                    <li class="nav-item active">
-                        <a class="nav-link pl-0" href="{{ url('/') }}">Home</a>
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#Service">Service</a>
                     </li>

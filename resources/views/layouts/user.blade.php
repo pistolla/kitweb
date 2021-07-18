@@ -86,13 +86,7 @@
                         </div>
                     </li>
                     @endif
-                    
-                    
                     @if(!Auth::check() && !Auth::guard('publisher')->check() )
-                    <li class="nav-item">
-                        <a class="nav-link pl-0" href="{{url('/')}}">Home
-                        </a>
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{url('/')}}#Service">Service</a>
                     </li>

@@ -1,7 +1,7 @@
 @extends('layouts.fullpage')
 
 @section('content')
-<section id="Login full-page-background" style="background: no-repeat center/100% url('{{ url('/images/logo/logo-background.jpg') }}')">
+<section id="Login" class="full-page-background" style="background: no-repeat center/100% url('{{ url('/images/logo/logo-background.jpg') }}')">
     <div class="row cloud-drive">
             <div class="col-md-6 detail-container justify-height">
                 <div class="layyer">

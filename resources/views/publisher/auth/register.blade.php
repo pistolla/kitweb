@@ -1,24 +1,13 @@
-@extends('layouts.user')
+@extends('layouts.fullpage')
 
 @section('content')
-<section class="breadcrumb-area breadcrumb-bg white-bg">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="breadcrumb-inner">
-                    <h1 class="title">Publisher Register</h1>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<section class="contact-page-area" id="Contact">
+<section class="contact-page-area full-page-background" id="Contact" style="background: no-repeat center/150% url('{{ url('/images/logo/logo-background.jpg') }}')">
     <div class="container contact-page-container">
         <div class="row">
             <div class="col-lg-12">
                 <div class="contact-page-inner">
                     <div class="card">
-                                     <h2 class="card-title text-center" style="padding: 60px;"> Register as Publisher</h2>
+                        <h2 class="card-title text-center" style="padding: 60px;"> Register as Publisher</h2>
                         <div class="card-body">
                         @if($gnl->reg==1)
                             <form class="contact-form" method="POST" action="{{ route('publisher.registerpost') }}">
@@ -55,9 +44,16 @@
                                     <div class="form-element margin-bottom-20">
                                         <input class="input-field" id="password-confirm" type="password" placeholder="Confirm Password" name="password_confirmation" required>
                                     </div>
-                                    
-                                    <div class="form-element margin-bottom-20 text-center">
+                                    <div class="mb-2">
+                                        <a class="float-right" href="{{ route('pub.password.resetreq') }}">
+                                            Forgot Your Password?
+                                        </a>
+                                    </div>
+                                    <div class="form-element margin-bottom-20 text-center d-flex justify-content-center">
                                         <button type="submit" class="submit-btn">Register</button>
+                                        <a class="btn btn-lg" href="{{route('publisher.login')}}">
+                                            Login
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -67,15 +63,6 @@
                         <h1>Regitsration Closed NOw</h1>
                         @endif
                      </div>
-                    <div class="card-footer">
-                        <a class="float-left btn btn-sm" href="{{route('publisher.login')}}">
-                            Login
-                        </a>
-                        
-                        <a class="float-right" href="{{ route('pub.password.resetreq') }}">
-                            Forgot Your Password?
-                        </a>
-                    </div>
                 </div>
             </div>
         </div>

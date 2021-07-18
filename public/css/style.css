@@ -941,9 +941,46 @@ ul {
     transition: 0.5s ease-in;
     background-color: #D26EC4;
     border-bottom: 1px solid rgba(255, 255, 255, 0.07); }
-    .nav-item:active, .nav-item:hover {
-      background-color: rgba(255, 255, 255, 0.14);
+    
+
+    .navbar .navbar-nav .nav-link {
+      color: #FFFFFF;
+      font-size: 1.1em;
+      position: relative;
+      transition: all 0.5s;
     }
+    
+    .navbar .navbar-nav .nav-link:hover {
+      color: #FFFFFF;
+    }
+    .navbar .navbar-nav .nav-link::after {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      background-color: #FFFFFF;
+      color: transparent;
+      width: 0%;
+      content: '.';
+      height: 3px;
+      transition: all 0.5s;
+    }
+    .navbar .navbar-nav .nav-link:hover::after {
+      width: 100%;
+    }
+    @media only screen and (min-width: 960px) {
+      .navbar .navbar-nav .nav-link {
+        padding: 1em 0.7em;
+      }
+      .navbar {
+        padding: 0;
+      }
+      .navbar .navbar-brand {
+        padding: 0 0.7em;
+      }
+    }
+
     .navbar-area.nav-fixed .navbar-collapse .navbar-nav .nav-item:hover .dropdown-menu {
       -webkit-transition: all 0.3s ease-in;
       -moz-transition: all 0.3s ease-in;

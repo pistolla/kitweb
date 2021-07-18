@@ -1,19 +1,15 @@
-@extends('layouts.user')
+@extends('layouts.fullpage')
 
 @section('content')
-<section class="breadcrumb-area breadcrumb-bg white-bg">
-        <div class="container">
-            <div class="row">
+<section class="contact-page-area" id="contact-section" style="background: no-repeat center/150% url('{{ url('/images/logo/logo-background.jpg') }}')">
+    <div class="container">
+    <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-inner">
                         <h1 class="title">Publisher Verification</h1>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-<section class="contact-page-area" id="contact-section">
-    <div class="container">
         <div class="row">
             <div class="col-md-12"> 
                 <div class="left-content-area">
