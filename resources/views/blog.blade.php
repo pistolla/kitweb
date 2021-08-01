@@ -10,7 +10,7 @@
     <div class="container">
         <div class="row">
             @foreach ($posts as $item)
-            <div class="col-md-4 mt-5">
+            <div class="col-md-4 mt-5 wow fadeInDown" data-wow-delay="2s">
                 <a href="{{route('user.blog-post', $item->id)}}">
                 <div class="single-blog-post">
                     <div class="thumb">

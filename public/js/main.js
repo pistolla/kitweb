@@ -127,4 +127,26 @@
         var replyBox = "#reply-"+btnId;
         $(replyBox).toggle();
       });
+
+
+      $('select[name="country"]').on('change', function() {
+        var countryID = $(this).val();
+            if(countryID) {
+                $.ajax({
+                    url: '/feed/cities/'+encodeURI(countryID),
+                    type: "GET",
+                    dataType: "json",
+                    success:function(data) {
+                        $('select[name="city"]').empty();
+                        $.each(data, function(key, value) {
+                            $('select[name="city"]').append('<option value="'+ value.id +'">'+ value.name +'</option>');
+                            $('#code').val(value.phonecode);
+                            $('#codehidden').val(value.phonecode);
+                            });
+                        }
+                });
+            } else {
+                $('select[name="city"]').empty();
+            }
+           });
 }(jQuery));	

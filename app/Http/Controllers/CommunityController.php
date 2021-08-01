@@ -12,6 +12,7 @@ use App\Wmethod;
 use App\Analytic;
 use App\Password;
 use App\Withdraw;
+use App\Country;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -169,11 +170,12 @@ class CommunityController extends Controller
        $gnl = General::first();
        if(1 == $gnl->reg)
        {
-           return view('feed.auth.register');
+           $countries = Country::all();
+           return view('feed.auth.register', compact('countries'));
        }
        else
        {
-           return redirect()->route('user.index')->with('alert', 'Registration Closed Now');
+           return redirect()->route('feed.dashboard')->with('alert', 'Registration Closed Now');
        }
     }
 
@@ -187,6 +189,7 @@ class CommunityController extends Controller
        'country' => 'required|string|max:255',
        'city' => 'required|string|max:255',
        'mobile' => 'required|string',
+       'codehidden' => 'required|string',
        ]
     );
        $gnl = General::first();
@@ -199,7 +202,7 @@ class CommunityController extends Controller
            $reg['password'] = Hash::make($request->password);
            $reg['country'] = $request->country;
            $reg['city'] = $request->city;
-           $reg['mobile'] = $request->mobile;
+           $reg['mobile'] = $this->_joinPhoneCode($request->codehidden, $request->mobile);
            $reg['emailv'] = $gnl->emailver;
            $reg['smsv'] = $gnl->smsver;
            Member::create($reg);
@@ -215,6 +218,19 @@ class CommunityController extends Controller
            }
        }
 
+    }
+
+    private function _joinPhoneCode($code, $phone)
+    {
+        $tempPhone = $phone;
+        if(!empty($code) && !empty($phone)){
+            if(substr($phone, 0, 1) == '0'){
+                $tempPhone = $code . substr($phone, 1, strlen($phone));
+            } else if(substr($phone, 0, strlen($code)) == $code){
+                $tempPhone = $code . substr($phone, 0, strlen($code));
+            }
+        }
+        return $tempPhone;
     }
     
     public function login(Request $request)
@@ -400,7 +416,7 @@ class CommunityController extends Controller
                 $msg =  'Password Changed Successfully';
                 send_email( $member->email,$member->username, 'Password Changed', $msg);
                 $sms =  'Password Changed Successfully';
-                send_sms( $member->mobile, $sms);
+                send_sms($member->mobile, $sms);
 
                 return redirect()->route('feed.login')->with('success', 'Password Changed');
             }
@@ -408,11 +424,19 @@ class CommunityController extends Controller
             {
                 return back()->with('alert', 'Password Not Matched');
             }
-            
         }
         else
         {
             return redirect()->route('feed.login')->with('alert', 'Invalid Reset Link');
         }
+    }
+
+    public function cityForCountryAjax($country_id)
+    {
+        $id = urldecode($country_id);
+        $states = Country::join("states", "states.country_id", "=", "countries.id")
+                    ->where("countries.id", $id)
+                    ->get(['states.name','states.id', 'countries.phonecode']);
+        return json_encode($states);
     }
 }

@@ -17,15 +17,19 @@
             <div class="widget widget_search mb-2">
                   <form action="{{ route('feed.searchpost')}}" method="GET" class="search-form input-group">
                     @csrf
+                    <div class="input-group">
                       <input type="search" class="form-control widget_input" name="search" placeholder="Search">
-                      <button type="submit"><i class="far fa-search" araia-hidden="true"></i></button>
+                      <div class="input-group-append">
+                      <button type="submit" class="input-group-btn btn"><i class="fa fa-search" araia-hidden="true"></i></button>
+                      </div>
+                      </div>
                   </form>
               </div>
               <div class="widget widget_categorie">
                   <ul class="list-unstyled">
-                  <li><a href="#"><i class="far fa-caret-right"></i>Trending</a></li>
-                  <li><a href="#"><i class="far fa-caret-right"></i>Most recent</a></li>
-                  <li><a href="#"><i class="far fa-caret-right"></i>Related</a></li>
+                  <li class="mb-1 link h4"><a href="#"><i class="far fa-caret-right"></i>Trending</a></li>
+                  <li class="mb-1 link h4"><a href="#"><i class="far fa-caret-right"></i>Most recent</a></li>
+                  <li class="mb-1 link h4"><a href="#"><i class="far fa-caret-right"></i>Related</a></li>
                   </ul>
               </div>
               <div class="widget">

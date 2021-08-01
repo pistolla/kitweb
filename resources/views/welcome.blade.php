@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <title> {{ $gnl->title }} | {{ $gnl->subtitle }} </title>
     <link rel="shortcut icon" href="{{  asset('/images/logo/icon.png')  }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}">
@@ -14,13 +14,13 @@
     <link rel="stylesheet" href="{{ asset('/css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/magnific-popup.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/responsive.css') }}">
     <link href="{{ asset('/css/color.php?color=') }}{{ $gnl->color }}" rel="stylesheet">
 </head>
-
-<body> 
+<body>
     <!-- navbar area start -->
-    <nav class="navbar navbar-area navbar-expand-lg navbar-light ">
+    <nav class="navbar navbar-area navbar-expand-lg navbar-light">
         <div class="container nav-container">
             <div class="logo-wrapper navbar-brand">
                 <a href="{{ url('/') }}" class="logo main-logo">
@@ -31,25 +31,25 @@
                 <!-- navbar collapse start -->
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="#Service">Service</a>
+                        <a class="nav-link" href="#Service">SERVICE</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="{{ route('user.blog') }}">Blog</a>
+                    <a class="nav-link" href="{{ route('user.blog') }}">BLOG</a>
                     </li>
                     
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('feed.dashboard') }}">Community</a>
+                        <a class="nav-link" href="{{ route('feed.dashboard') }}">COMMUNITY</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('contact')}}">About</a>
+                        <a class="nav-link" href="{{route('contact')}}">ABOUT US</a>
                     </li>
                     
                 </ul>
                 <!-- /.navbar-nav -->
             </div>
             <div class="right-btn-wrapper d-flex">
-                <a href="{{ route('login') }}" class="boxed-btn btn-rounded">Advertiser</a>
-                <a href="{{  route('publisher.login')  }}"  class="boxed-btn btn-rounded">Publisher</a>
+                <a href="{{ route('login') }}" class="border-animation"><span class="border-animation__inner">Advertiser</span></a>
+                <a href="{{  route('publisher.login')  }}" class="border-animation"><span class="border-animation__inner">Publisher</span></a>
             </div>
             
             <div class="responsive-mobile-menu">
@@ -60,44 +60,39 @@
         </div>
     </div>
 </nav>
-
-<div class="header-area header-bg">
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <defs>
+	  <symbol id="arrow" viewBox="0 0 100 100">
+	  	<path d="M12.5 45.83h64.58v8.33H12.5z"/>
+    		<path d="M59.17 77.92l-5.84-5.84L75.43 50l-22.1-22.08 5.84-5.84L87.07 50z"/>
+	  </symbol>
+  </defs>
+</svg>
+<div class="header-area header-bg text-center">
+    <div class="box mx-5">
     <div class="container">
         <div class="row justify-content-center text-center">
             <div class="col-lg-12">
                 <div class="header-inner ">
-                    <h1 class="title">{{ $front->banner_heading }}</h1>
-                    <p class="wow fadeInDown">{!! $front->banner_details !!}</p>
-                    <div class="btn-wrapper">
-                        <a href="{{ route('feed.login') }}" class="boxed-btn btn-rounded">JOIN US</a>
-                    </div>
-                    <div class="btn-wrapper">
-                        <a href="" class="boxed-btn btn-rounded"><i class="fa fa-facebook"></i>Like Our Page</a>
-                    </div>
-                    <div class="btn-wrapper">
-                        <a href="" class="boxed-btn btn-rounded"><i class="fa fa-twitter"></i>Follow US</a>
+                    <h1 class="title wow slideInRight" data-wow-delay="2s">{{ $front->banner_heading }}</h1>
+                    <p class="wow fadeInDown" data-wow-delay="3s">{!! $front->banner_details !!}</p>
+                    <div class="row">
+                        <div class="btn-wrapper col-md-4 col-sm-12">
+                            <a href="{{ route('feed.login') }}" class="arrow-button pull-right">JOIN US
+                            <span>
+                                <svg>
+                                    <use xlink:href="#arrow" href="#arrow"></use>
+                                </svg>
+                            </span>
+                            </a>
+                        </div>
                     </div>
                 </div>
-                
             </div>
         </div>
     </div>
-    <!--Waves Start-->
-    <div class="wave-wrapper">
-<svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
-<defs>
-<path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
-</defs>
-<g class="parallax">
-<use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
-<use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
-<use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
-<use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
-</g>
-</svg>
-</div>
-<!--Waves end-->
+    </div>
+    
 </div>
 
 <section class="service-area" id="Service">
@@ -111,8 +106,8 @@ viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
             </div>
         </div>
         <div class="row">
-            @foreach ($sliders as $item)
-            <div class="col-lg-6 col-md-6">
+            @foreach ($sliders as $key => $item)
+            <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="2s" data-wow-delay="{{$key+1}}s">
                 <div class="single-service-item">
                     <div class="content">
                         <h4 class="title">{{ $item->heading }}</h4>

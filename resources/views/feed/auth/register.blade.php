@@ -6,8 +6,8 @@
             <div class="col-md-6 detail-container justify-height">
                 <div class="layyer">
                         <div class="row header">
-                                <div class="col-sm-4">
-                                        <img src="{{ url('/images/logo/logo.png') }}" alt="logo">
+                                <div class="col-sm-4 px-2">
+                                        <a href="{{ url('/')}}"><img src="{{ url('/images/logo/logo.png') }}" alt="logo"></a>
                                 </div>
                                 <div class="col-sm-8">
                                         
@@ -24,7 +24,7 @@
             <div class="col-md-6 col-sm-12 sign-up">
                 <div class="row">
                     <ul>
-                        <li onclick="showLogin()" id="login" class="sel">Sign In</li>
+                        <li onclick="showLogin()" id="login" class="sel">Register as new member</li>
                     </ul>
                 </div>
                 <h3></h3>
@@ -33,28 +33,41 @@
                     @csrf
                         <div class="row form-row">
                             @include('layouts.error')
-                            <input class="input-field" id="name" type="text" placeholder="Enter Name" name="name" value="{{ old('name') }}" required autofocus>
+                            <input class="input-field form-control" id="name" type="text" placeholder="Enter Name" name="name" value="{{ old('name') }}" required autofocus>
                         </div>
                         <div class="row form-row">
-                            <input class="input-field" id="email" type="email" placeholder="Enter Email" name="email" value="{{ old('email') }}" required>
+                            <input class="input-field form-control" id="email" type="email" placeholder="Enter Email" name="email" value="{{ old('email') }}" required>
                         </div>
                         <div class="row form-row">
-                            <input class="input-field" id="username" type="text" placeholder="Enter Username" name="username" value="{{ old('username') }}" required>
+                            <input class="input-field form-control" id="username" type="text" placeholder="Enter Username" name="username" value="{{ old('username') }}" required>
                         </div>
                         <div class="row form-row">
-                            <input class="input-field" id="country" type="text" placeholder="Enter Name of Country " name="country" value="{{ old('country') }}" required>
+                            <select name="country" class="input-field form-control">
+                                <option value="">--- Select country ---</option>
+                                @foreach ($countries as $key => $value)
+                                    <option value="{{ $value->id }}">{{ $value->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="row form-row">
-                            <input class="input-field" id="city" type="text" placeholder="Enter Name of City" name="city" value="{{ old('city') }}" required>
+                            <select name="city" class="input-field form-control">
+                                <option value="">--- Select city ---</option>
+                            </select>
                         </div>
                         <div class="row form-row">
-                            <input class="input-field" id="mobile" type="text" placeholder="Enter Mobile Number" name="mobile" value="{{ old('mobile') }}" required>
+                            <input type="hidden" id="codehidden" value="">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span id="code" class="input-group-text">+254</span>
+                                </div>
+                                <input class="input-field form-control" id="mobile" type="tel" placeholder="Enter Mobile Number" name="mobile" value="{{ old('mobile') }}" required>
+                            </div>
                         </div>
                         <div class="row form-row">
-                            <input class="input-field" id="password" type="password" placeholder="Enter Password" name="password" required>
+                            <input class="input-field form-control" id="password" type="password" placeholder="Enter Password" name="password" required>
                         </div>
                         <div class="row form-row">
-                            <input class="input-field" id="password-confirm" type="password" placeholder="Confirm Password" name="password_confirmation" required>
+                            <input class="input-field form-control" id="password-confirm" type="password" placeholder="Confirm Password" name="password_confirmation" required>
                         </div>
                         <div class="row form-row">
                             <button type="submit" class="btn btn-info btn-sm">Register</button>

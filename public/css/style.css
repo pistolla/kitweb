@@ -51,7 +51,7 @@
 /*-----------------
     @Typography
 -----------------*/
-@import url("https://fonts.googleapis.com/css?family=Comfortaa:300,400,700|Nunito:400,600,700");
+@import url("https://fonts.googleapis.com/css?family=Nunito:400,600,700");
 /*---------------------------
 ** Global Scss
 ---------------------------*/
@@ -845,7 +845,7 @@ h5,
 h6 {
   color: #1e3056;
   font-weight: 700;
-  font-family: "Comfortaa", cursive; }
+  font-family: "Nunito", cursive; }
 
 p {
   font-size: 14px;
@@ -989,7 +989,7 @@ ul {
       top: 100%; }
   .navbar-area .right-btn-wrapper .boxed-btn {
     background-color: rgba(255, 255, 255, 0.14);
-    font-family: "Comfortaa", cursive;
+    font-family: "Nunito", cursive;
     width: 170px;
     height: 60px; }
     .navbar-area .right-btn-wrapper .boxed-btn:hover {
@@ -1062,7 +1062,7 @@ ul {
         transition: all 0.3s ease-in;
         text-transform: capitalize;
         position: relative;
-        font-family: "Comfortaa", cursive; }
+        font-family: "Nunito", cursive; }
         .navbar-area .navbar-collapse .navbar-nav .nav-item .nav-link:before {
           position: absolute;
           left: 0;
@@ -1111,7 +1111,7 @@ ul {
       width: 230px;
     /*  -webkit-box-shadow: 0 0 15px rgba(255, 137, 57, 0.5);
       box-shadow: 0 0 15px rgba(255, 137, 57, 0.5);*/
-      font-family: "Comfortaa", cursive; }
+      font-family: "Nunito", cursive; }
 
 /*----------------------
     Service area
@@ -1127,7 +1127,7 @@ ul {
       height: 60px;
       line-height: 65px;
       font-size: 18px;
-      font-family: "Comfortaa", cursive; }
+      font-family: "Nunito", cursive; }
       .service-area .btn-wrapper .boxed-btn:hover {
         -webkit-box-shadow: 0 0 35px rgba(255, 137, 57, 0.7);
         box-shadow: 0 0 35px rgba(255, 137, 57, 0.7);
@@ -1238,7 +1238,7 @@ ul {
       .video-area .video-area-content .btn-wrapper .boxed-btn {
         width: 200px;
         height: 60px;
-        font-family: "Comfortaa", cursive; }
+        font-family: "Nunito", cursive; }
         .video-area .video-area-content .btn-wrapper .boxed-btn:hover {
         /*  -webkit-box-shadow: 0 0 35px rgba(255, 137, 57, 0.7);
           box-shadow: 0 0 35px rgba(255, 137, 57, 0.7); 
@@ -1339,7 +1339,7 @@ ul {
       height: 60px;
       line-height: 65px;
       font-size: 18px;
-      font-family: "Comfortaa", cursive; }
+      font-family: "Nunito", cursive; }
       .faq-area .btn-wrapper .boxed-btn:hover {
        /* -webkit-box-shadow: 0 0 35px rgba(255, 137, 57, 0.7);
         box-shadow: 0 0 35px rgba(255, 137, 57, 0.7);*/ }
@@ -1506,7 +1506,7 @@ ul {
       width: 230px;
       border-radius: 30px;
       font-size: 18px;
-      font-family: "Comfortaa", cursive;
+      font-family: "Nunito", cursive;
       text-transform: none;
       line-height: 60px;
       position: absolute;
@@ -1970,7 +1970,7 @@ ul {
     .blog-details-page-conent .comment-form-wrapper .comments-form .submit-btn {
       border-radius: 30px;
       width: 220px;
-      font-family: "Comfortaa", cursive;
+      font-family: "Nunito", cursive;
       text-transform: none;
       font-size: 18px; }
       .blog-details-page-conent .comment-form-wrapper .comments-form .submit-btn:hover {
@@ -2100,7 +2100,7 @@ ul {
   .contact-page-container .contact-form .submit-btn {
     border-radius: 30px;
     width: 220px;
-    font-family: "Comfortaa", cursive;
+    font-family: "Nunito", cursive;
     font-size: 18px;
     text-transform: none; }
     .contact-page-container .contact-form .submit-btn:hover {
@@ -2134,7 +2134,7 @@ ul {
         border-radius: 25px;
         height: 44px;
         line-height: 44px;
-        font-family: "Comfortaa", cursive;
+        font-family: "Nunito", cursive;
         text-transform: none;
         font-size: 14px; }
         .login-page-area .login-form-wrapper .btn-wrapper .left-content .submit-btn:hover {

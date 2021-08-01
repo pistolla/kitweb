@@ -315,6 +315,9 @@ Route::prefix('feed')->group(function() {
     //Public Forums
     Route::get('/dashboard', 'CommunityController@dashboard')->name('feed.dashboard');
     Route::get('/search-post', 'CommunityController@searchPost')->name('feed.searchpost');
+
+    //dynamic dropdown country and states
+    Route::get('/cities/{country_id}',array('as'=>'user_register.ajax','uses'=>'CommunityController@cityForCountryAjax'));
     
   });
   Route::group(['middleware' => []], function() {

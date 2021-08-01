@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{asset('/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('/css/fontawesome.min.css')}}">
     <link rel="stylesheet" href="{{asset('/css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/app.css')}}">
     <link rel="stylesheet" href="{{asset('/css/custom.css')}}">
     <link rel="stylesheet" href="{{asset('/css/responsive.css')}}">
     <link href="{{asset('/css/color.php?color=')}}{{$gnl->color}}" rel="stylesheet">
@@ -88,16 +89,16 @@
                     @endif
                     @if(!Auth::check() && !Auth::guard('publisher')->check() )
                     <li class="nav-item">
-                        <a class="nav-link" href="{{url('/')}}#Service">Service</a>
+                        <a class="nav-link" href="{{url('/')}}#Service">SERVICE</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('user.blog')}}">Blog</a>
+                        <a class="nav-link" href="{{route('user.blog')}}">BLOG</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('feed.dashboard') }}">Community</a>
+                        <a class="nav-link" href="{{ route('feed.dashboard') }}">COMMUNITY</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('contact')}}">About</a>
+                        <a class="nav-link" href="{{route('contact')}}">ABOUT</a>
                     </li>
                     @endif
                     
@@ -105,8 +106,8 @@
             </div>
             @if(!Auth::check())
             <div class="right-btn-wrapper d-flex">
-                <a href="{{route('login')}}" class="boxed-btn btn-rounded">Advertiser</a>
-                <a href="{{ route('publisher.login') }}"  class="boxed-btn btn-rounded">Publisher</a>
+                <a href="{{ route('login') }}" class="border-animation"><span class="border-animation__inner">Advertiser</span></a>
+                <a href="{{  route('publisher.login')  }}" class="border-animation"><span class="border-animation__inner">Publisher</span></a>
             </div>
             @endauth
             @if(Auth::guard('feed')->check())
@@ -155,6 +156,7 @@
 <script src="{{asset('/js/bootstrap.min.js')}}"></script>
 <script src="{{asset('/js/sweetalert.min.js') }}"></script>
 <script src="{{asset('/js/main.js') }}"></script>
+<script src="{{ asset('js/wow.min.js') }}"></script>
 <script>
     $(document).ready(function(){
         var winheight = $(window).height() -71;
