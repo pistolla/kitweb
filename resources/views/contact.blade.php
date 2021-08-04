@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="breadcrumb-inner">
-                    <h1 class="title">Who we are</h1>
+                    <h1 class="title">About Us</h1>
                 </div>
             </div>
         </div>

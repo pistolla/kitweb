@@ -130,20 +130,19 @@
       </div>
     </div>
   </div>
-
-
-
-
                </div>
-
-
                <div class="col-lg-4 col-md-12">
                         <div class="blog-sidebar">
                         <div class='MainAdverTiseMentDiv' data-publisher="1" data-adsize="728x90"></div> <script class="adScriptClass" src="http://localhost//ads/ad.js"></script>
                             <div class="widget widget_search">
                                 <form action="#" class="search-form input-group">
                                     <input type="search" class="form-control widget_input" placeholder="Search">
-                                    <button type="submit"><i class="far fa-search"></i></button>
+                                    <div class="input-group">
+                                      <input type="search" class="form-control widget_input" name="search" placeholder="Search">
+                                      <div class="input-group-append">
+                                        <button type="submit" class="input-group-btn btn"><i class="fa fa-search" araia-hidden="true"></i></button>
+                                      </div>
+                                    </div>
                                 </form>
                             </div>
                             <div class="widget widget_categorie">

@@ -55,9 +55,14 @@
           <form class="contact-form" method="POST" action="{{ route('feed.newactivity') }}">
           @csrf
           <input type="text" class="form-control" placeholder="Add a title" name="heading" required autofocus/>
-          <textarea class="form-control" placeholder="Add a public comment" name="details" rows="3"></textarea>
+          <textarea class="form-control" placeholder="Create a post" name="details" rows="3"></textarea>
+          <div class="preview-panel d-flex justify-content-start" id="preview"></div>
+            <div class="d-flex justify-content-end">
+            <button class="btn btn-media"><i class="fa fa-image" data-target="imagePicker"></i></button>
+            <button class="btn btn-media"><i class="fa fa-link"></i></button>
             <button type="submit" class="btn btn-default">Post</button>
             <button type="cancel" class="btn btn-default">Cancel</button>
+            </div>
           </form>
         </div>
         @endif
@@ -89,7 +94,8 @@
                 </form>
               @endif
             @endif 
-            <button class="comment-reply reply-popup" id="{{$post->id}}"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</button>         
+            <button class="comment-reply reply-popup" id="{{$post->id}}"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</button>
+            <button class="comment-share" data-button="{{ url('/').'feed/'.$post->id}}"><i class="fa fa-share" aria-hidden="true"></i> Share</button>         
           </div>
           <div class="comment-box add-comment reply-box" id="reply-{{$post->id}}">
             <span class="commenter-pic">
@@ -214,6 +220,19 @@
     </li>
   </ul>
 
+    </div>
+    <div class="modal fade" id="imagePicker" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="modalLabel">Title</h4>
+          </div>
+          <div class="modal-body">
+            <input type="file" class="form-control" name="file[]">
+          </div>
+        </div>
+      </div>
     </div>
     </section>
 @stop
