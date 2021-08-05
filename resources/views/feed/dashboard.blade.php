@@ -48,18 +48,19 @@
               <a class="btn btn-info" href="{{route('feed.login')}}">Login as member to post <i class="fa fa-lock"></i></a>
           </span> 
           @endif
-            
         </div>
         @if(Auth::guard('feed')->check())
         <div class="comment-box add-comment">
           <form class="contact-form" method="POST" action="{{ route('feed.newactivity') }}">
           @csrf
-          <input type="text" class="form-control" placeholder="Add a title" name="heading" required autofocus/>
-          <textarea class="form-control" placeholder="Create a post" name="details" rows="3"></textarea>
+          <div class="border border-primary rounded p-3">
+            <input type="text" class="form-control border-0 p-2" placeholder="Add a title" name="heading" required autofocus/>
+            <textarea class="form-control border-0" placeholder="Write a post" name="details" rows="3" ></textarea>
+          </div>
           <div class="preview-panel d-flex justify-content-start" id="preview"></div>
             <div class="d-flex justify-content-end">
-            <button class="btn btn-media"><i class="fa fa-image" data-target="imagePicker"></i></button>
-            <button class="btn btn-media"><i class="fa fa-link"></i></button>
+            <button type="button" class="btn btn-media"><i class="fa fa-image" data-target="imagePicker"></i></button>
+            <button type="button" class="btn btn-media"><i class="fa fa-link"></i></button>
             <button type="submit" class="btn btn-default">Post</button>
             <button type="cancel" class="btn btn-default">Cancel</button>
             </div>
@@ -94,22 +95,25 @@
                 </form>
               @endif
             @endif 
-            <button class="comment-reply reply-popup" id="{{$post->id}}"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</button>
-            <button class="comment-share" data-button="{{ url('/').'feed/'.$post->id}}"><i class="fa fa-share" aria-hidden="true"></i> Share</button>         
+              <button class="comment-reply reply-popup" id="{{$post->id}}"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</button>
+              <button class="comment-share" data-button="{{ url('/').'feed/'.$post->id}}"><i class="fa fa-share" aria-hidden="true"></i> Share</button>         
+            
           </div>
           <div class="comment-box add-comment reply-box" id="reply-{{$post->id}}">
             <span class="commenter-pic">
               <img src="{{ asset('/images/logo/icon.png') }}" class="img-fluid">
             </span>
-            <span class="commenter-name">
-              <form class="contact-form" method="POST" action="{{ route('feed.commentpost') }}">
+            <div class="row">
+              <form class="contact-form col-md-12" method="POST" action="{{ route('feed.commentpost') }}">
                     @csrf
                     <input type="hidden" name="activity" value="{{ $post->id }}" />
                     <textarea class="form-control" placeholder="Add a public reply" rows="2" name="comment"></textarea>
-                    <button type="submit" class="btn btn-default">Reply</button>
-                    <button type="cancel" class="btn btn-default reply-popup">Cancel</button>
+                    <div class="d-flex justify-content-end">
+                      <button type="submit" class="btn btn-default">Reply</button>
+                      <button type="cancel" class="btn btn-default reply-popup">Cancel</button>
+                    </div>
               </form>
-            </span>
+            </div>
           </div>
           @foreach ($post->comments as $comment)
           <div class="comment-box replied">
@@ -171,21 +175,22 @@
                 </form>
               @endif
             @endif
-            <button class="comment-reply reply-popup" id="{{$post->id}}"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</button>         
+            <button class="comment-reply reply-popup" id="{{$activity->id}}"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</button>         
+            <button class="comment-share" data-button="{{ url('/').'feed/'.$activity->id}}"><i class="fa fa-share" aria-hidden="true"></i> Share</button>
           </div>
           <div class="comment-box add-comment reply-box" id="reply-{{$activity->id}}">
             <span class="commenter-pic">
               <img src="{{ asset('/images/logo/icon.png') }}" class="img-fluid">
             </span>
-            <span class="commenter-name">
-              <form class="contact-form" method="POST" action="{{ route('feed.commentpost') }}">
+            <div class="row">
+              <form class="contact-form col-md-12" method="POST" action="{{ route('feed.commentpost') }}">
                     @csrf
                     <input type="hidden" name="activity" value="{{ $activity->id }}" />
                     <textarea class="form-control" placeholder="Add a public reply" rows="2" name="comment"></textarea>
                     <button type="submit" class="btn btn-default">Reply</button>
                     <button type="cancel" class="btn btn-default reply-popup">Cancel</button>
               </form>
-            </span>
+            </div>
           </div>
         </div>  
         @endforeach

@@ -15,16 +15,16 @@
                                         @include('layouts.error') 
                                         
                                         <div class="form-element margin-bottom-20">
-                                            <input id="username" type="text" placeholder="Enter Username" class="input-field" name="username" value="{{ old('username') }}" required autofocus>
+                                            <input id="username" type="text" placeholder="Enter Username" class="input-field form-control" name="username" value="{{ old('username') }}" required autofocus>
                                         </div>
                                         <div class="form-element margin-bottom-20">
-                                            <input id="password" type="password" placeholder="Enter Password" class="input-field" name="password" required>
+                                            <input id="password" type="password" placeholder="Enter Password" class="input-field form-control" name="password" required>
                                         </div>
                                         <div class="form-element mb-2">
                                         <a href="{{ route('password.resetreq') }}">Forgot Your Password? </a>
                                         </div>
                                         <div class="form-element margin-bottom-20 text-center d-flex justify-content-end">
-                                            <button type="submit" class="btn btn-primary">Log In</button>
+                                            <button type="submit" class="btn submit-btn">Log In</button>
                                             <a class="float-left btn btn-lg" href="{{route('register')}}">Register</a>
                                         </div>
                                     </div>

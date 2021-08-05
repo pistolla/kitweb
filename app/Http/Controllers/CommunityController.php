@@ -47,12 +47,12 @@ class CommunityController extends Controller
     public function createActivity(Request $req)
     {
         $this->validate($req, ['heading' => 'required', 'details' => 'required']);
-        $post['heading'] = $req->heading;
-        $post['details'] = $req->details;
-        $post['member_id'] = $req->user()->id;
+            $post['heading'] = $req->heading;
+            $post['details'] = $req->details;
+            $post['member_id'] = $req->user()->id;
 
-        Activity::create($post);
-        return back()->with('success','Your post is now available');
+            Activity::create($post);
+            return back()->with('success','Your post is now available');
     }
 
     public function createComment(Request $req)
