@@ -21,7 +21,7 @@
 </div>  
 
 
-<div class="copyright-area dark-blug-lg mt-3">
+<div class="copyright-area dark-blug-lg">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">

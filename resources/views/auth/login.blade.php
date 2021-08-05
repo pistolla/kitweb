@@ -1,29 +1,17 @@
-@extends('layouts.user')
+@extends('layouts.fullpage')
 
 @section('content')
-<section class="breadcrumb-area breadcrumb-bg white-bg">
+<section class="contact-page-area full-page-background" id="Contact" style="min-height: 100vh; background: no-repeat center/150% url('{{ url('/images/logo/logo-background.jpg') }}')">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="breadcrumb-inner">
-                    <h1 class="title">Advertiser Log In</h1>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<section class="contact-page-area" id="Contact">
-    <div class="container contact-page-container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="contact-page-inner">
+        <div class="row wow fadeInDown" data-wow-delay="2s" style="width:50%; margin: auto;">
+            <div class="col-lg-12 col-md-4">
                     <div class="card">
-                    <h2 class="card-title text-center" style="padding: 60px;">Advertiser Log In</h2>
+                    <h2 class="card-title text-center" style="padding: 10px;">Advertiser Log In</h2>
                         <div class="card-body">
                             <form class="contact-form" method="POST" action="{{ route('login') }}" >
                                 @csrf
                                 <div class="row">
-                                    <div class="col-md-8 mx-auto">
+                                    <div class="col-md-12">
                                         @include('layouts.error') 
                                         
                                         <div class="form-element margin-bottom-20">
@@ -32,26 +20,17 @@
                                         <div class="form-element margin-bottom-20">
                                             <input id="password" type="password" placeholder="Enter Password" class="input-field" name="password" required>
                                         </div>
-                                        
-                                        <div class="form-element margin-bottom-20 text-center">
-                                            <button type="submit" class="submit-btn">Log In</button>
+                                        <div class="form-element mb-2">
+                                        <a href="{{ route('password.resetreq') }}">Forgot Your Password? </a>
+                                        </div>
+                                        <div class="form-element margin-bottom-20 text-center d-flex justify-content-end">
+                                            <button type="submit" class="btn btn-primary">Log In</button>
+                                            <a class="float-left btn btn-lg" href="{{route('register')}}">Register</a>
                                         </div>
                                     </div>
                                 </div>
                             </form>
                         </div>
-                        <div class="card-footer">
-                            <a class="float-left btn btn-sm" href="{{route('register')}}">
-                             Register
-                            </a>
-                            
-                            <a class="float-right" href="{{ route('password.resetreq') }}">
-                                Forgot Your Password?
-                            </a>
-                        </div>
-                    </div>
-                    
-                    
                 </div>
             </div>
         </div>

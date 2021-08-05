@@ -1,24 +1,12 @@
-@extends('layouts.user')
+@extends('layouts.fullpage')
 
 @section('content')
-<section class="breadcrumb-area breadcrumb-bg white-bg">
+<section class="contact-page-area" id="Contact" style="min-height: 100vh; background: no-repeat center/150% url('{{ url('/images/logo/logo-background.jpg') }}')">
     <div class="container">
-        <div class="row">
+        <div class="row wow fadeInDown" data-wow-delay="2s" style="width:80%; margin: auto;">
             <div class="col-lg-12">
-                <div class="breadcrumb-inner">
-                    <h1 class="title">Password Reset</h1>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<section class="contact-page-area" id="Contact">
-    <div class="container contact-page-container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="contact-page-inner">
                     <div class="card">
-                                                 <h2 class="card-title text-center" style="padding: 60px;"> Reset Password Now</h2>
+                        <h2 class="card-title text-center" style="padding: 60px;"> Reset Password Now</h2>
                         <div class="card-body">
                             <form class="contact-form" method="POST" action="{{ route('password.resetpassword') }}">
                             @csrf
@@ -45,7 +33,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
         </div>
     </div>

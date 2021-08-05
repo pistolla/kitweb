@@ -10,6 +10,7 @@ use App\Analytic;
 use App\Password;
 use App\Withdraw;
 use App\Publisher;
+use App\Country;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -149,7 +150,8 @@ class PublisherController extends Controller
        $gnl = General::first();
        if(1 == $gnl->reg)
        {
-           return view('publisher.auth.register');
+            $countries = Country::all();
+           return view('publisher.auth.register', compact('countries'));
        }
        else
        {

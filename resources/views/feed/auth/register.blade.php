@@ -1,85 +1,93 @@
 @extends('layouts.fullpage')
 
 @section('content')
-<section id="Register" class="full-page-background" style="background: no-repeat center/100% url('{{ url('/images/logo/logo-background.jpg') }}');">
-<div class="row cloud-drive">
-            <div class="col-md-6 detail-container justify-height">
-                <div class="layyer">
-                        <div class="row header">
-                                <div class="col-sm-4 px-2">
-                                        <a href="{{ url('/')}}"><img src="{{ url('/images/logo/logo.png') }}" alt="logo"></a>
+<section class="contact-page-area full-page-background" id="Contact" style="background: no-repeat center/150% url('{{ url('/images/logo/logo-background.jpg') }}')">
+    <div class="container">
+        <div class="row wow fadeInDown" data-wow-delay="2s" style="width:85%; margin: auto;">
+            <div class="col-lg-12">
+                    <div class="card">
+                        <h2 class="card-title text-center" style="padding: 60px;"> Membership form. Register now for free</h2>
+                        <div class="card-body">
+                        @if($gnl->reg==1)
+                            <form class="contact-form" method="POST" action="{{ route('feed.registerpost') }}">
+                            @csrf
+                            <div class="row">
+                                <div class="col-md-4 text-center border-right px-3">
+                                    <div class="header h6 mb-5">
+                                        Register using your Social media account
+                                    </div>
+                                    <a href="{{url('/login/facebook')}}" class="btn btn-lg btn-social btn-facebook mb-2">
+                                        <i class="fa fa-facebook-f"></i>
+                                        Register with Facebook
+                                    </a>
+                                    <a href="{{url('/login/facebook')}}" class="btn btn-lg btn-social btn-google mb2">
+                                        <span class="fa fa-google fa-fw"></span>
+                                        Register with Google
+                                    </a>
+
                                 </div>
-                                <div class="col-sm-8">
-                                        
+                                <div class="col-md-8 px-4">
+                                @include('layouts.error')
+                                    <div class="form-element margin-bottom-20">
+                                        <input class="input-field form-control" id="name" type="text" placeholder="Enter Name" name="name" value="{{ old('name') }}" required autofocus>
+                                    </div>
+                                    <div class="form-element margin-bottom-20">
+                                        <input class="input-field form-control" id="email" type="email" placeholder="Enter Email" name="email" value="{{ old('email') }}" required>
+                                    </div>
+                                    
+                                    <div class="form-element margin-bottom-20">
+                                        <input class="input-field form-control" id="username" type="text" placeholder="Enter Username" name="username" value="{{ old('username') }}" required>
+                                    </div>
+                                    
+                                    <div class="form-element margin-bottom-20">
+                                        <select name="country" class="input-field form-control">
+                                            <option value="">--- Select country ---</option>
+                                            @foreach ($countries as $key => $value)
+                                                <option value="{{ $value->id }}">{{ $value->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="form-element margin-bottom-20">
+                                        <select name="city" class="input-field form-control">
+                                            <option value="">--- Select city ---</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="form-element margin-bottom-20">
+                                        <input type="hidden" id="codehidden" value="">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span id="code" class="input-group-text">+254</span>
+                                            </div>
+                                            <input class="input-field form-control" id="mobile" type="tel" placeholder="Enter Mobile Number" name="mobile" value="{{ old('mobile') }}" required>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-element margin-bottom-20">
+                                        <input class="input-field form-control" id="password" type="password" placeholder="Enter Password" name="password" required>
+                                    </div>
+                                    <div class="form-element margin-bottom-20">
+                                        <input class="input-field form-control" id="password-confirm" type="password" placeholder="Confirm Password" name="password_confirmation" required>
+                                    </div>
+                                    <div class="form-element margin-bottom-20 text-center d-flex justify-content-end">
+                                        <button type="submit" class="submit-btn">Register</button>
+                                        <a class="btn btn-lg" href="{{route('feed.login')}}">
+                                            Login
+                                        </a>
+                                    </div>
                                 </div>
-                                
-                                
-                            </div>  
-                            <div class="detail-text">
-                                    <h1>Work safely, in the office or on the go, with complete peace of mind.</h1>
-                                    <p>Cloud Drive provides comprehensive cybersecurity to backup data with secure passwords, and stop hackers. Get access to files anywhere through secure cloud storage and file backup for your photos, videos, files and more with Cloud Drive.</p>    
-                            </div>     
-                </div>
-            </div>
-            <div class="col-md-6 col-sm-12 sign-up">
-                <div class="row">
-                    <ul>
-                        <li onclick="showLogin()" id="login" class="sel">Register as new member</li>
-                    </ul>
-                </div>
-                <h3></h3>
-                <div class="login">
-                    <form class="contact-form" method="POST" action="{{ route('feed.registerpost') }}">
-                    @csrf
-                        <div class="row form-row">
-                            @include('layouts.error')
-                            <input class="input-field form-control" id="name" type="text" placeholder="Enter Name" name="name" value="{{ old('name') }}" required autofocus>
-                        </div>
-                        <div class="row form-row">
-                            <input class="input-field form-control" id="email" type="email" placeholder="Enter Email" name="email" value="{{ old('email') }}" required>
-                        </div>
-                        <div class="row form-row">
-                            <input class="input-field form-control" id="username" type="text" placeholder="Enter Username" name="username" value="{{ old('username') }}" required>
-                        </div>
-                        <div class="row form-row">
-                            <select name="country" class="input-field form-control">
-                                <option value="">--- Select country ---</option>
-                                @foreach ($countries as $key => $value)
-                                    <option value="{{ $value->id }}">{{ $value->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="row form-row">
-                            <select name="city" class="input-field form-control">
-                                <option value="">--- Select city ---</option>
-                            </select>
-                        </div>
-                        <div class="row form-row">
-                            <input type="hidden" id="codehidden" value="">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span id="code" class="input-group-text">+254</span>
-                                </div>
-                                <input class="input-field form-control" id="mobile" type="tel" placeholder="Enter Mobile Number" name="mobile" value="{{ old('mobile') }}" required>
                             </div>
-                        </div>
-                        <div class="row form-row">
-                            <input class="input-field form-control" id="password" type="password" placeholder="Enter Password" name="password" required>
-                        </div>
-                        <div class="row form-row">
-                            <input class="input-field form-control" id="password-confirm" type="password" placeholder="Confirm Password" name="password_confirmation" required>
-                        </div>
-                        <div class="row form-row">
-                            <button type="submit" class="btn btn-info btn-sm">Register</button>
-                        </div>
-                        <div class="row form-row">
-                            <a href="{{route('feed.login')}}" class="btn btn-info btn-sm">Login</a>
-                        </div>
-                    </form>
+                            
+                        </form>
+                        @else
+                        <h1>Regitsration Closed NOw</h1>
+                        @endif
+                     </div>
                 </div>
-            </div>
         </div>
     </div>
+</div>
 </section>
 
 @endsection
