@@ -17,7 +17,7 @@ use Stripe\Charge;
 use App\Lib\coinPayments;
 use App\Lib\BlockIo;
 use App\Lib\CoinPaymentHosted;
-use App\Lib\DarajaApi;
+use App\Lib\MpesaPayments;
 
 class PaymentController extends Controller
 {

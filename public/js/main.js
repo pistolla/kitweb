@@ -173,4 +173,8 @@
         $('#modeliframe').attr("src", e.target.value );
         $('#linkurl').val(e.target.value)
     });
+    $(document).on('click','.depoButton', function(){
+        $('#ModalLabel').text($(this).data('name'));
+        $('#gateWay').val($(this).data('gate'));
+    });
 }(jQuery));	
