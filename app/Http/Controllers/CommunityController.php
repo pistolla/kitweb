@@ -47,12 +47,39 @@ class CommunityController extends Controller
     public function createActivity(Request $req)
     {
         $this->validate($req, ['heading' => 'required', 'details' => 'required']);
-            $post['heading'] = $req->heading;
-            $post['details'] = $req->details;
-            $post['member_id'] = $req->user()->id;
-
-            Activity::create($post);
-            return back()->with('success','Your post is now available');
+        $post['heading'] = $req->heading;
+        $post['details'] = $req->details;
+        $post['member_id'] = $req->user()->id;
+        $post['image_url'] = "false";
+        $post['link_url'] = "false";
+        if($request->hasFile('photos'))
+        {
+            $allowedfileExtension=['gif','jpg','png','webp'];
+            $files = $request->file('photos');
+            foreach($files as $file){
+                $filename = $file->getClientOriginalName();
+                $extension = $file->getClientOriginalExtension();
+                $check=in_array($extension,$allowedfileExtension);
+                //dd($check);
+                if($check)
+                {
+                    $images = [];
+                    foreach ($request->photos as $photo) {
+                        $filename = $photo->store('photos');
+                        $images[] = $filename;
+                    }
+                    $post['image_url'] = implode("", $images); 
+                } else {
+                    return back()->with('error','Wrong file type');
+                }
+            }
+        }
+        if($request->has('link_url'))
+        {
+            $post['link_url'] = $req->link_url;
+        }
+        Activity::create($post);
+        return back()->with('success','Your post is now available');
     }
 
     public function createComment(Request $req)

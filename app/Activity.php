@@ -10,7 +10,7 @@ use App\Comment;
 
 class Activity extends Model
 {
-    protected $fillable = array('heading', 'details', 'member_id');
+    protected $fillable = array('heading', 'details', 'member_id', 'image_url', 'link_url');
 
     public function likedBy(Member $member)
     {

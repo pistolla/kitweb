@@ -320,7 +320,7 @@ Route::prefix('feed')->group(function() {
     Route::get('/cities/{country_id}',array('as'=>'user_register.ajax','uses'=>'CommunityController@cityForCountryAjax'));
     
   });
-  Route::group(['middleware' => ['auth:feed']], function() {
+  Route::group(['middleware' => ['memberauth:feed']], function() {
     Route::group(['prefix' => 'feed'], function () 
     {
         Route::post('/create-activity', 'CommunityController@createActivity')->name('feed.newactivity');

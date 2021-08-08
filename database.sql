@@ -328,6 +328,8 @@ CREATE TABLE `activities` (
   `member_id` int(10) DEFAULT NULL,
   `heading` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `details` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image_url` varchar(300) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `link_url` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

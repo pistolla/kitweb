@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\General;
+use App\Country;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -29,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/login';
 
     /**
      * Create a new controller instance.
@@ -57,6 +58,7 @@ class RegisterController extends Controller
             'country' => 'required|string|max:255',
             'city' => 'required|string|max:255',
             'mobile' => 'required|string',
+            'codehidden' => 'required|string',
         ]);
     }
 
@@ -77,9 +79,27 @@ class RegisterController extends Controller
             'username' => $data['username'],
             'country' => $data['country'],
             'city' => $data['city'],
-            'mobile' => $data['mobile'],
+            'mobile' => $this->_joinPhoneCode($data['codehidden'], $data['mobile']),
             'emailv' =>  $gnl->emailver,
             'smsv' =>  $gnl->smsver,
         ]);
+    }
+
+    private function _joinPhoneCode($code, $phone)
+    {
+        $tempPhone = $phone;
+        if(!empty($code) && !empty($phone)){
+            if(substr($phone, 0, 1) == '0'){
+                $tempPhone = $code . substr($phone, 1, strlen($phone));
+            } else if(substr($phone, 0, strlen($code)) == $code){
+                $tempPhone = $code . substr($phone, 0, strlen($code));
+            }
+        }
+        return $tempPhone;
+    }
+
+    public function showRegistrationForm() {
+        $countries = Country::all();
+        return view('auth.register', compact('countries'));
     }
 }

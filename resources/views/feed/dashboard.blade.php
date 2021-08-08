@@ -58,11 +58,12 @@
             <textarea class="form-control border-0" placeholder="Write a post" name="details" rows="3" ></textarea>
           </div>
           <div class="preview-panel d-flex justify-content-start" id="preview"></div>
+          <input type="hidden" id="linkurl" name="link_url" />
             <div class="d-flex justify-content-end">
-            <button type="button" class="btn btn-media"><i class="fa fa-image" data-target="imagePicker"></i></button>
-            <button type="button" class="btn btn-media"><i class="fa fa-link"></i></button>
-            <button type="submit" class="btn btn-default">Post</button>
-            <button type="cancel" class="btn btn-default">Cancel</button>
+              <button type="button" class="btn btn-media btn-file"><i class="fa fa-image"></i><input id="custom-file-input" type="file" name="photos"></button>
+              <button type="button" class="btn btn-media" data-target="#linkModal" data-toggle="modal"><i class="fa fa-link"></i></button>
+              <button type="submit" class="btn btn-default">Post</button>
+              <button type="cancel" class="btn btn-default">Cancel</button>
             </div>
           </form>
         </div>
@@ -224,17 +225,20 @@
           </a>
     </li>
   </ul>
-
     </div>
-    <div class="modal fade" id="imagePicker" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+    <div class="modal fade" id="linkModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="modalLabel">Title</h4>
           </div>
           <div class="modal-body">
-            <input type="file" class="form-control" name="file[]">
+            <input type="text" class="form-control" name="linkInput" id="linkInput" placeholder="paste or type a url">
+            <iframe src="" id="modeliframe" style="zoom:0.60" frameborder="0" height="250" width="99.6%"></iframe>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save Link</button>
           </div>
         </div>
       </div>

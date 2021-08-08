@@ -140,7 +140,7 @@
                         $('select[name="city"]').empty();
                         $.each(data, function(key, value) {
                             $('select[name="city"]').append('<option value="'+ value.id +'">'+ value.name +'</option>');
-                            $('#code').val(value.phonecode);
+                            $('#code').text("+"+value.phonecode);
                             $('#codehidden').val(value.phonecode);
                             });
                         }
@@ -149,4 +149,28 @@
                 $('select[name="city"]').empty();
             }
            });
+
+    $('#custom-file-input').change(function(){
+        var input = this;
+        var url = $(this).val();
+        var ext = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
+        if (input.files && input.files[0] && (ext == "gif" || ext == "png" || ext == "jpeg" || ext == "jpg")) 
+        {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                var img = $('<img class="img-thumbnail rounded float-right m-2">');
+                img.attr('src', e.target.result);
+                // img.width('64px')
+                img.height('64px');
+                img.appendTo('#preview');
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    });
+    $('#linkInput').on('input',function(e){
+        console.log(e.target.value);
+        $('#modeliframe').attr("src", e.target.value );
+        $('#linkurl').val(e.target.value)
+    });
 }(jQuery));	
