@@ -17,11 +17,11 @@
                                         Register using your Social media account
                                     </div>
                                     <a href="{{url('/login/facebook')}}" class="btn btn-lg btn-social btn-facebook mb-2">
-                                        <i class="fa fa-facebook-f"></i>
+                                        <i class="fa fa-facebook"></i>
                                         Register with Facebook
                                     </a>
                                     <a href="{{url('/login/facebook')}}" class="btn btn-lg btn-social btn-google mb2">
-                                        <span class="fa fa-google fa-fw"></span>
+                                        <span class="fa fa-google-plus fa-fw"></span>
                                         Register with Google
                                     </a>
 

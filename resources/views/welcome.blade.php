@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <title> {{ $gnl->title }} | {{ $gnl->subtitle }} </title>
-    <link rel="shortcut icon" href="{{  asset('/images/logo/icon.png')  }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('/images/logo/icon.png') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/fontawesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/animate.css') }}">
@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/responsive.css') }}">
-    <link href="{{ asset('/css/color.php?color=') }}{{ $gnl->color }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('/css/color.php?color=') }}{{ $gnl->color }}">
 </head>
 <body>
     <!-- navbar area start -->
@@ -34,7 +34,7 @@
                         <a class="nav-link" href="#Service">SERVICE</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="{{ route('user.blog') }}">BLOG</a>
+                        <a class="nav-link" href="{{ route('user.blog') }}">BLOG</a>
                     </li>
                     
                     <li class="nav-item">
@@ -68,7 +68,7 @@
 	  </symbol>
   </defs>
 </svg>
-<div class="header-area header-bg text-center">
+<div class="header-area header-bg text-center" style="background-color: #{{$gnl->color}}; height: 100vh;">
     <div class="box mx-5">
     <div class="container">
         <div class="row justify-content-center text-center">
@@ -107,9 +107,12 @@
         </div>
         <div class="row">
             @foreach ($sliders as $key => $item)
-            <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="2s" data-wow-delay="{{$key+1}}s">
+            <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="{{$key+1}}s">
                 <div class="single-service-item">
                     <div class="content">
+                        <div class="text-center p-3">
+                            <span><i class="fas fa-cubes fa-pulse fa-7x"></i></span>
+                        </div>
                         <h4 class="title">{{ $item->heading }}</h4>
                         <p>{!! $item->details !!}</p>
                     </div>

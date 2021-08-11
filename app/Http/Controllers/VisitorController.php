@@ -28,12 +28,13 @@ class VisitorController extends Controller
 {
     public function index()
     {
+        $gnl = General::first();
         $front = Frontend::first();
         $sliders = Slider::all();
         $testimonials = Testimonial::all();
         $socials = Social::all();
         $posts = Blog::orderBy('id','DESC')->select('id', 'photo', 'heading')->take(3)->get();
-        return view('welcome', compact('front','sliders','posts','socials','testimonials'));
+        return view('welcome', compact('gnl','front','sliders','posts','socials','testimonials'));
     }
     public function blog()
     {

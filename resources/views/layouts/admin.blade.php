@@ -14,7 +14,7 @@
 <body class="app sidebar-mini rtl">
 <header class="app-header">
 <a class="app-header__logo" href="{{route('admin.dashboard')}}">
-<img src="{{asset('/images/logo/logo.png')}}" alt="logo" class="logo-default" style="width: 160px; height: 20px;"> </a>
+<img src="{{asset('/images/logo/logo.png')}}" alt="logo" class="logo-default" style="width: 230px; height: 50px;"> </a>
 <a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
 <ul class="app-nav">
 <li class="dropdown">

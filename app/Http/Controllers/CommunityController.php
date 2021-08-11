@@ -44,12 +44,12 @@ class CommunityController extends Controller
         return view('feed.dashboard', compact('activities','post'));
     }
 
-    public function createActivity(Request $req)
+    public function createActivity(Request $request)
     {
-        $this->validate($req, ['heading' => 'required', 'details' => 'required']);
-        $post['heading'] = $req->heading;
-        $post['details'] = $req->details;
-        $post['member_id'] = $req->user()->id;
+        $this->validate($request, ['heading' => 'required', 'details' => 'required']);
+        $post['heading'] = $request->heading;
+        $post['details'] = $request->details;
+        $post['member_id'] = $request->user()->id;
         $post['image_url'] = "false";
         $post['link_url'] = "false";
         if($request->hasFile('photos'))
@@ -76,8 +76,9 @@ class CommunityController extends Controller
         }
         if($request->has('link_url'))
         {
-            $post['link_url'] = $req->link_url;
+            $post['link_url'] = $request->link_url;
         }
+        $post['link_url'] = "false";
         Activity::create($post);
         return back()->with('success','Your post is now available');
     }
