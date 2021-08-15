@@ -136,7 +136,6 @@
                         <div class='MainAdverTiseMentDiv' data-publisher="1" data-adsize="728x90"></div> <script class="adScriptClass" src="http://localhost//ads/ad.js"></script>
                             <div class="widget widget_search">
                                 <form action="#" class="search-form input-group">
-                                    <input type="search" class="form-control widget_input" placeholder="Search">
                                     <div class="input-group">
                                       <input type="search" class="form-control widget_input" name="search" placeholder="Search">
                                       <div class="input-group-append">
@@ -148,7 +147,7 @@
                             <div class="widget widget_categorie">
                                 <h3 class="sidebar_title">Categories</h3>
                                 <ul class="list-unstyled">
-                                    @foreach ($categorys as $category)
+                                    @foreach ($categorys->unique('name') as $category)
                                         <li><a href="#"><i class="far fa-caret-right"></i>{{$category->name}}</a></li>
                                     @endforeach
                                 </ul>
