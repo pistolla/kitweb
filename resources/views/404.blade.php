@@ -7,7 +7,7 @@
             <div class="col-lg-12">
                 <div class="breadcrumb-inner">
                     <h1 class="title">Page Not Found</h1>
-                    <a href="{{route('home')}}" class="backtohome">Back To Home</a>
+                    <a href="{{url('/')}}" class="backtohome">Back To Home</a>
                 </div>
             </div>
         </div>
