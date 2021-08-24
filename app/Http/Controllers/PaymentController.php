@@ -14,10 +14,10 @@ use App\General;
 use Stripe\Stripe;
 use Stripe\Token;
 use Stripe\Charge;
-use App\Lib\coinPayments;
-use App\Lib\BlockIo;
-use App\Lib\CoinPaymentHosted;
-use App\Lib\MpesaPayments;
+use App\Http\Lib\coinPayments;
+use App\Http\Lib\BlockIo;
+use App\Http\Lib\CoinPaymentHosted;
+use App\Http\Lib\MpesaPayments;
 
 class PaymentController extends Controller
 {
@@ -49,11 +49,135 @@ class PaymentController extends Controller
         
     }
 
-    public function depositMpesa()
+    public function callback($id)
     {
+        $postData = file_get_contents('php://input');
+        //perform your processing here, e.g. log to file....
+        $file = fopen("log.txt", "w"); //url fopen should be allowed for this to occur
+        if (fwrite($file, $postData) === FALSE) {
+            fwrite("Error: no data written");
+        }
+        fwrite("\r\n");
+        fclose($file);
+
+        echo '{"ResultCode": 0, "ResultDesc": "The service was accepted successfully", "ThirdPartyTransID": "1234567890"}';
+
+    }
+
+    public function resultcheck()
+    {
+        $config = ApiConfig::find()->where('name', 'LIKE', '%mpesa%')->first();
+        if ($config) {
+            if (!isset($_GET["token"])) {
+                echo "Technical error";
+                exit();
+            }
+            if ($_GET["token"] != $config->password) {
+                echo "Invalid authorization";
+                exit();
+            }
+            $response = ["ResultCode" => 1, "ResultDesc" => "Failed", "ThirdPartyTransID" => 0];
+
+            return json_encode($response);
+        }
+        exit();
+    }
+
+    public function resultconfirm()
+    {
+        $config = ApiConfig::find()->where('name', 'LIKE', '%mpesa%')->first();
+        if ($config) {
+            $response = [
+                "ResultCode" => 0,
+                "ResultDesc" => "Confirmation received successfully"
+            ];
+            if (!isset($_GET["token"])) {
+                echo "Technical error";
+                exit();
+            }
+            if ($_GET["token"] != $config->password) {
+                echo "Invalid authorization";
+                exit();
+            }
+            if (!$request = file_get_contents('php://input')) {
+                echo "Invalid input";
+                exit();
+            }
+            $transaction = json_decode($request, true);
+
+            if (isset($transaction)) {
+                $file = fopen("log.txt", "w");
+                if (fwrite($file, $transaction) === FALSE) {
+                    fwrite("Error: no data written");
+                }
+
+                fwrite("\r\n");
+                fclose($file);
+            }
+
+            return json_encode($response);
+        }
+        exit();
+    }
+
+
+    public function depositMpesa(Request $request)
+    {
+        $this->validate($request, ['gateway_id' => 'required', 'trx_id' => 'required']);
+        $depo = Deposit::find($request->trx_id);
+        $gateway = Gateway::find($request->gateway_id);
+        $config = ApiConfig::find(1)->where('name', 'LIKE', "%mpesa%")->first();
         $mpesaApi = new MpesaPayments();
 
-        $mpesaApi->lipanampesastkpush();
+        if($depo && $config && $gateway){
+            $accessToken = $config->access_token;
+            $lastRefresh = $setting->refresh_time;
+            if (!$accessToken) {
+                $accessToken = $mpesaApi->getDarajaAccessToken($config);
+            }
+            if (Time::wasInThePast(Time::fromString($lastRefresh))) {
+                $accessToken = $mpesaApi->getDarajaAccessToken($config);
+            }
+
+            $transaction = new MpesaPayment();
+            $transaction->BusinessShortCode = $config->business_number;
+            $transaction->Timestamp = date('yyyymmddhhiiss');
+            $transaction->Password = base64_encode($transaction->BusinessShortCode . $config->pass_key . $transaction->Timestamp);
+            $transaction->TransactionType = 'CustomerPayBillOnline';
+            $transaction->Amount = $depo->amount;
+            $transaction->PartyA = $depo->user->phone_number;
+            $transaction->PartyB = $config->account_no;
+            $transaction->PhoneNumber = $depo->user->phone_number;
+            $transaction->CallBackURL = url('/payment/callback?id=' . $depo->id);
+            $transaction->AccountReference = 'account';
+            $transaction->TransactionDesc = 'test';
+            $transaction->create();
+
+            $data['token'] = $accessToken;
+            $data["BusinessShortCode"] = $transaction->BusinessShortCode;
+            $data["Password"] = $transaction->Password;
+            $data["Timestamp"] = $transaction->Timestamp;
+            $data["Amount"] = $transaction->Amount;
+            $data["PartyA"] = $transaction->PartyA;
+            $data["PartyB"] = $transaction->PartyB;
+            $data["PhoneNumber"] = $transaction->PhoneNumber;
+            $data["CallBackURL"] = $transaction->CallBackURL;
+            $data["AccountReference"] = $transaction->AccountReference;
+            $data["TransactionDesc"] = $transaction->TransactionDesc;
+
+            
+            $mpesaApi->lipanampesastkpush($data, $transaction);
+
+            return back()->withSuccess('STK push Mpesa transaction initiated. Check your phone!');
+        }
+        return back()->withError('MPESA api not setup');
+    }
+
+    public function cancelDeposit($id)
+    {
+        $depo = Deposit::find($id);
+        $depo->delete();
+        return back()->withSuccess('Pending transaction Delete Successfuly');
     }
     
     public function depositConfirm()
@@ -77,11 +201,12 @@ class PaymentController extends Controller
         
         if ($data->gateway_id == 101) 
         {        
-            $data['amount'] = $data->usd_amo;
-            $data['paybill'] = $gatewayData->val1;
-            $data['track'] = $track;
-            $data['account'] = Auth::user()->name;
-            return view('user.payment.mpesa', compact('data','gnl'));
+            $datum['amount'] = $data->usd_amo;
+            $datum['paybill'] = $gatewayData->val1;
+            $datum['track'] = $track;
+            $datum['account'] = Auth::user()->name;
+            $datum['trx_id'] = $data->id;
+            return view('user.payment.mpesa', compact('datum','gnl'));
         } elseif ($data->gateway_id == 102) 
         {        
             $paypal['amount'] = $data->usd_amo;

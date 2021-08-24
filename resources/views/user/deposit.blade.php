@@ -17,6 +17,64 @@
 </section>
 <section class="testimonial-page-conent">
     <div class="container">
+        @if (!empty($pending))
+        <div class="row mb-2">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header text-center">Pending Deposit transaction</div>
+                    <div class="card-body">
+                        <div class="row">
+                            @foreach($pending as $key => $value)
+                            <div class="col-md-4 mt-2">
+                                <div class="card">
+                                <form  class="mobile-payment" method="POST" action="{{ route('deposit.mpesa') }}">
+                                    @csrf
+                                    <input id="gateway_id" type="hidden" name="gateway" value="{{$value->gateway_id}}"/>
+                                    <input id="trx_id" type="hidden" name="trx" value="{{$value->id}}"/>
+                                    <div class="card-body">
+                                        <div class="card-header text-center">{{$value->gateway->name}}</div>
+                                        <div class="media-body mx-auto">
+                                            <img src="{{asset('/images/gateway')}}/{{$value->gateway_id}}.jpg" style="max-width:200px; max-height:200px;"/>
+                                        </div>
+                                        <div>
+                                            <ul class="list-group text-center">
+                                                <li class="list-group-item borderless">STATUS: <strong>{{ $value->statustext() }}</strong></li>
+                                                <li class="list-group-item borderless">DATE INITIATED: <strong>{{ $value->created_at->diffForHumans() }}</strong></li>
+                                                <li class="list-group-item borderless">AMOUNT: <strong>{{$value->amount}} {{$gnl->cur}}</strong></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    @if ($value->status == 0)
+                                        <button type="submit" class="submit-btn" style="width:100%;">
+                                            PAY NOW
+                                        </button>
+                                    </form>
+                                        <form id="delete-form" action="{{ route('cancel.deposit', $value->id) }}" method="POST">
+                                            @csrf
+                                            @method('delete')   
+                                            <button type="submit" class="btn info-danger btn-lg"  style="width:100%;">
+                                            CANCEL
+                                            </button>
+                                        </form>
+                                    @elseif ($value->status == 2)
+                                        <button type="button" class="submit-btn" style="width:100%;">
+                                            Confirm Transaction Code
+                                        </button>
+                                    @else
+                                        <button type="button" class="submit-btn" style="width:100%;">
+                                            Request assistance
+                                        </button>
+                                    @endif
+                                
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endif
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -138,7 +196,7 @@
         });
     });
 </script>
-
+<script type="text/javascript" src="js/paymobile.js"></script>
 @endsection
 
 

@@ -16,4 +16,18 @@ class Deposit extends Model
     {
         return $this->belongsTo('App\Gateway');
     }
+
+    public function statustext()
+    {
+        if($this->status == 0)
+        {
+            return "Not paid";
+        } else if($this->status == 1)
+        {
+            return "Paid";
+        } else if($this->status == 2)
+        {
+            return "Not confirmed";
+        }
+    }
 }
