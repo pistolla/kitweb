@@ -318,6 +318,11 @@
   display: block;
 }
 
+.img-avatar {
+  height: 65px;
+  width: 65px;
+}
+
 textarea:hover, textarea:active {
   outline: 0px !important;
   -mox-appearance: none;
@@ -687,7 +692,7 @@ input:checked + .slider:before {
     Breadcumb Area
 ----------------------*/
 .breadcrumb-area {
-  padding: 237px 0 95px 0;
+  padding: 100px 0 95px 0;
   background-color: #f6f7f8; }
   .breadcrumb-area.white-bg {
     background-color: #fff; }
@@ -1084,7 +1089,7 @@ ul {
       font-size: 14px;
       line-height: 45px;
       font-weight: 500;
-      padding: 30px 16px;
+      padding: 0px 16px;
       position: relative; }
       .navbar-area .navbar-collapse .navbar-nav .nav-item:hover .dropdown-menu {
         padding: 0;
@@ -1769,7 +1774,7 @@ ul {
     testimonial page
 ----------------------*/
 .testimonial-page-conent {
-  padding: 120px 0 90px 0; }
+  padding: 10px 0 90px 0; }
   .testimonial-page-conent .single-testimonial-item {
     text-align: center;
     background-color: #f8f8f9;
@@ -2154,7 +2159,7 @@ ul {
   margin-top: -300px; }
 
 .contact-page-area {
-  padding: 120px 0 0 0; }
+  padding: 10px 0 0 0; }
 
 .contact-page-container {
   background-color: #fff;
