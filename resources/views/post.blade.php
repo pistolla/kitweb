@@ -3,7 +3,7 @@
 @section('content')
 <section class="breadcrumb-area breadcrumb-bg white-bg" >
         <div class="container">
-        <div class='MainAdverTiseMentDiv' data-publisher="1" data-adsize="970x250"></div> <script class="adScriptClass" src="http://localhost//ads/ad.js"></script>
+        <div class='MainAdverTiseMentDiv' data-publisher="1" data-adsize="970x250"></div>
             <div class="row">
 
                 <div class="col-lg-12">
@@ -85,7 +85,7 @@
         @foreach ($post->comments as $comment)
           <div class="comment-box replied">
             <span class="commenter-pic">
-              <img src="{{ asset('/images/logo/icon.png') }}" class="img-fluid">
+              <img src="{{ asset('/images/logo/icon.png') }}" class="img-fluid img-avatar" alt="user_avatar">
             </span>
             <span class="commenter-name">
               <a href="#">{{ $comment->member->username }}</a> <span class="comment-time">{{ $comment->created_at->diffForHumans()}}</span>
@@ -158,7 +158,7 @@
                                 <div class="media post_item">
                                     <img src="{{ asset('/images/blog') }}/{{$new->photo}}" alt="loading...">
                                     <div class="media-body">
-                                        <a href="#">
+                                        <a href="{{route('user.blog-post', $new->slug)}}">
                                             <h5>{{substr($new->heading,0,30)}}...</h5>
                                         </a>
                                         <div class="p_date"><i class="far fa-calendar"></i>{{$new->created_at->diffForHumans()}}</div>
