@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row wow fadeInDown" data-wow-delay="2s" style="width:80%; margin: auto;">
             <div class="col-lg-12">
-                    <div class="card">
+                    <div class="card mt-5">
                          <h2 class="card-title text-center" style="padding: 60px;"> Forgot Password?</h2>
                         <div class="card-body">
                             <form class="contact-form"  method="POST" action="{{ route('pub.password.sendemail') }}">

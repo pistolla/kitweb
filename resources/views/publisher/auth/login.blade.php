@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row wow fadeInDown" data-wow-delay="2s" style="width:50%; margin: auto;">
             <div class="col-lg-12 col-md-4">
-                    <div class="card">
+                    <div class="card mt-5">
                     <h2 class="card-title text-center" style="padding: 10px;">Publisher Log In</h2>
                         <div class="card-body">
                             <form class="contact-form" method="POST" action="{{ route('publisher.loginpost') }}" >
