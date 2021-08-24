@@ -22,12 +22,50 @@ class CommunityController extends Controller
     public function dashboard(Request $req)
     {
         
-        $activities = Activity::latest()->with(['member', 'comments', 'likes'])->paginate(20);
+        $activities = Activity::latest()->with(['member', 'comments', 'likes'])->paginate(50);
         $post = null;
         if($activities){
             $post = $activities->shift();
         }
         return view('feed.dashboard', compact('activities','post'));
+    }
+
+    public function enquireLatest(Request $req)
+    {
+        $lastId = $req->input('last_id');
+        $search = $req->input('search');
+        
+        $activity = Activity::query()
+        ->where('id', ' > ', $lastId)
+        ->orWhere('details', 'LIKE', "%{$search}%")
+        ->first();
+
+        if($activity && !empty($activity)){
+            return json_encode(
+                [
+                    "data" => true,
+                    "activity_id" => $activity->id
+                ]
+            );
+        } else {
+            return json_encode(
+                [
+                    "data" => false,
+                    "activity_id" => ""
+                ]
+            );
+        }
+    }
+
+    public function fetchActivity($slug)
+    {
+        $post = Activity::where('slug', $slug)->with(['member', 'comments', 'likes'])->first();
+
+        if(is_null($post)) {
+            abort('404');
+        }
+            return view('feed.activity', compact('post'));
+        
     }
 
     public function searchPost(Request $req)
@@ -46,39 +84,39 @@ class CommunityController extends Controller
 
     public function createActivity(Request $request)
     {
-        $this->validate($request, ['heading' => 'required', 'details' => 'required']);
+        $this->validate(
+            $request, [
+            'heading' => 'required', 
+            'details' => 'required',
+            'photos.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        ]);
         $post['heading'] = $request->heading;
         $post['details'] = $request->details;
         $post['member_id'] = $request->user()->id;
-        $post['image_url'] = "false";
-        $post['link_url'] = "false";
-        if($request->hasFile('photos'))
+        $post['slug'] = str_replace(" ", "_", strtolower($request->heading));
+        if($request->hasFile('photos') && !empty($request->file('photos')))
         {
-            $allowedfileExtension=['gif','jpg','png','webp'];
-            $files = $request->file('photos');
-            foreach($files as $file){
-                $filename = $file->getClientOriginalName();
-                $extension = $file->getClientOriginalExtension();
-                $check=in_array($extension,$allowedfileExtension);
-                //dd($check);
-                if($check)
-                {
-                    $images = [];
-                    foreach ($request->photos as $photo) {
-                        $filename = $photo->store('photos');
-                        $images[] = $filename;
-                    }
-                    $post['image_url'] = implode("", $images); 
-                } else {
-                    return back()->with('error','Wrong file type');
+            $images = [];
+            if(is_array($request->file('photos'))){
+                foreach ($request->file('photos') as $image) {
+                    $fileName = uniqid().'.'.$image->getClientOriginalExtension();
+
+                    $image->move(public_path() . '/images/community', $fileName);
+    
+                    $images[] = $fileName;
                 }
+            } else {
+                $image = $request->file('photos');
+                $fileName = uniqid().'.'.$image->getClientOriginalExtension();
+                $image->move(public_path() . '/images/community', $fileName);
+    
+                $images[] = $fileName;
             }
-        }
-        if($request->has('link_url'))
+            $post['image_url'] = implode(";", $images);
+        } elseif($request->has('link_url') && !empty($request->link_url))
         {
             $post['link_url'] = $request->link_url;
         }
-        $post['link_url'] = "false";
         Activity::create($post);
         return back()->with('success','Your post is now available');
     }

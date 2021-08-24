@@ -387,6 +387,7 @@ class FrontendController extends Controller
             Image::make($request->photo)->save($path);
         }
       $blog['heading'] = $request->heading;
+      $blog['slug'] = str_replace(' ', '_', strtolower(htmlspecialchars($request->heading))));
       $blog['details'] = $request->details;
       $blog['category_id'] = $request->category;
       $blog['tags'] = $request->tags;
@@ -419,6 +420,7 @@ class FrontendController extends Controller
             Image::make($request->photo)->save($path);
         }
         $blog['heading'] = $request->heading;
+        $blog['slug'] = str_replace(' ', '_', strtolower(htmlspecialchars($request->heading))));
         $blog['details'] = $request->details;
         $blog['tags'] = $request->tags;
         $blog['category_id'] = $request->category;

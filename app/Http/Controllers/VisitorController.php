@@ -34,28 +34,25 @@ class VisitorController extends Controller
         $testimonials = Testimonial::all();
         $socials = Social::all();
         $posts = Blog::orderBy('id','DESC')->select('id', 'photo', 'heading')->take(3)->get();
+    
         return view('welcome', compact('gnl','front','sliders','posts','socials','testimonials'));
     }
     public function blog()
     {
-        $posts = Blog::orderBy('id','DESC')->paginate(6);
+        $posts = Blog::orderBy('id','DESC')->paginate(10);
         $categorys = Category::all();
         return view('blog', compact('posts','categorys'));
     }
-    public function blogPost($id)
+    public function blogPost($slug)
     {
-        $post = Blog::find($id);
+        $post = Blog::where('slug', $slug)->first();
         $categorys = Category::all();
-        if(isset($post))
+        if(is_null($post))
         {
-            $related = Blog::where('category_id', $post->category->id)->with('comments')->take(5)->get();
-            return view('post', compact('post','categorys', 'related'));
+            abort(404);
         }
-        else
-        {
-            $posts = Blog::orderBy('id','DESC')->paginate(6);
-            return view('blog', compact('posts','categorys')); 
-        }
+        $related = Blog::where('category_id', $post->category->id)->with('comments')->take(5)->get();
+        return view('post', compact('post','categorys', 'related'));
     }
     
     public function getAdvertise($pub,$slag)

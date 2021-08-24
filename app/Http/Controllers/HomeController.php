@@ -44,7 +44,8 @@ class HomeController extends Controller
         $pt = 'Deposit';
         $gates = Gateway::where('status',1)->get();
         $deposit = Deposit::where('user_id', Auth::id())->orderBy('id','DESC')->where('status',1)->paginate(15);
-        return view('user.deposit', compact('pt','gates','deposit'));
+        $pending = Deposit::where('user_id', Auth::id())->orderBy('id','DESC')->where('status',0)->paginate(15);
+        return view('user.deposit', compact('pt','gates','deposit', 'pending'));
     }
 
     public function depositDataInsert(Request $request)
