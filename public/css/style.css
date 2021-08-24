@@ -323,6 +323,20 @@
   width: 65px;
 }
 
+.img-icon {
+  width: 200px;
+  height: 200px;
+  -webkit-transition: all 2s ease;
+  -moz-transition: all 2s ease;
+  -ms-transition: all 2s ease;
+  transition: all 2s ease;
+}
+
+.img-icon:hover {
+  width: 300px;
+  height: 300px;
+}
+
 textarea:hover, textarea:active {
   outline: 0px !important;
   -mox-appearance: none;
