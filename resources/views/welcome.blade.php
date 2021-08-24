@@ -111,7 +111,7 @@
                 <div class="single-service-item">
                     <div class="content">
                         <div class="text-center p-3">
-                            <span><i class="fas fa-cubes fa-pulse fa-7x"></i></span>
+                            <span><img class="img-fluid img-icon" src="{{ asset('images/slider/').'/'.$item->icon }}" alt="service_icon" /></span>
                         </div>
                         <h4 class="title">{{ $item->heading }}</h4>
                         <p>{!! $item->details !!}</p>

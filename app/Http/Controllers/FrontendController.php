@@ -154,9 +154,17 @@ class FrontendController extends Controller
   {
       $this->validate($request,
           [
+              'icon' => 'image|mimes:jpeg,png,jpg,gif,svg|max:1024',
               'heading' => 'required',
               'details' => 'required',
           ]);
+
+    if($request->hasFile('icon'))
+        {
+            $image = $request->file('icon');
+            $slider['icon'] = uniqid().'.'.$request->icon->getClientOriginalExtension();
+            $image->move(public_path() . '/images/slider', $slider['icon']);
+        }
 
       $slider['heading'] = $request->heading;
       $slider['details'] = $request->details;
@@ -170,10 +178,16 @@ class FrontendController extends Controller
       $slider = Slider::find($id);
       $this->validate($request,
       [
+          'icon' => 'image|mimes:jpeg,png,jpg,gif,svg|max:1024',
           'heading' => 'required',
           'details' => 'required',
       ]);
-
+      if($request->hasFile('icon'))
+      {
+        $image = $request->file('icon');
+        $slider['icon'] = uniqid().'.'.$request->icon->getClientOriginalExtension();
+        $image->move(public_path() . '/images/slider', $slider['icon']);
+      }
         $slider['heading'] = $request->heading;
         $slider['details'] = $request->details;
         $slider->update();
@@ -387,7 +401,7 @@ class FrontendController extends Controller
             Image::make($request->photo)->save($path);
         }
       $blog['heading'] = $request->heading;
-      $blog['slug'] = str_replace(' ', '_', strtolower(htmlspecialchars($request->heading))));
+      $blog['slug'] = str_replace(' ', '_', strtolower(htmlspecialchars($request->heading)));
       $blog['details'] = $request->details;
       $blog['category_id'] = $request->category;
       $blog['tags'] = $request->tags;
@@ -420,7 +434,7 @@ class FrontendController extends Controller
             Image::make($request->photo)->save($path);
         }
         $blog['heading'] = $request->heading;
-        $blog['slug'] = str_replace(' ', '_', strtolower(htmlspecialchars($request->heading))));
+        $blog['slug'] = str_replace(' ', '_', strtolower(htmlspecialchars($request->heading)));
         $blog['details'] = $request->details;
         $blog['tags'] = $request->tags;
         $blog['category_id'] = $request->category;

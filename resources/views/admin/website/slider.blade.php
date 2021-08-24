@@ -92,7 +92,21 @@
                         <form role="form" id="updForm" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('put')
-                           
+                                <div class="form-group card card-body">
+                                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                                        <div class="fileinput-new thumbnail">
+                                            <img id="icon" alt="ad" style="width:100%;" /> 
+                                        </div>
+                                        <div class="fileinput-preview fileinput-exists thumbnail" style="max-width:200px;"> </div>
+                                        <div>
+                                            <span class="btn btn-success btn-file">
+                                            <span class="fileinput-new"> Change Icon </span>
+                                            <span class="fileinput-exists"> Change </span>
+                                            <input type="file" name="icon"> </span>
+                                            <a href="javascript:;" class="btn btn-danger fileinput-exists" data-dismiss="fileinput"> Remove </a>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <label>Heading</label>
                                     <input type="text" class="form-control" id="heading" name="heading">
@@ -127,7 +141,18 @@
                         <div class="modal-body">
                             <form role="form" method="POST" action="{{route('admin.slide-store')}}" enctype="multipart/form-data">
                                 @csrf
-                               
+                                    <div class="form-group card card-body">
+                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                            <div class="fileinput-preview fileinput-exists thumbnail" style="max-width:200px;"> </div>
+                                            <div>
+                                                <span class="btn btn-success btn-file">
+                                                <span class="fileinput-new"> Change Icon </span>
+                                                <span class="fileinput-exists"> Change </span>
+                                                <input type="file" name="photo"> </span>
+                                                <a href="javascript:;" class="btn btn-danger fileinput-exists" data-dismiss="fileinput"> Remove </a>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="form-group">
                                         <h4>Service heading</h4>
                                         <input type="text"  class="form-control"  name="heading" >
@@ -163,8 +188,10 @@
                             $('#heading').val($(this).data('heading'));
                             $('#details').val($(this).data('details'));
                             let id = $(this).data('item');
+                            let icon = $(this).data('icon');
                             let route = "{{url('/')}}"+'/admin/service-update/'+ id;
                             $('#updForm').attr('action',route);
+                            $('#icon').attr('src',icon);
             
                         });
                     });

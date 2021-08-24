@@ -24,7 +24,7 @@
                         </div>
                         <div class="form-group">
                             <h4>Post Details</h4>
-                            <textarea class="form-control" name="details" rows="3">{{$blog->details}}</textarea>
+                            <textarea class="form-control" name="details" rows="20">{{$blog->details}}</textarea>
                         </div>								
                         <div class="form-group">
                             <button type="submit" class="btn btn-success btn-block">Update</button>
