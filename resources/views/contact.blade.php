@@ -12,7 +12,18 @@
         </div>
     </div>
 </section>
-<section class="contact-page-area margin-bottom-20">
+<section class="contact-page-area margin-bottom-20" id="about">
+    <div class="container contact-page-container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="contact-page-inner">
+                    <p>{ !! $front->about_company !! }</p>
+                </div><!-- //.contact page inner -->
+            </div>
+        </div>
+    </div>
+</section>
+<section class="contact-page-area margin-bottom-20" id="contact">
     <div class="container contact-page-container">
         <div class="row justify-content-center">
             <div class="col-lg-9">
@@ -61,7 +72,7 @@
         </div>
     </div>
 </section>
-<section class="faq-area">
+<section class="faq-area" id="faqs">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8">
@@ -119,7 +130,7 @@
             </div>
             <div class="col-lg-12 text-center">
                 <div class="btn-wrapper">
-                    <a href="{{ url('/') }}/contact" class="boxed-btn btn-rounded">Any question?</a>
+                    <a href="#contact" class="boxed-btn btn-rounded">Any question?</a>
                 </div>
             </div>
         </div>
