@@ -101,7 +101,22 @@
                         <a class="nav-link" href="{{route('contact')}}">ABOUT</a>
                     </li>
                     @endif
-                    
+                    @if(Auth::guard('feed')->check())
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" 
+                        role="button" aria-haspopup="true" aria-expanded="false">
+                        {{Auth::guard('feed')->user()->name}} <span class="caret"></span></a>
+                        <div class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                            <a class="dropdown-item" href="{{ route('feed.logout') }}"
+                            onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+                            Logout </a>
+                            <form id="logout-form" action="{{ route('feed.logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </div>
+                    </li>
+                    @endif
                 </ul>
             </div>
             @if(!Auth::check())
@@ -110,22 +125,6 @@
                 <a href="{{  route('publisher.login')  }}" class="border-animation"><span class="border-animation__inner">Publisher</span></a>
             </div>
             @endauth
-            @if(Auth::guard('feed')->check())
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" 
-                        role="button" aria-haspopup="true" aria-expanded="false">
-                        {{Auth::guard('feed')->user()->name}} <span class="caret"></span></a>
-                        <div class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                            onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();">
-                            Logout </a>
-                            <form id="logout-form" action="{{ route('feed.logout') }}" method="POST" style="display: none;">
-                                @csrf
-                            </form>
-                        </div>
-                    </div>
-                    @endif
             <div class="responsive-mobile-menu">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mirex" aria-controls="mirex"
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -135,7 +134,7 @@
     </div>
 </nav>
 
-<div id="justify-height">
+<div id="justify-height" style="min-height: 100vh">
     @yield('content')
 </div>  
 
@@ -149,14 +148,14 @@
         </div>
     </div>
 </div>
-
-<script src="{{asset('/js/jquery-3.2.1.min.js')}}"></script>
-<script src="{{asset('/js/jquery.js')}}"></script>
-<script src="{{asset('/js/popper.min.js')}}"></script>    
-<script src="{{asset('/js/bootstrap.min.js')}}"></script>
-<script src="{{asset('/js/sweetalert.min.js') }}"></script>
-<script src="{{asset('/js/main.js') }}"></script>
-<script src="{{ asset('js/wow.min.js') }}"></script>
+<script class="adScriptClass" type="text/javascript" src="{{asset('/ads/ad.js')}}"></script>
+<script type="text/javascript" src="{{asset('/js/jquery-3.2.1.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('/js/jquery.js')}}"></script>
+<script type="text/javascript" src="{{asset('/js/popper.min.js')}}"></script>    
+<script type="text/javascript" src="{{asset('/js/bootstrap.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('/js/sweetalert.min.js') }}"></script>
+<script type="text/javascript" src="{{asset('/js/main.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/wow.min.js') }}"></script>
 <script>
     $(document).ready(function(){
         var winheight = $(window).height() -71;
