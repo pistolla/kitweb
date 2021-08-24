@@ -1,5 +1,5 @@
 <?php
-namespace App\Lib;
+namespace App\Http\Lib;
 /**
  *
  * OpenSSL functionality adapted from Jan Lindemann's BitcoinECDSA.php

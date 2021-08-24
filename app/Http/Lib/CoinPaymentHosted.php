@@ -4,7 +4,7 @@
 	Copyright 2014-2016 CoinPayments.net. All rights reserved.	
 	License: GPLv2 - http://www.gnu.org/licenses/gpl-2.0.txt
 */
-namespace App\Lib;
+namespace App\Http\Lib;
 
 class CoinPaymentHosted {
 	private $private_key = '';

@@ -1,5 +1,5 @@
 <?php
-namespace App\Lib;
+namespace App\Http\Lib;
 
 class GoogleAuthenticator
 {
