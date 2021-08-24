@@ -44,8 +44,8 @@ Route::get('/ads/{publisher}/{type}', 'VisitorController@getAdvertise')->name('a
 Route::get('/ad-clicked/{publisher}/{hash}', 'VisitorController@adClicked')->name('adClicked'); 
 Route::get('/', 'VisitorController@index')->name('user.index'); 
 Route::get('/blog', 'VisitorController@blog')->name('user.blog'); 
-Route::get('/blog/{post}', 'VisitorController@blogPost')->name('user.blog-post'); 
-Route::get('/contact', 'VisitorController@contactForm')->name('contact');
+Route::get('/blog/{slug}', 'VisitorController@blogPost')->name('user.blog-post'); 
+Route::get('/about', 'VisitorController@contactForm')->name('contact');
 Route::post('/contact-message', 'VisitorController@contactMessage')->name('contact.message');   
 Route::post('/subscriber', 'VisitorController@subscriber')->name('subscriber');
 
@@ -95,7 +95,8 @@ Route::group(['middleware' => ['auth','uverify']], function() {
         Route::post('/deposit-data-insert', 'HomeController@depositDataInsert')->name('deposit.data-insert');
         Route::get('/deposit-preview', 'HomeController@depositPreview')->name('deposit.preview');
         Route::post('/deposit-confirm', 'PaymentController@depositConfirm')->name('deposit.confirm');
-        Route::post('/deposit-mpesa', 'PaymentController@depositMpesa')->name('deposit.mpesa');  
+        Route::post('/deposit-mpesa', 'PaymentController@depositMpesa')->name('deposit.mpesa');
+        Route::delete('/cancel-deposit/{id}', 'PaymentController@cancelDeposit')->name('cancel.deposit');  
 
         Route::get('/plans', 'HomeController@plans')->name('user.plans');
         Route::post('/get-plan', 'HomeController@getPlan')->name('user.get-plan');
@@ -315,6 +316,7 @@ Route::prefix('feed')->group(function() {
     //Public Forums
     Route::get('/dashboard', 'CommunityController@dashboard')->name('feed.dashboard');
     Route::get('/search-post', 'CommunityController@searchPost')->name('feed.searchpost');
+    Route::get('/{slug}', 'CommunityController@fetchActivity')->name('feed.fetch');
 
     //dynamic dropdown country and states
     Route::get('/cities/{country_id}',array('as'=>'user_register.ajax','uses'=>'CommunityController@cityForCountryAjax'));
@@ -328,6 +330,8 @@ Route::prefix('feed')->group(function() {
         Route::delete('/dislike-activity', 'CommunityController@dislikeActivity')->name('feed.postdislikes');
         Route::post('/like-comment', 'CommunityController@likeComment')->name('feed.commentlikes');
         Route::delete('/dislike-comment', 'CommunityController@dislikeComment')->name('feed.commentdislikes');         
-        Route::post('/create-comment', 'CommunityController@createComment')->name('feed.commentpost');         
+        Route::post('/create-comment', 'CommunityController@createComment')->name('feed.commentpost');
+        Route::get('/enquirelatest', 'CommunityController@enquireLatest')->name('feed.enquire');
+              
     });
 });
