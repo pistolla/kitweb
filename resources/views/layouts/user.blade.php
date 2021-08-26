@@ -156,6 +156,7 @@
 <script type="text/javascript" src="{{asset('/js/sweetalert.min.js') }}"></script>
 <script type="text/javascript" src="{{asset('/js/main.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/wow.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/jquery.magnific-popup.js') }}"></script>
 <script>
     $(document).ready(function(){
         var winheight = $(window).height() -71;
