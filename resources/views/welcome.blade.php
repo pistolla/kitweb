@@ -74,8 +74,8 @@
         <div class="row justify-content-center text-center">
             <div class="col-lg-12">
                 <div class="header-inner ">
-                    <h1 class="title wow slideInRight" data-wow-delay="2s">{{ $front->banner_heading }}</h1>
-                    <p class="wow fadeInDown" data-wow-delay="3s">{!! $front->banner_details !!}</p>
+                    <h1 class="title wow slideInRight jitter" data-wow-delay="2s">{{ $front->banner_heading }}</h1>
+                    <p class="wow fadeInDown jitter" data-wow-delay="3s">{!! $front->banner_details !!}</p>
                     <div class="row">
                         <div class="btn-wrapper col-md-4 col-sm-12">
                             <a href="{{ route('feed.login') }}" class="arrow-button pull-right">JOIN US
