@@ -25,6 +25,10 @@
                     <textarea class="form-control" id="about_details" name="about_details" rows="7">{{$front->about_details}}</textarea>
                 </div>
                 <div class="form-group">
+                    <h4>Company Details</h4>
+                    <textarea class="form-control" id="about_company" name="about_company" rows="7">{{$front->about_company}}</textarea>
+                </div>
+                <div class="form-group">
                     <h4>Video URL</h4>
                     <input type="text" value="{{$front->video}}" class="form-control" id="video" name="video" >
                 </div>
