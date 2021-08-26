@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row wow fadeInDown" data-wow-delay="2s" style="width:80%; margin: auto;">
             <div class="col-lg-12 col-md-4">
-                    <div class="card">
+                    <div class="card mb-5">
                     <h2 class="card-title text-center" style="padding: 10px;">Members only Log In</h2>
                         <div class="card-body">
                             <form class="contact-form" method="POST" action="{{ route('feed.loginpost') }}" >
@@ -16,11 +16,11 @@
                                             Login using your Social media account
                                         </div>
                                         <a href="{{url('/login/facebook')}}" class="btn btn-lg btn-social btn-facebook mb-2">
-                                            <i class="fa fa-facebook"></i>
+                                            <i class="fab fa-facebook-f"></i>
                                             Login with Facebook
                                         </a>
-                                        <a href="{{url('/login/facebook')}}" class="btn btn-lg btn-social btn-google mb2">
-                                            <span class="fa fa-google-plus fa-fw"></span>
+                                        <a href="{{url('/login/google')}}" class="btn btn-lg btn-social btn-google mb2">
+                                            <span class="fab fa-google"></span>
                                             Login with Google
                                         </a>
 

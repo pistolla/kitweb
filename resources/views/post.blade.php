@@ -30,20 +30,34 @@
                                 
                                 <span class="time"><i class="far fa-calendar"></i> {{$post->created_at->diffForHumans()}}</span>
                                 </div>
-                                <div class="ml-auto">
+                                <span class="share-button sharer" style="display: inline-block;">
+                                  <button class="comment-share btn mr-2" data-button="{{ url('/').'blog/'.$post->id}}"><i class="fa fa-share" aria-hidden="true"></i> Share</button>         
+                                  <span class="social top center networks-5 d-flex">
+                                    <!-- Facebook Share Button -->
+                                    <a class="fbtn share facebook" href="https://www.facebook.com/sharer/sharer.php?u={{url('/').'/blog/'.$post->slug}}"><i class="fab fa-facebook-f"></i></a> 
+                                    <!-- Google Plus Share Button -->
+                                    <a class="fbtn share whatsapp" href="whatsapp://send?text={{url('/').'/blog/'.$post->slug}}" data-action="share/whatsapp/share"><i class="fab fa-whatsapp"></i></a> 
+                                    <!-- Twitter Share Button -->
+                                    <a class="fbtn share twitter" href="https://twitter.com/intent/tweet?text={{$post->heading}}&amp;url={{url('/').'/blog/'.$post->slug}}&amp;via=Kenyansintexas"><i class="fab fa-twitter"></i></a>
+                                  </span>
+                                </span>
+                                <div style="display: inline-block;">
+
+                                
+
                             @if(Auth::guard('feed')->check())
                                 @if (auth()->user() && !$post->likedBy(auth()->user()))
-                                  <form action="{{ route('feed.postlikes', $post) }}" method="post" class="mr-1">
+                                  <form action="{{ route('blog.likes', $post) }}" method="post" class="mr-1">
                                       @csrf
-                                      <input type="hidden" name="activity" value="{{$post->id}}">
-                                      <button class="comment-like"><i class="fa fa-thumbs-up" aria-hidden="true"></i> {{$post->likes->count()}}</button>
+                                      <input type="hidden" name="blog" value="{{$post->id}}">
+                                      <button class="comment-like btn"><i class="fa fa-thumbs-up" aria-hidden="true"></i> {{$post->likes->count()}}</button>
                                   </form>
                                 @else
-                                  <form action="{{ route('feed.postdislikes', $post) }}" method="post" class="mr-1">
+                                  <form action="{{ route('blog.dislikes') }}" method="post" class="mr-1">
                                       @csrf
                                       @method('DELETE')
-                                      <input type="hidden" name="activity" value="{{$post->id}}">
-                                      <button class="comment-dislike"><i class="fa fa-thumbs-down" aria-hidden="true"></i>{{ $post->dislikes}}</button>
+                                      <input type="hidden" name="blog" value="{{$post->id}}">
+                                      <button class="comment-dislike btn"><i class="fa fa-thumbs-up" aria-hidden="true"></i>{{ $post->likes->count()}}</button>
                                   </form>
                                 @endif
                               @endif 
@@ -73,8 +87,9 @@
             <img src="/images/user-icon.jpg" class="img-fluid">
           </span>
           <span class="commenter-name">
-            <form class="form" method="POST" action="{{ route('blog.blogcomment',$post)}}" name="contact-form">
+            <form class="form" method="POST" action="{{ route('blog.blogcomment')}}" name="contact-form">
               @csrf
+              <input type="hidden" name="blog" value="{{$post->id}}">
               <input type="text" placeholder="Add a public comment" name="comment">
               <button type="submit" class="btn btn-default">Comment</button>
               <button type="cancel" class="btn btn-default">Cancel</button>
@@ -94,13 +109,13 @@
             <div class="comment-meta d-flex justify-content-end">
             
               @if (!$post->likedBy($comment->member))
-                <form action="{{ route('blog.commentlikes', $comment) }}" method="post" class="mr-1">
+                <form action="{{ route('blog.commentlikes') }}" method="post" class="mr-1">
                     @csrf
                     <input type="hidden" name="comment" value="{{$comment->id}}">
                     <button class="comment-like"><i class="fa fa-thumbs-up" aria-hidden="true"></i> {{$comment->likes->count()}}</button>
                 </form>
               @else
-                <form action="{{ route('blog.commentdislikes', $comment) }}" method="post" class="mr-1">
+                <form action="{{ route('blog.commentdislikes') }}" method="post" class="mr-1">
                     @csrf
                     @method('DELETE')
                     <input type="hidden" name="comment" value="{{$comment->id}}">
@@ -115,8 +130,9 @@
               <img src="/images/user-icon.jpg" class="img-fluid">
             </span>
             <span class="commenter-name">
-              <form action="{{ route('blog.comment', $comment) }}" method="post" class="mr-1">
+              <form action="{{ route('blog.comment') }}" method="post" class="mr-1">
                 @csrf
+                <input type="hidden" name="comment" value="{{$comment->id}}">
                 <input type="text" placeholder="Add a public reply" name="comment">
                 <button type="submit" class="btn btn-default">Reply</button>
                 <button type="cancel" class="btn btn-default reply-popup">Cancel</button>
