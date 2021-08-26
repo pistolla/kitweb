@@ -59,12 +59,12 @@ class CommunityController extends Controller
 
     public function fetchActivity($slug)
     {
-        $post = Activity::where('slug', $slug)->with(['member', 'comments', 'likes'])->first();
-
+        $post = Activity::where('slug', $slug)->with(['member', 'comments', 'likes', 'dislikes'])->first();
+        $suggested = [];
         if(is_null($post)) {
             abort('404');
         }
-            return view('feed.activity', compact('post'));
+            return view('feed.activity', compact('post', 'suggested'));
         
     }
 
@@ -142,52 +142,62 @@ class CommunityController extends Controller
         
     }
 
-    public function likeActivity(Activity $post, Request $request)
+    public function likeActivity( Request $request)
     {
-        if ($post->likedBy($request->user())) {
-            return response(null, 409);
-        }
+        $this->validate($request, ['activity' => 'required']);
+        $post = Activity::find($request->activity);
+        if($post){
+            if ($post->likedBy($request->user())) {
+                return response(null, 409);
+            }
 
-        $post->likes()->create([
-            'member_id' => $request->user()->id,
-            'activity_id' => $post->id,
-        ]);
+            $post->likes()->create([
+                'member_id' => $request->user()->id,
+                'activity_id' => $request->activity
+            ]);
 
-        if (!$post->likes()->onlyTrashed()->where('member_id', $request->user()->id)->count()) {
-            // Mail::to($post->member)->send(new PostLiked(auth()->user(), $post));
-        }
-
-        return back();
-    }
-
-    public function dislikeActivity(Activity $post, Request $request)
-    {
-        $request->user()->likes()->where('activity_id', $post->id)->delete();
-
-        return back();
-    }
-
-    public function likeComment(Comment $post, Request $request)
-    {
-        if ($post->likedBy($request->user())) {
-            return response(null, 409);
-        }
-
-        $post->likes()->create([
-            'member_id' => $request->user()->id,
-            'comment_id' => $post->id,
-        ]);
-
-        if (!$post->likes()->onlyTrashed()->where('member_id', $request->user()->id)->count()) {
-            Mail::to($post->member)->send(new PostLiked(auth()->user(), $post));
+            if (!$post->likes()->onlyTrashed()->where('member_id', $request->user()->id)->count()) {
+                // Mail::to($post->member)->send(new PostLiked(auth()->user(), $post));
+            }
         }
 
         return back();
     }
 
-    public function dislikeComment(Activity $post, Request $request)
+    public function dislikeActivity(Request $request)
     {
-        $request->user()->likes()->where('activity_id', $post->id)->delete();
+        $this->validate($request, ['activity' => 'required']);
+        $request->user()->likes()->where('activity_id', $request->activity)->delete();
+
+        return back();
+    }
+
+    public function likeComment(Request $request)
+    {
+        $this->validate($request, ['comment' => 'required']);
+        $comment = Comment::find($request->comment);
+        if($comment){
+            if ($comment->likedBy($request->user())) {
+                return response(null, 409);
+            }
+
+            $comment->likes()->create([
+                'member_id' => $request->user()->id,
+                'comment_id' => $comment->id,
+            ]);
+
+            if (!$comment->likes()->onlyTrashed()->where('member_id', $request->user()->id)->count()) {
+                // Mail::to($post->member)->send(new PostLiked(auth()->user(), $post));
+            }
+        }
+
+        return back();
+    }
+
+    public function dislikeComment(Request $request)
+    {
+        $this->validate($request, ['comment' => 'required']);
+        $request->user()->likes()->where('commenty_id', $request->comment)->delete();
 
         return back();
     }

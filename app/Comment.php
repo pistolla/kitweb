@@ -22,4 +22,8 @@ class Comment extends Model
         return $this->hasMany(Like::class);
     }
     
+    public function likedBy(Member $member)
+    {
+        return $this->likes->contains('member_id', $member->id);
+    }
 }

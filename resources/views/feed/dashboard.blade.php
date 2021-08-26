@@ -103,24 +103,38 @@
 
             <div class="comment-meta d-flex justify-content-end">
             @if(Auth::guard('feed')->check())
-                @if (!$post->likedBy($post->member))
-                  <form action="{{ route('feed.postlikes', $post) }}" method="post" class="mr-1">
+              @if (!$post->likedBy($post->member))
+                  <form action="{{ route('feed.postlikes') }}" method="post" class="mr-1">
                       @csrf
                       <input type="hidden" name="activity" value="{{$post->id}}">
-                      <button class="comment-like"><i class="fa fa-thumbs-up" aria-hidden="true"></i> {{$post->likes->count()}}</button>
+                      <button class="comment-like"><i class="fa fa-thumbs-up" aria-hidden="true" ></i> {{$post->likes->count()}}</button>
                   </form>
                 @else
                   <form action="{{ route('feed.postdislikes', $post) }}" method="post" class="mr-1">
                       @csrf
                       @method('DELETE')
                       <input type="hidden" name="activity" value="{{$post->id}}">
-                      <button class="comment-dislike"><i class="fa fa-thumbs-down" aria-hidden="true"></i>{{ $post->dislikes->count()}}</button>
+                      <button class="comment-like"><i class="fa fa-thumbs-up" aria-hidden="true" style="color: blue;"></i> {{ $post->likes->count()}}</button>
                   </form>
                 @endif
               @endif 
                 <button class="comment-reply reply-popup" id="{{$post->id}}"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</button>
-                <button class="comment-share" data-button="{{ url('/').'feed/'.$post->id}}"><i class="fa fa-share" aria-hidden="true"></i> Share</button>         
-              
+                
+                
+                <span class="share-button sharer" style="display: inline-block;">
+                  <button class="comment-share" data-button="{{ url('/').'feed/'.$post->id}}"><i class="fa fa-share" aria-hidden="true"></i> Share</button>         
+                  <span class="social top center networks-5 d-flex">
+                    <!-- Facebook Share Button -->
+                    <a class="fbtn share facebook" href="https://www.facebook.com/sharer/sharer.php?u={{url('/').'/feed/'.$post->slug}}"><i class="fab fa-facebook-f"></i></a> 
+                    <!-- Google Plus Share Button -->
+                    <a class="fbtn share whatsapp" href="whatsapp://send?text={{url('/').'/feed/'.$post->slug}}" data-action="share/whatsapp/share"><i class="fab fa-whatsapp"></i></a> 
+                    <!-- Twitter Share Button -->
+                    <a class="fbtn share twitter" href="https://twitter.com/intent/tweet?text={{$post->heading}}&amp;url={{url('/').'/feed/'.$post->slug}}&amp;via=Kenyansintexas"><i class="fab fa-twitter"></i></a>
+                  </span>
+                </span>
+                
+                
+                
             </div>
             <div class="comment-box add-comment reply-box" id="reply-{{$post->id}}">
               <span class="commenter-pic">
@@ -149,18 +163,18 @@
               <p class="comment-txt more">{{ $comment->text }}</p>
               <div class="comment-meta d-flex justify-content-end">
               @if(Auth::guard('feed')->check())
-                @if (!$post->likedBy($comment->member))
-                  <form action="{{ route('feed.commentlikes', $comment) }}" method="post" class="mr-1">
+                @if (!$comment->likedBy($post->member))
+                  <form action="{{ route('feed.commentlikes') }}" method="post" class="mr-1">
                       @csrf
                       <input type="hidden" name="comment" value="{{$comment->id}}">
-                      <button class="comment-like"><i class="fa fa-thumbs-up" aria-hidden="true"></i> {{$comment->likes->count()}}</button>
+                      <button class="comment-like"><i class="fa fa-thumbs-up" aria-hidden="true" ></i> {{$comment->likes->count()}}</button>
                   </form>
                 @else
-                  <form action="{{ route('feed.commentdislikes', $comment) }}" method="post" class="mr-1">
+                  <form action="{{ route('feed.commentdislikes') }}" method="post" class="mr-1">
                       @csrf
                       @method('DELETE')
                       <input type="hidden" name="comment" value="{{$comment->id}}">
-                      <button class="comment-dislike"><i class="fa fa-thumbs-down" aria-hidden="true"></i>{{ $comment->likes->count()}}</button>
+                      <button class="comment-like"><i class="fa fa-thumbs-up" aria-hidden="true" style="color: blue;"></i> {{ $comment->likes->count()}}</button>
                   </form>
                 @endif
               @endif
@@ -207,21 +221,37 @@
             @endif
             <div class="comment-meta d-flex justify-content-end">
             @if(Auth::guard('feed')->check())
-                @if (!$activity->likedBy($activity->member))
-                  <form action="{{ route('feed.postlikes', $activity) }}" method="post" class="mr-1">
+              @if (!$activity->likedBy($post->member))
+                  <form action="{{ route('feed.postlikes') }}" method="post" class="mr-1">
                       @csrf
-                      <button class="comment-like"><i class="fa fa-thumbs-up" aria-hidden="true"></i> {{$activity->likes->count()}}</button>
+                      <input type="hidden" name="activity" value="{{$activity->id}}">
+                      <button class="comment-like"><i class="fa fa-thumbs-up" aria-hidden="true" ></i> {{$activity->likes->count()}}</button>
                   </form>
                 @else
-                  <form action="{{ route('feed.postdislikes', $activity) }}" method="post" class="mr-1">
+                  <form action="{{ route('feed.postdislikes') }}" method="post" class="mr-1">
                       @csrf
                       @method('DELETE')
-                      <button class="comment-dislike"><i class="fa fa-thumbs-down" aria-hidden="true"></i>{{ $activity->likes->count()}}</button>
+                      <input type="hidden" name="activity" value="{{$activity->id}}">
+                      <button class="comment-like"><i class="fa fa-thumbs-up" aria-hidden="true" style="color: blue;"></i> {{ $activity->likes->count()}}</button>
                   </form>
                 @endif
               @endif
               <button class="comment-reply reply-popup" id="{{$activity->id}}"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</button>         
-              <button class="comment-share" data-button="{{ url('/').'feed/'.$activity->id}}"><i class="fa fa-share" aria-hidden="true"></i> Share</button>
+              
+              <span class="share-button sharer" style="display: inline-block;">
+                <button class="comment-share" data-button="{{ url('/').'feed/'.$activity->id}}"><i class="fa fa-share" aria-hidden="true"></i> Share</button>
+                <span class="social top center networks-5 d-flex">
+                    <!-- Facebook Share Button -->
+                    <a class="fbtn share facebook" href="https://www.facebook.com/sharer/sharer.php?u={{url('/').'/feed/'.$activity->slug}}"><i class="fab fa-facebook-f"></i></a> 
+                    <!-- Google Plus Share Button -->
+                    <a class="fbtn share whatsapp" href="whatsapp://send?text={{url('/').'/feed/'.$activity->slug}}" data-action="share/whatsapp/share"><i class="fab fa-whatsapp"></i></a> 
+                    <!-- Twitter Share Button -->
+                    <a class="fbtn share twitter" href="https://twitter.com/intent/tweet?text={{$activity->heading}}&amp;url={{url('/').'/feed/'.$post->slug}}&amp;via=Kenyansintexas"><i class="fab fa-twitter"></i></a>
+                </span>
+              </span>
+
+
+              
             </div>
             <div class="comment-box add-comment reply-box" id="reply-{{$activity->id}}">
               <span class="commenter-pic">

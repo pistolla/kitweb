@@ -17,6 +17,11 @@ class Activity extends Model
         return $this->likes->contains('member_id', $member->id);
     }
 
+    public function dislikedBy(Member $member)
+    {
+        return $this->likes->contains('member_id', $member->id);
+    }
+
     public function member()
     {
         return $this->belongsTo(Member::class);

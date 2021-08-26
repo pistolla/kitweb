@@ -467,10 +467,10 @@ class VisitorController extends Controller
     }
 
 
-    public function blogComment(Blog $post, Request $req)
+    public function blogComment(Request $req)
     {
-        $this->validate($req, ['comment' => 'required']);
-        $arr['blog_id'] = $post->id;
+        $this->validate($req, ['comment' => 'required','blog' => 'required']);
+        $arr['blog_id'] = $req->blog;
         $arr['text'] = $req->comment;
         $arr['member_id'] = $req->user()->id;
 
@@ -478,10 +478,10 @@ class VisitorController extends Controller
         return back()->with('success','Your have added a comment');
     }
 
-    public function subComment(Comment $post, Request $req)
+    public function subComment(Request $req)
     {
-        $this->validate($req, ['comment' => 'required']);
-        $post['parent_id'] = $post->id;
+        $this->validate($req, ['comment' => 'required', 'comment_id' => 'required']);
+        $post['parent_id'] = $req->comment_id;
         $post['text'] = $req->comment;
         $post['member_id'] = $req->user()->id;
 
@@ -490,52 +490,60 @@ class VisitorController extends Controller
     }
 
 
-    public function likeBlog(Blog $post, Request $request)
+    public function likeBlog(Request $request)
     {
-        if ($post->likedBy($request->user())) {
-            return response(null, 409);
-        }
+        $this->validate($request, ['blog' => 'required']);
+        $post = Blog::find($request->blog);
+        if($post) {
+            if ($post->likedBy($request->user())) {
+                return response(null, 409);
+            }
 
-        $post->likes()->create([
-            'member_id' => $request->user()->id,
-            'blog_id' => $post->id,
-        ]);
+            $post->likes()->create([
+                'member_id' => $request->user()->id,
+                'blog_id' => $post->id,
+            ]);
 
-        if (!$post->likes()->onlyTrashed()->where('member_id', $request->user()->id)->count()) {
-            // Mail::to($post->member)->send(new PostLiked(auth()->user(), $post));
+            if (!$post->likes()->onlyTrashed()->where('member_id', $request->user()->id)->count()) {
+                // Mail::to($post->member)->send(new PostLiked(auth()->user(), $post));
+            }
         }
+        return back();
+    }
+
+    public function dislikeBlog(Request $request)
+    {
+        $this->validate($request, ['blog' => 'required']);
+        $request->user()->likes()->where('blog_id', $request->blog)->delete();
 
         return back();
     }
 
-    public function dislikeBlog(Blog $post, Request $request)
+    public function commentLikes(Request $request)
     {
-        $request->user()->likes()->where('blog_id', $post->id)->delete();
+        $this->validate($request, ['comment' => 'required']);
+        $comment = Comment::find($request->comment);
+        if($comment){
+            if ($comment->likedBy($request->user())) {
+                return response(null, 409);
+            }
 
+            $comment->likes()->create([
+                'member_id' => $request->user()->id,
+                'comment_id' => $comment->id,
+            ]);
+
+            if (!$comment->likes()->onlyTrashed()->where('member_id', $request->user()->id)->count()) {
+                // Mail::to($post->member)->send(new PostLiked(auth()->user(), $comment));
+            }
+        }
         return back();
     }
 
-    public function commentLikes(Comment $post, Request $request)
+    public function commentDislikes(Request $request)
     {
-        if ($post->likedBy($request->user())) {
-            return response(null, 409);
-        }
-
-        $post->likes()->create([
-            'member_id' => $request->user()->id,
-            'comment_id' => $post->id,
-        ]);
-
-        if (!$post->likes()->onlyTrashed()->where('member_id', $request->user()->id)->count()) {
-            Mail::to($post->member)->send(new PostLiked(auth()->user(), $post));
-        }
-
-        return back();
-    }
-
-    public function commentDislikes(Blog $post, Request $request)
-    {
-        $request->user()->likes()->where('activity_id', $post->id)->delete();
+        $this->validate($request, ['comment' => 'required']);
+        $request->user()->likes()->where('comment_id', $comment->id)->delete();
 
         return back();
     }
