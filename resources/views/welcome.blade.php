@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {!! Meta::toHtml() !!}
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <title> {{ $gnl->title }} | {{ $gnl->subtitle }} </title>
     <link rel="shortcut icon" href="{{ asset('/images/logo/icon.png') }}" type="image/x-icon">
@@ -21,7 +22,7 @@
 <body>
     <!-- navbar area start -->
     <nav class="navbar navbar-area navbar-expand-lg navbar-light">
-        <div class="container nav-container">
+        <div class="container-fluid nav-container">
             <div class="logo-wrapper navbar-brand">
                 <a href="{{ url('/') }}" class="logo main-logo">
                     <img src="{{ asset('/images/logo/logo.png') }}" alt="logo" style="max-width:160px;">
@@ -241,7 +242,7 @@
 </section>
 <!-- footer area start -->
 <section class="footer-area blue-bg">
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-lg-4">
                 <div class="footer-widget about"><!-- footer widget -->

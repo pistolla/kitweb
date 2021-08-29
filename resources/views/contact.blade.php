@@ -17,7 +17,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="contact-page-inner">
-                    <p>{ !! $front->about_company !! }</p>
+                    <p>{!! $front->about_company !!}</p>
                 </div><!-- //.contact page inner -->
             </div>
         </div>

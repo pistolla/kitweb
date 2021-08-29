@@ -23,6 +23,7 @@ use App\Category;
 use App\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Butschster\Head\Facades\Meta;
 
 class VisitorController extends Controller
 {
@@ -34,6 +35,13 @@ class VisitorController extends Controller
         $testimonials = Testimonial::all();
         $socials = Social::all();
         $posts = Blog::orderBy('id','DESC')->select('id', 'photo', 'heading')->take(3)->get();
+
+        Meta::setTitle($front->heading)
+            ->prependTitle($front->banner_heading)
+            ->setTitleSeparator('|')
+            ->setDescription($front->banner_details)
+            ->setKeywords(['Advertising agency','Kenya','Texas'])
+            ->setRobots('nofollow,noindex');
     
         return view('welcome', compact('gnl','front','sliders','posts','socials','testimonials'));
     }

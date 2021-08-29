@@ -16,7 +16,8 @@
         "intervention/image": "^2.5.1",
         "stripe/stripe-php": "^7.85.0",
         "laravel/socialite": "^v5.2.3",
-        "embed/embed": "^4.3.4"
+        "embed/embed": "^4.3.4",
+        "butschster/meta-tags": "^2.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

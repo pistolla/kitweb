@@ -59,15 +59,16 @@ CREATE TABLE `blogs` (
   `photo` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `heading` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `details` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(200) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-INSERT INTO `blogs` (`id`, `admin_id`, `category_id`, `photo`, `heading`, `details`, `created_at`, `updated_at`) VALUES
-(2, 1, 1, '5bc36d746a8eb.jpg', 'Digital Marketing Agency all the foundational.', '<div>Sportsman do offending supported extremity breakfast by listening.<span style=\"font-size: 0.875rem;\">Decisively advantages nor expression unpleasing she led met.&nbsp;</span><span style=\"font-size: 0.875rem;\">Estate was tended ten boy nearer seemed. As so seeing latter he should thirty whence. Steepest speaking up attended it as. Made neat an on</span><span style=\"font-size: 0.875rem;\">Sportsman do offending supported extremity breakfast by listening.</span><span style=\"font-size: 0.875rem;\">Decisively advantages nor expression unpleasing she led met.&nbsp;</span><span style=\"font-size: 0.875rem;\">Estate was tended ten boy nearer seemed. As so seeing latter he should thirty whence. Steepest speaking up attended it as. Made neat an on</span><span style=\"font-size: 0.875rem;\">Sportsman do offending supported extremity breakfast by listening.</span><span style=\"font-size: 0.875rem;\">Decisively advantages nor expression unpleasing she led met.&nbsp;</span><span style=\"font-size: 0.875rem;\">Estate was tended ten boy nearer seemed. As so seeing latter he should thirty whence. Steepest speaking up attended it as. Made neat an on</span></div>', '2020-10-07 02:43:59', '2020-10-14 20:23:16'),
-(3, 1, 1, '5bc36d79e24d1.jpg', 'Sportsman do offending supported extremity', 'Sportsman do offending supported extremity breakfast by listening.Decisively advantages nor expression unpleasing she led met.Sportsman do offending supported extremity breakfast by listening.Decisively advantages nor expression unpleasing she led met.Sportsman do offending supported extremity breakfast by listening.Decisively advantages nor expression unpleasing she led met.Sportsman do offending supported extremity breakfast by listening.Decisively advantages nor expression unpleasing she led met.Sportsman do offending supported extremity breakfast by listening.Decisively advantages nor expression unpleasing she led met.Sportsman do offending supported extremity breakfast by listening.Decisively advantages nor expression unpleasing she led met.Sportsman do offending supported extremity breakfast by&nbsp;<br>', '2020-10-07 02:48:41', '2020-10-14 20:23:21'),
-(4, 1, 1, '5bc36d7ee6162.jpg', 'Decisively advantages nor expression unpleasing she led met.', 'Sportsman do offending supported extremity breakfast by listening.Decisively advantages nor expression unpleasing she led met.Sportsman do offending supported extremity breakfast by listening.Decisively advantages nor expression unpleasing she led met.Sportsman do offending supported extremity breakfast by listening.Decisively advantages nor expression unpleasing she led met.Sportsman do offending supported extremity breakfast by listening.Decisively advantages nor expression unpleasing she led met.Sportsman do offending supported extremity breakfast by listening.Decisively advantages nor expression unpleasing she led met.Sportsman do offending supported extremity breakfast by listening.Decisively advantages nor expression unpleasing she led met.Sportsman do offending supported extremity breakfast by listening.Decisively advantages nor expression unpleasing she led met.Sportsman do offending supported extremity breakfast by listening.Decisively advantages nor expression unpleasing she led met.Sportsman do offending supported extremity breakfast by listening.Decisively advantages nor expression unpleasing she led met.<br>', '2020-10-07 02:49:13', '2020-10-14 20:23:26'),
-(7, 1, 1, '5bc36d946c3c3.jpg', 'The foundational tool you need inbound success.', 'We are a full service Digital Marketing Agency all&nbsp; &nbsp; the foundational tool you need inbound success. With this module theres no need to another dayWe are a full service Digital Marketing Agency all&nbsp; &nbsp; the foundational tool you need inbound success. With this module theres no need to another dayWe are a full service Digital Marketing Agency all&nbsp; &nbsp; the foundational tool you need inbound success. With this module theres no need to another dayWe are a full service Digital Marketing Agency all&nbsp; &nbsp; the foundational tool you need inbound success. With this module theres no need to another dayWe are a full service Digital Marketing Agency all&nbsp; &nbsp; the foundational tool you need inbound success. With this module theres no need to another day We are a full service Digital Marketing Agency all&nbsp; &nbsp; the foundational tool you need inbound success. With this module theres no need to another dayWe are a full service Digital Marketing Agency all&nbsp; &nbsp; the foundational tool you need inbound success. With this module theres no need to another dayWe are a full service Digital Marketing Agency all&nbsp; &nbsp; the foundational tool you need inbound success. With this module theres no need to another dayWe are a full service Digital Marketing Agency all&nbsp; &nbsp; the foundational tool you need inbound success. With this module theres no need to another dayWe are a full service Digital Marketing Agency all&nbsp; &nbsp; the foundational tool you need inbound success. With this module theres no need to another dayWe are a full service Digital Marketing Agency all&nbsp; &nbsp; the foundational tool you need inbound success. With this module theres no need to another dayWe are a full service Digital Marketing Agency all&nbsp; &nbsp; the foundational tool you need inbound success. With this module theres no need to another dayWe are a full service Digital Marketing Agency all&nbsp; &nbsp; the foundational tool you need inbound success. With this module theres no need to another dayWe are a full service Digital Marketing Agency all&nbsp; &nbsp; the foundational tool you need inbound success. With this module theres no need to another dayWe are a full service Digital Marketing Agency all&nbsp; &nbsp; the foundational tool you need inbound success. With this module theres no need to another day<br>', '2020-10-07 03:24:48', '2020-10-14 20:23:48'),
-(8, 1, 1, '5bc36d59411ed.jpg', 'Agency allhe foundational tool you need inbound success', '<div>We are a full service Digital Marketing Agency all<span style=\"font-size: 0.875rem;\">he foundational tool you need inbound success.&nbsp;</span><span style=\"font-size: 0.875rem;\">With this module theres no need to another day&nbsp;</span><span style=\"font-size: 0.875rem;\">We are a full service Digital Marketing Agency all</span><span style=\"font-size: 0.875rem;\">he foundational tool you need inbound success.&nbsp;</span><span style=\"font-size: 0.875rem;\">With this module theres no need to another day</span><span style=\"font-size: 0.875rem;\">We are a full service Digital Marketing Agency all</span><span style=\"font-size: 0.875rem;\">he foundational tool you need inbound success.&nbsp;</span><span style=\"font-size: 0.875rem;\">With this module theres no need to another day</span><span style=\"font-size: 0.875rem;\">We are a full service Digital Marketing Agency all</span><span style=\"font-size: 0.875rem;\">he foundational tool you need inbound success.&nbsp;</span><span style=\"font-size: 0.875rem;\">With this module theres no need to another day</span><span style=\"font-size: 0.875rem;\">We are a full service Digital Marketing Agency all</span><span style=\"font-size: 0.875rem;\">he foundational tool you need inbound success.&nbsp;</span><span style=\"font-size: 0.875rem;\">With this module theres no need to another day</span></div>', '2020-10-07 03:26:26', '2020-10-14 20:22:49');
+INSERT INTO `blogs` (`id`, `admin_id`, `category_id`, `photo`, `slug`, `heading`, `details`, `created_at`, `updated_at`) VALUES
+(2, 1, 1, '5bc36d746a8eb.jpg', 'digital_marketing_agency_all_the_foundational', 'Digital Marketing Agency all the foundational.', '<div>Sportsman do offending supported extremity breakfast by listening.<span style=\"font-size: 0.875rem;\">Decisively advantages nor expression unpleasing she led met.&nbsp;</span><span style=\"font-size: 0.875rem;\">Estate was tended ten boy nearer seemed. As so seeing latter he should thirty whence. Steepest speaking up attended it as. Made neat an on</span><span style=\"font-size: 0.875rem;\">Sportsman do offending supported extremity breakfast by listening.</span><span style=\"font-size: 0.875rem;\">Decisively advantages nor expression unpleasing she led met.&nbsp;</span><span style=\"font-size: 0.875rem;\">Estate was tended ten boy nearer seemed. As so seeing latter he should thirty whence. Steepest speaking up attended it as. Made neat an on</span><span style=\"font-size: 0.875rem;\">Sportsman do offending supported extremity breakfast by listening.</span><span style=\"font-size: 0.875rem;\">Decisively advantages nor expression unpleasing she led met.&nbsp;</span><span style=\"font-size: 0.875rem;\">Estate was tended ten boy nearer seemed. As so seeing latter he should thirty whence. Steepest speaking up attended it as. Made neat an on</span></div>', '2020-10-07 02:43:59', '2020-10-14 20:23:16'),
+(3, 1, 1, '5bc36d79e24d1.jpg', 'sportsman_do_offending_supported_extremity','Sportsman do offending supported extremity', 'Sportsman do offending supported extremity breakfast by listening.Decisively advantages nor expression unpleasing she led met.Sportsman do offending supported extremity breakfast by listening.Decisively advantages nor expression unpleasing she led met.Sportsman do offending supported extremity breakfast by listening.Decisively advantages nor expression unpleasing she led met.Sportsman do offending supported extremity breakfast by listening.Decisively advantages nor expression unpleasing she led met.Sportsman do offending supported extremity breakfast by listening.Decisively advantages nor expression unpleasing she led met.Sportsman do offending supported extremity breakfast by listening.Decisively advantages nor expression unpleasing she led met.Sportsman do offending supported extremity breakfast by&nbsp;<br>', '2020-10-07 02:48:41', '2020-10-14 20:23:21'),
+(4, 1, 1, '5bc36d7ee6162.jpg', 'decisively_advantages_nor_expression_unpleasing_she_led_met','Decisively advantages nor expression unpleasing she led met.', 'Sportsman do offending supported extremity breakfast by listening.Decisively advantages nor expression unpleasing she led met.Sportsman do offending supported extremity breakfast by listening.Decisively advantages nor expression unpleasing she led met.Sportsman do offending supported extremity breakfast by listening.Decisively advantages nor expression unpleasing she led met.Sportsman do offending supported extremity breakfast by listening.Decisively advantages nor expression unpleasing she led met.Sportsman do offending supported extremity breakfast by listening.Decisively advantages nor expression unpleasing she led met.Sportsman do offending supported extremity breakfast by listening.Decisively advantages nor expression unpleasing she led met.Sportsman do offending supported extremity breakfast by listening.Decisively advantages nor expression unpleasing she led met.Sportsman do offending supported extremity breakfast by listening.Decisively advantages nor expression unpleasing she led met.Sportsman do offending supported extremity breakfast by listening.Decisively advantages nor expression unpleasing she led met.<br>', '2020-10-07 02:49:13', '2020-10-14 20:23:26'),
+(7, 1, 1, '5bc36d946c3c3.jpg', 'the_foundational_tool_you_need_inbound_success','The foundational tool you need inbound success.', 'We are a full service Digital Marketing Agency all&nbsp; &nbsp; the foundational tool you need inbound success. With this module theres no need to another dayWe are a full service Digital Marketing Agency all&nbsp; &nbsp; the foundational tool you need inbound success. With this module theres no need to another dayWe are a full service Digital Marketing Agency all&nbsp; &nbsp; the foundational tool you need inbound success. With this module theres no need to another dayWe are a full service Digital Marketing Agency all&nbsp; &nbsp; the foundational tool you need inbound success. With this module theres no need to another dayWe are a full service Digital Marketing Agency all&nbsp; &nbsp; the foundational tool you need inbound success. With this module theres no need to another day We are a full service Digital Marketing Agency all&nbsp; &nbsp; the foundational tool you need inbound success. With this module theres no need to another dayWe are a full service Digital Marketing Agency all&nbsp; &nbsp; the foundational tool you need inbound success. With this module theres no need to another dayWe are a full service Digital Marketing Agency all&nbsp; &nbsp; the foundational tool you need inbound success. With this module theres no need to another dayWe are a full service Digital Marketing Agency all&nbsp; &nbsp; the foundational tool you need inbound success. With this module theres no need to another dayWe are a full service Digital Marketing Agency all&nbsp; &nbsp; the foundational tool you need inbound success. With this module theres no need to another dayWe are a full service Digital Marketing Agency all&nbsp; &nbsp; the foundational tool you need inbound success. With this module theres no need to another dayWe are a full service Digital Marketing Agency all&nbsp; &nbsp; the foundational tool you need inbound success. With this module theres no need to another dayWe are a full service Digital Marketing Agency all&nbsp; &nbsp; the foundational tool you need inbound success. With this module theres no need to another dayWe are a full service Digital Marketing Agency all&nbsp; &nbsp; the foundational tool you need inbound success. With this module theres no need to another dayWe are a full service Digital Marketing Agency all&nbsp; &nbsp; the foundational tool you need inbound success. With this module theres no need to another day<br>', '2020-10-07 03:24:48', '2020-10-14 20:23:48'),
+(8, 1, 1, '5bc36d59411ed.jpg', 'agency_allhe_foundational_tool_you_need_inbound_success','Agency allhe foundational tool you need inbound success', '<div>We are a full service Digital Marketing Agency all<span style=\"font-size: 0.875rem;\">he foundational tool you need inbound success.&nbsp;</span><span style=\"font-size: 0.875rem;\">With this module theres no need to another day&nbsp;</span><span style=\"font-size: 0.875rem;\">We are a full service Digital Marketing Agency all</span><span style=\"font-size: 0.875rem;\">he foundational tool you need inbound success.&nbsp;</span><span style=\"font-size: 0.875rem;\">With this module theres no need to another day</span><span style=\"font-size: 0.875rem;\">We are a full service Digital Marketing Agency all</span><span style=\"font-size: 0.875rem;\">he foundational tool you need inbound success.&nbsp;</span><span style=\"font-size: 0.875rem;\">With this module theres no need to another day</span><span style=\"font-size: 0.875rem;\">We are a full service Digital Marketing Agency all</span><span style=\"font-size: 0.875rem;\">he foundational tool you need inbound success.&nbsp;</span><span style=\"font-size: 0.875rem;\">With this module theres no need to another day</span><span style=\"font-size: 0.875rem;\">We are a full service Digital Marketing Agency all</span><span style=\"font-size: 0.875rem;\">he foundational tool you need inbound success.&nbsp;</span><span style=\"font-size: 0.875rem;\">With this module theres no need to another day</span></div>', '2020-10-07 03:26:26', '2020-10-14 20:22:49');
 CREATE TABLE `deposits` (
   `id` int(10) UNSIGNED NOT NULL,
   `user_id` int(11) DEFAULT NULL,
@@ -116,6 +117,7 @@ CREATE TABLE `frontends` (
   `banner_details` text COLLATE utf8mb4_unicode_ci,
   `about_heading` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `about_details` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `about_company` text COLLATE utf8mb4_unicode_ci,
   `about_image` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `service_heading` text COLLATE utf8mb4_unicode_ci,
   `testimonial_heading` text COLLATE utf8mb4_unicode_ci,
@@ -142,8 +144,8 @@ CREATE TABLE `frontends` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-INSERT INTO `frontends` (`id`, `banner_heading`, `banner_details`, `about_heading`, `about_details`, `about_image`, `service_heading`, `testimonial_heading`, `stat_heading`, `faq_heading`, `service_details`, `testim_details`, `faq_details`, `stat_details`, `stat1`, `stat2`, `stat3`, `stat4`, `stat5`, `stat6`, `video`, `stat7`, `stat8`, `stat9`, `footer`, `contact_email`, `contact_number`, `contact_address`, `created_at`, `updated_at`) VALUES
-(1, 'Kenyans In Texas', '&nbsp;We are a full service Digital Marketing Agency all the foundational tools you need for inbound success. With this module theres no need to go another day.<br>', 'What is KenyansInTexas?', 'Lorem ipsum dolor sit amet, consectetur adipiscing cididunt ut labore et dolore magna aliqua. Ut enim ad ci.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labor, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exerci.', '5bc36bbe25601.jpg', 'Our Special Services', 'Some Awesome Words by Our Customers', 'Our Achivment & Success', 'Frequently Asked Questions', 'We are a full service Digital Marketing Agency all the foundational tools you need for inbound success. With this module theres no need to go another day.', 'We are a full service Digital Marketing Agency all the foundational tools you need for inbound success. With this module theres no need to go another day.', 'We are full service Digital Marketing Agency all the tools you need for inbound success. With this module theres no need to go another day.', 'We are a full service Digital Marketing Agency all the foundational tools you need for inbound success. With this module theres no need to go another day.', '10', 'K', 'Global Customer', '5', 'Y', 'Years Experience', 'https://www.youtube.com/watch?v=6NgaP8Y6y8s', '10', 'M', 'Daily Ad Serve', '&nbsp;We are a full service Digital Marketing Agency all the foundational tool you nee. this module theres no need to another day.', 'do-not-reply@kenyansintexas.co.ke', '(254) 771 797 603', 'Nairobi, Kenya<br>', '2020-05-27 01:47:18', '2020-10-15 15:59:43');
+INSERT INTO `frontends` (`id`, `banner_heading`, `banner_details`, `about_heading`, `about_details`,`about_company`, `about_image`, `service_heading`, `testimonial_heading`, `stat_heading`, `faq_heading`, `service_details`, `testim_details`, `faq_details`, `stat_details`, `stat1`, `stat2`, `stat3`, `stat4`, `stat5`, `stat6`, `video`, `stat7`, `stat8`, `stat9`, `footer`, `contact_email`, `contact_number`, `contact_address`, `created_at`, `updated_at`) VALUES
+(1, 'Kenyans In Texas', '&nbsp;We are a full service Digital Marketing Agency all the foundational tools you need for inbound success. With this module theres no need to go another day.<br>', 'What is KenyansInTexas?', 'Lorem ipsum dolor sit amet, consectetur adipiscing cididunt ut labore et dolore magna aliqua. Ut enim ad ci.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labor, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exerci.', 'The Internet has its origins in cold war and technological rivalry between USSR and US. In fact while the World Wide Web was created in 1991, its origin dates back to 1957 when the Soviet Union launched the Sputnik I satellite (Dickey and Lewis, 2011: 2).<br> US reacted with establishment a department of Defense Advanced Research Project Agency (DARPA) which launched in 1960s ARPANET, an experimental project of computer networks from which what we now know as internet developed. Since then internet contributed to science incredibly and by the late 1980s the internet was being used by many government and business institutions.<br> We are located along the edges of the universe but we know we are not alone', '5bc36bbe25601.jpg', 'Our Special Services', 'Some Awesome Words by Our Customers', 'Our Achivment & Success', 'Frequently Asked Questions', 'We are a full service Digital Marketing Agency all the foundational tools you need for inbound success. With this module theres no need to go another day.', 'We are a full service Digital Marketing Agency all the foundational tools you need for inbound success. With this module theres no need to go another day.', 'We are full service Digital Marketing Agency all the tools you need for inbound success. With this module theres no need to go another day.', 'We are a full service Digital Marketing Agency all the foundational tools you need for inbound success. With this module theres no need to go another day.', '10', 'K', 'Global Customer', '5', 'Y', 'Years Experience', 'https://www.youtube.com/watch?v=6NgaP8Y6y8s', '10', 'M', 'Daily Ad Serve', '&nbsp;We are a full service Digital Marketing Agency all the foundational tool you nee. this module theres no need to another day.', 'do-not-reply@kenyansintexas.co.ke', '(254) 771 797 603', 'Nairobi, Kenya<br>', '2020-05-27 01:47:18', '2020-10-15 15:59:43');
 CREATE TABLE `gateways` (
   `id` int(10) UNSIGNED NOT NULL,
   `main_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -279,14 +281,15 @@ CREATE TABLE `sliders` (
   `id` int(10) UNSIGNED NOT NULL,
   `heading` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `details` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `icon` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-INSERT INTO `sliders` (`id`, `heading`, `details`, `created_at`, `updated_at`) VALUES
-(9, 'First Service', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exerci.', '2020-07-05 06:50:40', '2020-10-14 20:14:20'),
-(10, 'Second Service', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exerci.', '2020-07-05 06:51:12', '2020-10-14 20:14:32'),
-(11, 'Banner Service', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exerci.', '2020-10-06 02:17:47', '2020-10-14 20:14:36'),
-(12, 'Lorem ipsum dolor', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exerci.', '2020-10-06 02:27:10', '2020-10-14 20:14:40');
+INSERT INTO `sliders` (`id`, `heading`, `details`, `icon`, `created_at`, `updated_at`) VALUES
+(9, 'First Service', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exerci.', 'sample_service.png', '2020-07-05 06:50:40', '2020-10-14 20:14:20'),
+(10, 'Second Service', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exerci.', 'sample_service.png', '2020-07-05 06:51:12', '2020-10-14 20:14:32'),
+(11, 'Banner Service', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exerci.', 'sample_service.png', '2020-10-06 02:17:47', '2020-10-14 20:14:36'),
+(12, 'Lorem ipsum dolor', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exerci.', 'sample_service.png', '2020-10-06 02:27:10', '2020-10-14 20:14:40');
 CREATE TABLE `socials` (
   `id` int(10) UNSIGNED NOT NULL,
   `icon` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -309,6 +312,7 @@ CREATE TABLE `likes` (
   `member_id` int(10) DEFAULT NULL,
   `activity_id` int(10) DEFAULT NULL,
   `comment_id` int(10) DEFAULT NULL,
+  `blog_id` int(10) UNSIGNED NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
@@ -318,7 +322,7 @@ CREATE TABLE `comments` (
   `member_id` int(10) DEFAULT NULL,
   `parent_id` int(10) DEFAULT NULL,
   `activity_id` int(10) DEFAULT NULL,
-  `blog_id` int(10) UNSIGNED NULL,
+  `blog_id` int(10) DEFAULT NULL,
   `text` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -328,8 +332,9 @@ CREATE TABLE `activities` (
   `member_id` int(10) DEFAULT NULL,
   `heading` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `details` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `image_url` varchar(300) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `link_url` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(200) NOT NULL,
+  `image_url` varchar(300) COLLATE utf8mb4_unicode_ci NULL,
+  `link_url` varchar(500) COLLATE utf8mb4_unicode_ci NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -676,6 +681,49 @@ CREATE TABLE `states` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+CREATE TABLE `mpesa_payments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `Password` varchar(200) DEFAULT NULL,
+  `TransactionType` varchar(40) NOT NULL,
+  `TransID` varchar(40) DEFAULT NULL,
+  `TransTime` varchar(100) DEFAULT NULL,
+  `TransAmount` double DEFAULT NULL,
+  `BusinessShortCode` varchar(15) DEFAULT NULL,
+  `BillRefNumber` varchar(40) DEFAULT NULL,
+  `InvoiceNumber` varchar(40) DEFAULT NULL,
+  `ThirdPartyTransID` varchar(40) DEFAULT NULL,
+  `MSISDN` varchar(20) DEFAULT NULL,
+  `FirstName` varchar(60) DEFAULT NULL,
+  `MiddleName` varchar(60) DEFAULT NULL,
+  `LastName` varchar(60) DEFAULT NULL,
+  `OrgAccountBalance` double DEFAULT NULL,
+  `Timestamp` varchar(100) DEFAULT NULL,
+  `Amount` varchar(500) DEFAULT NULL,
+  `PartyA` varchar(50) DEFAULT NULL,
+  `PartyB` varchar(50) DEFAULT NULL,
+  `PhoneNumber` varchar(50) DEFAULT NULL,
+  `CallBackURL` varchar(50) DEFAULT NULL,
+  `AccountReference` varchar(50) DEFAULT NULL,
+  `TransactionDesc` varchar(50) DEFAULT NULL,
+  `ResponseCode` varchar(20) DEFAULT NULL,
+  `ResponseDescription` varchar(50) DEFAULT NULL,
+  `MerchantRequestID` varchar(50) DEFAULT NULL,
+  `CheckoutRequestID` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+CREATE TABLE `api_configs` (
+  `id` int(11) NOT NULL,
+  `name` varchar(20) NOT NULL,
+  `url` varchar(50) NOT NULL,
+  `account_no` varchar(50) NOT NULL,
+  `business_number` varchar(20) DEFAULT NULL,
+  `public_key` varchar(100) DEFAULT NULL,
+  `secret` varchar(100) DEFAULT NULL,
+  `access_token` varchar(200) DEFAULT NULL,
+  `refresh_time` datetime DEFAULT NULL,
+  `pass_key` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
 
 ALTER TABLE `admins`
   ADD PRIMARY KEY (`id`),
