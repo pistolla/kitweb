@@ -41,7 +41,10 @@ class VisitorController extends Controller
             ->setTitleSeparator('|')
             ->setDescription($front->banner_details)
             ->setKeywords(['Advertising agency','Kenya','Texas'])
-            ->setRobots('nofollow,noindex');
+            ->setRobots('nofollow,noindex')
+            ->setCanonical(url(''))
+            ->setCharset()
+            ->setFavicon(url('') .'/favicon.ico');
     
         return view('welcome', compact('gnl','front','sliders','posts','socials','testimonials'));
     }
