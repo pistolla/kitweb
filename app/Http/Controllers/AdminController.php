@@ -450,7 +450,6 @@ class AdminController extends Controller
     {
         $this->validate($request, ['name' => 'required']);
         
-            
         $wmethod['name'] = $request->name;
         $wmethod['minamo'] = $request->minamo;
         $wmethod['maxamo'] = $request->maxamo;

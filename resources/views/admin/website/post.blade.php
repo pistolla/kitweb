@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card card-body">
-                <form role="form" method="POST" action="{{route('admin.blog-store')}}" enctype="multipart/form-data">
+                <form name="blogform" role="form" method="POST" action="{{route('admin.blog-store')}}" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <img id="uploadedImage2" class="form-control"  style="width:100%" /> 
@@ -29,19 +29,17 @@
                     <div class="form-group">
                         <h4>Post tags (separate each using comma)</h4>
                         <select class="form-control">
-                            @foreach (App\Category::get() as $category)
-                            $selected = '';
-                            if($category->id == 1)
-                            {
-                                $selected = 'selected="selected"';
-                            }
-                            <option value='{{ $category->id }}' {{$selected}}> {{$category->name }}</option>
+                            @foreach ($categorys->unique('name') as $category)
+                                @if($category->id == 1)
+                                    <option value='{{ $category->id }}' selected="selected"> {{$category->name }}</option>
+                                @endif
+                                <option value='{{ $category->id }}' selected=""> {{$category->name }}</option>
                             @endforeach
-                            </select>
+                        </select>
                     </div>
                     <div class="form-group">
-                        <h4>Post Details</h4>
-                        <textarea class="form-control" name="details" rows="10"></textarea>
+                        <h4>Post Details<span id="word-count" class="text-success h2"></span></h4>
+                        <textarea class="form-control" name="details" rows="30" onkeyup="updateCounter(this)" onpropertychange="this.onkeyup()"></textarea>
                     </div>								
                     
                     
@@ -70,5 +68,12 @@
             reader.readAsDataURL(input.files[0]);
         }
     }
+    var wordCount = document.getElementById("word-count");
+
+    function updateCounter(textarea) {
+        var len = textarea.value.length;
+        wordCount.text(len);
+    }
+
 </script>
 @endsection
