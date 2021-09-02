@@ -48,6 +48,7 @@ Route::get('/blog/{slug}', 'VisitorController@blogPost')->name('user.blog-post')
 Route::get('/about', 'VisitorController@contactForm')->name('contact');
 Route::post('/contact-message', 'VisitorController@contactMessage')->name('contact.message');   
 Route::post('/subscriber', 'VisitorController@subscriber')->name('subscriber');
+Route::post('/upload', 'VisitorController@uploadImage')->name('blog.upload');
 
 Route::group(['middleware' => ['auth.member:feed']], function() {
     Route::group(['prefix' => 'blog'], function () 
@@ -60,6 +61,12 @@ Route::group(['middleware' => ['auth.member:feed']], function() {
         Route::post('/blog-dislike', 'VisitorController@dislikeBlog')->name('blog.dislikes');
     });
 });   
+
+Route::get('/privacy-policy', 'VisitorController@privacyPolicy')->name('user.privacy'); 
+Route::get('/term-of-service', 'VisitorController@termSale')->name('user.terms'); 
+Route::get('/refund-policy', 'VisitorController@refundPolicy')->name('user.refund');
+Route::get('/cookie-policy', 'VisitorController@cookiePolicy')->name('user.cookie'); 
+Route::get('/feature', 'VisitorController@featured')->name('user.features'); 
 
 Route::get('/404', function () {
     return view('404');
