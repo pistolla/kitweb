@@ -3,9 +3,27 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Blog extends Model
 {
+
+    use Notifiable;
+
+    
+    /**
+     * The "booted" method of the model.
+     *
+     * @return void
+     */
+    protected static function booted()
+    {
+        static::created(function ($blog) {
+            $blog->notify(new BlogPublished($blog))
+        });
+    }
+
+
     protected $fillable = array('photo', 'heading','details', 'tags', 'category_id', 'admin_id', 'slug');
 
     public function category()

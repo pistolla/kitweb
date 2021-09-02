@@ -7,9 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 use App\Member;
 use App\Like;
 use App\Comment;
+use Illuminate\Notifications\Notifiable;
 
 class Activity extends Model
 {
+    use Notifiable;
+
     protected $fillable = array('heading', 'details', 'member_id', 'image_url', 'link_url','slug');
 
     public function likedBy(Member $member)
