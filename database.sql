@@ -362,6 +362,36 @@ CREATE TABLE `transactions` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+CREATE TABLE `features` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `photo` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `heading` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `details` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+INSERT INTO `features` (`id`, `photo`, `name`, `heading`, `details`, `created_at`, `updated_at`) VALUES
+(1, 'placeholder_1.png', 'Advertiser', 'CTO, Dr', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exerci.Lorem ipsum dolor sit amet.', '2020-10-06 02:57:19', '2020-10-14 20:19:30'),
+(2, 'placeholder_2.png', 'Advertiser', 'Visibility', 'We are a full service Digital Marketing Agency am dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exerci.', '2020-10-06 02:57:46', '2020-10-14 20:18:27'),
+(3, 'placeholder_3.png', 'Advertiser', 'Marketer', 'We are a full service Digital Marketing Agency all the foundational tools you need for inbound success. With this module theres no need to go another day.', '2020-10-06 02:58:42', '2020-10-14 20:19:01'),
+(4, 'placeholder_4.png', 'Advertiser', 'Marketer', 'We are a full service Digital Marketing Agency all the foundational tools you need for inbound success. With this module theres no need to go another day.', '2020-10-06 02:58:42', '2020-10-14 20:19:01'),
+(5, 'placeholder_5.png', 'Publisher', 'Marketer', 'We are a full service Digital Marketing Agency all the foundational tools you need for inbound success. With this module theres no need to go another day.', '2020-10-06 02:58:42', '2020-10-14 20:19:01'),
+(6, 'placeholder_6.png', 'Publisher', 'Marketer', 'We are a full service Digital Marketing Agency all the foundational tools you need for inbound success. With this module theres no need to go another day.', '2020-10-06 02:58:42', '2020-10-14 20:19:01'),
+(7, 'placeholder_7.png', 'Publisher', 'Marketer', 'We are a full service Digital Marketing Agency all the foundational tools you need for inbound success. With this module theres no need to go another day.', '2020-10-06 02:58:42', '2020-10-14 20:19:01'),
+(8, 'placeholder_8.png', 'Publisher', 'Marketer', 'We are a full service Digital Marketing Agency all the foundational tools you need for inbound success. With this module theres no need to go another day.', '2020-10-06 02:58:42', '2020-10-14 20:19:01'),
+;
+CREATE TABLE `documents` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `cookiepolicy` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `privacypolicy` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `refundpolicy` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `termofservice` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sitexml` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `robottxt` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 CREATE TABLE `users` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,

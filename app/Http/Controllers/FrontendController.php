@@ -8,6 +8,7 @@ use App\Slider;
 use App\Social;
 use App\Frontend;
 use App\Testimonial;
+use App\Category;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 
@@ -379,7 +380,8 @@ class FrontendController extends Controller
   public function blogCreate()
   {
     $pt= "Create Blog Post";
-    return view('admin.website.post', compact('pt'));
+    $categorys = Category::all();
+    return view('admin.website.post', compact('pt','categorys'));
   }
 
   public function blogStore(Request $request)
