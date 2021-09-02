@@ -179,7 +179,39 @@
         </div>
     </div>
 </section>
-
+<section class="achivement-area glossy-bg">
+    <div class="row justify-content-center">
+        <div class="col-lg-12">
+            <div class="section-title">
+                <h2 class="title">Featured</h2>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div id="carouselExample" class="carousel slide" data-ride="carousel" data-interval="9000">
+            <div class="carousel-inner row w-10 mxauto" role="listbox">
+                @foreach ($features as $index => $feature)
+                    <div class="carousel-item col-md-4 py-1 {{ $index == 0 ? 'active' : '' }}">
+                        <a href="{{ url('/feature').'#'.strtolower($feature->name) }}">
+                            <img class="img-fluid mx-auto d-block" src="{{ asset('/images/slider') . '/' . $feature->photo }}" alt="slide 2">
+                        </a>
+                        <div class="carousel-caption">
+                            <span class="h2 hidden">{{$feature->name}} Features</span>
+                        </div>    
+                    </div>
+                @endforeach
+            </div>
+            <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
+                <i class="fa fa-chevron-left fa-lg text-muted"></i>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next text-faded" href="#carouselExample" role="button" data-slide="next">
+                <i class="fa fa-chevron-right fa-lg text-muted"></i>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+</section>
 <section class="achivement-area gray-bg">
     <div class="container">
         <div class="row justify-content-center">
@@ -312,13 +344,20 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
-                <span class="copytext"> {{ $gnl->title }} &copy; {{ date('Y') }}. All Rights Reserved.</span>
+                <span class="copytext"> &copy;{{ date('Y')}} {{ $gnl->title }}. All Rights Reserved.</span>
+
+                <ul class="list-inline my-1">
+                    <li class="list-inline-item px-2"><a href="{{ url('/cookie-policy')}}">Cookie Policy</a></li>
+                    <li class="list-inline-item px-2 "><a href="{{ url('/privacy-policy')}}">Privacy policy</a></li>
+                    <li class="list-inline-item px-2"><a href="{{ url('/term-of-service')}}">Term of Service</a></li>
+                    <li class="list-inline-item px-2"><a href="{{ url('/refund-policy')}}">Refund policy</a></li>
+                </ul>
             </div>
         </div>
     </div>
 </div>
 <!-- footer area end -->
-
+@include('cookieConsent::index')
 <!-- preloader area start -->
 <div class="preloader" id="preloader">
     <div class="preloader-inner">
