@@ -17,7 +17,10 @@
         "stripe/stripe-php": "^7.85.0",
         "laravel/socialite": "^v5.2.3",
         "embed/embed": "^4.3.4",
-        "butschster/meta-tags": "^2.0"
+        "butschster/meta-tags": "^2.0",
+        "spatie/laravel-cookie-consent": "2.x-dev",
+        "laravel-notification-channels/facebook-poster": "^5.0.0",
+        "laravel-notification-channels/twitter": "^5.1.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
