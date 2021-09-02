@@ -21,6 +21,8 @@ use Carbon\Carbon;
 use App\Testimonial;
 use App\Category;
 use App\Comment;
+use App\Feature;
+use App\Document;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Butschster\Head\Facades\Meta;
@@ -35,6 +37,7 @@ class VisitorController extends Controller
         $testimonials = Testimonial::all();
         $socials = Social::all();
         $posts = Blog::orderBy('id','DESC')->select('id', 'photo', 'heading')->take(3)->get();
+        $features = Feature::all();
 
         Meta::setTitle($front->heading)
             ->prependTitle($front->banner_heading)
@@ -46,7 +49,7 @@ class VisitorController extends Controller
             ->setCharset()
             ->setFavicon(url('') .'/favicon.ico');
     
-        return view('welcome', compact('gnl','front','sliders','posts','socials','testimonials'));
+        return view('welcome', compact('gnl','front','sliders','posts','socials','testimonials','features'));
     }
     public function blog()
     {
@@ -64,6 +67,30 @@ class VisitorController extends Controller
         }
         $related = Blog::where('category_id', $post->category->id)->with('comments')->take(5)->get();
         return view('post', compact('post','categorys', 'related'));
+    }
+
+    public function uploadImage(Request $request)
+    {
+        $response =  array('data' => [], 'error' => "Image upload failed", "status" =>404 );
+        return response()->json($response, $response['status']);
+        if($request->hasFile('image'))
+        {
+            $imageName = uniqid().'.'.$request->image->getClientOriginalExtension();
+            $path = '/images/blog/'. $imageName;
+            chmod(base_path().'/public/images/blog/', 0775);
+            Image::make($request->image)->save($path);
+            $width = $image->getWidth();
+            $height = $image->getHeight();
+            $fotoLink = url('/').$path;
+
+            $data = array( "type"=> "image/".strtolower($request->image->getClientOriginalExtension()),                                    
+                            "width"=> $width ,
+                            "height"=> $height,                            
+                            "name"=> "",                      
+                            "link"=> $fotoLink);
+            $response =  array('data' => $data, 'success' => true, "status" => 200 );
+        }
+        return response()->json($response, $response['status']);
     }
     
     public function getAdvertise($pub,$slag)
@@ -566,4 +593,36 @@ class VisitorController extends Controller
         return view('contact', compact('front','faqs'));
     }
 
+    public function privacyPolicy()
+    {
+        $doc = Document::first();
+        return view('privacypolicy', compact('doc'));
+    }
+
+    public function termSale()
+    {
+        $doc = Document::first();
+        return view('termsale', compact('doc'));
+    }
+
+    public function refundPolicy()
+    {
+        $doc = Document::first();
+        return view('refundpolicy',compact('doc'));
+    }
+
+    public function cookiePolicy()
+    {
+        $doc = Document::first();
+        return view('cookiepolicy',compact('doc'));
+    }
+
+    public function featured()
+    {
+        $advertisers = Feature::where('name', 'Advertiser')->get();
+        $publishers = Feature::where('name', 'Publisher')->get();
+        
+
+        return view('features', compact('advertisers','publishers'));
+    }
 }
