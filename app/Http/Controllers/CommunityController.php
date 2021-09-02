@@ -265,7 +265,6 @@ class CommunityController extends Controller
        'country' => 'required|string|max:255',
        'city' => 'required|string|max:255',
        'mobile' => 'required|string',
-       'codehidden' => 'required|string',
        ]
     );
        $gnl = General::first();

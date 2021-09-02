@@ -19,7 +19,7 @@
 
 <body> 
     <nav class="navbar navbar-area navbar-expand-lg navbar-light ">
-        <div class="container nav-container">
+        <div class="container-fluid nav-container">
             <div class="logo-wrapper navbar-brand">
                 <a href="{{url('/')}}" class="logo main-logo">
                     <img src="{{asset('/images/logo/logo.png')}}" alt="logo" style="max-width:160px;">
