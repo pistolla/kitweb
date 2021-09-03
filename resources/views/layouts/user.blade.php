@@ -26,7 +26,7 @@
                 </a>
             </div>
             <div class="collapse navbar-collapse" id="mirex">
-                <ul class="navbar-nav ml-auto">
+                <ul class="navbar-nav">
                 
                     @if(Auth::guard('publisher')->check())
                     <li class="nav-item">
