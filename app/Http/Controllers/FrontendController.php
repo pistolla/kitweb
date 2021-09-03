@@ -9,6 +9,7 @@ use App\Social;
 use App\Frontend;
 use App\Testimonial;
 use App\Category;
+use App\Feature;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 
@@ -208,7 +209,7 @@ class FrontendController extends Controller
   public function testimonialSection()
   {
       $testimonials = Testimonial::all();
-      $pt= "Testiminial SECTION";
+      $pt= "Testimonial SECTION";
       $front = Frontend::first();
       return view('admin.website.testimonial', compact('testimonials','pt','front'));
   }
@@ -515,6 +516,92 @@ class FrontendController extends Controller
     $front = Frontend::first();
     $pt= "Statistics Section";
     return view('admin.website.stat', compact('pt','front'));
+  }
+
+
+
+
+  public function featureSection()
+  {
+      $features = Feature::all();
+      $pt= "Features SECTION";
+      $front = Frontend::first();
+      return view('admin.website.features', compact('features','pt','front'));
+  }
+
+  public function featureHeading(Request $request)
+  {
+    $front = Frontend::first();
+    $this->validate($request,[ 'heading' => 'required']);
+    $front['feature_heading'] = $request->heading;
+    $front['feature_details'] = $request->details;
+    $front->update();
+
+    return back()->with('success', 'Features Section Heading Updated Successfully');
+  }
+
+
+  public function featureStore(Request $request)
+  {
+      $this->validate($request,
+          [
+              'photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:8048',
+              'name' => 'required',
+              'heading' => 'required',
+              'details' => 'required',
+          ]);
+
+        if($request->hasFile('photo'))
+        {
+            $feature['photo'] = uniqid().'.'.$request->photo->getClientOriginalExtension();
+            $path = '/images/slider/'. $feature['photo'];
+            Image::make($request->photo)->save($path);
+        }
+      $feature['name'] = $request->name;
+      $feature['heading'] = $request->heading;
+      $feature['details'] = $request->details;
+      Feature::create($feature);
+
+      return back()->with('success', 'New Feaure Created Successfully!');
+  }
+
+ public function featureUpdate(Request $request, $id)
+  {
+      $feature = Feature::find($id);
+      $this->validate($request,['photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:8048','name' => 'required','heading' => 'required','details' => 'required', ]);
+
+        if($request->hasFile('photo'))
+        {
+            $oldpath = '/images/slider/'.$feature->photo;
+            if(file_exists($oldpath))
+            {
+                unlink($oldpath);
+            }
+
+            $feature['photo'] = uniqid().'.'.$request->photo->getClientOriginalExtension();
+            $path = '/images/slider/'. $feature['photo'];
+            Image::make($request->photo)->save($path);
+        }
+        $feature['name'] = $request->name;
+        $feature['heading'] = $request->heading;
+        $feature['details'] = $request->details;
+        $feature->update();
+
+      return back()->with('success', 'Feature Updated Successfully!');
+  }
+
+  public function  featureDestroy($id)
+  {
+      $feature = Feature::findOrFail($id);
+      $path = '/images/slider/'.$feature->photo;
+
+      if(file_exists($path))
+      {
+          unlink($path);
+      }
+      $feature->delete();
+      
+      return back()->with('success', 'Feature Deleted Successfully!');
   }
 
 }

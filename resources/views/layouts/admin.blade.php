@@ -240,7 +240,10 @@ document.getElementById('logout-form').submit();">
 <a class="treeview-item  @if(request()->path() == 'admin/social-section') active  @endif " href="{{route('admin.socialsection')}}">
 <i class="icon fa fa-cog"></i> Social Section</a>
 </li>
-
+<li>
+<a class="treeview-item  @if(request()->path() == 'admin/social-section') active  @endif " href="{{route('admin.featuresection')}}">
+<i class="icon fa fa-cog"></i> Features Section</a>
+</li>
 
 </ul>
 </li>

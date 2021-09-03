@@ -288,6 +288,13 @@ Route::prefix('admin')->group(function() {
      Route::post('/testim-heading', 'FrontendController@testimHeading')->name('admin.testim-heading');
      Route::post('/stat-section', 'FrontendController@statHeading')->name('admin.stat-section');
      Route::post('/faq-heading', 'FrontendController@faqHeading')->name('admin.faq-heading');
+
+     // Features
+     Route::get('/feature-services', 'FrontendController@featureSection')->name('admin.featuresection');
+     Route::post('/feature-heading', 'FrontendController@featureHeading')->name('admin.feature-heading');
+     Route::post('/feature-store', 'FrontendController@featureStore')->name('admin.feature-store');
+     Route::put('/feature-update/{feature}', 'FrontendController@featureUpdate')->name('admin.feature-update');
+     Route::put('/feature-delete/{feature}', 'FrontendController@featureDestroy')->name('admin.feature-delete');
     });
    });
 
