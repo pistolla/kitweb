@@ -19,7 +19,7 @@ class Blog extends Model
     protected static function booted()
     {
         static::created(function ($blog) {
-            $blog->notify(new BlogPublished($blog))
+            $blog->notify(new BlogPublished($blog));
         });
     }
 
