@@ -23,6 +23,22 @@
                             <input type="text" value="{{$blog->heading}}" class="form-control"  name="heading" >
                         </div>
                         <div class="form-group">
+                            <h4>Post tags (separate each using comma)</h4>
+                            <input type="text"  class="form-control"  name="tags"  value="{{ $blog->tags }}" >
+                        </div>
+                        <div class="form-group">
+                            <h4>Post category</h4>
+                            <select class="form-control">
+                                @foreach ($categorys->unique('name') as $category)
+                                    @if($category->id == $blog->category_id)
+                                        <option value='{{ $category->id }}' selected="selected"> {{$category->name }}</option>
+                                    @else
+                                    <option value='{{ $category->id }}' selected=""> {{$category->name }}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <h4>Post Details</h4>
                             <textarea class="form-control" name="details" rows="20">{{$blog->details}}</textarea>
                         </div>								

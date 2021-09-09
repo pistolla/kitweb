@@ -27,8 +27,8 @@
                         <input type="text"  class="form-control"  name="tags" >
                     </div>
                     <div class="form-group">
-                        <h4>Post tags (separate each using comma)</h4>
-                        <select class="form-control">
+                        <h4>Post category</h4>
+                        <select class="form-control" name="category" id="category">
                             @foreach ($categorys->unique('name') as $category)
                                 @if($category->id == 1)
                                     <option value='{{ $category->id }}' selected="selected"> {{$category->name }}</option>

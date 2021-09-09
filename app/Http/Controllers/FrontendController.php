@@ -43,6 +43,7 @@ class FrontendController extends Controller
       $front = Frontend::first();
       $this->validate($request,['about_heading' => 'required',
       'video' => 'required','about_details' => 'required',
+      'about_company' => 'required',
       'about_image' => 'image|mimes:jpeg,png,jpg|max:4048',
        ]);
 
@@ -61,6 +62,7 @@ class FrontendController extends Controller
 
       $front['about_heading'] = $request->about_heading;
       $front['about_details'] = $request->about_details;
+      $front['about_company'] = $request->about_company;
       $front['video'] = $request->video;
       $front->update();
 
@@ -417,7 +419,8 @@ class FrontendController extends Controller
   {
       $blog = Blog::find($id);
       $pt=  $blog->heading;
-      return view('admin.website.singlepost', compact('pt','blog'));
+      $categorys = Category::all();
+      return view('admin.website.singlepost', compact('pt','blog','categorys'));
   }
   public function blogUpdate(Request $request, $id)
   {

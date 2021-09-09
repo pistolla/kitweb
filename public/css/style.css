@@ -381,6 +381,12 @@
   visibility: hidden;
 }
 
+.share-button + a.share {
+  padding: 5px, 5px, 5px, 5px;
+  height: 20px;
+  width: 20px;
+}
+
 h1.jitter:hover, p.jitter:hover {
   animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
   transform: translate3d(0,0,0);

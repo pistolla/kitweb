@@ -1,7 +1,7 @@
 @extends('layouts.fullpage')
 
 @section('content')
-<section class="contact-page-area" id="contact-section" style="background: no-repeat center/150% url('{{ url('/images/logo/logo-background.jpg') }}')">
+<section class="contact-page-area" id="contact-section" style="min-height: 100vh; background: url('{{ url('/images/logo/logo-background.jpg') }}') no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">
     <div class="container">
     <div class="row">
                 <div class="col-lg-12">

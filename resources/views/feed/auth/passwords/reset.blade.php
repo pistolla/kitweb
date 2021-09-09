@@ -1,7 +1,7 @@
 @extends('layouts.user')
 
 @section('content')
-<section class="contact-page-area full-page-background"  style="min-height: 100vh; background: no-repeat center/150% url('{{ url('/images/logo/logo-background.jpg') }}')">
+<section class="contact-page-area full-page-background"  style="min-height: 100vh;">
     <div class="container">
         <div class="row wow fadeInDown" data-wow-delay="2s" style="width:80%; margin: auto;">
             <div class="col-lg-12">

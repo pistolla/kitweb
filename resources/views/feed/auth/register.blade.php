@@ -1,10 +1,10 @@
 @extends('layouts.fullpage')
 
 @section('content')
-<section class="contact-page-area full-page-background" id="Contact" style="background: no-repeat center/150% url('{{ url('/images/logo/logo-background.jpg') }}')">
+<section class="contact-page-area full-page-background" id="Contact" style="min-height: 100vh; background: url('{{ url('/images/logo/logo-background.jpg') }}') no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">
     <div class="container">
-        <div class="row wow fadeInDown" data-wow-delay="2s" style="width:85%; margin: auto;">
-            <div class="col-lg-12">
+        <div class="row wow fadeInDown" data-wow-delay="2s" style="width:100%; margin: auto;">
+            <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
                     <div class="card">
                         <h2 class="card-title text-center" style="padding: 60px;"> Membership form. Register now for free</h2>
                         <div class="card-body">
@@ -12,7 +12,7 @@
                             <form class="contact-form" method="POST" action="{{ route('feed.registerpost') }}">
                             @csrf
                             <div class="row">
-                                <div class="col-md-4 text-center border-right px-3">
+                                <div class="col-sm-12 col-md-4 text-center border-right px-3">
                                     <div class="header h6 mb-5">
                                         Register using your Social media account
                                     </div>
@@ -26,7 +26,7 @@
                                     </a>
 
                                 </div>
-                                <div class="col-md-8 px-4">
+                                <div class="col-sm-12 col-md-8 px-4">
                                 @include('layouts.error')
                                     <div class="form-element margin-bottom-20">
                                         <input class="input-field form-control" id="name" type="text" placeholder="Enter Name" name="name" value="{{ old('name') }}" required autofocus>
