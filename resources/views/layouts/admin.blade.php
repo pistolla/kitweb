@@ -9,6 +9,15 @@
 <link rel="icon" type="image/png" sizes="16x16" href="{{asset('assets/images/logo/icon.png')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('/css/main.css') }}"> @yield('page_styles')
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EQRHM67XW4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-EQRHM67XW4');
+</script>
 </head>
 
 <body class="app sidebar-mini rtl">

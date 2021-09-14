@@ -50,7 +50,7 @@ Route::post('/contact-message', 'VisitorController@contactMessage')->name('conta
 Route::post('/subscriber', 'VisitorController@subscriber')->name('subscriber');
 Route::post('/upload', 'VisitorController@uploadImage')->name('blog.upload');
 
-Route::group(['middleware' => ['auth.member:feed']], function() {
+Route::group(['middleware' => ['memberauth:feed']], function() {
     Route::group(['prefix' => 'blog'], function () 
     {
         Route::post('/blog-comment', 'VisitorController@blogComment')->name('blog.blogcomment');   
@@ -58,7 +58,7 @@ Route::group(['middleware' => ['auth.member:feed']], function() {
         Route::post('/blog-comment-like', 'VisitorController@commentLikes')->name('blog.commentlikes');   
         Route::post('/blog-comment-dislike', 'VisitorController@commentDislikes')->name('blog.commentdislikes');
         Route::post('/blog-like', 'VisitorController@likeBlog')->name('blog.likes');   
-        Route::post('/blog-dislike', 'VisitorController@dislikeBlog')->name('blog.dislikes');
+        Route::delete('/blog-dislike', 'VisitorController@dislikeBlog')->name('blog.dislikes');
     });
 });   
 

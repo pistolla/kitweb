@@ -381,10 +381,8 @@
   visibility: hidden;
 }
 
-.share-button + a.share {
-  padding: 5px, 5px, 5px, 5px;
-  height: 20px;
-  width: 20px;
+a.share:hover {
+  color: #fff;
 }
 
 h1.jitter:hover, p.jitter:hover {

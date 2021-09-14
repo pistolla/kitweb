@@ -8,34 +8,7 @@
 </section>
 <section onload="setInterval('forum.refresh()', 5000)">
   <div class="container">
-    <!-- Current Tasks -->
     <div class="row">
-      <div class="col-lg-3 mb-4">
-        <div class="blog-sidebar">
-
-          <div class="widget widget_search my-2">
-            <form action="{{ route('feed.searchpost')}}" method="GET" class="search-form input-group">
-              @csrf
-              <div class="input-group">
-                <input type="search" class="form-control widget_input" name="search" placeholder="Search">
-                <div class="input-group-append">
-                  <button type="submit" class="input-group-btn btn"><i class="fa fa-search" araia-hidden="true"></i></button>
-                </div>
-              </div>
-            </form>
-          </div>
-          <div class="widget widget_categorie">
-            <ul class="list-unstyled">
-              <li class="mb-1 link h4"><a href="#"><i class="far fa-caret-right"></i>Trending</a></li>
-              <li class="mb-1 link h4"><a href="#"><i class="far fa-caret-right"></i>Most recent</a></li>
-              <li class="mb-1 link h4"><a href="#"><i class="far fa-caret-right"></i>Related</a></li>
-            </ul>
-          </div>
-          <div class="widget">
-            <div class='MainAdverTiseMentDiv' data-publisher="1" data-adsize="728x90"></div>
-          </div>
-        </div>
-      </div>
       <div class="col-lg-9 col-sm-12 mb-4">
 
         <div class="panel panel-info">
@@ -275,6 +248,33 @@
           </div>
         </div>
       </div>
+
+      <div class="col-lg-3 mb-4">
+        <div class="blog-sidebar">
+
+          <div class="widget widget_search my-2">
+            <form action="{{ route('feed.searchpost')}}" method="GET" class="search-form input-group">
+              @csrf
+              <div class="input-group">
+                <input type="search" class="form-control widget_input" name="search" placeholder="Search">
+                <div class="input-group-append">
+                  <button type="submit" class="input-group-btn btn"><i class="fa fa-search" araia-hidden="true"></i></button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="widget widget_categorie">
+            <ul class="list-unstyled">
+              <li class="mb-1 link h4"><a href="#"><i class="far fa-caret-right"></i>Trending</a></li>
+              <li class="mb-1 link h4"><a href="#"><i class="far fa-caret-right"></i>Most recent</a></li>
+              <li class="mb-1 link h4"><a href="#"><i class="far fa-caret-right"></i>Related</a></li>
+            </ul>
+          </div>
+          <div class="widget">
+            <div class='MainAdverTiseMentDiv' data-publisher="1" data-adsize="728x90"></div>
+          </div>
+        </div>
+      </div>
     </div>
     <!-- /.row -->
 
@@ -298,6 +298,8 @@
   </div>
 </section>
 @endsection
+
+
 @section('page-scripts')
 <script type="text/javascript" src="{{asset('/js/jquery-3.2.1.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('/js/forum.js')}}"></script>
@@ -321,6 +323,6 @@
 
         });
       })(jQuery);
+    });
 </script>
 @endsection
-

@@ -60,6 +60,7 @@ CREATE TABLE `blogs` (
   `heading` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `details` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `slug` varchar(200) NOT NULL,
+  `tags` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -381,8 +382,7 @@ INSERT INTO `features` (`id`, `photo`, `name`, `heading`, `details`, `created_at
 (5, 'placeholder_5.png', 'Publisher', 'Marketer', 'We are a full service Digital Marketing Agency all the foundational tools you need for inbound success. With this module theres no need to go another day.', '2020-10-06 02:58:42', '2020-10-14 20:19:01'),
 (6, 'placeholder_6.png', 'Publisher', 'Marketer', 'We are a full service Digital Marketing Agency all the foundational tools you need for inbound success. With this module theres no need to go another day.', '2020-10-06 02:58:42', '2020-10-14 20:19:01'),
 (7, 'placeholder_7.png', 'Publisher', 'Marketer', 'We are a full service Digital Marketing Agency all the foundational tools you need for inbound success. With this module theres no need to go another day.', '2020-10-06 02:58:42', '2020-10-14 20:19:01'),
-(8, 'placeholder_8.png', 'Publisher', 'Marketer', 'We are a full service Digital Marketing Agency all the foundational tools you need for inbound success. With this module theres no need to go another day.', '2020-10-06 02:58:42', '2020-10-14 20:19:01'),
-;
+(8, 'placeholder_8.png', 'Publisher', 'Marketer', 'We are a full service Digital Marketing Agency all the foundational tools you need for inbound success. With this module theres no need to go another day.', '2020-10-06 02:58:42', '2020-10-14 20:19:01');
 CREATE TABLE `documents` (
   `id` int(10) UNSIGNED NOT NULL,
   `cookiepolicy` text COLLATE utf8mb4_unicode_ci NOT NULL,
