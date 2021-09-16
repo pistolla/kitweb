@@ -3,11 +3,11 @@
 @section('content')
 <section class="contact-page-area full-page-background" id="Contact" style="min-height: 100vh; background: url('{{ url('/images/logo/logo-background.jpg') }}') no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">
     <div class="container">
-        <div class="logo text-center my-3">
-        <a href="/"><img src="{{asset('/images/logo/logo.png')}}" alt="logo" class="logo-default" style="max-width: 160px;"></a>
-        </div>
         <div class="row wow fadeInDown" data-wow-delay="2s" style="width:100%; margin: auto;">
             <div class="col-sm-12 col-md-12 col-lg-12">
+                <div class="logo text-center">
+                    <a href="{{ url('/')}}"><img src="{{asset('/images/logo/logo.png')}}" alt="logo" class="logo-default" style="max-width: 160px;"></a>
+                  </div>
                     <div class="card mb-5">
                     <h2 class="card-title text-center" style="padding: 10px;">Members only Log In</h2>
                         <div class="card-body">

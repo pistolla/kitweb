@@ -5,6 +5,9 @@
     <div class="container">
         <div class="row wow fadeInDown" data-wow-delay="2s" style="width:100%; margin: auto;">
             <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
+                <div class="logo text-center">
+                    <a href="{{ url('/')}}"><img src="{{asset('/images/logo/logo.png')}}" alt="logo" class="logo-default" style="max-width: 160px;"></a>
+                  </div>
                     <div class="card">
                         <h2 class="card-title text-center" style="padding: 60px;"> Membership form. Register now for free</h2>
                         <div class="card-body">

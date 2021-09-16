@@ -36,20 +36,20 @@
         </div>
         @foreach ($advertisers as $index => $feature)
             @if ($index % 2 === 0)
-                <div class="row mt-4">
+                <div class="row my-5 py-5">
                     <div class="col-md-6 text-center">
                         <img class=" img-fluid" src="{{ asset('images/slider') .'/' . $feature->photo }}" alt="placeholder" height="150">
                     </div>
                     <div class="col-md-6 p-2">
-                        <span class="badge badge-success p-2">{{$index+1}}</span>
+                        <span class="badge badge-success badge-pill p-2">{{$index+1}}</span>
                         <h2 class="text-info h2">{{$feature->heading}}</h2>
                         <p class="text-info h4">{{$feature->details}}</p>
                     </div>
                 </div>    
             @else
-            <div class="row mt-4">
+            <div class="row my-5 py-5">
                 <div class="col-md-6 p-2">
-                    <span class="badge badge-success p-2">{{$index+1}}</span>
+                    <span class="badge badge-success badge-pill p-2">{{$index+1}}</span>
                     <h2 class="text-info h2">{{$feature->heading}}</h2>
                     <p class="text-info h4">{{$feature->details}}</p>
                 </div>
@@ -73,20 +73,20 @@
         </div>
         @foreach ($publishers as $index => $feature)
             @if ($index % 2 === 0)
-                <div class="row mt-4">
+                <div class="row my-5 py-5">
                     <div class="col-md-6 text-center">
                         <img class=" img-fluid" src="{{ asset('images/slider') .'/' . $feature->photo }}" alt="placeholder" height="150">
                     </div>
                     <div class="col-md-6 p-2">
-                        <span class="badge badge-success p-2">{{$index+1}}</span>
+                        <span class="badge badge-success badge-pill p-2">{{$index+1}}</span>
                         <h2 class="text-info h2">{{$feature->heading}}</h2>
                         <p class="text-info h4">{{$feature->details}}</p>
                     </div>
                 </div>    
             @else
-            <div class="row mt-4">
+            <div class="row my-5 py-5">
                 <div class="col-md-6 p-2">
-                    <span class="badge badge-success p-2">{{$index+1}}</span>
+                    <span class="badge badge-success badge-pill p-2">{{$index+1}}</span>
                     <h2 class="text-info h2">{{$feature->heading}}</h2>
                     <p class="text-info h4">{{$feature->details}}</p>
                 </div>

@@ -5,6 +5,9 @@
     <div class="container">
         <div class="row wow fadeInDown" data-wow-delay="2s" style="width:80%; margin: auto;">
             <div class="col-lg-12">
+                <div class="logo text-center">
+                    <a href="{{ url('/')}}"><img src="{{asset('/images/logo/logo.png')}}" alt="logo" class="logo-default" style="max-width: 160px;"></a>
+                  </div>
                     <div class="card">
                                 <h2 class="card-title text-center" style="padding: 60px;"> Reset Password Now</h2>
                         <div class="card-body">
