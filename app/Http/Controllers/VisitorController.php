@@ -26,6 +26,9 @@ use App\Document;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Butschster\Head\Facades\Meta;
+use Butschster\Head\Packages\Entities\OpenGraphPackage;
+use Butschster\Head\Packages\Entities\TwitterCardPackage;
+use Image;
 
 class VisitorController extends Controller
 {
@@ -38,23 +41,81 @@ class VisitorController extends Controller
         $socials = Social::all();
         $posts = Blog::orderBy('id','DESC')->select('id', 'photo', 'heading')->take(3)->get();
         $features = Feature::all();
+        $url = url('/');
+        $og = new OpenGraphPackage('kenyansintexas_fb');
+        $og->setType('website')
+            ->setSiteName($gnl->title)
+            ->setDescription($front->about_details)
+            ->setTitle($gnl->title)
+            ->setUrl($url)
+            ->setLocale('en_US')
+            ->addImage($url.'/img/bg/header-bg.png')
+            ->addVideo($front->video);
 
-        Meta::setTitle($front->heading)
-            ->prependTitle($front->banner_heading)
+
+        $card = new TwitterCardPackage('kenyansintexas_twitter');
+
+        $card->setType($gnl->title)
+            ->setSite('@twitterdev')
+            ->setCreator('@dataphile_joe')
+            ->setTitle($gnl->title)
+            ->setDescription($front->about_details)
+            ->setVideo($front->video, ['width' => 1920, 'height' => 1280]);
+
+        Meta::setTitle($gnl->title)
+            ->prependTitle($gnl->subtitle)
             ->setTitleSeparator('|')
-            ->setDescription($front->banner_details)
+            ->setDescription($front->about_details)
             ->setKeywords(['Advertising agency','Kenya','Texas'])
             ->setRobots('nofollow,noindex')
-            ->setCanonical(url(''))
+            ->setCanonical($url)
             ->setCharset()
-            ->setFavicon(url('') .'/favicon.ico');
+            ->setFavicon($url .'/images/icon.png')
+            ->registerPackage($og)
+            ->registerPackage($card);
     
         return view('welcome', compact('gnl','front','sliders','posts','socials','testimonials','features'));
     }
-    public function blog()
+    public function blog()   
     {
         $posts = Blog::orderBy('id','DESC')->paginate(10);
         $categorys = Category::all();
+        $front = Frontend::first();
+        $gnl = General::first();
+        $url = url('/');
+
+        $og = new OpenGraphPackage('kenyansintexas_fb');
+        $og->setType('website')
+            ->setSiteName($gnl->title)
+            ->setDescription($front->about_details)
+            ->setTitle($gnl->title)
+            ->setUrl($url)
+            ->setLocale('en_US')
+            ->addImage($url.'/img/bg/header-bg.png')
+            ->addVideo($front->video);
+
+
+        $card = new TwitterCardPackage('kenyansintexas_twitter');
+
+        $card->setType($gnl->title)
+            ->setSite('@twitterdev')
+            ->setCreator('@dataphile_joe')
+            ->setTitle($gnl->title)
+            ->setDescription($front->about_details)
+            ->setVideo($front->video, ['width' => 1920, 'height' => 1280]);
+
+        Meta::setTitle($gnl->title)
+            ->prependTitle($gnl->subtitle)
+            ->setTitleSeparator('|')
+            ->setDescription($front->about_details)
+            ->setKeywords(['Advertising agency','Kenya','Texas'])
+            ->setRobots('nofollow,noindex')
+            ->setCanonical($url)
+            ->setCharset()
+            ->setFavicon($url .'/images/icon.png')
+            ->registerPackage($og)
+            ->registerPackage($card);
+
         return view('blog', compact('posts','categorys'));
     }
     public function blogPost($slug)
@@ -66,6 +127,42 @@ class VisitorController extends Controller
             abort(404);
         }
         $related = Blog::where('category_id', $post->category->id)->with('comments')->take(5)->get();
+        $front = Frontend::first();
+        $gnl = General::first();
+        $url = url('/');
+
+        $og = new OpenGraphPackage('kenyansintexas_fb');
+        $og->setType('website')
+            ->setSiteName($gnl->title)
+            ->setDescription($front->about_details)
+            ->setTitle($gnl->title)
+            ->setUrl($url)
+            ->setLocale('en_US')
+            ->addImage($url.'/img/bg/header-bg.png')
+            ->addVideo($front->video);
+
+
+        $card = new TwitterCardPackage('kenyansintexas_twitter');
+
+        $card->setType($gnl->title)
+            ->setSite('@twitterdev')
+            ->setCreator('@dataphile_joe')
+            ->setTitle($post->heading)
+            ->setDescription($front->about_details)
+            ->setVideo($front->video, ['width' => 1920, 'height' => 1080]);
+
+        Meta::setTitle($gnl->title)
+            ->prependTitle($gnl->subtitle)
+            ->setTitleSeparator('|')
+            ->setDescription($front->about_details)
+            ->setKeywords(['Advertising agency','Kenya','Texas'])
+            ->setRobots('nofollow,noindex')
+            ->setCanonical($url)
+            ->setCharset()
+            ->setFavicon($url .'/images/icon.png')
+            ->registerPackage($og)
+            ->registerPackage($card);
+
         return view('post', compact('post','categorys', 'related'));
     }
 
@@ -79,8 +176,8 @@ class VisitorController extends Controller
             $path = '/images/blog/'. $imageName;
             chmod(base_path().'/public/images/blog/', 0775);
             Image::make($request->image)->save($path);
-            $width = $image->getWidth();
-            $height = $image->getHeight();
+            $width = $request->image->getWidth();
+            $height = $request->image->getHeight();
             $fotoLink = url('/').$path;
 
             $data = array( "type"=> "image/".strtolower($request->image->getClientOriginalExtension()),                                    
@@ -342,7 +439,7 @@ class VisitorController extends Controller
         {
             $email = $request->email;
             $mobile = $request->mobile;
-            $code = str_random(8);
+            $code = uniqid(8);
             $msg = 'Your Verification code is: '.$code;
             $user['vercode'] = $code ;
             $user['vsent'] = time();
@@ -376,7 +473,7 @@ class VisitorController extends Controller
         if ($user->vercode == $code)
         {
             $user['emailv'] = 1;
-            $user['vercode'] = str_random(10);
+            $user['vercode'] = uniqid(10);
             $user['vsent'] = 0;
             $user->save();
             
@@ -398,7 +495,7 @@ class VisitorController extends Controller
         if ($user->vercode == $code)
         {
             $user['smsv'] = 1;
-            $user['vercode'] = str_random(10);
+            $user['vercode'] = uniqid(10);
             $user['vsent'] = 0;
             $user->save();
             
@@ -424,7 +521,7 @@ class VisitorController extends Controller
         
         if(isset($efind))
         {
-            $code = str_random(32);
+            $code = uniqid(32);
             $pass['email'] = $request->email;
             $pass['token'] = $code;
             $pass['status'] = 0;
@@ -581,7 +678,7 @@ class VisitorController extends Controller
     public function commentDislikes(Request $request)
     {
         $this->validate($request, ['comment' => 'required']);
-        $request->user()->likes()->where('comment_id', $comment->id)->delete();
+        $request->user()->likes()->where('comment_id', $request->comment)->delete();
 
         return back();
     }
@@ -590,30 +687,204 @@ class VisitorController extends Controller
     {
         $front = Frontend::first();
         $faqs = Faq::all();
+        $gnl = General::first();
+        $url = url('/');
+        
+        $og = new OpenGraphPackage('kenyansintexas_fb');
+        $og->setType('website')
+            ->setSiteName($gnl->title)
+            ->setDescription($front->about_details)
+            ->setTitle($gnl->title)
+            ->setUrl($url)
+            ->setLocale('en_US')
+            ->addImage($url.'/img/bg/header-bg.png')
+            ->addVideo($front->video);
+
+
+        $card = new TwitterCardPackage('kenyansintexas_twitter');
+
+        $card->setType($gnl->title)
+            ->setSite('@twitterdev')
+            ->setCreator('@dataphile_joe')
+            ->setTitle($gnl->title)
+            ->setDescription($front->about_details)
+            ->setVideo($front->video, ['width' => 1920, 'height' => 1280]);
+
+        Meta::setTitle($gnl->title)
+            ->prependTitle($front->banner_heading)
+            ->setTitleSeparator('|')
+            ->setDescription($front->about_details)
+            ->setKeywords(['Advertising agency','Kenya','Texas'])
+            ->setRobots('nofollow,noindex')
+            ->setCanonical($url)
+            ->setCharset()
+            ->setFavicon($url .'/images/icon.png')
+            ->registerPackage($og)
+            ->registerPackage($card);
         return view('contact', compact('front','faqs'));
     }
 
     public function privacyPolicy()
     {
         $doc = Document::first();
+        $front = Frontend::first();
+        $gnl = General::first();
+        $url = url('/');
+        
+        $og = new OpenGraphPackage('kenyansintexas_fb');
+        $og->setType('website')
+            ->setSiteName($gnl->title)
+            ->setDescription($front->about_details)
+            ->setTitle($gnl->title)
+            ->setUrl($url)
+            ->setLocale('en_US')
+            ->addImage($url.'/img/bg/header-bg.png')
+            ->addVideo($front->video);
+
+
+        $card = new TwitterCardPackage('kenyansintexas_twitter');
+
+        $card->setType($gnl->title)
+            ->setSite('@twitterdev')
+            ->setCreator('@dataphile_joe')
+            ->setTitle($gnl->title)
+            ->setDescription($front->about_details)
+            ->setVideo($front->video, ['width' => 1920, 'height' => 1280]);
+
+        Meta::setTitle($gnl->title)
+            ->prependTitle($front->banner_heading)
+            ->setTitleSeparator('|')
+            ->setDescription($front->about_details)
+            ->setKeywords(['Advertising agency','Kenya','Texas'])
+            ->setRobots('nofollow,noindex')
+            ->setCanonical($url)
+            ->setCharset()
+            ->setFavicon($url .'/images/icon.png')
+            ->registerPackage($og)
+            ->registerPackage($card);
         return view('privacypolicy', compact('doc'));
     }
 
     public function termSale()
     {
         $doc = Document::first();
+        $front = Frontend::first();
+        $gnl = General::first();
+        $url = url('/');
+        
+        $og = new OpenGraphPackage('kenyansintexas_fb');
+        $og->setType('website')
+            ->setSiteName($gnl->title)
+            ->setDescription($front->about_details)
+            ->setTitle($gnl->title)
+            ->setUrl($url)
+            ->setLocale('en_US')
+            ->addImage($url.'/img/bg/header-bg.png')
+            ->addVideo($front->video);
+
+
+        $card = new TwitterCardPackage('kenyansintexas_twitter');
+
+        $card->setType($gnl->title)
+            ->setSite('@twitterdev')
+            ->setCreator('@dataphile_joe')
+            ->setTitle($gnl->title)
+            ->setDescription($front->about_details)
+            ->setVideo($front->video, ['width' => 1920, 'height' => 1280]);
+
+        Meta::setTitle($gnl->title)
+            ->prependTitle($front->banner_heading)
+            ->setTitleSeparator('|')
+            ->setDescription($front->about_details)
+            ->setKeywords(['Advertising agency','Kenya','Texas'])
+            ->setRobots('nofollow,noindex')
+            ->setCanonical($url)
+            ->setCharset()
+            ->setFavicon($url .'/images/icon.png')
+            ->registerPackage($og)
+            ->registerPackage($card);
         return view('termsale', compact('doc'));
     }
 
     public function refundPolicy()
     {
         $doc = Document::first();
+        $front = Frontend::first();
+        $gnl = General::first();
+        $url = url('/');
+        
+        $og = new OpenGraphPackage('kenyansintexas_fb');
+        $og->setType('website')
+            ->setSiteName($gnl->title)
+            ->setDescription($front->about_details)
+            ->setTitle($gnl->title)
+            ->setUrl($url)
+            ->setLocale('en_US')
+            ->addImage($url.'/img/bg/header-bg.png')
+            ->addVideo($front->video);
+
+
+        $card = new TwitterCardPackage('kenyansintexas_twitter');
+
+        $card->setType($gnl->title)
+            ->setSite('@twitterdev')
+            ->setCreator('@dataphile_joe')
+            ->setTitle($gnl->title)
+            ->setDescription($front->about_details)
+            ->setVideo($front->video, ['width' => 1920, 'height' => 1280]);
+
+        Meta::setTitle($gnl->title)
+            ->prependTitle($front->banner_heading)
+            ->setTitleSeparator('|')
+            ->setDescription($front->about_details)
+            ->setKeywords(['Advertising agency','Kenya','Texas'])
+            ->setRobots('nofollow,noindex')
+            ->setCanonical($url)
+            ->setCharset()
+            ->setFavicon($url .'/images/icon.png')
+            ->registerPackage($og)
+            ->registerPackage($card);
         return view('refundpolicy',compact('doc'));
     }
 
     public function cookiePolicy()
     {
         $doc = Document::first();
+        $front = Frontend::first();
+        $gnl = General::first();
+        $url = url('/');
+        
+        $og = new OpenGraphPackage('kenyansintexas_fb');
+        $og->setType('website')
+            ->setSiteName($gnl->title)
+            ->setDescription($front->about_details)
+            ->setTitle($gnl->title)
+            ->setUrl($url)
+            ->setLocale('en_US')
+            ->addImage($url.'/img/bg/header-bg.png')
+            ->addVideo($front->video);
+
+
+        $card = new TwitterCardPackage('kenyansintexas_twitter');
+
+        $card->setType($gnl->title)
+            ->setSite('@twitterdev')
+            ->setCreator('@dataphile_joe')
+            ->setTitle($gnl->title)
+            ->setDescription($front->about_details)
+            ->setVideo($front->video, ['width' => 1920, 'height' => 1280]);
+
+        Meta::setTitle($gnl->title)
+            ->prependTitle($front->banner_heading)
+            ->setTitleSeparator('|')
+            ->setDescription($front->about_details)
+            ->setKeywords(['Advertising agency','Kenya','Texas'])
+            ->setRobots('nofollow,noindex')
+            ->setCanonical($url)
+            ->setCharset()
+            ->setFavicon($url .'/images/icon.png')
+            ->registerPackage($og)
+            ->registerPackage($card);
         return view('cookiepolicy',compact('doc'));
     }
 
@@ -621,7 +892,41 @@ class VisitorController extends Controller
     {
         $advertisers = Feature::where('name', 'Advertiser')->get();
         $publishers = Feature::where('name', 'Publisher')->get();
+        $front = Frontend::first();
+        $gnl = General::first();
+        $url = url('/');
         
+        $og = new OpenGraphPackage('kenyansintexas_fb');
+        $og->setType('website')
+            ->setSiteName($gnl->title)
+            ->setDescription($front->about_details)
+            ->setTitle($gnl->title)
+            ->setUrl($url)
+            ->setLocale('en_US')
+            ->addImage($url.'/img/bg/header-bg.png')
+            ->addVideo($front->video);
+
+
+        $card = new TwitterCardPackage('kenyansintexas_twitter');
+
+        $card->setType($gnl->title)
+            ->setSite('@twitterdev')
+            ->setCreator('@dataphile_joe')
+            ->setTitle($gnl->title)
+            ->setDescription($front->about_details)
+            ->setVideo($front->video, ['width' => 1920, 'height' => 1280]);
+
+        Meta::setTitle($gnl->title)
+            ->prependTitle($front->banner_heading)
+            ->setTitleSeparator('|')
+            ->setDescription($front->about_details)
+            ->setKeywords(['Advertising agency','Kenya','Texas'])
+            ->setRobots('nofollow,noindex')
+            ->setCanonical($url)
+            ->setCharset()
+            ->setFavicon($url .'/images/icon.png')
+            ->registerPackage($og)
+            ->registerPackage($card);        
 
         return view('features', compact('advertisers','publishers'));
     }

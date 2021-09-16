@@ -13,9 +13,13 @@ use App\Analytic;
 use App\Password;
 use App\Withdraw;
 use App\Country;
+use App\Frontend;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Butschster\Head\Facades\Meta;
+use Butschster\Head\Packages\Entities\OpenGraphPackage;
+use Butschster\Head\Packages\Entities\TwitterCardPackage;
 
 class CommunityController extends Controller
 {
@@ -27,6 +31,41 @@ class CommunityController extends Controller
         if($activities){
             $post = $activities->shift();
         }
+        $front = Frontend::first();
+        $gnl = General::first();
+        $url = url('/');
+        
+        $og = new OpenGraphPackage('kenyansintexas_fb');
+        $og->setType('website')
+            ->setSiteName($gnl->title)
+            ->setDescription($front->about_details)
+            ->setTitle($gnl->title)
+            ->setUrl($url)
+            ->setLocale('en_US')
+            ->addImage($url.'/img/bg/header-bg.png')
+            ->addVideo($front->video);
+
+
+        $card = new TwitterCardPackage('kenyansintexas_twitter');
+
+        $card->setType($gnl->title)
+            ->setSite('@twitterdev')
+            ->setCreator('@dataphile_joe')
+            ->setTitle($front->banner_heading)
+            ->setDescription($front->about_details)
+            ->setVideo($front->video, ['width' => 1920, 'height' => 1280]);
+
+        Meta::setTitle($gnl->title)
+            ->prependTitle($gnl->subtitle)
+            ->setTitleSeparator('|')
+            ->setDescription($front->about_details)
+            ->setKeywords(['Advertising agency','Kenya','Texas'])
+            ->setRobots('nofollow,noindex')
+            ->setCanonical(url(''))
+            ->setCharset()
+            ->setFavicon(url('') .'/images/icon.png')
+            ->registerPackage($og)
+            ->registerPackage($card);
         return view('feed.dashboard', compact('activities','post'));
     }
 
@@ -64,7 +103,42 @@ class CommunityController extends Controller
         if(is_null($post)) {
             abort('404');
         }
-            return view('feed.activity', compact('post', 'suggested'));
+        $front = Frontend::first();
+        $gnl = General::first();
+        $url = url('/');
+        
+        $og = new OpenGraphPackage('kenyansintexas_fb');
+        $og->setType('website')
+            ->setSiteName($gnl->title)
+            ->setDescription($front->about_details)
+            ->setTitle($gnl->title)
+            ->setUrl($url)
+            ->setLocale('en_US')
+            ->addImage($url.'/img/bg/header-bg.png')
+            ->addVideo($front->video);
+
+
+        $card = new TwitterCardPackage('kenyansintexas_twitter');
+
+        $card->setType($gnl->title)
+            ->setSite('@twitterdev')
+            ->setCreator('@dataphile_joe')
+            ->setTitle($front->banner_heading)
+            ->setDescription($front->about_details)
+            ->setVideo($front->video, ['width' => 1920, 'height' => 1280]);
+
+        Meta::setTitle($gnl->title)
+            ->prependTitle($gnl->subtitle)
+            ->setTitleSeparator('|')
+            ->setDescription($front->about_details)
+            ->setKeywords(['Advertising agency','Kenya','Texas'])
+            ->setRobots('nofollow,noindex')
+            ->setCanonical(url(''))
+            ->setCharset()
+            ->setFavicon(url('') .'/images/icon.png')
+            ->registerPackage($og)
+            ->registerPackage($card);
+        return view('feed.activity', compact('post', 'suggested'));
         
     }
 
@@ -76,7 +150,7 @@ class CommunityController extends Controller
             ->orWhere('details', 'LIKE', "%{$search}%")
             ->with(['member', 'comments', 'likes'])->paginate(20);
         $post = null;
-        if($activities){
+        if(is_array($activities)){
             $post = $activities->shift();
         }
         return view('feed.dashboard', compact('activities','post'));
@@ -348,7 +422,7 @@ class CommunityController extends Controller
         {
             $email = $request->email;
             $mobile = $request->mobile;
-            $code = str_random(8);
+            $code = uniqid(8);
             $msg = 'Your Verification code is: '.$code;
             $member['vercode'] = $code ;
             $member['vsent'] = time();
@@ -382,7 +456,7 @@ class CommunityController extends Controller
         if ( $member->vercode == $code)
         {
         $member['emailv'] = 1;
-        $member['vercode'] = str_random(10);
+        $member['vercode'] = uniqid(10);
         $member['vsent'] = 0;
         $member->save();
 
@@ -404,7 +478,7 @@ class CommunityController extends Controller
         if( $member->vercode == $code)
         {
         $member['smsv'] = 1;
-        $member['vercode'] = str_random(10);
+        $member['vercode'] = uniqid(10);
         $member['vsent'] = 0;
         $member->save();
 
@@ -430,7 +504,7 @@ class CommunityController extends Controller
 
         if(isset($efind))
         {
-            $code = str_random(32);
+            $code = uniqid(32);
             $pass['email'] = $request->email;
             $pass['token'] = $code;
             $pass['status'] = 0;

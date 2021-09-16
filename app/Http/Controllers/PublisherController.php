@@ -24,6 +24,7 @@ class PublisherController extends Controller
         $impression = Analytic::where('publisher_id', Auth::guard('publisher')->user()->id)->where('type',1)->count();
         $click = Analytic::where('publisher_id', Auth::guard('publisher')->user()->id)->where('type',2)->count();
         $withds = Withdraw::where('publisher_id',Auth::guard('publisher')->user()->id)->orderBy('id','DESC')->paginate(10);
+        
         return view('publisher.dashboard', compact('pt','impression','click','withds'));
     }
     public function getAds()
