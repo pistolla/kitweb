@@ -50,8 +50,8 @@
                   <span class="commenter-name">
                     <a href="{{ route('feed.fetch', $post->slug) }}">{{ $post->heading }}</a>
                   </span>
-                  <span class="commenter-name">
-                    <small> <span class="comment-time"></span></small>
+                  <span class="comment-time pull-right">
+                    <small>posted by</small> {{$post->member->username }} <small>{{ $post->created_at->diffForHumans() }} </small>
                   </span>
                   @if (isset($post->image_url))
                   <div class="card" style="border: none;">
@@ -167,8 +167,8 @@
                   <span class="commenter-name">
                     <a href="{{ route('feed.fetch', $activity->slug) }}">{{ $activity->heading }}</a>
                   </span>
-                  <span class="commenter-name">
-                    <small> <span class="comment-time"></span></small>
+                  <span class="comment-time pull-right">
+                    <small>posted by</small> {{$activity->member->username }} <small>{{$activity->created_at->diffForHumans() }}</small>
                   </span>
                   @if (isset($activity->image_url))
                   <div class="card" style="border: none; background-color: transparent;">
@@ -179,14 +179,17 @@
                   </div>
                   @elseif (isset($activity->link_url))
                   @php
-                  $embed = new Embed\Embed();
-                  $embed->get($activity->link_url);
+                  try {
+                    $embed = new Embed\Embed();
+                    $embed->get($activity->link_url);
+                   } catch (\Exception $e){
+                   }
                   @endphp
                   <div class="card" style="border: none;">
                     <div class="card-body">
-                      <div class="card-title">{{$embed->title}}</div>
-                      <img class="card-img-top" src="{{ $embed->image }}" alt="loading...">
-                      <p class="card-txt">{{ $activity->details }}</p>
+                      <div class="card-title">{{isset($embed->title) ? $embed->title : $activity->heading }}</div>
+                      <img class="card-img-top" src="{{ isset($embed->image) ? $embed->image : asset('/images/community/broken_link.jpg') }}" alt="loading...">
+                      <p class="card-txt"><a href="{{ $activity->link_url }}" title="{{ $activity->link_url }}">{{ $activity->details }}</a></p>
                     </div>
                   </div>
                   @else

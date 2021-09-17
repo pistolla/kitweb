@@ -26,7 +26,7 @@
                                             <span class="fab fa-google"></span>
                                             Login with Google
                                         </a>
-
+                                        <span><small>By creating this account, you agree to our <a href="{{ route('') }}">Privacy Policy</a> & <a href="{{ route('') }}">Cookie Policy</a>.</small></span>
                                     </div>
                                     <div class="col-sm-12 col-md-8 px-4">
                                         @include('layouts.error') 

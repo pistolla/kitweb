@@ -156,6 +156,13 @@
             </div>
         </div>
     </div>
+
+
+    <!-- back to top start -->
+    <div class="back-to-top">
+        <i class="fas fa-rocket"></i>
+    </div>
+    <!-- back to top end -->
     <script class="adScriptClass" type="text/javascript" src="{{asset('/ads/ad.js')}}"></script>
     <script type="text/javascript" src="{{asset('/js/jquery-3.2.1.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('/js/jquery.js')}}"></script>
@@ -169,6 +176,17 @@
         $(document).ready(function() {
             var winheight = $(window).height() - 71;
             $('#justify-height').css('min-height', winheight + 'px');
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $(window).on('load', function() {
+                /*-----------------
+                    back to top
+                ------------------*/
+                var backtoTop = $('.back-to-top')
+                backtoTop.fadeOut(100);
+            });
         });
     </script>
     @include('layouts.sweet')
