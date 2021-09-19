@@ -103,6 +103,9 @@
                         <a class="nav-link" href="{{url('/')}}#Service">SERVICE</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{{url('/')}}#Featured">FEATURED</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{{route('user.blog')}}">BLOG</a>
                     </li>
                     <li class="nav-item">
@@ -172,6 +175,8 @@
     <script type="text/javascript" src="{{asset('/js/main.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/wow.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/jquery.magnific-popup.js') }}"></script>
+    <!-- counterup js-->
+    <script src="{{ asset('js/jquery.counterup.min.js') }}"></script>
     <script>
         $(document).ready(function() {
             var winheight = $(window).height() - 71;

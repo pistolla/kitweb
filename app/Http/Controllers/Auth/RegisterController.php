@@ -58,7 +58,6 @@ class RegisterController extends Controller
             'country' => 'required|string|max:255',
             'city' => 'required|string|max:255',
             'mobile' => 'required|string',
-            'codehidden' => 'required|string',
         ]);
     }
 
@@ -71,6 +70,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $gnl = General::first();
+        $country = Country::find($data['country']);
 
         return User::create([
             'name' => $data['name'],
@@ -79,7 +79,7 @@ class RegisterController extends Controller
             'username' => $data['username'],
             'country' => $data['country'],
             'city' => $data['city'],
-            'mobile' => $this->_joinPhoneCode($data['codehidden'], $data['mobile']),
+            'mobile' => $this->_joinPhoneCode($country->phonecode, $data['mobile']),
             'emailv' =>  $gnl->emailver,
             'smsv' =>  $gnl->smsver,
         ]);

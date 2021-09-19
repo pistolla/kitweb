@@ -23,6 +23,7 @@ use App\Category;
 use App\Comment;
 use App\Feature;
 use App\Document;
+use App\Activity;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Butschster\Head\Facades\Meta;
@@ -39,8 +40,38 @@ class VisitorController extends Controller
         $sliders = Slider::all();
         $testimonials = Testimonial::all();
         $socials = Social::all();
-        $posts = Blog::orderBy('id','DESC')->select('id', 'photo', 'heading')->take(3)->get();
-        $features = Feature::all();
+        $posts = Blog::orderBy('id','DESC')->select('id', 'photo', 'heading','slug')->take(3)->get();
+        $activities = Activity::orderBy('id','DESC')->select('id', 'image_url', 'heading','slug')->whereNotNull('image_url')->take(3)->get();
+        $fts = Feature::all();
+        $features = [];
+        foreach ($fts as $ft){
+            $item['name'] = $ft->name;
+            $item['label'] = 'Feature';
+            $item['url'] = url('/').'/feature'.'#'.strtolower($ft->name);
+            $item['photo'] = url('/').'/images/slider/'.$ft->photo;
+
+            $features[] = $item;
+        }
+
+        foreach ($posts as $post) {
+            $item['name'] = $post->heading;
+            $item['label'] = 'Article';
+            $item['url'] = url('/').'/blog/'.$post->slug;
+            $item['photo'] = url('/').'/images/blog/'.$post->photo;
+
+            $features[] = $item;
+        }
+        
+        foreach ($activities as $post) {
+            $item['name'] = $post->heading;
+            $item['label'] = 'Community';
+            $item['url'] = url('/').'/feed/'.$post->slug;
+            $item['photo'] = url('/').'/images/community/'.$post->image_url;
+
+            $features[] = $item;
+        }
+        shuffle($features);
+
         $url = url('/');
         $og = new OpenGraphPackage('kenyansintexas_fb');
         $og->setType('website')

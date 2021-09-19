@@ -1,6 +1,7 @@
-$('#mobile-payment').submit(handleSubmit());
+
 
 function handleSubmit(event){
+    console.log("handlesubmit");
     event.preventDefault();
     var form = $(this);
     var formData = {

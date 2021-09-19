@@ -43,20 +43,23 @@
                 </a>
             </div>
             <div class="collapse navbar-collapse" id="mirex">
-                <!-- navbar collapse start -->
+                <!-- navbar collapse start  -->
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="#Service">SERVICE</a>
+                        <a class="nav-link font-weight-bold" href="#Service">SERVICE</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('user.blog') }}">BLOG</a>
+                        <a class="nav-link font-weight-bold" href="#Featured">FEATURED</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link font-weight-bold" href="{{ route('user.blog') }}">BLOG</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('feed.dashboard') }}">COMMUNITY</a>
+                        <a class="nav-link font-weight-bold" href="{{ route('feed.dashboard') }}">COMMUNITY</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('contact')}}">ABOUT US</a>
+                        <a class="nav-link font-weight-bold" href="{{route('contact')}}">ABOUT US</a>
                     </li>
 
                 </ul>
@@ -137,6 +140,43 @@
         </div>
     </section>
 
+    <section class="achivement-area gray-bg" id="Featured">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="section-title">
+                    <h2 class="title">Featured</h2>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div id="carouselExample" class="carousel slide" data-ride="carousel" data-interval="9000">
+                <div class="carousel-inner row w-10 mxauto" role="listbox">
+                    @foreach ($features as $index => $feature)
+                    <div class="carousel-item col-md-4 py-1 {{ $index == 0 ? 'active' : '' }}">
+                        <a href="{{ $feature['url'] }}">
+                            <div class="card border-0" style="height: 430px">
+                                <img class="card-img-top img-fluid img-responsive mx-auto d-block" src="{{ $feature['photo'] }}" alt="slide 2">
+                                <div class="card-body">
+                                    <p class="card-text">{{$feature['name']}}</p>
+                                    <p class="card-text hidden"><small class="text-muted badge badge-info">{{$feature['label']}}</small></p>
+                                </div>
+                            </div>
+                            
+                        </a>
+                    </div>
+                    @endforeach
+                </div>
+                <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
+                    <i class="fa fa-chevron-left fa-lg text-muted"></i>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next text-faded" href="#carouselExample" role="button" data-slide="next">
+                    <i class="fa fa-chevron-right fa-lg text-muted"></i>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+    </section>
 
     <section class="video-area grd-overlay" style="background-image: url({{ asset('images/frontend') }}/{{ $front->about_image }}); background-size: cover;background-position: center;" id="About">
         <div class="container">
@@ -192,39 +232,7 @@
             </div>
         </div>
     </section>
-    <section class="achivement-area glossy-bg">
-        <div class="row justify-content-center">
-            <div class="col-lg-12">
-                <div class="section-title">
-                    <h2 class="title">Featured</h2>
-                </div>
-            </div>
-        </div>
-        <div class="container-fluid">
-            <div id="carouselExample" class="carousel slide" data-ride="carousel" data-interval="9000">
-                <div class="carousel-inner row w-10 mxauto" role="listbox">
-                    @foreach ($features as $index => $feature)
-                    <div class="carousel-item col-md-4 py-1 {{ $index == 0 ? 'active' : '' }}">
-                        <a href="{{ url('/feature').'#'.strtolower($feature->name) }}">
-                            <img class="img-fluid mx-auto d-block" src="{{ asset('/images/slider') . '/' . $feature->photo }}" alt="slide 2">
-                        </a>
-                        <div class="carousel-caption">
-                            <span class="h2 hidden">{{$feature->name}} Features</span>
-                        </div>
-                    </div>
-                    @endforeach
-                </div>
-                <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
-                    <i class="fa fa-chevron-left fa-lg text-muted"></i>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next text-faded" href="#carouselExample" role="button" data-slide="next">
-                    <i class="fa fa-chevron-right fa-lg text-muted"></i>
-                    <span class="sr-only">Next</span>
-                </a>
-            </div>
-        </div>
-    </section>
+    
     <section class="achivement-area gray-bg">
         <div class="container">
             <div class="row justify-content-center">

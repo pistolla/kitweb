@@ -128,7 +128,7 @@ class PaymentController extends Controller
         $gateway = Gateway::find($request->gateway_id);
         $config = ApiConfig::find(1)->where('name', 'LIKE', "%mpesa%")->first();
         $mpesaApi = new MpesaPayments();
-
+dd($request);
         if($depo && $config && $gateway){
             $accessToken = $config->access_token;
             $lastRefresh = $setting->refresh_time;
@@ -200,12 +200,14 @@ class PaymentController extends Controller
         $gatewayData = Gateway::where('id', $data->gateway_id)->first();
         
         if ($data->gateway_id == 101) 
-        {        
+        {   
+            $datum = [];
             $datum['amount'] = $data->usd_amo;
             $datum['paybill'] = $gatewayData->val1;
             $datum['track'] = $track;
             $datum['account'] = Auth::user()->name;
             $datum['trx_id'] = $data->id;
+            $datum['gateway_id'] = $data->gateway_id;
             return view('user.payment.mpesa', compact('datum','gnl'));
         } elseif ($data->gateway_id == 102) 
         {        

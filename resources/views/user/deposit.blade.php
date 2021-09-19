@@ -17,7 +17,7 @@
 </section>
 <section class="testimonial-page-conent">
     <div class="container">
-        @if (!empty($pending))
+        @if ($pending->count() > 0)
         <div class="row mb-2">
             <div class="col-md-12">
                 <div class="card">
@@ -27,7 +27,7 @@
                             @foreach($pending as $key => $value)
                             <div class="col-md-4 mt-2">
                                 <div class="card">
-                                <form  class="mobile-payment" method="POST" action="{{ route('deposit.mpesa') }}">
+                                <form  class="mobile-payment" method="POST" onsubmit="handleSubmit()" action="{{ route('deposit.mpesa') }}">
                                     @csrf
                                     <input id="gateway_id" type="hidden" name="gateway" value="{{$value->gateway_id}}"/>
                                     <input id="trx_id" type="hidden" name="trx" value="{{$value->id}}"/>
@@ -196,7 +196,68 @@
         });
     });
 </script>
-<script type="text/javascript" src="js/paymobile.js"></script>
+<script>
+    function handleSubmit(event){
+            console.log("handlesubmit");
+            
+            var form = $(this);
+            var formData = {
+                "gateway": form.find('#gateway_id').val(),
+                "trx": form.find("#trx_id").val(),
+            };
+
+            postRequest(formData);
+        }
+
+        function postRequest(data) {
+            $.ajax({
+                url: "/home/deposit-mpesa",
+                type: "POST",
+                data: data,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                success: postSuccess,
+                error: postError
+            });
+        }
+
+        function postSuccess(data, status, jqXhr) {
+            Swal.fire({
+                title: 'Please enter MPESA transaction code',
+                input: 'text',
+                inputAttributes: {
+                    autocapitalize: 'on'
+                },
+                showCancelButton: true,
+                confirmButtonText: 'Send',
+                showLoaderOnConfirm: true,
+                preConfirm: (login) => {
+                    return fetch(login).then(response => {
+                        if(!response.ok){
+                            throw new Error(response.statusText)
+                        }
+                        return response.json()
+                    })
+                    .catch(error => {
+                        Swal.showValidationMessage(`Request failed: ${error}`)
+                    })
+                },
+                allowOutsideClick: () => !Swal.isLoading()
+            }).then((result) => {
+                if(result.isConfirmed) {
+                    Swal.fire({
+                        title: `${result.value.login}'s avatar`,
+                        imageUrl: result.value.avatar_url
+                    })
+                }
+            })
+        }
+
+        function postError(jqXhr, status, errorThrown) {
+
+        }
+    </script>
 @endsection
 
 
