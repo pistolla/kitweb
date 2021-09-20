@@ -223,8 +223,9 @@
                             },
                             body: JSON.stringify(formData)
                         }).then(response => {
+                            console.log(response);
                             if (!response.initiated) {
-                                throw new Error(response.responseText)
+                                throw new Error(response.message)
                             }
                             return response.json()
                         })

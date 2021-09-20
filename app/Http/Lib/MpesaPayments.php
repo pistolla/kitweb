@@ -40,7 +40,7 @@ class MpesaPayments
         if (isset($response['access_token'])) {
             $apiConfig->access_token = $response['access_token'];
             $apiConfig->refresh_time = date('Y-m-d H:i:s', time() + $response['expires_in']);
-            $apiConfig->save(false);
+            $apiConfig->update();
             return $response['access_token'];
         }
         return null;

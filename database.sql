@@ -754,6 +754,8 @@ CREATE TABLE `api_configs` (
   `access_token` varchar(200) DEFAULT NULL,
   `refresh_time` datetime DEFAULT NULL,
   `pass_key` varchar(200) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
   PRIMARY KEY (`id`)
 );
 

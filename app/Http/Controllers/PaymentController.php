@@ -8,7 +8,6 @@ use App\Transaction;
 use Carbon\Carbon;
 use Auth;
 use Session;
-use Time;
 use App\User;
 use App\Gateway;
 use App\General;
@@ -129,33 +128,17 @@ class PaymentController extends Controller
         $depo = Deposit::find($request->trx_id);
         if($depo && $request->code == $depo->trx){
             $this->userDataUpdate($depo);
-            if($request->ajax()){
-                return response()->json(['message'=>'MPESA transaction code is correct','isConfirmed' => true]);
-            }
-            return back()->withSuccess('MPESA transaction code is correct');
+            return response()->json(['message'=>'MPESA transaction code is correct','isConfirmed' => true]);
         }
-        if($request->ajax()){
-            return response()->json(['error'=>'MPESA code is not correct','isConfirmed' => false]);
-        }
-        return back()->withError('MPESA code is not correct');
+        return response()->json(['error'=>'MPESA code is not correct','isConfirmed' => false]);
     }
 
 
     public function depositMpesa(Request $request)
     {
-        $trx_id = '';
-        $gateway_id = '';
-
-        if($request->ajax()){
-            $data = json_decode($request->getContent(), true);
-            
-            $trx_id = $data['trx_id'];
-            $gateway_id = $data['gateway_id'];
-        }
-         else {
-            $trx_id = $request->trx_id;
-            $gateway_id = $request->gateway_id;
-        }
+        $data = json_decode($request->getContent(), true);  
+        $trx_id = $data['trx'];
+        $gateway_id = $data['gateway'];
         $depo = Deposit::find($trx_id);
         $gateway = Gateway::find($gateway_id);
         $config = ApiConfig::where('name', 'LIKE', "%mpesa%")->first();
@@ -166,48 +149,32 @@ class PaymentController extends Controller
             if (!$accessToken) {
                 $accessToken = $mpesaApi->getDarajaAccessToken($config);
             }
-            if (Time::wasInThePast(Time::fromString($lastRefresh))) {
+            if (Carbon::now() > $lastRefresh) {
                 $accessToken = $mpesaApi->getDarajaAccessToken($config);
             }
 
-            $transaction = new MpesaPayment();
-            $transaction->BusinessShortCode = $config->business_number;
-            $transaction->Timestamp = date('yyyymmddhhiiss');
-            $transaction->Password = base64_encode($transaction->BusinessShortCode . $config->pass_key . $transaction->Timestamp);
-            $transaction->TransactionType = 'CustomerPayBillOnline';
-            $transaction->Amount = $depo->amount;
-            $transaction->PartyA = $depo->user->phone_number;
-            $transaction->PartyB = $config->account_no;
-            $transaction->PhoneNumber = $depo->user->phone_number;
-            $transaction->CallBackURL = url('/payment/callback?id=' . $depo->id);
-            $transaction->AccountReference = 'account';
-            $transaction->TransactionDesc = 'test';
-            $transaction->create();
+            $transaction['BusinessShortCode'] = $config->business_number;
+            $transaction['Timestamp'] = date('yyyymmddhhiiss');
+            $transaction['Password'] = base64_encode($config->business_number . $config->pass_key . $transaction['Timestamp']);
+            $transaction['TransactionType'] = 'CustomerPayBillOnline';
+            $transaction['Amount'] = $depo->amount;
+            $transaction['PartyA'] = $depo->user->phone_number;
+            $transaction['PartyB'] = $config->account_no;
+            $transaction['PhoneNumber'] = $depo->user->phone_number;
+            $transaction['CallBackURL'] = url('/payment/callback?id=' . $depo->id);
+            $transaction['AccountReference'] = 'account';
+            $transaction['TransactionDesc'] = 'test';
 
-            $data['token'] = $accessToken;
-            $data["BusinessShortCode"] = $transaction->BusinessShortCode;
-            $data["Password"] = $transaction->Password;
-            $data["Timestamp"] = $transaction->Timestamp;
-            $data["Amount"] = $transaction->Amount;
-            $data["PartyA"] = $transaction->PartyA;
-            $data["PartyB"] = $transaction->PartyB;
-            $data["PhoneNumber"] = $transaction->PhoneNumber;
-            $data["CallBackURL"] = $transaction->CallBackURL;
-            $data["AccountReference"] = $transaction->AccountReference;
-            $data["TransactionDesc"] = $transaction->TransactionDesc;
+            $mp = new MpesaPayment();
+            $mp->create($transaction);
 
+            $transaction['token'] = $accessToken;
             
-            $mpesaApi->lipanampesastkpush($data, $transaction);
+            $mpesaApi->lipanampesastkpush($transaction, $mp);
 
-            if($request->ajax()){
-                return response()->json(['message'=>'STK push Mpesa transaction initiated. Check your phone!','initiated' => true]);
-            }
-            return back()->withSuccess('STK push Mpesa transaction initiated. Check your phone!');
+            return response()->json(['message'=>'STK push Mpesa transaction initiated. Check your phone!','initiated' => true]);
         }
-        if($request->ajax()){
-            return response()->json(['error'=>'MPESA api not setup', 'initiated' => false]);
-        }
-        return back()->withError('MPESA api not setup');
+        return response()->json(['error'=>'MPESA api not setup', 'initiated' => false]);
     }
 
     public function cancelDeposit($id)
