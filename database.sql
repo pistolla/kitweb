@@ -741,6 +741,8 @@ CREATE TABLE `mpesa_payments` (
   `ResponseDescription` varchar(50) DEFAULT NULL,
   `MerchantRequestID` varchar(50) DEFAULT NULL,
   `CheckoutRequestID` varchar(50) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
   PRIMARY KEY (`id`)
 );
 CREATE TABLE `api_configs` (
