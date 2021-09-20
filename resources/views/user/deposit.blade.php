@@ -27,7 +27,7 @@
                             @foreach($pending as $key => $value)
                             <div class="col-md-4 mt-2">
                                 <div class="card">
-                                <form  class="mobile-payment" method="POST" onsubmit="handleSubmit()" action="{{ route('deposit.mpesa') }}">
+                                <form  class="mobile-payment" method="POST" action="{{ route('deposit.mpesa') }}">
                                     @csrf
                                     <input id="gateway_id" type="hidden" name="gateway" value="{{$value->gateway_id}}"/>
                                     <input id="trx_id" type="hidden" name="trx" value="{{$value->id}}"/>
@@ -45,7 +45,7 @@
                                         </div>
                                     </div>
                                     @if ($value->status == 0)
-                                        <button type="submit" class="submit-btn" style="width:100%;">
+                                        <button type="submit" class="submit-btn" onclick="handleSubmit({{$value->id}}, {{$value->gateway_id}})" style="width:100%;">
                                             PAY NOW
                                         </button>
                                     </form>
@@ -188,25 +188,96 @@
 
 @endsection
 @section('page_scripts')
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     $(document).ready(function(){
         $(document).on('click','.depoButton', function(){
             $('#ModalLabel').text($(this).data('name'));
             $('#gateWay').val($(this).data('gate'));
         });
+
+        $(document).on('submit','.mobile-payment', function(event){
+            event.preventDefault();
+        })
     });
 </script>
 <script>
-    function handleSubmit(event){
-            console.log("handlesubmit");
-            
-            var form = $(this);
+        function handleSubmit(trx, gateway,event){
             var formData = {
-                "gateway": form.find('#gateway_id').val(),
-                "trx": form.find("#trx_id").val(),
+                "gateway": gateway,
+                "trx": trx,
+                '_token': $('meta[name="csrf-token"]').attr('content')
             };
-
-            postRequest(formData);
+            Swal.fire({
+                title: 'Please confirm you want to complete payment?',
+                showCancelButton: true,
+                confirmButtonText: 'Confirm',
+                showLoaderOnConfirm: true,
+                preConfirm: () => {
+                    return  fetch('/home/deposit-mpesa', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json;charset=utf-8',
+                                'Accept': 'application/json',
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            body: JSON.stringify(formData)
+                        }).then(response => {
+                            if (!response.initiated) {
+                                throw new Error(response.responseText)
+                            }
+                            return response.json()
+                        })
+                        .catch(error => {
+                            Swal.fire({
+                                title: 'Payment failed!',
+                                text: error.message,
+                                icon: 'error',
+                                confirmButtonText: 'Ok'
+                                });
+                            })
+                },
+                allowOutsideClick: () => !Swal.isLoading()
+            }).then((result) => {
+                console.log(result);
+                Swal.fire({
+                    title: 'Please enter MPESA transaction code',
+                    input: 'text',
+                    inputAttributes: {
+                        autocapitalize: 'on'
+                    },
+                    showCancelButton: false,
+                    confirmButtonText: 'Send',
+                    showLoaderOnConfirm: true,
+                    preConfirm: (code) => {
+                        return fetch('/home/mpesa-confirm', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json;charset=utf-8',
+                                'Accept': 'application/json',
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            body: JSON.stringify({"code": code, "trx_id": trx, "_token": $('meta[name="csrf-token"]').attr('content')})
+                        }).then(response => {
+                            if(!response.ok){
+                                throw new Error(response.responseText)
+                            }
+                            return response.json()
+                        })
+                        .catch(error => {
+                            Swal.showValidationMessage(`Request failed: ${error}`)
+                        })
+                    },
+                    allowOutsideClick: () => !Swal.isLoading()
+                }).then((result) => {
+                    if(result.isConfirmed) {
+                        Swal.fire({
+                            title: 'Code confirmed',
+                            icon: 'success'
+                        })
+                    }
+                })
+            });
         }
 
         function postRequest(data) {
@@ -215,7 +286,8 @@
                 type: "POST",
                 data: data,
                 headers: {
-                    'X-Requested-With': 'XMLHttpRequest'
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 success: postSuccess,
                 error: postError
@@ -223,39 +295,11 @@
         }
 
         function postSuccess(data, status, jqXhr) {
-            Swal.fire({
-                title: 'Please enter MPESA transaction code',
-                input: 'text',
-                inputAttributes: {
-                    autocapitalize: 'on'
-                },
-                showCancelButton: true,
-                confirmButtonText: 'Send',
-                showLoaderOnConfirm: true,
-                preConfirm: (login) => {
-                    return fetch(login).then(response => {
-                        if(!response.ok){
-                            throw new Error(response.statusText)
-                        }
-                        return response.json()
-                    })
-                    .catch(error => {
-                        Swal.showValidationMessage(`Request failed: ${error}`)
-                    })
-                },
-                allowOutsideClick: () => !Swal.isLoading()
-            }).then((result) => {
-                if(result.isConfirmed) {
-                    Swal.fire({
-                        title: `${result.value.login}'s avatar`,
-                        imageUrl: result.value.avatar_url
-                    })
-                }
-            })
+            
         }
 
-        function postError(jqXhr, status, errorThrown) {
-
+        function postError(data, status, statusMessage) {
+            
         }
     </script>
 @endsection

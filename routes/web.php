@@ -97,12 +97,12 @@ Route::group(['middleware' => ['auth','uverify']], function() {
         Route::get('/transactions', 'HomeController@transactionLog')->name('user.transactions'); 
         
         Route::get('/deposit-pay', 'HomeController@deposit')->name('user.balance');
-        Route::post('/deposit-pay', 'HomeController@deposit')->name('user.balance');
-		Route::get('/deposit', 'HomeController@deposit')->name('user.deposit');		               
+		// Route::get('/deposit', 'HomeController@deposit')->name('user.deposit');		               
         Route::post('/deposit-data-insert', 'HomeController@depositDataInsert')->name('deposit.data-insert');
         Route::get('/deposit-preview', 'HomeController@depositPreview')->name('deposit.preview');
         Route::get('/deposit-confirm', 'PaymentController@depositConfirm')->name('deposit.confirm');
         Route::post('/deposit-mpesa', 'PaymentController@depositMpesa')->name('deposit.mpesa');
+        Route::post('/mpesa-confirm', 'PaymentController@confirmMpesa')->name('confirm.mpesa');
         Route::delete('/cancel-deposit/{id}', 'PaymentController@cancelDeposit')->name('cancel.deposit');  
 
         Route::get('/plans', 'HomeController@plans')->name('user.plans');

@@ -8,9 +8,12 @@ use App\Transaction;
 use Carbon\Carbon;
 use Auth;
 use Session;
+use Time;
 use App\User;
 use App\Gateway;
 use App\General;
+use App\ApiConfig;
+use App\MpesaPayment;
 use Stripe\Stripe;
 use Stripe\Token;
 use Stripe\Charge;
@@ -38,7 +41,7 @@ class PaymentController extends Controller
             $tlog['balance'] = $user->balance;
             $tlog['type'] = 1;
             $tlog['details'] = 'Deposit Via '.$data->gateway->name;
-            $tlog['trxid'] = str_random(16);
+            $tlog['trxid'] = uniqid(16);
             Transaction::create($tlog);
             
             $msg =  'Deposit Payment Successful';
@@ -120,18 +123,46 @@ class PaymentController extends Controller
         exit();
     }
 
+    public function confirmMpesa(Request $request)
+    {
+        $this->validate($request,['code', 'trx_id']);
+        $depo = Deposit::find($request->trx_id);
+        if($depo && $request->code == $depo->trx){
+            $this->userDataUpdate($depo);
+            if($request->ajax()){
+                return response()->json(['message'=>'MPESA transaction code is correct','isConfirmed' => true]);
+            }
+            return back()->withSuccess('MPESA transaction code is correct');
+        }
+        if($request->ajax()){
+            return response()->json(['error'=>'MPESA code is not correct','isConfirmed' => false]);
+        }
+        return back()->withError('MPESA code is not correct');
+    }
+
 
     public function depositMpesa(Request $request)
     {
-        $this->validate($request, ['gateway_id' => 'required', 'trx_id' => 'required']);
-        $depo = Deposit::find($request->trx_id);
-        $gateway = Gateway::find($request->gateway_id);
-        $config = ApiConfig::find(1)->where('name', 'LIKE', "%mpesa%")->first();
+        $trx_id = '';
+        $gateway_id = '';
+
+        if($request->ajax()){
+            $data = json_decode($request->getContent(), true);
+            
+            $trx_id = $data['trx_id'];
+            $gateway_id = $data['gateway_id'];
+        }
+         else {
+            $trx_id = $request->trx_id;
+            $gateway_id = $request->gateway_id;
+        }
+        $depo = Deposit::find($trx_id);
+        $gateway = Gateway::find($gateway_id);
+        $config = ApiConfig::where('name', 'LIKE', "%mpesa%")->first();
         $mpesaApi = new MpesaPayments();
-dd($request);
         if($depo && $config && $gateway){
             $accessToken = $config->access_token;
-            $lastRefresh = $setting->refresh_time;
+            $lastRefresh = $config->refresh_time;
             if (!$accessToken) {
                 $accessToken = $mpesaApi->getDarajaAccessToken($config);
             }
@@ -168,7 +199,13 @@ dd($request);
             
             $mpesaApi->lipanampesastkpush($data, $transaction);
 
+            if($request->ajax()){
+                return response()->json(['message'=>'STK push Mpesa transaction initiated. Check your phone!','initiated' => true]);
+            }
             return back()->withSuccess('STK push Mpesa transaction initiated. Check your phone!');
+        }
+        if($request->ajax()){
+            return response()->json(['error'=>'MPESA api not setup', 'initiated' => false]);
         }
         return back()->withError('MPESA api not setup');
     }

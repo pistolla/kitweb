@@ -50,15 +50,14 @@
     <script>
     
         function handleSubmit(event){
-            
             var form = $(this);
-            form.preventDefault();
             var formData = {
                 "gateway": form.find('#gateway_id').val(),
                 "trx": form.find("#trx_id").val(),
             };
 
             postRequest(formData);
+            event.preventDefault();
         }
 
         function postRequest(data) {
