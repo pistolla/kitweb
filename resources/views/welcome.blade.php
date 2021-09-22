@@ -158,7 +158,7 @@
                                 <img class="card-img-top img-fluid img-responsive mx-auto d-block" src="{{ $feature['photo'] }}" alt="slide 2">
                                 <div class="card-body">
                                     <p class="card-text">{{$feature['name']}}</p>
-                                    <p class="card-text hidden"><small class="text-muted badge badge-info">{{$feature['label']}}</small></p>
+                                    <p class="card-text hidden"><small class="text-white badge badge-info">{{$feature['label']}}</small></p>
                                 </div>
                             </div>
                             
