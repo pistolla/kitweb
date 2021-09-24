@@ -1,3 +1,113 @@
+/* smartphones, iPhone, portrait 480x320 phones */
+@media (min-width:320px)  { 
+    html {
+        font-size: 10px;
+    }
+
+    h1 {
+        font-size: 19px;
+    }
+    h2 {
+        font-size: 18px;
+    }
+    h3 {
+        font-size: 17px;
+    }
+    h4 {
+        font-size: 16px;
+    }
+ }
+ /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */
+@media (min-width:481px)  { 
+    html {
+        font-size: 11px;
+    }
+    h1 {
+        font-size: 21px;
+    }
+    h2 {
+        font-size: 20px;
+    }
+    h3 {
+        font-size: 19px;
+    }
+    h4 {
+        font-size: 18px;
+    }
+ }
+/* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
+@media (min-width:641px)  { 
+    html {
+        font-size: 12px;
+    }
+    h1 {
+        font-size: 22px;
+    }
+    h2 {
+        font-size: 21px;
+    }
+    h3 {
+        font-size: 20px;
+    }
+    h4 {
+        font-size: 19px;
+    }
+ }
+/* tablet, landscape iPad, lo-res laptops ands desktops */
+@media (min-width:961px)  { 
+    html {
+        font-size: 13px;
+    }
+    h1 {
+        font-size: 24px;
+    }
+    h2 {
+        font-size: 23px;
+    }
+    h3 {
+        font-size: 22px;
+    }
+    h4 {
+        font-size: 21px;
+    }
+ }
+/* big landscape tablets, laptops, and desktops */
+@media (min-width:1025px) { 
+    html {
+        font-size: 14px;
+    }
+    h1 {
+        font-size: 26px;
+    }
+    h2 {
+        font-size: 24px;
+    }
+    h3 {
+        font-size: 22px;
+    }
+    h4 {
+        font-size: 20px;
+    }
+ }
+/* hi-res laptops and desktops */
+@media (min-width:1281px) { 
+    html {
+        font-size: 15px;
+    }
+    h1 {
+        font-size: 34px;
+    }
+    h2 {
+        font-size: 32px;
+    }
+    h3 {
+        font-size: 28px;
+    }
+    h4 {
+        font-size: 26px;
+    }
+ }
+
 
 /* Medium Layout: 1200px. */
 
