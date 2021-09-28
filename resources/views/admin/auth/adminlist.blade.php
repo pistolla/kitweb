@@ -68,5 +68,10 @@
                     </table>
                 </div>      
             </div>
+            <div class="row">
+                <div class="col-md-12">
+                {{$admins->links("pagination::bootstrap-4")}}
+                </div>
+            </div>
         </div>
         @endsection

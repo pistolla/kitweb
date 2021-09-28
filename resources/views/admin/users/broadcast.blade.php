@@ -8,8 +8,9 @@
             <div class="form-group">
                 <label>Select Audience</label>
                 <select class="form-control" name="aud">
-                    <option value="1">User</option>
+                    <option value="1">Advertisers</option>
                     <option value="2">Publisher</option>
+                    <option value="2">Members</option>
                 </select>
             </div>
             <div class="form-group">

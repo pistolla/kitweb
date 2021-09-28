@@ -225,8 +225,12 @@ Route::prefix('admin')->group(function() {
     //Register New Admin
     Route::get('/new-admin', 'AdminController@newAdmin')->name('admin.new-admin');
     Route::get('/list-admin', 'AdminController@listAdmin')->name('admin.list-admin');
+    Route::get('/list-member', 'AdminController@listMember')->name('admin.list-members');
     Route::post('/create-admin', 'AdminController@createAdmin')->name('admin.create-admin');
     Route::delete('/delete-admin/{admin}', 'AdminController@deleteAdmin')->name('admin.delete-admin');
+    Route::delete('/delete-member/{member}', 'AdminController@deleteMember')->name('admin.delete-member');
+    Route::delete('/activate-member/{member}', 'AdminController@activateMember')->name('admin.activate-member');
+    Route::delete('/deactivate-member/{member}', 'AdminController@deactivateMember')->name('admin.deactivate-member');
 
      //Ad plans
      Route::get('/plans', 'AdminController@planIndex')->name('admin.plans');

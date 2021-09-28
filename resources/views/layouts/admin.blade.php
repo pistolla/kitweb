@@ -33,7 +33,8 @@
 <ul class="dropdown-menu settings-menu dropdown-menu-right">
 <li><a class="dropdown-item" href="{{route('admin.new-admin')}}"><i class="fa fa-user fa-lg"></i>Create New Admin </a></li>
 <li><a class="dropdown-item" href="{{route('admin.list-admin')}}"><i class="fa fa-users fa-lg"></i>List of Admin </a></li>
-<li><a class="dropdown-item" href="{{route('admin.change-password')}}"><i class="fa fa-cog fa-lg"></i> Change Password </a></li>
+<li><a class="dropdown-item" href="{{route('admin.list-members')}}"><i class="fa fa-users fa-lg"></i>List of Members </a></li>
+<li><a class="dropdown-item" href="{{route('admin.change-password')}}"><i class="fa fa-cog fa-lg"></i> Change my Password </a></li>
 
 <li>
 <a class="dropdown-item" href="#" onclick="event.preventDefault();

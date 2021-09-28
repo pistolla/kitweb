@@ -13,6 +13,7 @@ use App\General;
 use App\Wmethod;
 use App\Withdraw;
 use App\Advertise;
+use App\Member;
 use App\Publisher;
 use App\Subscribe;
 use App\Transaction;
@@ -524,7 +525,7 @@ class AdminController extends Controller
                 send_email($to, $name, $subject, $message);
             }
         }
-        else
+        elseif ($request->aud == 2)
         {
             $publishers = Publisher::where('status', '1')->get();
         
@@ -539,7 +540,23 @@ class AdminController extends Controller
                 send_email($to, $name, $subject, $message);
             }
         
+        }elseif ($request->aud == 3)
+        {
+            $publishers = Member::where('status', '1')->get();
+        
+            foreach ($publishers as $pb)
+            {
+                
+                $to = $pb->email;
+                $name = $pb->name;
+                $subject = $request->subject;
+                $message = $request->emailMessage;
+                
+                send_email($to, $name, $subject, $message);
+            }
+        
         }
+
        
        
         return back()->withSuccess('Broadcast Mail Sent Successfuly');
@@ -616,11 +633,18 @@ class AdminController extends Controller
                 
     public function listAdmin()
     {
-        $admins = Admin::all();
+        $admins = Admin::orderBy('id','DESC')->paginate(10);
         $pt = 'ADMIN LIST';
         return view('admin.auth.adminlist', compact('admins','pt'));
     }
-                
+     
+    public function listMember()
+    {
+        $members = Member::orderBy('id','DESC')->paginate(10);
+        $pt = 'Members LIST';
+        return view('admin.auth.memberlist', compact('members','pt'));
+    }
+
     public function createAdmin(Request $request)
     {
         $this->validate($request,
@@ -652,7 +676,42 @@ class AdminController extends Controller
             return back()->with('success', 'New Admin Removed Successfully');
         }
       
-    }     
+    }
+    
+    public function deleteMember(Request $request, $id)
+    {
+        $member = Member::findOrFail($id);
+        if($member)
+        {
+            $member->delete();
+            return back()->with('success', 'Member Removed Successfully');
+        }
+      
+    }
+
+    public function activateMember(Request $request, $id)
+    {
+        $member = Member::findOrFail($id);
+        if($member)
+        {
+            $member->status = 1;
+            $member->update();
+            return back()->with('success', 'Member Activated Successfully');
+        }
+      
+    }
+
+    public function deactivateMember(Request $request, $id)
+    {
+        $member = Member::findOrFail($id);
+        if($member)
+        {
+            $member->status = 2;
+            $member->update();
+            return back()->with('success', 'Member Deactivated Successfully');
+        }
+      
+    }
     
     
 

@@ -582,8 +582,7 @@ class FrontendController extends Controller
             }
 
             $feature['photo'] = uniqid().'.'.$request->photo->getClientOriginalExtension();
-            $path = '/images/slider/'. $feature['photo'];
-            Image::make($request->photo)->save($path);
+            $request->photo->move(public_path() . '/images/slider/', $feature['photo']);
         }
         $feature['name'] = $request->name;
         $feature['heading'] = $request->heading;
