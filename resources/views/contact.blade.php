@@ -15,9 +15,18 @@
 <section class="contact-page-area margin-bottom-20" id="about">
     <div class="container contact-page-container">
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-12 text-body">
+                <div class="section-title">
+                    <h2 class="title">Who are we</h2>
+                </div>
                 <div class="contact-page-inner">
                     <p>{!! $front->about_company !!}</p>
+                    <address>
+                        {{$front->banner_heading}}<br>
+                        <a href="mailto:{{$front->contact_email}}">{{$front->contact_email}}</a><br>
+                        <a href="tel:{{$front->contact_number}}">{{$front->contact_number}}</a><br>
+                        {{$front->contact_address}}<br>
+                    </address>
                 </div><!-- //.contact page inner -->
             </div>
         </div>

@@ -124,7 +124,7 @@
             </div>
             <div class="row">
                 @foreach ($sliders as $key => $item)
-                <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="{{$key+1}}s">
+                <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="{{$key+0.5}}s">
                     <div class="single-service-item">
                         <div class="content">
                             <div class="text-center p-3">
@@ -154,14 +154,13 @@
                     @foreach ($features as $index => $feature)
                     <div class="carousel-item col-md-4 py-1 {{ $index == 0 ? 'active' : '' }}">
                         <a href="{{ $feature['url'] }}">
-                            <div class="card border-0" style="height: 430px">
-                                <img class="card-img-top img-fluid img-responsive mx-auto d-block" src="{{ $feature['photo'] }}" alt="slide 2">
-                                <div class="card-body">
-                                    <p class="card-text">{{$feature['name']}}</p>
+                            <div class="card border-0 colorize" style="height: 400px">
+                                <img class="card-img-top mx-auto d-block" height="300" src="{{ $feature['photo'] }}" alt="slide 2">
+                                <div class="card-body p-2 ">
+                                    <h4 class="h4 font-weight-bold">{{$feature['name']}}</h4>
                                     <p class="card-text hidden"><small class="text-white badge badge-info">{{$feature['label']}}</small></p>
                                 </div>
                             </div>
-                            
                         </a>
                     </div>
                     @endforeach

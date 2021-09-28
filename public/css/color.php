@@ -120,3 +120,12 @@ color: <?php echo $color; ?>;
 	background-color: <?php echo $color; ?>;
 
 }
+
+.colorize:hover {
+	background-color: <?php echo $color; ?>;
+	-webkit-transition: background-color .2s ease-in-out;
+    -moz-transition: background-color .2s ease-in-out;
+    -ms-transition: background-color .2s ease-in-out;
+    -o-transition: background-color .2s ease-in-out;
+    transition: background-color .2s ease-in-out
+}

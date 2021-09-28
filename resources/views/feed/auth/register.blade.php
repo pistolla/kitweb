@@ -4,18 +4,18 @@
 <section class="contact-page-area full-page-background" id="Contact" style="min-height: 100vh; background: url('{{ url('/images/logo/logo-background.jpg') }}') no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">
     <div class="container">
         <div class="row wow fadeInDown justify-content-center" data-wow-delay="2s" style="width:100%; margin: auto;">
-            <div class="col-lg-6 col-sm-12 col-xs-12 col-md-6">
+            <div class="col-lg-10 col-sm-12 col-xs-12 col-md-10">
                 <div class="logo text-center">
                     <a href="{{ url('/')}}"><img src="{{asset('/images/logo/logo.png')}}" alt="logo" class="logo-default" style="max-width: 160px;"></a>
                   </div>
                     <div class="card border-0">
-                        <h2 class="card-title text-center" style="padding: 60px;"> Membership form. Register now for free</h2>
+                        <h2 class="card-title text-center" style="padding: 10px;"> Membership form. Register now for free</h2>
                         <div class="card-body">
                         @if($gnl->reg==1)
                             <form class="contact-form" method="POST" action="{{ route('feed.registerpost') }}">
                             @csrf
                             <div class="row">
-                                <div class="col-sm-12 col-md-4 text-center border-right px-3">
+                                <div class="col-sm-12 col-md-4 text-center border-right px-3 mb-5">
                                     <div class="header h6 mb-5">
                                         Register using your Social media account
                                     </div>
@@ -27,7 +27,8 @@
                                         <span class="fab fa-google"></span>
                                         Register with Google
                                     </a>
-
+                                    <br><br>
+                                    <div><small>By creating this account, you agree to our <a href="{{ route('user.privacy') }}">Privacy Policy</a> & <a href="{{ route('user.cookie') }}">Cookie Policy</a>.</small></div>
                                 </div>
                                 <div class="col-sm-12 col-md-8 px-4">
                                 @include('layouts.error')

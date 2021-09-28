@@ -51,7 +51,7 @@
                   @csrf
                   @method('DELETE')
                   <input type="hidden" name="blog" value="{{$post->id}}">
-                  <button class="comment-dislike btn"><i class="fa fa-thumbs-up" aria-hidden="true"></i>{{ $post->likes->count()}}</button>
+                  <button class="comment-dislike btn"><i class="fa fa-thumbs-up" aria-hidden="true" style="color: blue;"></i>{{ $post->likes->count()}}</button>
                 </form>
                 @endif
                 @endif
@@ -113,7 +113,7 @@
                     @csrf
                     @method('DELETE')
                     <input type="hidden" name="comment" value="{{$comment->id}}">
-                    <button class="comment-dislike"><i class="fa fa-thumbs-down" aria-hidden="true"></i>{{ $comment->dislikes->count()}}</button>
+                    <button class="comment-dislike"><i class="fa fa-thumbs-down" aria-hidden="true" ></i>{{ $comment->dislikes->count()}}</button>
                   </form>
                   @endif
 

@@ -51,7 +51,7 @@
                             <td>
                                 <div class="btn-group">
                                     <button class="btn btn-info btn-sm updateButton" data-item="{{$slide->id}}" data-heading="{{$slide->heading}}" data-details="{{$slide->details}}"
-                                        data-photo="{{asset('/images/slider')}}/{{$slide->photo}}" data-toggle="modal" data-target="#viewModal"> <i class="fa fa-edit"></i> Edit</button>
+                                        data-photo="{{asset('/images/slider')}}/{{$slide->icon}}" data-toggle="modal" data-target="#viewModal"> <i class="fa fa-edit"></i> Edit</button>
                                         <button  class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delModal{{$slide->id}}"><i class="fa fa-trash"></i> Delete</button>                            
                                     </div>
                                 </td>
@@ -188,7 +188,7 @@
                             $('#heading').val($(this).data('heading'));
                             $('#details').val($(this).data('details'));
                             let id = $(this).data('item');
-                            let icon = $(this).data('icon');
+                            let icon = $(this).data('photo');
                             let route = "{{url('/')}}"+'/admin/service-update/'+ id;
                             $('#updForm').attr('action',route);
                             $('#icon').attr('src',icon);

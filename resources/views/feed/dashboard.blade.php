@@ -48,9 +48,7 @@
                     <img src="{{ asset('/images/logo/icon.png') }}" class="img-fluid">
                   </span>
                   <span class="commenter-name">
-                    <a href="{{ route('feed.fetch', $post->slug) }}">{{ $post->heading }}</a>
-                  </span>
-                  <span class="comment-time pull-right">
+                    <a href="{{ route('feed.fetch', $post->slug) }}" class="h4">{{ $post->heading }}</a><br>
                     <small>posted by</small> {{$post->member->username }} <small>{{ $post->created_at->diffForHumans() }} </small>
                   </span>
                   @if (isset($post->image_url))
@@ -165,9 +163,7 @@
                     <img src="{{ asset('/images/logo/icon.png') }}" class="img-fluid">
                   </span>
                   <span class="commenter-name">
-                    <a href="{{ route('feed.fetch', $activity->slug) }}">{{ $activity->heading }}</a>
-                  </span>
-                  <span class="comment-time pull-right">
+                    <a href="{{ route('feed.fetch', $activity->slug) }}" class="h4">{{ $activity->heading }}</a><br>
                     <small>posted by</small> {{$activity->member->username }} <small>{{$activity->created_at->diffForHumans() }}</small>
                   </span>
                   @if (isset($activity->image_url))

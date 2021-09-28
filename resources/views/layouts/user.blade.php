@@ -154,7 +154,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <span class="copytext"> {{$gnl->title}} &copy; {{date('Y')}} All Rights Reserved.</span>
+                    <span class="copytext"> &copy;{{ date('Y')}} {{ $gnl->title }}. All Rights Reserved.</span>
+
+                    <ul class="list-inline m-1">
+                        <li class="list-inline-item px-2"><a href="{{ url('/cookie-policy')}}">Cookie Policy</a></li>
+                        <li class="list-inline-item px-2 "><a href="{{ url('/privacy-policy')}}">Privacy policy</a></li>
+                        <li class="list-inline-item px-2"><a href="{{ url('/term-of-service')}}">Term of Service</a></li>
+                        <li class="list-inline-item px-2"><a href="{{ url('/refund-policy')}}">Refund policy</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
