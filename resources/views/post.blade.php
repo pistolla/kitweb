@@ -179,11 +179,10 @@
           </div>
           <div class="widget widget_tag">
             <h3 class="sidebar_title">Popular Tags</h3>
-            <ul class="list-unstyled">
               @foreach (explode(',', $post->tags) as $tag)
-              <li><a href="#" class="tag">{{$tag}}</a></li>
+              <span class="badge badge-pill badge-info"><a href="{{ route('user.blog') }}" class="tag border-0">{{$tag}}</a></span>
               @endforeach
-            </ul>
+            
           </div>
           <div class="widget widget_archive">
             <h3 class="sidebar_title">Archive Posts</h3>

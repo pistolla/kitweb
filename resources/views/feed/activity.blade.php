@@ -195,22 +195,31 @@
             </form>
           </div>
           <div class="widget widget_categorie">
-            <ul class="list-unstyled">
-              <li class="mb-1 link h4"><a href="#"><i class="fa fa-check"></i>Trending</a></li>
-              <li class="mb-1 link h4"><a href="#">Most recent</a></li>
-              <li class="mb-1 link h4"><a href="#">Related</a></li>
-              <li class="mt-2 link h4">
+            <span class="badge badge-pill badge-info p-2 link h4"><a href="{{ route('feed.dashboard') }}"><i class="fa fa-check"></i>Trending</a></span>
+              <span class="badge badge-pill badge-info p-2 link h4"><a href="{{ route('feed.dashboard') }}">Most recent</a></span>
+              <span class="badge badge-pill badge-info p-2 link h4"><a href="{{ route('feed.dashboard') }}">Related</a></span>
+              
                 @if(!Auth::guard('feed')->check())
                 <span class="pull-right ml-auto">
                   <a class="btn btn-info" href="{{route('feed.login')}}">Login as member to post <i class="fa fa-lock"></i></a>
                 </span>
                 @endif
-              </li>
-
-            </ul>
+            
           </div>
           <div class="widget">
             <div class='MainAdverTiseMentDiv' data-publisher="1" data-adsize="728x90"></div>
+          </div>
+          <div class="widget widget_categorie">
+            @foreach ($suggested as $new)
+            <div class="media post_item">
+              <div class="media-body">
+                <a href="{{route('feed.fetch', $new->slug)}}">
+                  <h5>{{substr($new->heading,0,30)}}...</h5>
+                </a>
+                <div class="p_date">last update: {{$new->created_at->diffForHumans()}}</div>
+              </div>
+            </div>
+            @endforeach
           </div>
         </div>
       </div>
@@ -238,6 +247,7 @@
   </div>
 </section>
 @section("page_scripts")
+<script type="text/javascript" src="{{asset('/js/jquery-3.2.1.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('/js/forum.js')}}"></script>
 <script type="text/javascript">
   (function($) {
@@ -261,3 +271,4 @@
       })(jQuery);
 </script>
 @endsection
+@stop

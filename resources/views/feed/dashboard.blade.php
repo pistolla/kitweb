@@ -263,14 +263,24 @@
             </form>
           </div>
           <div class="widget widget_categorie">
-            <ul class="list-unstyled">
-              <li class="mb-1 link h4"><a href="#"><i class="far fa-caret-right"></i>Trending</a></li>
-              <li class="mb-1 link h4"><a href="#"><i class="far fa-caret-right"></i>Most recent</a></li>
-              <li class="mb-1 link h4"><a href="#"><i class="far fa-caret-right"></i>Related</a></li>
-            </ul>
+            <span class="badge badge-pill badge-info p-2 link h4"><a href="{{ route('feed.dashboard') }}"><i class="fa fa-check"></i>Trending</a></span>
+            <span class="badge badge-pill badge-info p-2 link h4"><a href="{{ route('feed.dashboard') }}">Most recent</a></span>
+            <span class="badge badge-pill badge-info p-2 link h4"><a href="{{ route('feed.dashboard') }}">Related</a></span>
           </div>
           <div class="widget">
             <div class='MainAdverTiseMentDiv' data-publisher="1" data-adsize="728x90"></div>
+          </div>
+          <div class="widget">
+          @foreach ($suggested as $new)
+            <div class="media post_item">
+              <div class="media-body">
+                <a href="{{route('feed.fetch', $new->slug)}}">
+                  <h5>{{substr($new->heading,0,30)}}...</h5>
+                </a>
+                <div class="p_date">last update: {{$new->created_at->diffForHumans()}}</div>
+              </div>
+            </div>
+            @endforeach
           </div>
         </div>
       </div>
