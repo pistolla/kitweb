@@ -43,6 +43,7 @@ class VisitorController extends Controller
         $posts = Blog::orderBy('id','DESC')->select('id', 'photo', 'heading','slug')->take(3)->get();
         $activities = Activity::orderBy('id','DESC')->select('id', 'image_url', 'heading','slug')->whereNotNull('image_url')->take(3)->get();
         $fts = Feature::all();
+        $fts->unique('name');
         $features = [];
         foreach ($fts as $ft){
             $item['name'] = $ft->name;

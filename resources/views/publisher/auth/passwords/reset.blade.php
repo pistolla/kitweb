@@ -1,7 +1,7 @@
 @extends('layouts.fullpage')
 
 @section('content')
-<section class="contact-page-area" style="min-height: 100vh; background: no-repeat center/150% url('{{ url('/images/logo/logo-background.jpg') }}')">
+<section class="contact-page-area" style="min-height: 100vh; background: url('{{ url('/images/logo/logo-background.jpg') }}') no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">
     <div class="container">
         <div class="row wow fadeInDown justify-content-center" data-wow-delay="2s" style="width:100%; margin: auto;">
             <div class="col-lg-6 col-md-6 col-sm-12">
@@ -9,7 +9,7 @@
                         <a href="{{ url('/')}}"><img src="{{asset('/images/logo/logo.png')}}" alt="logo" class="logo-default" style="max-width: 160px;"></a>
                     </div>
                     <div class="card mt-5 border-0">
-                                                 <h2 class="card-title text-center" style="padding: 60px;"> Reser Password Now</h2>
+                                                 <h2 class="card-title text-center" style="padding: 10px;"> Reser Password Now</h2>
                         <div class="card-body">
                             <form class="contact-form" method="POST" action="{{ route('pub.password.resetpassword') }}">
                                 @csrf
