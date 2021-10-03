@@ -55,7 +55,7 @@ class PaymentController extends Controller
     {
         $postData = file_get_contents('php://input');
         //perform your processing here, e.g. log to file....
-        $file = fopen("log.txt", "w"); //url fopen should be allowed for this to occur
+        $file = fopen(storage_path("logs/log.txt"), "w"); //url fopen should be allowed for this to occur
         if (fwrite($file, $postData) === FALSE) {
             fwrite("Error: no data written");
         }
@@ -108,7 +108,7 @@ class PaymentController extends Controller
             $transaction = json_decode($request, true);
 
             if (isset($transaction)) {
-                $file = fopen("log.txt", "w");
+                $file = fopen(storage_path("logs/log.txt"), "w");
                 if (fwrite($file, $transaction) === FALSE) {
                     fwrite("Error: no data written");
                 }
@@ -154,16 +154,16 @@ class PaymentController extends Controller
             }
 
             $transaction['BusinessShortCode'] = $config->business_number;
-            $transaction['Timestamp'] = date('yyyymmddhhiiss');
+            $transaction['Timestamp'] = date('YmdHis');
             $transaction['Password'] = base64_encode($config->business_number . $config->pass_key . $transaction['Timestamp']);
             $transaction['TransactionType'] = 'CustomerPayBillOnline';
-            $transaction['Amount'] = $depo->amount;
-            $transaction['PartyA'] = $depo->user->phone_number;
-            $transaction['PartyB'] = $config->account_no;
-            $transaction['PhoneNumber'] = $depo->user->phone_number;
-            $transaction['CallBackURL'] = url('/payment/callback?id=' . $depo->id);
-            $transaction['AccountReference'] = 'account';
+            $transaction['PartyA'] = $depo->user->mobile;
+            $transaction['PartyB'] = $config->business_number;
+            $transaction['PhoneNumber'] = $depo->user->mobile;
+            $transaction['CallBackURL'] = url('/payment/callback/' . $depo->id);
+            $transaction['AccountReference'] = 'test';
             $transaction['TransactionDesc'] = 'test';
+            $transaction['Amount'] = "1";
 
             $mp = new MpesaPayment();
             $mp->create($transaction);

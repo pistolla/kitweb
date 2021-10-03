@@ -30,6 +30,7 @@ Route::post('/ipncoinpaydoge', 'PaymentController@ipnCoinPayDoge')->name('ipn.co
 Route::post('/ipncoinpayltc', 'PaymentController@ipnCoinPayLtc')->name('ipn.coinPay.ltc');
 Route::post('/ipncoin', 'PaymentController@ipnCoin')->name('ipn.coinpay');
 Route::post('/ipncoingate', 'PaymentController@ipnCoinGate')->name('ipn.coingate');
+Route::post('/payment/callback/{id}', 'PaymentController@callback')->name('ipn.callback');
 //Payment IPN
 
 //Cron To Validate Ad

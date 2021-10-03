@@ -1,6 +1,8 @@
 <?php
 namespace App\Http\Lib;
 
+use Illuminate\Support\Facades\Log;
+
 class MpesaPayments 
 {
     const Consumer_Key = 'T17ylo4YGMhQWMxG56kYnAZctAR3AVfn';
@@ -10,6 +12,7 @@ class MpesaPayments
 
     public function getCredentials($path, $password)
     {
+        Log::info("getCredentials " . $path . " - ". $password);
         $publicKey = isset($path)?$path:uniqid();
         $plaintext = isset($password)?$password:uniqid();
 
@@ -20,6 +23,7 @@ class MpesaPayments
 
     public function getDarajaAccessToken($apiConfig)
     {
+        Log::info("getDarajaAccessToken " . $apiConfig);
         $url = "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials";
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -34,9 +38,9 @@ class MpesaPayments
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $return = curl_exec($ch);
         curl_close($ch);
-
+        Log::info("getDarajaAccessToken " . $return);
         $response = json_decode($return, true);
-
+        
         if (isset($response['access_token'])) {
             $apiConfig->access_token = $response['access_token'];
             $apiConfig->refresh_time = date('Y-m-d H:i:s', time() + $response['expires_in']);
@@ -118,6 +122,7 @@ class MpesaPayments
     public function lipanampesastkpush($data, $transaction)
     {
         $url = 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest';
+        Log::info("lipanampesastkpush " . print_r($data,true));
 
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
@@ -130,7 +135,7 @@ class MpesaPayments
             'Password' => $data["Password"],
             'Timestamp' => $data["Timestamp"],
             'TransactionType' => 'CustomerPayBillOnline',
-            'Amount"' => $data["Amount"],
+            'Amount' => $data["Amount"],
             'PartyA' => $data["PartyA"],
             'PartyB' => $data["PartyB"],
             'PhoneNumber' => $data["PhoneNumber"],
@@ -140,14 +145,17 @@ class MpesaPayments
         );
 
         $data_string = json_encode($curl_post_data);
+        Log::info("lipanampesastkpush request " . $data_string);
 
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_POST, true);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data_string);
 
         $curl_response = curl_exec($curl);
+        Log::info("lipanampesastkpush response " . $curl_response);
         $response = json_decode($curl_response, true);
         if (isset($response['ResponseCode'])) {
+             Log::info("lipanampesastkpush updated ");
             $transaction->ResponseCode = $response['ResponseCode'];
             $transaction->ResponseDescription = $response['ResponseDescription'];
             $transaction->MerchantRequestID = $response['MerchantRequestID'];
@@ -158,9 +166,10 @@ class MpesaPayments
 
     public function callback()
     {
+        Log::info("callback() write to file ");
         $postData = file_get_contents('php://input');
         //perform your processing here, e.g. log to file....
-        $file = fopen("log.txt", "w"); //url fopen should be allowed for this to occur
+        $file = fopen(storage_path("logs/log.txt"), "w"); //url fopen should be allowed for this to occur
         if (fwrite($file, $postData) === FALSE) {
             fwrite("Error: no data written");
         }
@@ -174,9 +183,10 @@ class MpesaPayments
 
     public function authenticate()
     {
+        Log::info("authenticate() write to file ");
         $postData = file_get_contents('php://input');
         //perform your processing here, e.g. log to file....
-        $file = fopen("log.txt", "w"); //url fopen should be allowed for this to occur
+        $file = fopen(storage_path("logs/log.txt"), "w"); //url fopen should be allowed for this to occur
         if (fwrite($file, $postData) === FALSE) {
             fwrite("Error: no data written");
         }
