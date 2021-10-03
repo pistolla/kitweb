@@ -27,7 +27,7 @@
                             @foreach($pending as $key => $value)
                             <div class="col-md-4 mt-2">
                                 <div class="card">
-                                <form  class="mobile-payment" method="POST" action="{{ route('deposit.mpesa') }}">
+                                <form  class="mobile-payment" method="POST" action="{{ route('deposit.complete') }}">
                                     @csrf
                                     <input id="gateway_id" type="hidden" name="gateway" value="{{$value->gateway_id}}"/>
                                     <input id="trx_id" type="hidden" name="trx" value="{{$value->id}}"/>
@@ -45,9 +45,16 @@
                                         </div>
                                     </div>
                                     @if ($value->status == 0)
-                                        <button type="submit" class="submit-btn" onclick="handleSubmit({{$value->id}}, {{$value->gateway_id}})" style="width:100%;">
-                                            PAY NOW
-                                        </button>
+                                        @if ($value->gateway_id == 101)
+                                            <button type="submit" class="submit-btn" onclick="handleSubmit({{$value->id}}, {{$value->gateway_id}})" style="width:100%;">
+                                                PAY NOW
+                                            </button>
+                                        @else
+                                            <button type="submit" class="submit-btn" style="width:100%;">
+                                                PAY NOW
+                                            </button>
+                                        @endif
+                                        
                                     </form>
                                         <form id="delete-form" action="{{ route('cancel.deposit', $value->id) }}" method="POST">
                                             @csrf
@@ -223,9 +230,8 @@
                             },
                             body: JSON.stringify(formData)
                         }).then(response => {
-                            console.log(response);
-                            if (!response.initiated) {
-                                throw new Error(response.message)
+                            if (!response.ok) {
+                                throw new Error(response.statusText)
                             }
                             return response.json()
                         })
@@ -242,7 +248,7 @@
             }).then((result) => {
                 console.log(result);
                 Swal.fire({
-                    title: 'Please enter MPESA transaction code',
+                    title: 'Please, CHECK your phone, complete transaction and enter MPESA transaction code',
                     input: 'text',
                     inputAttributes: {
                         autocapitalize: 'on'
@@ -261,7 +267,7 @@
                             body: JSON.stringify({"code": code, "trx_id": trx, "_token": $('meta[name="csrf-token"]').attr('content')})
                         }).then(response => {
                             if(!response.ok){
-                                throw new Error(response.responseText)
+                                throw new Error(response.statusText)
                             }
                             return response.json()
                         })
@@ -279,28 +285,6 @@
                     }
                 })
             });
-        }
-
-        function postRequest(data) {
-            $.ajax({
-                url: "/home/deposit-mpesa",
-                type: "POST",
-                data: data,
-                headers: {
-                    'X-Requested-With': 'XMLHttpRequest',
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                success: postSuccess,
-                error: postError
-            });
-        }
-
-        function postSuccess(data, status, jqXhr) {
-            
-        }
-
-        function postError(data, status, statusMessage) {
-            
         }
     </script>
 @endsection

@@ -62,105 +62,82 @@
     });
 </script>
 <script>
-        function handleSubmit(trx, gateway,event){
-            var formData = {
-                "gateway": gateway,
-                "trx": trx,
-                '_token': $('meta[name="csrf-token"]').attr('content')
-            };
-            Swal.fire({
-                title: 'Please confirm you want to complete payment?',
-                showCancelButton: true,
-                confirmButtonText: 'Confirm',
-                showLoaderOnConfirm: true,
-                preConfirm: () => {
-                    return  fetch('/home/deposit-mpesa', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json;charset=utf-8',
-                                'Accept': 'application/json',
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                            },
-                            body: JSON.stringify(formData)
-                        }).then(response => {
-                            console.log(response);
-                            if (!response.initiated) {
-                                throw new Error(response.message)
-                            }
-                            return response.json()
+    function handleSubmit(trx, gateway,event){
+        var formData = {
+            "gateway": gateway,
+            "trx": trx,
+            '_token': $('meta[name="csrf-token"]').attr('content')
+        };
+        Swal.fire({
+            title: 'Please confirm you want to complete payment?',
+            showCancelButton: true,
+            confirmButtonText: 'Confirm',
+            showLoaderOnConfirm: true,
+            preConfirm: () => {
+                return  fetch('/home/deposit-mpesa', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json;charset=utf-8',
+                            'Accept': 'application/json',
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        body: JSON.stringify(formData)
+                    }).then(response => {
+                        if (!response.ok) {
+                            throw new Error(response.statusText)
+                        }
+                        return response.json()
+                    })
+                    .catch(error => {
+                        Swal.fire({
+                            title: 'Payment failed!',
+                            text: error.message,
+                            icon: 'error',
+                            confirmButtonText: 'Ok'
+                            });
                         })
-                        .catch(error => {
-                            Swal.fire({
-                                title: 'Payment failed!',
-                                text: error.message,
-                                icon: 'error',
-                                confirmButtonText: 'Ok'
-                                });
-                            })
+            },
+            allowOutsideClick: () => !Swal.isLoading()
+        }).then((result) => {
+            console.log(result);
+            Swal.fire({
+                title: 'Please, CHECK your phone, complete transaction and enter MPESA transaction code',
+                input: 'text',
+                inputAttributes: {
+                    autocapitalize: 'on'
+                },
+                showCancelButton: false,
+                confirmButtonText: 'Send',
+                showLoaderOnConfirm: true,
+                preConfirm: (code) => {
+                    return fetch('/home/mpesa-confirm', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json;charset=utf-8',
+                            'Accept': 'application/json',
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        body: JSON.stringify({"code": code, "trx_id": trx, "_token": $('meta[name="csrf-token"]').attr('content')})
+                    }).then(response => {
+                        if(!response.ok){
+                            throw new Error(response.statusText)
+                        }
+                        return response.json()
+                    })
+                    .catch(error => {
+                        Swal.showValidationMessage(`Request failed: ${error}`)
+                    })
                 },
                 allowOutsideClick: () => !Swal.isLoading()
             }).then((result) => {
-                console.log(result);
-                Swal.fire({
-                    title: 'Please enter MPESA transaction code',
-                    input: 'text',
-                    inputAttributes: {
-                        autocapitalize: 'on'
-                    },
-                    showCancelButton: false,
-                    confirmButtonText: 'Send',
-                    showLoaderOnConfirm: true,
-                    preConfirm: (code) => {
-                        return fetch('/home/mpesa-confirm', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json;charset=utf-8',
-                                'Accept': 'application/json',
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                            },
-                            body: JSON.stringify({"code": code, "trx_id": trx, "_token": $('meta[name="csrf-token"]').attr('content')})
-                        }).then(response => {
-                            if(!response.ok){
-                                throw new Error(response.responseText)
-                            }
-                            return response.json()
-                        })
-                        .catch(error => {
-                            Swal.showValidationMessage(`Request failed: ${error}`)
-                        })
-                    },
-                    allowOutsideClick: () => !Swal.isLoading()
-                }).then((result) => {
-                    if(result.isConfirmed) {
-                        Swal.fire({
-                            title: 'Code confirmed',
-                            icon: 'success'
-                        })
-                    }
-                })
-            });
-        }
-
-        function postRequest(data) {
-            $.ajax({
-                url: "/home/deposit-mpesa",
-                type: "POST",
-                data: data,
-                headers: {
-                    'X-Requested-With': 'XMLHttpRequest',
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                success: postSuccess,
-                error: postError
-            });
-        }
-
-        function postSuccess(data, status, jqXhr) {
-            
-        }
-
-        function postError(data, status, statusMessage) {
-            
-        }
-    </script>
+                if(result.isConfirmed) {
+                    Swal.fire({
+                        title: 'Code confirmed',
+                        icon: 'success'
+                    })
+                }
+            })
+        });
+    }
+</script>
 @endsection

@@ -107,6 +107,16 @@ class HomeController extends Controller
         return view('user.payment.preview',compact('pt','data'));
     }
 
+    public function depositComplete(Request $request)
+    {
+        $this->validate($request,['trx' => 'required']);
+        
+        $data = Deposit::where('status',0)->where('trx',$request->trx)->first();
+        $pt = 'Deposit Preview';
+        
+        return view('user.payment.preview',compact('pt','data'));
+    }
+
     public function plans()
     {
         $plans = Plan::where('status',1)->get();

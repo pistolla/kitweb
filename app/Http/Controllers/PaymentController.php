@@ -20,11 +20,12 @@ use App\Http\Lib\coinPayments;
 use App\Http\Lib\BlockIo;
 use App\Http\Lib\CoinPaymentHosted;
 use App\Http\Lib\MpesaPayments;
+use Illuminate\Support\Facades\Log;
 
 class PaymentController extends Controller
 {
     
-    public function userDataUpdate($data)
+    public function userDataUpdate($data, $trx = null)
     { 
         if($data->status==0)
         {
@@ -40,7 +41,7 @@ class PaymentController extends Controller
             $tlog['balance'] = $user->balance;
             $tlog['type'] = 1;
             $tlog['details'] = 'Deposit Via '.$data->gateway->name;
-            $tlog['trxid'] = uniqid(16);
+            $tlog['trxid'] = isset($trx)? $trx: uniqid(16);
             Transaction::create($tlog);
             
             $msg =  'Deposit Payment Successful';
@@ -57,9 +58,9 @@ class PaymentController extends Controller
         //perform your processing here, e.g. log to file....
         $file = fopen(storage_path("logs/log.txt"), "w"); //url fopen should be allowed for this to occur
         if (fwrite($file, $postData) === FALSE) {
-            fwrite("Error: no data written");
+            Log::error("Error: no data written");
         }
-        fwrite("\r\n");
+        fwrite($file,"\r\n");
         fclose($file);
 
         echo '{"ResultCode": 0, "ResultDesc": "The service was accepted successfully", "ThirdPartyTransID": "1234567890"}';
@@ -110,10 +111,10 @@ class PaymentController extends Controller
             if (isset($transaction)) {
                 $file = fopen(storage_path("logs/log.txt"), "w");
                 if (fwrite($file, $transaction) === FALSE) {
-                    fwrite("Error: no data written");
+                    Log::error("Error: no data written");
                 }
 
-                fwrite("\r\n");
+                fwrite($file,"\r\n");
                 fclose($file);
             }
 
