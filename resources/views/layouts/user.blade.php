@@ -109,7 +109,7 @@
                         <a class="nav-link" href="{{route('user.blog')}}">BLOG</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('feed.dashboard') }}">COMMUNITY</a>
+                        <a class="nav-link" href="{{ route('feed.dashboard') }}">CLASSIFIED ADS</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('contact')}}">ABOUT</a>

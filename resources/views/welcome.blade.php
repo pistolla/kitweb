@@ -56,7 +56,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link font-weight-bold" href="{{ route('feed.dashboard') }}">COMMUNITY</a>
+                        <a class="nav-link font-weight-bold" href="{{ route('feed.dashboard') }}">CLASSIFIED ADS</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link font-weight-bold" href="{{route('contact')}}">ABOUT US</a>

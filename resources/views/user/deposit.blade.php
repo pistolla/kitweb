@@ -27,7 +27,11 @@
                             @foreach($pending as $key => $value)
                             <div class="col-md-4 mt-2">
                                 <div class="card">
+                                    @if ($value->gateway_id == 101) 
                                 <form  class="mobile-payment" method="POST" action="{{ route('deposit.complete') }}">
+                                    @else
+                                    <form method="POST" action="{{ route('deposit.complete') }}">
+                                    @endif
                                     @csrf
                                     <input id="gateway_id" type="hidden" name="gateway" value="{{$value->gateway_id}}"/>
                                     <input id="trx_id" type="hidden" name="trx" value="{{$value->id}}"/>

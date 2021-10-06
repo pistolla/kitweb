@@ -119,7 +119,7 @@ class MpesaPayments
     }
     
 
-    public function lipanampesastkpush($data, $transaction)
+    public function lipanampesastkpush($data, $transaction, $deposit)
     {
         $url = 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest';
         Log::info("lipanampesastkpush " . print_r($data,true));
@@ -156,11 +156,17 @@ class MpesaPayments
         $response = json_decode($curl_response, true);
         if (isset($response['ResponseCode'])) {
              Log::info("lipanampesastkpush updated ");
-            $transaction->ResponseCode = $response['ResponseCode'];
-            $transaction->ResponseDescription = $response['ResponseDescription'];
-            $transaction->MerchantRequestID = $response['MerchantRequestID'];
-            $transaction->CheckoutRequestID = $response['CheckoutRequestID'];
-            $transaction->update();
+             $transaction['MerchantRequestID'] = $response['MerchantRequestID'];
+             $transaction['CheckoutRequestID'] = $response['CheckoutRequestID'];
+             $transaction['ResponseCode'] = $response['ResponseCode'];
+             $transaction['ResponseDescription'] = $response['ResponseDescription'];
+             $transaction->update();
+            if($response['ResponseCode'] == 0)
+            {
+                $deposit['status'] = 2;
+                $deposit->update();
+            }
+            
         }
     }
 

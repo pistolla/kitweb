@@ -51,20 +51,51 @@ class PaymentController extends Controller
         }
         
     }
-
-    public function callback($id)
+   
+    public function callback(Request $request, $id)
     {
-        $postData = file_get_contents('php://input');
-        //perform your processing here, e.g. log to file....
-        $file = fopen(storage_path("logs/log.txt"), "w"); //url fopen should be allowed for this to occur
-        if (fwrite($file, $postData) === FALSE) {
-            Log::error("Error: no data written");
+        Log::info("callback " . $id);
+        $content = $request->getContent();
+        Log::info($content);
+        if(isset($content) && !empty($content))
+        {
+            $transaction = Deposit::find($id);
+            if($transaction){
+                $mpayment = MpesaPayment::find($transaction->trx);
+                if($mpayment){
+                    $data = json_decode($content, true);
+                    if(!empty($data)){
+                        $Body = $data['Body'];
+                        $stkCallback = $Body['stkCallback'];
+                        $mpayment['ResultCode'] = $stkCallback['ResultCode'];
+                        $mpayment['ResultDesc'] = $stkCallback['ResultDesc'];
+                        $mpayment['TransactionDate'] = $stkCallback['TransactionDate'];
+                        if($stkCallback['ResultCode'] == 0)
+                        {
+                            $CallbackMetadata = $stkCallback['CallbackMetadata'];
+                            if(isset($CallbackMetadata['Item']) && !empty($CallbackMetadata['Item'])){
+                                $items = $CallbackMetadata['Item'];
+                                if(is_array($items)){
+                                    foreach ($items as $item)
+                                    {
+                                        if($item['Name'] == 'MpesaReceiptNumber')
+                                        {
+                                            $mpayment['MpesaReceiptNumber'] = $item['Value'];
+                                        }
+                                        if($item['Name'] == 'TransactionDate')
+                                        {
+                                            $mpayment['TransactionDate'] = $item['Value'];
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        $mpayment->update();
+                    }
+                }
+            }
         }
-        fwrite($file,"\r\n");
-        fclose($file);
-
-        echo '{"ResultCode": 0, "ResultDesc": "The service was accepted successfully", "ThirdPartyTransID": "1234567890"}';
-
+       
     }
 
     public function resultcheck()
@@ -127,7 +158,8 @@ class PaymentController extends Controller
     {
         $this->validate($request,['code', 'trx_id']);
         $depo = Deposit::find($request->trx_id);
-        if($depo && $request->code == $depo->trx){
+        $transaction = MpesaPayment::find($depo->trx);
+        if($depo && $transaction && $request->code == $transaction->MpesaReceiptNumber){
             $this->userDataUpdate($depo);
             return response()->json(['message'=>'MPESA transaction code is correct','isConfirmed' => true]);
         }
@@ -171,7 +203,7 @@ class PaymentController extends Controller
 
             $transaction['token'] = $accessToken;
             
-            $mpesaApi->lipanampesastkpush($transaction, $mp);
+            $mpesaApi->lipanampesastkpush($transaction, $mp, $depo);
 
             return response()->json(['message'=>'STK push Mpesa transaction initiated. Check your phone!','initiated' => true]);
         }
@@ -185,11 +217,11 @@ class PaymentController extends Controller
         return back()->withSuccess('Pending transaction Delete Successfuly');
     }
     
-    public function depositConfirm()
+    public function depositConfirm(Request $request)
     {
         $gnl = General::first();
         
-        $track = Session::get('Track');
+        $track = $request->trx;
         
         $data = Deposit::where('trx', $track)->orderBy('id', 'DESC')->first();
         
