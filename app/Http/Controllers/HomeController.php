@@ -264,7 +264,7 @@ class HomeController extends Controller
         $advertise['status'] =  $req->status;
         $advertise['click'] = $req->click;
         $advertise['total'] = $req->amount;
-        $advertise['hashid'] = str_random(24);
+        $advertise['hashid'] = uniqid(24);
         $advertise->update();
 
         return back()->with('success', 'Advertisement Updated');

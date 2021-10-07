@@ -270,6 +270,10 @@ CREATE TABLE `members` (
   `vercode` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `secretcode` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `facebook` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `whatsapp` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `website` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `bio` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -591,6 +595,10 @@ ALTER TABLE `withdraws`
   ADD PRIMARY KEY (`id`);
 ALTER TABLE `wmethods`
   ADD PRIMARY KEY (`id`);
+ALTER TABLE `post_views`
+  ADD PRIMARY KEY (`id`);
+  ALTER TABLE `post_views`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 ALTER TABLE `admins`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 ALTER TABLE `adtypes`

@@ -204,49 +204,42 @@
                   <a class="btn btn-info" href="{{route('feed.login')}}">Login as member to post <i class="fa fa-lock"></i></a>
                 </span>
                 @endif
-            
           </div>
           <div class="widget">
             <div class='MainAdverTiseMentDiv' data-publisher="1" data-adsize="728x90"></div>
           </div>
-          <div class="widget widget_categorie">
-            <div class='card border-0'>
-              <div class='card-body'>
-                <div class="card-header">
-                  <h5>Profile</h5>
+          <br>
+          <div class="widget widget_categorie mt-5">
+            <div class="card-body border border-secondary rounded">
+              <div class="user-image d-flex justify-content-center">
+                  <img src="{{url('/').'/images/community/'.$post->member->photo}}" class="rounded-circle bg-secondary" alt="{{$post->member->username}}" height="65" width="65">
               </div>
-              <div class="card-block">
-                  <div class="user-image">
-                      <img src="{{url('/').'/images/community/'.$post->member->photo}}" class="img-radius" alt="User-Profile-Image">
-                  </div>
-                  <h6 class="f-w-600 m-t-25 m-b-10">{{$post->member->name}}</h6>
-                  <p class="text-muted">{{$post->member->status ? 1 'Active': 'Not Active'}} | {{$post->member->created_at->diffForHumans()}}</p>
-                  <p class="mt-5 text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                  <hr>
-                  <p class="text-muted mt-5">Activity Level: {{$activity_level}}%</p>
-                  <hr>
-                  <div class="bg-blue counter-block mt-5 p-5">
-                      <div class="row justify-content-center">
-                          <div class="col-4">
-                              <i class="fa fa-comment"></i>
-                              <p>{{total_comments}}</p>
-                          </div>
-                          <div class="col-4">
-                              <i class="fa fa-user"></i>
-                              <p>8562</p>
-                          </div>
+              <h5 class="h5">{{$post->member->name}} | <small>{{$post->member->status == 1 ? 'Active': 'Not Active'}}</small></h5>
+              <p class="text-muted">Member since {{$post->member->created_at->diffForHumans()}}</p>
+              <p class="text-muted">Activity Level: {{$activity_level}}%</p>
+              <p class="mt-4 text-muted">{{ isset($pos->member->bio) ? $pos->member->bio : 'Add member you profile description.'}}</p>
+              <hr>
+              <div class="bg-blue counter-block mt-1 p-2">
+                  <div class="row justify-content-center">
+                      <div class="col-4">
+                          <i class="fa fa-edit"></i>
+                          <p>{{$total_posts}}</p>
                       </div>
-                  </div>
-                  
-                  <div class="row justify-content-center user-social-link">
-                      <div class="col-auto"><a href="#!"><i class="fa fa-facebook text-facebook"></i></a></div>
-                      <div class="col-auto"><a href="#!"><i class="fa fa-twitter text-twitter"></i></a></div>
-                      <div class="col-auto"><a href="#!"><i class="fa fa-whatsapp text-whatsapp"></i></a></div>
+                      <div class="col-4">
+                        <i class="fa fa-comment"></i>
+                        <p>{{$total_comments}}</p>
+                    </div>
                   </div>
               </div>
-                
+              <hr>
+              <div class="row justify-content-center user-social-link">
+                  <div class="col-auto"><a href="{{$post->member->website}}"><i class="fa fa-link"></i></a></div>
+                  <div class="col-auto"><a href="tel:{{$post->member->mobile}}"><i class="fa fa-phone"></i></a></div>
+                  <div class="col-auto"><a href="{{$post->member->facebook}}"><i class="fab fa-facebook-f"></i></a></div>
+                  <div class="col-auto"><a href="{{$post->member->whatsapp}}"><i class="fab fa-whatsapp"></i></a></div>
               </div>
-            </div>
+            
+          </div>
           </div>
           <div class="widget widget_categorie">
             @foreach ($suggested as $new)

@@ -88,7 +88,7 @@
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                             {{Auth::user()->name}} <span class="caret"></span></a>
                         <div class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                            <a class="dropdown-item" href="{{route('user.profile-data')}}">Profile</a>
+                            <a class="dropdown-item" href="{{ route('user.profile-data') }}">Profile</a>
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">
                                 Logout </a>
@@ -98,7 +98,7 @@
                         </div>
                     </li>
                     @endif
-                    @if(!Auth::check() && !Auth::guard('publisher')->check() )
+                    @if(!Auth::check() && !Auth::guard('publisher')->check() && Auth::guard('feed')->check())
                     <li class="nav-item">
                         <a class="nav-link" href="{{url('/')}}#Service">SERVICE</a>
                     </li>
@@ -120,7 +120,7 @@
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                             {{Auth::guard('feed')->user()->name}} <span class="caret"></span></a>
                         <div class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                            <a class="dropdown-item" href="{{route('feed.profile-data')}}">Profile</a>
+                            <a class="dropdown-item" href="{{ route('feed.profile-data',Auth::guard('feed')->user()->username) }}">Profile</a>
                             <a class="dropdown-item" href="{{ route('feed.logout') }}" onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">
                                 Logout </a>

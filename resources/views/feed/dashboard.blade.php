@@ -28,6 +28,7 @@
                   @csrf
                   <div class="border border-primary rounded p-3">
                     <input type="text" class="form-control border-0 p-2" placeholder="Add a title" name="heading" required autofocus />
+                    <hr>
                     <textarea class="form-control border-0" placeholder="Write a post" name="details" rows="3"></textarea>
                   </div>
                   <div class="preview-panel d-flex justify-content-start" id="preview"></div>
@@ -242,7 +243,11 @@
                 </div>
                 @endforeach
               </div>
-
+              <div class="row">
+                <div class="col-md-12">
+                {{$activities->links("pagination::bootstrap-4")}}
+                </div>
+            </div>
             </div>
           </div>
         </div>
@@ -263,16 +268,39 @@
             </form>
           </div>
           <div class="widget widget_categorie">
-            <span class="badge badge-pill badge-info p-2 link h4"><a href="{{ route('feed.dashboard', 'trending') }}"><i class="fa fa-check"></i>Trending</a></span>
-            <span class="badge badge-pill badge-info p-2 link h4"><a href="{{ route('feed.dashboard', 'recent') }}">Most recent</a></span>
-            <span class="badge badge-pill badge-info p-2 link h4"><a href="{{ route('feed.dashboard', 'related') }}">Related</a></span>
+            <span class="badge badge-pill badge-info p-2 link h4"><a href="{{ route('feed.dashboard', 'trending') }}">
+              @if ($tag === 'trending')
+                <i class="fa fa-check"></i>
+              @endif
+              Trending</a></span>
+            <span class="badge badge-pill badge-info p-2 link h4"><a href="{{ route('feed.dashboard', 'recent') }}">
+              @if ($tag === 'recent')
+                <i class="fa fa-check"></i>
+              @endif
+              Most recent</a></span>
+            <span class="badge badge-pill badge-info p-2 link h4"><a href="{{ route('feed.dashboard', 'related') }}">
+              @if ($tag === 'related')
+                <i class="fa fa-check"></i>
+              @endif
+              Related</a></span>
           </div>
           <div class="widget">
             <div class='MainAdverTiseMentDiv' data-publisher="1" data-adsize="728x90"></div>
           </div>
+          <h5 class="underlined">Members available</h5>
+            <hr>
           <div class="widget d-flex flex-wrap">
+            @php
+              $members = [];
+            @endphp
             @foreach ($activities as $activity)
-              <h2 class="badge badge-pill badge-info m-2"><a href="{{ route('feed.dashboard', $activity->member->username)}}"><img class="rounded-circle bg-secondary" src="{{ asset('/images/community/'.$activity->member->photo)}}" alt=":)" height="20" width="20">{{$activity->member->name}}</a><h1>
+              
+              @if (!in_array($activity->member->id,$members))
+                <h4 class="badge badge-pill badge-info m-2 pl-0"><a class="p-0 m-0" href="{{ route('feed.dashboard', $activity->member->username)}}"><img class="rounded-circle bg-secondary mr-auto" src="{{ asset('/images/community').'/'.$activity->member->photo}}" alt=":)" height="30" width="30">&nbsp;{{$activity->member->name}}</a><h4>
+              @endif
+              @php
+                $members[] = $activity->member->id;
+              @endphp
             @endforeach
           </div>
           <div class="widget">

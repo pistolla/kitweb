@@ -16,9 +16,11 @@ class PostView extends Model
         if($post instanceof Blog)
             $postView->blog_id = $post->id;
         $postView->url = \Request::url();
+        $postView->slug = $post->slug;
         $postView->session_id = \Request::getSession()->getId();
         $post->user_id = (\Auth::check()) ? \Auth::id() : null;
         $postView->agent = \Request::header('User-Agent');
+        $postView->ip = \Request::ip();
         $postView->save();
     }
 }

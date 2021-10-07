@@ -340,10 +340,8 @@ Route::prefix('feed')->group(function() {
 
     //dynamic dropdown country and states
     Route::get('/cities/{country_id}',array('as'=>'user_register.ajax','uses'=>'CommunityController@cityForCountryAjax'));
-
-    Route::get('/profile-info', 'HomeController@userProfileData')->name('feed.profile-data');               
-    Route::post('/update-profile', 'HomeController@updateProfile')->name('feed.update-profile');        
-    Route::post('/change-password', 'HomeController@changePassword')->name('feed.change-passwordpost');
+               
+    
     
   });
   Route::group(['middleware' => ['memberauth:feed']], function() {
@@ -356,6 +354,9 @@ Route::prefix('feed')->group(function() {
         Route::delete('/dislike-comment', 'CommunityController@dislikeComment')->name('feed.commentdislikes');         
         Route::post('/create-comment', 'CommunityController@createComment')->name('feed.commentpost');
         Route::get('/enquirelatest', 'CommunityController@enquireLatest')->name('feed.enquire');
-              
+        Route::get('/profile/{name}', 'CommunityController@getProfileData')->name('feed.profile-data');
+        Route::post('/update-profile', 'CommunityController@updateProfile')->name('feed.update-profile');        
+        Route::post('/change-password', 'CommunityController@changePassword')->name('feed.change-passwordpost');
+        Route::delete('/delete-post/{id}', 'CommunityController@deletePost')->name('feed.post-delete');
     });
 });

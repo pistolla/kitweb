@@ -18,7 +18,7 @@
 <div class="blog-details-page-conent">
   <div class="container">
     <div class="row">
-      <div class="col-lg-8 col-md-12 single-blog-details-inner-wrapper">
+      <div class="col-lg-8 col-md-12 single-blog-details-inner-wrapper" style="margin-bottom: 260px;">
         <div class="blog-details-img">
           <img src="{{ asset('/images/blog') }}/{{$post->photo}}" style="width:100%; height: 450px" alt="blog images">
         </div>
@@ -113,7 +113,7 @@
                     @csrf
                     @method('DELETE')
                     <input type="hidden" name="comment" value="{{$comment->id}}">
-                    <button class="comment-dislike"><i class="fa fa-thumbs-down" aria-hidden="true" ></i>{{ $comment->dislikes->count()}}</button>
+                    <button class="comment-dislike"><i class="fa fa-thumbs-down" aria-hidden="true"></i>{{ $comment->dislikes->count()}}</button>
                   </form>
                   @endif
 
@@ -133,15 +133,13 @@
                     </form>
                   </span>
                 </div>
-
-
               </div>
               @endforeach
             </div>
           </div>
         </div>
       </div>
-      <div class="col-lg-4 col-md-12">
+      <div class="col-lg-4 col-md-12 raised" style="margin-top: -260px;">
         <div class="blog-sidebar">
           <div class='MainAdverTiseMentDiv' data-publisher="1" data-adsize="728x90"></div>
           <script class="adScriptClass" src="http://localhost//ads/ad.js"></script>
@@ -159,7 +157,7 @@
             <h3 class="sidebar_title">Categories</h3>
             <ul class="list-unstyled">
               @foreach ($categorys->unique('name') as $category)
-              <li><a href="#"><i class="far fa-caret-right"></i>{{$category->name}}</a></li>
+              <li><a href="{{ route('user.blog').'?category='.$category->name }}"><i class="far fa-caret-right"></i>{{$category->name}}</a></li>
               @endforeach
             </ul>
           </div>
@@ -179,25 +177,24 @@
           </div>
           <div class="widget widget_tag">
             <h3 class="sidebar_title">Popular Tags</h3>
-              @foreach (explode(',', $post->tags) as $tag)
-              <span class="badge badge-pill badge-info"><a href="{{ route('user.blog') }}" class="tag border-0">{{$tag}}</a></span>
-              @endforeach
-            
+            @foreach (explode(',', $post->tags) as $tag)
+            <span class="badge badge-pill badge-info m-1"><a href="{{ route('user.blog').'?tag='.$tag }}" class="tag text-white border-0">{{$tag}}</a></span>
+            @endforeach
+
           </div>
           <div class="widget widget_archive">
             <h3 class="sidebar_title">Archive Posts</h3>
             <ul class="list-unstyled navbar-nav">
+              @foreach ($cat_months as $key => $cat_month)
               <li class="archive_nav_item active">
-                <a href="#"><i class="arrow_triangle-right"></i>January (25)</a>
+                <a href="{{ route('user.blog').'?month='.$key }}"><i class="arrow_triangle-right"></i>{{$key}} ({{$cat_month['total']}})</a>
                 <ul class="list-unstyled dropdown-menu">
-                  <li><a href="#">Marketing (05)</a></li>
-                  <li><a href="#">Design (05)</a></li>
-                  <li><a href="#">Branding (05)</a></li>
-                  <li><a href="#">Playing (05)</a></li>
-                  <li><a href="#">Browsing (05)</a></li>
+                  @foreach ($cat_month as $catk => $catm)
+                  <li><a href="{{ route('user.blog').'?category='.$catk }}"><i class="fa fa-caret-right"></i>{{$catk}} ({{$catm}})</a></li>
+                  @endforeach
                 </ul>
               </li>
-
+              @endforeach
             </ul>
           </div>
         </div>
