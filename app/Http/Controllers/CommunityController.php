@@ -14,6 +14,7 @@ use App\Password;
 use App\Withdraw;
 use App\Country;
 use App\Frontend;
+use App\PostView;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -23,14 +24,28 @@ use Butschster\Head\Packages\Entities\TwitterCardPackage;
 
 class CommunityController extends Controller
 {
-    public function dashboard(Request $req)
+    public function dashboard(Request $req, $tag = null)
     {
+        $activities = [];
+        if($tag != null){
+            if($tag == 'trending'){
+                $activities = Activity::latest()->with(['member', 'comments', 'likes'])->paginate(50);
+            } else if($tag == 'recent'){
+                $activities = Activity::latest()->with(['member', 'comments', 'likes'])->paginate(50);
+            } else if($tag == 'related'){
+                $activities = Activity::latest()->with(['member', 'comments', 'likes'])->paginate(50);
+            } else {
+                $activities = Activity::latest()->with(['member', 'comments', 'likes'])->paginate(50);
+            }
+        } else {
+            $activities = Activity::latest()->with(['member', 'comments', 'likes'])->paginate(50);
+        }
         
-        $activities = Activity::latest()->with(['member', 'comments', 'likes'])->paginate(50);
         $suggested = [];
         $post = null;
         if($activities){
             $post = $activities->shift();
+            PostView::recordView($post);
         }
         $front = Frontend::first();
         $gnl = General::first();
@@ -111,6 +126,7 @@ class CommunityController extends Controller
         if(is_null($post)) {
             abort('404');
         }
+        PostView::recordView($post);
         $uniqueWords = $this->removeCommonWords($post->heading);
         
         $headingArr = preg_match_all('/[a-z]+/', $uniqueWords, $output)? $output[0]: [];
@@ -124,6 +140,8 @@ class CommunityController extends Controller
         $front = Frontend::first();
         $gnl = General::first();
         $url = url('/');
+        $total_comments = 0;
+        $activity_level = 0;
         
         $og = new OpenGraphPackage('kenyansintexas_fb');
         $og->setType('website')
@@ -156,7 +174,7 @@ class CommunityController extends Controller
             ->setFavicon(url('') .'/images/icon.png')
             ->registerPackage($og)
             ->registerPackage($card);
-        return view('feed.activity', compact('post', 'suggested'));
+        return view('feed.activity', compact('post', 'suggested', 'total_comments', 'activity_level'));
         
     }
 
@@ -605,5 +623,45 @@ class CommunityController extends Controller
                     ->where("countries.id", $id)
                     ->get(['states.name','states.id', 'countries.phonecode']);
         return json_encode($states);
+    }
+
+    public function userProfileData()
+    {
+        $user = Member::find(Auth::id());
+        $post = Activity::query()->where('member_id', ' = ', $user->id)->all();
+        $pt = 'My Profile';
+        return view('feed.profile', compact('user','pt','posts'));
+    }
+    
+    public function updateProfile(Request $request)
+    {
+        $this->validate($request,
+        [
+            'name' => 'required',
+            'email' => 'required',
+            'mobile' => 'required',
+            'country' => 'required',
+            'city' => 'required'
+        ]);
+        $user = Member::find(Auth::id());
+        if($request->hasFile('photo'))
+        {
+            $oldpath = '/images/community/'.$user->photo;
+            if(file_exists($oldpath))
+            {
+                unlink($oldpath);
+            }
+
+            $user['photo'] = uniqid().'.'.$request->photo->getClientOriginalExtension();
+            $request->photo->move(public_path() . '/images/community/', $user['photo']);
+        }
+        
+        $user['name'] = $request->name;
+        $user['email'] = $request->email;
+        $user['mobile'] = $request->mobile;
+        $user['country'] = $request->country;
+        $user['city'] = $request->city;
+        $user->update();
+        return back()->with('success', 'Profile Data Updated');
     }
 }

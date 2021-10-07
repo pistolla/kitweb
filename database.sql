@@ -259,6 +259,7 @@ CREATE TABLE `members` (
   `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `country` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `city` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `photo` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `mobile` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tauth` int(11) NOT NULL DEFAULT '1',
   `tfver` int(11) NOT NULL DEFAULT '1',
@@ -330,6 +331,20 @@ CREATE TABLE `comments` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+CREATE TABLE `post_views` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `activity_id` int(10) DEFAULT NULL,
+  `blog_id` int(10) DEFAULT NULL,
+  `slug` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `url` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `session_id` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` int(10) DEFAULT NULL,
+  `ip` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `agent` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 CREATE TABLE `activities` (
   `id` int(10) UNSIGNED NOT NULL,
   `member_id` int(10) DEFAULT NULL,

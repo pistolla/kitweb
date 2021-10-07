@@ -19,7 +19,7 @@ class Member extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email','username', 'password','country','city','mobile','emailv','smsv','vercode','vsent','status'
+        'name', 'email','username', 'password','country','city','mobile','emailv','smsv','vercode','vsent','status','photo'
     ];
 
     /**

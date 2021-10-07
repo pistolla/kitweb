@@ -7,13 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 use App\Member;
 use App\Like;
 use App\Comment;
+use App\PostView;
 use Illuminate\Notifications\Notifiable;
 
 class Activity extends Model
 {
     use Notifiable;
 
-    protected $fillable = array('heading', 'details', 'member_id', 'image_url', 'link_url','slug');
+    protected $fillable = array('heading', 'details', 'member_id', 'image_url', 'link_url','slug','views','shares');
 
     public function likedBy(Member $member)
     {
@@ -43,5 +44,10 @@ class Activity extends Model
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function views()
+    {
+        return $this->hasMany(PostView::class);
     }
 }

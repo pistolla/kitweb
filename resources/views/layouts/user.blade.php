@@ -120,6 +120,7 @@
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                             {{Auth::guard('feed')->user()->name}} <span class="caret"></span></a>
                         <div class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                            <a class="dropdown-item" href="{{route('feed.profile-data')}}">Profile</a>
                             <a class="dropdown-item" href="{{ route('feed.logout') }}" onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">
                                 Logout </a>

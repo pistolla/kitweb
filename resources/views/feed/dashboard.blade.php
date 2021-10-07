@@ -263,12 +263,17 @@
             </form>
           </div>
           <div class="widget widget_categorie">
-            <span class="badge badge-pill badge-info p-2 link h4"><a href="{{ route('feed.dashboard') }}"><i class="fa fa-check"></i>Trending</a></span>
-            <span class="badge badge-pill badge-info p-2 link h4"><a href="{{ route('feed.dashboard') }}">Most recent</a></span>
-            <span class="badge badge-pill badge-info p-2 link h4"><a href="{{ route('feed.dashboard') }}">Related</a></span>
+            <span class="badge badge-pill badge-info p-2 link h4"><a href="{{ route('feed.dashboard', 'trending') }}"><i class="fa fa-check"></i>Trending</a></span>
+            <span class="badge badge-pill badge-info p-2 link h4"><a href="{{ route('feed.dashboard', 'recent') }}">Most recent</a></span>
+            <span class="badge badge-pill badge-info p-2 link h4"><a href="{{ route('feed.dashboard', 'related') }}">Related</a></span>
           </div>
           <div class="widget">
             <div class='MainAdverTiseMentDiv' data-publisher="1" data-adsize="728x90"></div>
+          </div>
+          <div class="widget d-flex flex-wrap">
+            @foreach ($activities as $activity)
+              <h2 class="badge badge-pill badge-info m-2"><a href="{{ route('feed.dashboard', $activity->member->username)}}"><img class="rounded-circle bg-secondary" src="{{ asset('/images/community/'.$activity->member->photo)}}" alt=":)" height="20" width="20">{{$activity->member->name}}</a><h1>
+            @endforeach
           </div>
           <div class="widget">
           @foreach ($suggested as $new)

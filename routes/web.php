@@ -334,12 +334,16 @@ Route::prefix('feed')->group(function() {
     Route::post('/reset-password', 'CommunityController@resetPassword')->name('feed.password.resetpassword');
 
     //Public Forums
-    Route::get('/dashboard', 'CommunityController@dashboard')->name('feed.dashboard');
+    Route::get('/dashboard/{tag?}', 'CommunityController@dashboard')->name('feed.dashboard');
     Route::get('/search-post', 'CommunityController@searchPost')->name('feed.searchpost');
     Route::get('/{slug}', 'CommunityController@fetchActivity')->name('feed.fetch');
 
     //dynamic dropdown country and states
     Route::get('/cities/{country_id}',array('as'=>'user_register.ajax','uses'=>'CommunityController@cityForCountryAjax'));
+
+    Route::get('/profile-info', 'HomeController@userProfileData')->name('feed.profile-data');               
+    Route::post('/update-profile', 'HomeController@updateProfile')->name('feed.update-profile');        
+    Route::post('/change-password', 'HomeController@changePassword')->name('feed.change-passwordpost');
     
   });
   Route::group(['middleware' => ['memberauth:feed']], function() {

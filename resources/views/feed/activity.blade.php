@@ -210,6 +210,45 @@
             <div class='MainAdverTiseMentDiv' data-publisher="1" data-adsize="728x90"></div>
           </div>
           <div class="widget widget_categorie">
+            <div class='card border-0'>
+              <div class='card-body'>
+                <div class="card-header">
+                  <h5>Profile</h5>
+              </div>
+              <div class="card-block">
+                  <div class="user-image">
+                      <img src="{{url('/').'/images/community/'.$post->member->photo}}" class="img-radius" alt="User-Profile-Image">
+                  </div>
+                  <h6 class="f-w-600 m-t-25 m-b-10">{{$post->member->name}}</h6>
+                  <p class="text-muted">{{$post->member->status ? 1 'Active': 'Not Active'}} | {{$post->member->created_at->diffForHumans()}}</p>
+                  <p class="mt-5 text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                  <hr>
+                  <p class="text-muted mt-5">Activity Level: {{$activity_level}}%</p>
+                  <hr>
+                  <div class="bg-blue counter-block mt-5 p-5">
+                      <div class="row justify-content-center">
+                          <div class="col-4">
+                              <i class="fa fa-comment"></i>
+                              <p>{{total_comments}}</p>
+                          </div>
+                          <div class="col-4">
+                              <i class="fa fa-user"></i>
+                              <p>8562</p>
+                          </div>
+                      </div>
+                  </div>
+                  
+                  <div class="row justify-content-center user-social-link">
+                      <div class="col-auto"><a href="#!"><i class="fa fa-facebook text-facebook"></i></a></div>
+                      <div class="col-auto"><a href="#!"><i class="fa fa-twitter text-twitter"></i></a></div>
+                      <div class="col-auto"><a href="#!"><i class="fa fa-whatsapp text-whatsapp"></i></a></div>
+                  </div>
+              </div>
+                
+              </div>
+            </div>
+          </div>
+          <div class="widget widget_categorie">
             @foreach ($suggested as $new)
             <div class="media post_item">
               <div class="media-body">
