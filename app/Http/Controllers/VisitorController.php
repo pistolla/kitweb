@@ -42,9 +42,9 @@ class VisitorController extends Controller
         $sliders = Slider::all();
         $testimonials = Testimonial::all();
         $socials = Social::all();
-        $posts = Blog::orderBy('id', 'DESC')->select('id', 'photo', 'heading', 'slug')->take(3)->get();
-        $activities = Activity::orderBy('id', 'DESC')->select('id', 'image_url', 'heading', 'slug')->whereNotNull('image_url')->take(3)->get();
-        $fts = Feature::all();
+        $posts = Blog::orderBy('id', 'DESC')->select('id', 'photo', 'heading', 'slug')->take(5)->get();
+        $activities = Activity::orderBy('id', 'DESC')->select('id', 'image_url', 'heading', 'slug')->whereNotNull('image_url')->take(5)->get();
+        $fts = Feature::take(1)->get();
         $fts->unique('name');
         $features = [];
         foreach ($fts as $ft) {
@@ -58,7 +58,7 @@ class VisitorController extends Controller
 
         foreach ($posts as $post) {
             $item['name'] = $post->heading;
-            $item['label'] = 'Article';
+            $item['label'] = 'Blog';
             $item['url'] = url('/') . '/blog/' . $post->slug;
             $item['photo'] = url('/') . '/images/blog/' . $post->photo;
 
@@ -67,7 +67,7 @@ class VisitorController extends Controller
 
         foreach ($activities as $post) {
             $item['name'] = $post->heading;
-            $item['label'] = 'Community';
+            $item['label'] = 'Classified Ad';
             $item['url'] = url('/') . '/feed/' . $post->slug;
             $item['photo'] = url('/') . '/images/community/' . $post->image_url;
 

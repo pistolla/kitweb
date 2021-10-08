@@ -28,7 +28,7 @@
                         </div>
                         <div class="form-group">
                             <h4>Post category</h4>
-                            <select class="form-control">
+                            <select class="form-control"  name="category" id="category">
                                 @foreach ($categorys->unique('name') as $category)
                                     @if($category->id == $blog->category_id)
                                         <option value='{{ $category->id }}' selected="selected"> {{$category->name }}</option>

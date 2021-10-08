@@ -41,6 +41,7 @@ class CommunityController extends Controller
 
         $suggested = [];
         $post = null;
+        $activities->shuffle();
         if ($activities) {
             $post = $activities->shift();
             PostView::recordView($post);

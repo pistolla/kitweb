@@ -74,7 +74,7 @@ class HomeController extends Controller
                     $depo['usd_amo'] = round($usdamo,2);
                     $depo['btc_amo'] = 0;
                     $depo['btc_wallet'] = "";
-                    $depo['trx'] = uniqid(16);
+                    $depo['trx'] = uniqid();
                     $depo['try'] = 0;
                     $depo['status'] = 0;
                     Deposit::create($depo);

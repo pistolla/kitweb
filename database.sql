@@ -482,6 +482,7 @@ CREATE TABLE `states` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 CREATE TABLE `mpesa_payments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `trx` varchar(100) NOT NULL,
   `Password` varchar(200) DEFAULT NULL,
   `TransactionType` varchar(40) NOT NULL,
   `TransID` varchar(40) DEFAULT NULL,

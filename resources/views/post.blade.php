@@ -184,13 +184,15 @@
           </div>
           <div class="widget widget_archive">
             <h3 class="sidebar_title">Archive Posts</h3>
-            <ul class="list-unstyled navbar-nav">
+            <ul class="list-unstyled navbar-nav" >
               @foreach ($cat_months as $key => $cat_month)
-              <li class="archive_nav_item active">
-                <a href="{{ route('user.blog').'?month='.$key }}"><i class="arrow_triangle-right"></i>{{$key}} ({{$cat_month['total']}})</a>
-                <ul class="list-unstyled dropdown-menu">
+              <li class="archive_nav_item active"  data-toggle="collapse" data-target="#collapse{{ $key }}" aria-expanded="false" aria-controls="collapse{{ $key }}">
+                {{$key}}<a href="{{ route('user.blog').'?month='.$key }}"><i class="arrow_triangle-right"></i> ({{$cat_month['total']}})</a>
+                <ul class="list-unstyled collapse"  id="collapse{{ $key }}" aria-labelledby="headingOne" data-parent="#accordion">
                   @foreach ($cat_month as $catk => $catm)
-                  <li><a href="{{ route('user.blog').'?category='.$catk }}"><i class="fa fa-caret-right"></i>{{$catk}} ({{$catm}})</a></li>
+                    @if ($catk != 'total')
+                      <li><a href="{{ route('user.blog').'?category='.$catk }}"><i class="fa fa-caret-right"></i>{{$catk}} ({{$catm}})</a></li>
+                    @endif
                   @endforeach
                 </ul>
               </li>

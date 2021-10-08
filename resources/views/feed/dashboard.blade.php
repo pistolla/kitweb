@@ -37,7 +37,7 @@
                     <button type="button" class="btn btn-media btn-file"><i class="fa fa-image"></i><input id="custom-file-input" type="file" name="photos" multiple></button>
                     <button type="button" class="btn btn-media" data-target="#linkModal" data-toggle="modal"><i class="fa fa-link"></i></button>
                     <button type="submit" class="btn btn-default">Post</button>
-                    <button type="cancel" class="btn btn-default">Cancel</button>
+                    <button type="cancel" class="btn btn-default">Clear</button>
                   </div>
                 </form>
               </div>
@@ -291,8 +291,10 @@
             <hr>
           <div class="widget d-flex flex-wrap">
             @php
-              $members = [];
+              $members = [$post->member->id];
             @endphp
+            <h4 class="badge badge-pill badge-info m-2 pl-0"><a class="p-0 m-0" href="{{ route('feed.dashboard', $post->member->username)}}"><img class="rounded-circle bg-secondary mr-auto" src="{{ asset('/images/community').'/'.$post->member->photo}}" alt=":)" height="30" width="30">&nbsp;{{$post->member->name}}</a><h4>
+             
             @foreach ($activities as $activity)
               
               @if (!in_array($activity->member->id,$members))

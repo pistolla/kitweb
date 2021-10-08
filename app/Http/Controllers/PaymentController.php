@@ -61,7 +61,7 @@ class PaymentController extends Controller
         {
             $transaction = Deposit::find($id);
             if($transaction){
-                $mpayment = MpesaPayment::find($transaction->trx);
+                $mpayment = MpesaPayment::where('trx',$transaction->trx)->first();
                 if($mpayment){
                     $data = json_decode($content, true);
                     if(!empty($data)){
@@ -69,7 +69,8 @@ class PaymentController extends Controller
                         $stkCallback = $Body['stkCallback'];
                         $mpayment['ResultCode'] = $stkCallback['ResultCode'];
                         $mpayment['ResultDesc'] = $stkCallback['ResultDesc'];
-                        $mpayment['TransactionDate'] = $stkCallback['TransactionDate'];
+                        $mpayment['MerchantRequestID'] = $stkCallback['MerchantRequestID'];
+                        $mpayment['CheckoutRequestID'] = $stkCallback['CheckoutRequestID'];
                         if($stkCallback['ResultCode'] == 0)
                         {
                             $CallbackMetadata = $stkCallback['CallbackMetadata'];
@@ -81,6 +82,7 @@ class PaymentController extends Controller
                                         if($item['Name'] == 'MpesaReceiptNumber')
                                         {
                                             $mpayment['MpesaReceiptNumber'] = $item['Value'];
+                                            $transaction->update();
                                         }
                                         if($item['Name'] == 'TransactionDate')
                                         {
@@ -197,6 +199,7 @@ class PaymentController extends Controller
             $transaction['AccountReference'] = 'test';
             $transaction['TransactionDesc'] = 'test';
             $transaction['Amount'] = "1";
+            $transaction['trx'] = $depo->trx;
 
             $mp = new MpesaPayment();
             $mp->create($transaction);

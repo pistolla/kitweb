@@ -98,7 +98,7 @@
                         </div>
                     </li>
                     @endif
-                    @if(!Auth::check() && !Auth::guard('publisher')->check() && Auth::guard('feed')->check())
+                    @if(!Auth::check() && !Auth::guard('publisher')->check())
                     <li class="nav-item">
                         <a class="nav-link" href="{{url('/')}}#Service">SERVICE</a>
                     </li>
