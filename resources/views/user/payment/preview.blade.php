@@ -19,6 +19,7 @@
                 <form  class="contact-form" method="POST" action="{{ route('deposit.confirm') }}">
                     @csrf
                     <input type="hidden" name="gateway" value="{{$data->gateway_id}}"/>
+                    <input type="hidden" name="trx" value="{{$data->trx}}"/>
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <ul class="list-group text-center">

@@ -27,7 +27,7 @@ class PaymentController extends Controller
     
     public function userDataUpdate($data, $trx = null)
     { 
-        if($data->status==0)
+        if($data->status==0 || $data->status==2)
         {
             $data['status'] = 1;
             $data->update();
@@ -41,7 +41,7 @@ class PaymentController extends Controller
             $tlog['balance'] = $user->balance;
             $tlog['type'] = 1;
             $tlog['details'] = 'Deposit Via '.$data->gateway->name;
-            $tlog['trxid'] = isset($trx)? $trx: uniqid(16);
+            $tlog['trxid'] = $data->id;
             Transaction::create($tlog);
             
             $msg =  'Deposit Payment Successful';
@@ -82,7 +82,6 @@ class PaymentController extends Controller
                                         if($item['Name'] == 'MpesaReceiptNumber')
                                         {
                                             $mpayment['MpesaReceiptNumber'] = $item['Value'];
-                                            $transaction->update();
                                         }
                                         if($item['Name'] == 'TransactionDate')
                                         {
@@ -158,13 +157,18 @@ class PaymentController extends Controller
 
     public function confirmMpesa(Request $request)
     {
+        
         $this->validate($request,['code', 'trx_id']);
+        Log::info("confirmMpesa " . $request->code);
+        Log::info("confirmMpesa " . $request->trx_id);
         $depo = Deposit::find($request->trx_id);
-        $transaction = MpesaPayment::find($depo->trx);
+        $transaction = MpesaPayment::where('trx',$depo->trx)->first();
         if($depo && $transaction && $request->code == $transaction->MpesaReceiptNumber){
+            Log::info("confirmMpesa CONFIRMED");
             $this->userDataUpdate($depo);
             return response()->json(['message'=>'MPESA transaction code is correct','isConfirmed' => true]);
         }
+        Log::info("confirmMpesa FAILED");
         return response()->json(['error'=>'MPESA code is not correct','isConfirmed' => false]);
     }
 
@@ -198,7 +202,7 @@ class PaymentController extends Controller
             $transaction['CallBackURL'] = url('/payment/callback/' . $depo->id);
             $transaction['AccountReference'] = 'test';
             $transaction['TransactionDesc'] = 'test';
-            $transaction['Amount'] = "1";
+            $transaction['Amount'] = $depo->amount;
             $transaction['trx'] = $depo->trx;
 
             $mp = new MpesaPayment();
