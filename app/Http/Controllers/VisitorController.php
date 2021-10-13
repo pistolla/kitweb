@@ -293,17 +293,17 @@ class VisitorController extends Controller
                 }
 
                 $redUrl = route('adClicked', [$pub, $ads->hashid]);
-                $photo = asset('assets/images/ads') . '/' . $ads->photo;
+                $photo = asset('images/ads') . '/' . $ads->photo;
                 $data =  "<a href='" . $redUrl . "' target='_blank'><img src='" . $photo . "' width='" . $type->width . "' height='" . $type->height . "'/></a><strong style='background-color:#e6e6e6;position:absolute;right:0;top:0;font-size: 10px;color: #666666; padding:4px; margin-right:15px;'>Ads by " . $gnl->title . "</strong><span onclick='hideAdverTiseMent(this)' style='position:absolute;right:0;top:0;width:15px;height:20px;background-color:#f00;font-size: 15px;color: #fff;border-radius: 1px;cursor: pointer;'>X</span>";
 
                 $ads['count_imp'] = $ads->count_imp + 1;
                 $ads->update();
             } else {
-                $logo = asset('assets/ads') . '/' . $slag . '.png';
+                $logo = asset('ads') . '/' . $slag . '.png';
                 $data =  "<a href='" . url('/') . "' target='_blank'><img src='" . $logo . "'/></a><strong style='background-color:#e6e6e6;position:absolute;right:0;top:0;font-size: 10px;color: #666666; padding:4px; margin-right:15px;'>Ads by " . $gnl->title . "</strong><span onclick='hideAdverTiseMent(this)' style='position:absolute;right:0;top:0;width:15px;height:20px;background-color:#f00;font-size: 15px;color: #fff;border-radius: 1px;cursor: pointer;'>X</span>";
             }
         } else {
-            $logo = asset('assets/ads') . '/' . $slag . '.png';
+            $logo = asset('ads') . '/' . $slag . '.png';
             $data =  "<a href='" . url('/') . "' target='_blank'><img src='" . $logo . "'/></a><strong style='background-color:#e6e6e6;position:absolute;right:0;top:0;font-size: 10px;color: #666666; padding:4px; margin-right:15px;'>Ads by " . $gnl->title . "</strong><span onclick='hideAdverTiseMent(this)' style='position:absolute;right:0;top:0;width:15px;height:20px;background-color:#f00;font-size: 15px;color: #fff;border-radius: 1px;cursor: pointer;'>X</span>";
         }
 

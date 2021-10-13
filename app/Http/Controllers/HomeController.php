@@ -156,7 +156,7 @@ class HomeController extends Controller
                 $tlog['balance'] = $user->balance;
                 $tlog['type'] = 0;
                 $tlog['details'] =$plan->name.'Plan Purchased';
-                $tlog['trxid'] = str_random(16);
+                $tlog['trxid'] = uniqid();
                 Transaction::create($tlog);
     
                 return back()->with('success','Plan Purchased Successfuly');
@@ -194,9 +194,8 @@ class HomeController extends Controller
                 if($type->width == $width && $type->height == $height)
                 {
                     $filename = uniqid().'.'.$req->adfile->getClientOriginalExtension();
-                    $path = '/images/ads/'. $filename;
-                    //Image::make($req->adfile)->save($path);
-                    $ad['photo'] =  "5bc32a8015d64.png";//$filename;
+                    $req->adfile->move(public_path() . '/images/ads/', $filename);
+                    $ad['photo'] =  $filename;
                 }
                 else
                 {
@@ -245,8 +244,7 @@ class HomeController extends Controller
                     }
 
                     $filename = uniqid().'.'.$req->adfile->getClientOriginalExtension();
-                    $path = 'assets/images/ads/'. $filename;
-                    Image::make($req->adfile)->save($path);
+                    $req->adfile->move(public_path() . '/images/ads/', $filename);
 
                     $advertise['photo'] =  $filename;
                 }
