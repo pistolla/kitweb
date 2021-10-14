@@ -134,11 +134,11 @@ Content is king, and rules over rules over search rankings. The Internet was fou
 
 |                                                              |                                                              |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| **2.1.1 Publish Classified Advertisements that benefits target audience. Understanding who your audience is and what you want them to do when they click on your article will help guide your Blog strategy.** | ![benefit-target](/home/edd/Downloads/trust-how-content-marketing-works-1024x512.png) |
-| ![](/home/edd/Downloads/target-989bad67062e87566f47c0d1e29588c167460c73.png) | **2.1.2 Use more targeted right keywords such as *'How to..'*, *'How do I'*  Repeat your keyword phrase several times throughout the page—once or twice in the opening and closing paragraphs, and two to four more times throughout the remaining content.** |
-| **2.1.3 Use Images related to the Advertisement content. In order to achieve a coveted spot in an image pack or a video snippet, you’ll want to design creative graphics, use original photos and videos, and add descriptive alt text to every visual element within your *Blog* post.** | ![use-related-images](/home/edd/Downloads/stick-figure-holding-large-magnet-260nw-218826733.jpg) |
-| ![catchy-title](/home/edd/Downloads/seopressor-blog-title-descriptive.jpg) | **2.1.4 Use Catchy title. A catchy title uses data, asks a question, or leads with curiosity to pique the reader’s interest.** |
-| **2.1.5 Update Your Content Regularly. Regularly updated content is viewed as one of the best indicators of a site's relevancy, so be sure to keep it fresh** | ![update-content](/home/edd/Downloads/Update.jpg)            |
+| **2.1.1 Publish Classified Advertisements that benefits target audience. Understanding who your audience is and what you want them to do when they click on your article will help guide your Blog strategy.** | ![benefit-target](./extra/trust-how-content-marketing-works-1024x512.png) |
+| ![](./extra/target-989bad67062e87566f47c0d1e29588c167460c73.png) | **2.1.2 Use more targeted right keywords such as *'How to..'*, *'How do I'*  Repeat your keyword phrase several times throughout the page—once or twice in the opening and closing paragraphs, and two to four more times throughout the remaining content.** |
+| **2.1.3 Use Images related to the Advertisement content. In order to achieve a coveted spot in an image pack or a video snippet, you’ll want to design creative graphics, use original photos and videos, and add descriptive alt text to every visual element within your *Blog* post.** | ![use-related-images](./extra/stick-figure-holding-large-magnet-260nw-218826733.jpg) |
+| ![catchy-title](./extra/seopressor-blog-title-descriptive.jpg) | **2.1.4 Use Catchy title. A catchy title uses data, asks a question, or leads with curiosity to pique the reader’s interest.** |
+| **2.1.5 Update Your Content Regularly. Regularly updated content is viewed as one of the best indicators of a site's relevancy, so be sure to keep it fresh** | ![update-content](./extra/Update.jpg)            |
 
 
 
@@ -154,13 +154,13 @@ This is the first page of the system that welcomes the user into the system.
 
 This is the topmost section on the home page, which displays the logo, website name, and navigation buttons. The content can be modified on the Administrator portal.
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/jumbotron.png" alt="Homepage Jumbotron" style="zoom:50%;" />
+<img src="./extra/jumbotron.png" alt="Homepage Jumbotron" style="zoom:50%;" />
 
 #### 3.1.2 Services section
 
 This section displays below the jumbotron and show the service offered by the KIT platform. It also includes description for each service offered. The content can be modified on the Administrator page.
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/Screenshot (2).png" alt="Screenshot (2)" style="zoom:50%;" />
+<img src="./extra/Screenshot (2).png" alt="Screenshot (2)" style="zoom:50%;" />
 
 
 
@@ -168,31 +168,31 @@ This section displays below the jumbotron and show the service offered by the KI
 
 This section displays below the Services and show the service offered by the KIT platform. It includes featured Blog post, classified ads or Features. The content can be modified on the Administrator page. If user clicks on any item on this slider it redirects to the actual page to view.
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/featured.png" alt="Screenshot (2)" style="zoom:50%;" />
+<img src="./extra/featured.png" alt="Screenshot (2)" style="zoom:50%;" />
 
 #### 3.1.3 About section
 
 This section displays below the services section. It describes the using popup video about KIT service and any details related to main KIT business.
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/Screenshot (3).png" alt="Screenshot (3)" style="zoom:50%;" />
+<img src="./extra/Screenshot (3).png" alt="Screenshot (3)" style="zoom:50%;" />
 
 #### 3.1.4 Testimonials
 
 This section displays below the about section and contains a slider of sampled testimonials from top KIT clients. The content can be modified on the Administrator page.
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/Screenshot (4).png" alt="Screenshot (4)" style="zoom:50%;" />
+<img src="./extra/Screenshot (4).png" alt="Screenshot (4)" style="zoom:50%;" />
 
 #### 3.1.5 Achievements
 
 This section displays below the testimonials section. It contains the total numbers of achievements. The content can be modified on the Administrator page.
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/Screenshot (5).png" alt="Screenshot (5)" style="zoom:50%;" />
+<img src="./extra/Screenshot (5).png" alt="Screenshot (5)" style="zoom:50%;" />
 
 #### 3.1.6 Subscriber form
 
  This section include subscribers form. The user who uses this subscription is sent a email and notified by Administrator via email. The list of subscribers is available on the Administrator page.
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/Screenshot (6).png" alt="Screenshot (6)" style="zoom:50%;" />
+<img src="./extra/Screenshot (6).png" alt="Screenshot (6)" style="zoom:50%;" />
 
 #### 3.1.7 Footer
 
@@ -202,13 +202,13 @@ This section displays below the testimonials section. It contains the total numb
 
 This page can be accessed by clicking on the `Blog` menu on the navigation bar. This page contains all blog posts that have been posted by the administrator in grid layout. Each post has an image and title to show the related information in that post. The blog post are paginated to only show 20 items on each page. The pagination links are below the grid layout. The user can click on either of the blog post and it will open on blog post detail page. Each blog post has a unique id and url slug to allow discovery in search engine optimization.
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/blog_post_list.jpeg" alt="Blogs page" style="zoom:50%;" />
+<img src="./extra/blog_post_list.jpeg" alt="Blogs page" style="zoom:50%;" />
 
 #### 3.2.2 Blog post
 
 This page opens the selected blog post and displays the full blog content including the contents. A blog has a title, photo, body, author name, author date and review comments. A title is shown at the top of the page and it is used to generate the URL slug. The main body is composed of text, links and images. The review comment are visible to all user but only authenticated members can post a comment.   This page also contain these components: `search blogs`, `related blogs`, `archived blogs`, `categories`. A search component is used to search for other post with specific words. The results is shown in the list of blog posts. The related blog posts are click able and will open on their details page. Each blog has been categorized and thus using the categories blogs can be filtered to only related posts.
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/blog_post.jpeg" alt="Blog post" style="zoom:50%;" />
+<img src="./extra/blog_post.jpeg" alt="Blog post" style="zoom:50%;" />
 
 ### 3.3 Classified Ads
 
@@ -218,47 +218,47 @@ The Section has a real-time classified for the registered members. The non authe
 
 This is the main section in this page, it contain a list of post, organized with most recent posts displayed first on the list. Only the first post shows expanded comments. These list is repeatedly  refreshed on the background to fetch all recent posts. When a new post or new comment for the first post is discovered, it is fetched and displayed on the feed. This list of posts contains individual post that are distinguished by each other by the title, content, name the member who and when posted.
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/community_forum.jpeg" alt="Member posts" style="zoom:50%;" /> 
+<img src="./extra/community_forum.jpeg" alt="Member posts" style="zoom:50%;" /> 
 
 #### 3.3.2 Post
 
 A single post contains a title,content, member name, member display picture, posting time, reply comments, reply button, like button and share button. A title is short text to describe the post. Content can either be text, photo or a link. Member name and display picture author of the post who must be registered and verified. Posting time shows the time that has elapsed since the post was posted. Other members can either reply, like or share the post using the respective buttons. The like button will also display the number of times a post has been liked. The reply comment are displayed below each post. A user must be a member to reply a post otherwise it will not be posted.
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/post.jpeg" alt="Post" style="zoom:50%;" /> 
+<img src="./extra/post.jpeg" alt="Post" style="zoom:50%;" /> 
 
 #### 3.3.3 Search a Post
 
 This component allows any user to search for a specific post using its text. The post will be search using title or content. The list of post is refreshed to show only post withe related words or if none was found the list will be blank and alert user none was found. 
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/search_post.png" alt="Search a Post" style="zoom:50%;" /> 
+<img src="./extra/search_post.png" alt="Search a Post" style="zoom:50%;" /> 
 
 #### 3.3.4 Filter post links
 
 These links includes: trending, most recent, related. These are ways to organize the members post. By default the list of post is organized by  most recent. When trending is selected, the most liked and commented post are displayed first.
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/search_post.png" alt="Filter Posts" style="zoom:50%;" /> 
+<img src="./extra/search_post.png" alt="Filter Posts" style="zoom:50%;" /> 
 
 #### 3.3.5 Login as member to post button
 
 This button redirects user to member login page where they provide `username` and `password` to be authenticated as registered members. This allows users who have been successfully authenticated to be able to perform members only actions such as replying, liking posts.   
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/login_button.png" alt="Login as a member to post" style="zoom:50%;" /> 
+<img src="./extra/login_button.png" alt="Login as a member to post" style="zoom:50%;" /> 
 
 Login Form
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/member_login.jpeg" alt="Login as a member to post" style="zoom:50%;" />
+<img src="./extra/member_login.jpeg" alt="Login as a member to post" style="zoom:50%;" />
 
 #### 3.3.6 Pagination links
 
 The list of post can only display a maximum of 20 posts on the page. If the posts are more than these, which will eventually happen as the members continue posting, the posts are sub-divided into pages. The pagination links allows the users to manually fetch by navigating to next pages, specific page number or previous seen pages.  
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/pagination_links.png" alt="Pagination Links" style="zoom:50%;" /> 
+<img src="./extra/pagination_links.png" alt="Pagination Links" style="zoom:50%;" /> 
 
 #### 3.3.7 Compose a post
 
 This component is hidden to user who have not been authenticated as members. When a user login and is successfully authenticated as a registered member they are able to see this component above the members' post. It contain a `Title input field`, `Content input field`,`Upload image button`, `Link upload button` and a `Post button` to create new post. When a post is created is displayed at the top of the members post and can be viewed by other users. 
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/search_post.png" alt="Compose a Post" style="zoom:50%;" /> 
+<img src="./extra/search_post.png" alt="Compose a Post" style="zoom:50%;" /> 
 
 ### 3.4 About Page 
 
@@ -272,13 +272,13 @@ The description shows details that is shown in jumbotron section, contact links/
 
 If the user has a specific query they may either send the query using contact form and they need to include an email address for response. 
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/contact_form.png" alt="About Page" style="zoom:50%;" />
+<img src="./extra/contact_form.png" alt="About Page" style="zoom:50%;" />
 
 #### 3.4.3 Frequently Asked Questions
 
 In case is frequently asked question, they should navigate below the contact form and expand the collapsed widgets to view most appropriate answers.
 
-- <img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/about_page.jpeg" alt="About Page" style="zoom:50%;" />  
+- <img src="./extra/about_page.jpeg" alt="About Page" style="zoom:50%;" />  
 
 ## 4. Administrator Portal
 
@@ -288,25 +288,25 @@ This dashboard enables administrator and website manager to combine data from ac
 
 The administrator has one login entry by add the `/admin` after the KenyansInTexas domain url. This will open below interface to login using `username` and `password`. There is a default admin but after login the administrator can add more administrators.
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/admin_login.jpeg" alt="Administrator Login" style="zoom:40%;" />
+<img src="./extra/admin_login.jpeg" alt="Administrator Login" style="zoom:40%;" />
 
 #### Create New Administrator
 
 The administrator can add new administrator by selecting `Create New Admin` menu  on the right navigation bar drop down menu. This opens an interface to add `Name of Admin`, `Email of Admin`, `Username of Admin`, `New password` and `Confirm Password`. The values are saved by clicking on the `Create Admin` button. The new administrator can now login on the admin login.
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/create_admin.jpeg" alt="Create New Administrator" style="zoom:50%;" />
+<img src="./extra/create_admin.jpeg" alt="Create New Administrator" style="zoom:50%;" />
 
 #### List of Administrator
 
 This interface displays a tabular layout of all administrators created. The columns include `Name`, `Email`, `Username` and `Action` to edit or delete.
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/admin_list.jpeg" alt="Administrator List" style="zoom:50%;" />
+<img src="./extra/admin_list.jpeg" alt="Administrator List" style="zoom:50%;" />
 
 #### Change of Password
 
 This interface allows the logged in administrator to change their password. They must also remember the `Old password`, before adding `New Password` and `Confirm the New Password`.
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/admin_change_password.jpeg" alt="Change Password" style="zoom:50%;" />
+<img src="./extra/admin_change_password.jpeg" alt="Change Password" style="zoom:50%;" />
 
 ### 4.0 Dashboard Reports
 
@@ -314,7 +314,7 @@ A real-time dashboard is a tool used to track and display key performance indica
 
 The reports is display in graphical format that is easy to read at a glance. The metrics includes the `number of advertisers` and `number of publishers`, `withdraw requests from publishers`, `total amount deposited by advertisers`, `number of advertisements generated`, `total impressions or views`, and `total clicks on the advertisements`. 
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/admin_dashboard.jpeg" alt="Dashboard Report metrics" style="zoom:50%;" />
+<img src="./extra/admin_dashboard.jpeg" alt="Dashboard Report metrics" style="zoom:50%;" />
 
 The second report displays advertisements created by advertisers including details of each advertisement in tabular format. The administrator can click on the view button to view the display image of the advertisement in a pop-up view 
 
@@ -326,7 +326,7 @@ We know that advertisers need access to real-time performance data, so being abl
 
 Updated every few minutes with the latest campaign information, you’ll see comprehensive and transparent data regarding all your campaigns running with us.
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/manage_advertisers.jpeg" alt="Manage Advertisers" style="zoom:50%;" />
+<img src="./extra/manage_advertisers.jpeg" alt="Manage Advertisers" style="zoom:50%;" />
 
 ### 4.2 Manage Publishers
 
@@ -334,29 +334,29 @@ Updated every few minutes with the latest campaign information, you’ll see com
 
 The list of registered publishers is displayed in tabular format and the columns include `Name`, `Email`, `Username` and `phone number`.  
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/publisher_list.jpeg" alt="Manage Publisher" style="zoom:50%;" />
+<img src="./extra/publisher_list.jpeg" alt="Manage Publisher" style="zoom:50%;" />
 
 There is also a View button the end of each row. When clicked, it opens an interface that shows the details of the selected publisher or advertiser. The information can be updated by administrator or ban the user.
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/update_user.jpeg" alt="Publisher Details" style="zoom:50%;" />
+<img src="./extra/update_user.jpeg" alt="Publisher Details" style="zoom:50%;" />
 
 ### 4.3 Broadcast Email
 
 Broadcast email is a tool to compose filter and send email to the target users either for newsletter, acquisition, retention or promotional content.  In this interface, the administrator, can compose email to send and select the category of subscribers to send the email. Then need to create a common subject topic and compose a email using a template that can be designed by clicking Frontend content tab on the administrator dashboard then click on Emails and SMS templates. 
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/broadcast_email.jpeg" alt="Broadcast email" style="zoom:50%;" />
+<img src="./extra/broadcast_email.jpeg" alt="Broadcast email" style="zoom:50%;" />
 
 ### 4.4 Subscribers/Members
 
 The administrator is can view all the emails have subscribed to receive newsletter. In this interface, the administrator, can compose email to send all the emails have subscribed.
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/subscribers_members.jpeg" alt="Subscriber Newsletter" style="zoom:50%;" />
+<img src="./extra/subscribers_members.jpeg" alt="Subscriber Newsletter" style="zoom:50%;" />
 
 
 
 A list of subscribed Emails
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/subscribers_emails.png" alt="Subscribers' Emails" style="zoom:50%;" />
+<img src="./extra/subscribers_emails.png" alt="Subscribers' Emails" style="zoom:50%;" />
 
 This interface also has list of all members who have registered in tabular layout. The table contains columns of  members including `name`, `email`, `phone`, `country of origin`, and `status`. 
 
@@ -370,29 +370,29 @@ There's a a View Button at the end of each row, to show, update and approve Memb
 
 This interface allows the administrator to create new or update advertisement plans. Advertisement plan is a strategy developed by the administrator to target specific category of advertiser or a specific period of time by regulating the price of each advert and type of advertisement allowed. This may favor or discourage some advertiser in order to regulate the product.   
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/advertisement_plans.jpeg" alt="Advertisement plans" style="zoom:50%;" />
+<img src="./extra/advertisement_plans.jpeg" alt="Advertisement plans" style="zoom:50%;" />
 
 This interface show a tabular layout of the details of each advertisement create by the administrator. The columns include Plan name, Credit, Price, Ad type, status. There is a button at the end of each row to update the details of the plans.
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/update_advertisement_plans.jpeg" alt="Update Advertisement plan" style="zoom:50%;" />
+<img src="./extra/update_advertisement_plans.jpeg" alt="Update Advertisement plan" style="zoom:50%;" />
 
 There is a button on the right top of the above table, when clicked, it opens a pop-up view to create a new advertisement plan.
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/create_advertisement_plan.jpeg" alt="Create Advertisement plan" style="zoom:50%;" />
+<img src="./extra/create_advertisement_plan.jpeg" alt="Create Advertisement plan" style="zoom:50%;" />
 
 #### 4.5.2 Advertisement Types
 
 This interface allows the administrator to create new or update advertisement types or banners adverts. Web banners, also known as banner ads or display ads, are digital advertisements displayed in the header, footer, or sidebars of websites, such as blogs and news publications. They’re generally considered an affordable type of online advertising with an average cost-per-click (CPC) and an average cost-per-thousand-impressions (CPM).  
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/advertisement_types.jpeg" alt="Advertisement types" style="zoom:50%;" />
+<img src="./extra/advertisement_types.jpeg" alt="Advertisement types" style="zoom:50%;" />
 
 This interface show a tabular layout of the details of each type of banner ad created by the administrator. The columns include Ad name, Ad type, Ad Width, Ad height, Ad slag and Status. There is a button at the end of each row to update the details of the banner type.
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/update_advertisement_type.jpeg" alt="Update Advertisement type" style="zoom:50%;" />
+<img src="./extra/update_advertisement_type.jpeg" alt="Update Advertisement type" style="zoom:50%;" />
 
 There is a button on the right top of the above table, when clicked, it opens a pop-up view to create a new advertisement type.
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/create_advertisement_type.jpeg" alt="Create Advertisement type" style="zoom:50%;" />
+<img src="./extra/create_advertisement_type.jpeg" alt="Create Advertisement type" style="zoom:50%;" />
 
 ### 4.6 Deposit
 
@@ -400,7 +400,7 @@ There is a button on the right top of the above table, when clicked, it opens a 
 
 This interface shows a table of records of payment made by Advertiser to KenyansInTexas account. The payment is initiated on the advertiser dashboard. Its status maybe pending if the advertiser has initiated payment but has not transfered the amount using the provided methods. It can be completed status when advertiser has transfered the amount to KenyansInTexas account.
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/deposits.jpeg" alt="Advertisers Deposits" style="zoom:50%;" />
+<img src="./extra/deposits.jpeg" alt="Advertisers Deposits" style="zoom:50%;" />
 
 The table has these columns username, amount, gateway and status. The username column is clickable and when clicked, it opens the advertiser interface, described on the manage advertisers tab.
 
@@ -408,7 +408,7 @@ The table has these columns username, amount, gateway and status. The username c
 
 The administrator can setup and activate multiple payment gateway that can be used to by advertisers to pay for the advertisement. This payment gateways are the most popular and most used on the web to make payments since they provide accessible APIs using web technologies. They include MPesa, Paypal, PerfectMoney, Stripe, Skrill, Blockchain.info, Block.io, Coinpayment  for payment using cryptocurrencies. 
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/payment_gateway.jpeg" alt="Payment Gateways" style="zoom:50%;" />
+<img src="./extra/payment_gateway.jpeg" alt="Payment Gateways" style="zoom:50%;" />
 
 Each Payment gateway has a similar configuration procedure which administrator must include the relevant information. This include the `Name of the Gateway`, `Rate of conversion`, `Deposit limit(min-max amount)`, `Deposit charges by gateway`, `account name and number`. This information can also be updated later by clicking on the update button to save it securely on the database. 
 
@@ -418,19 +418,19 @@ Each Payment gateway has a similar configuration procedure which administrator m
 
 This interface displays a tabular layout of withdraw request by publishers. When publishers initiate a withdraw request and submits for approval, it is shown on this page.  The administrator can approve or disapprove. The columns include Username, Amount, Method, Account and Actions required for each row.
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/withdraw_request.jpeg" alt="Withdraw request" style="zoom:50%;" />
+<img src="./extra/withdraw_request.jpeg" alt="Withdraw request" style="zoom:50%;" />
 
 #### 4.7.2 Withdraw Log
 
 This interface display a tabular layout of records of withdraw logs. When publisher request to withdraw is received and approved, a log is added to keep it for history purpose. The information included in this table is Username, Amount, Method, Account and Action 
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/withdraw_log.jpeg" alt="Withdraw log" style="zoom:50%;" />
+<img src="./extra/withdraw_log.jpeg" alt="Withdraw log" style="zoom:50%;" />
 
 #### 4.7.3 Withdraw Method
 
 The administrator can setup the payment gateways allowed to pay the publishers. The withdraw method must be most acceptable by publishers. The created withdraw methods are shown on this page. The administrator can update the information as required. This include the Name of the Gateway, Rate of conversion, Withdraw limit(min-max amount), Withdraw charges by gateway, Method details and Status. This information can also be updated later by clicking on the update button to save it securely on the database. 
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/withdraw_methods.jpeg" alt="Withdraw method" style="zoom:50%;" />
+<img src="./extra/withdraw_methods.jpeg" alt="Withdraw method" style="zoom:50%;" />
 
 ### 4.8 Website Control
 
@@ -438,19 +438,19 @@ The administrator can setup the payment gateways allowed to pay the publishers. 
 
 The administrator cab be able to set some global values that are used in all pages. These includes: Website Title, Website sub-title or slogan, main theme color, Currency code, Currency Symbol, Number of decimals after the period, Cost Per View, Cost Per Click, Enable/Disable registration, Enable/Disable Email verification, Enable/Disable SMS verification, Email notification and SMS notification. This setting have default values when website is set up on the server but the administrator can update later.
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/general_settings.jpeg" alt="General Settings" style="zoom:50%;" /> 
+<img src="./extra/general_settings.jpeg" alt="General Settings" style="zoom:50%;" /> 
 
 #### 4.8.2 Logo and Icon
 
 The administrator can change the website logo and icon on this interface. The images will be uploaded and all users will see the new changed logo and icon. Please note to check the correct dimensions and not to leave it blank which my display to the users who are active. 
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/general_settings.jpeg" alt="General Settings" style="zoom:50%;" />
+<img src="./extra/general_settings.jpeg" alt="General Settings" style="zoom:50%;" />
 
 #### 4.8.3 Template Settings
 
 Email/SMS Templates are used when sending email newsletters, email promotions, email marketing or verification messages. Administrator can customize the default templates to a design that suites any requirements. The templates are are updated by clicking the update button below the 
 
- <img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/template_settings.jpeg" alt="Template Settings" style="zoom:50%;" />
+ <img src="./extra/template_settings.jpeg" alt="Template Settings" style="zoom:50%;" />
 
 ### 4.9 Frontend Content
 
@@ -458,13 +458,13 @@ Email/SMS Templates are used when sending email newsletters, email promotions, e
 
 The administrator can set the jumbotron section heading, details, background photo and breadcrumb photo. You can change the current default values, upload the image files and  click on the update button to save the apply the changes.
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/banner_section.jpeg" alt="Banner Section" style="zoom:50%;" />
+<img src="./extra/banner_section.jpeg" alt="Banner Section" style="zoom:50%;" />
 
 #### 4.9.2 Service Section
 
 The service section on the homepage can be updated on this interface. The administrator can set the section heading, section details and create/edit/delete the services. New services can be added by clicking the button at the top. It pop-up a new view to add the heading and details.
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/service_section.jpeg" alt="Service Section" style="zoom:50%;" />
+<img src="./extra/service_section.jpeg" alt="Service Section" style="zoom:50%;" />
 
 #### 4.9.3 About Section
 
@@ -474,19 +474,19 @@ The administrator can update the about section on the homepage. The about page h
 
 The testimonial section on the homepage can be updated on this interface. The administrator can set the section heading, section details and create/edit/delete the testimonials. New testimonials can be added by clicking the button at the top. It pop-up a new view to add the heading and details.
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/testimonial_list.jpeg" alt="Testimonial Section" style="zoom:50%;" />
+<img src="./extra/testimonial_list.jpeg" alt="Testimonial Section" style="zoom:50%;" />
 
 #### 4.9.5 Statistics Section
 
 The statistics section on the homepage can be updated on this interface. The administrator can set the section heading, section details and values for the three boxes. The first box stores the number of global customers, the second has years of experience and third has daily advertisement served. 
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/statistics_section.jpeg" alt="Statistics Section" style="zoom:50%;" />
+<img src="./extra/statistics_section.jpeg" alt="Statistics Section" style="zoom:50%;" />
 
 #### 4.9.6 FAQ section
 
 The FAQ section on the about page can be updated on this interface. The administrator can set the section heading, section details and create/edit/delete the frequently asked questions. New FAQs can be added by clicking the button at the top. It pop-up a new view to add the heading and details.
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/create_faq.jpeg" alt="FAQ Section" style="zoom:50%;" />
+<img src="./extra/create_faq.jpeg" alt="FAQ Section" style="zoom:50%;" />
 
 #### 4.9.7 Footer section
 
@@ -496,17 +496,17 @@ The FAQ section on the about page can be updated on this interface. The administ
 
 The website has a blog page where administrator writes and publishes articles. In this section, administrator can add article photo, post heading and post details. The main page shows a list of create blog posts and on at the end of each row there's a button to edit or delete.  
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/blog_list.jpeg" alt="Blog List" style="zoom:50%;" />
+<img src="./extra/blog_list.jpeg" alt="Blog List" style="zoom:50%;" />
 
 When administrator creates or edits a blog post it opens in the below interface. The photo, heading and body content can be updated by clicking on the update button below the page.
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/update_blog.jpeg" alt="Blog Details" style="zoom:50%;" />
+<img src="./extra/update_blog.jpeg" alt="Blog Details" style="zoom:50%;" />
 
 #### 4.9.9 Social Section
 
 In this interface the administrator can add the social media links. These are URL links to social media accounts to KenyanInTexas. The default social media links are facebook, twitter and Linkedin accounts. However, administrator can add any other relevant social links.  
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/social_section.jpeg" alt="Social Section" style="zoom:50%;" />
+<img src="./extra/social_section.jpeg" alt="Social Section" style="zoom:50%;" />
 
 ## 5. Advertiser Portal
 
@@ -514,49 +514,49 @@ In this interface the administrator can add the social media links. These are UR
 
 To access must be registration using advertiser registration form. It can be accessed using `/register` URL which open the registration form. A user is required to provide `Name`, `username`, `email`, `country of origin`, `state or region`, `phone`, `password` and `confirm password`. 
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/advertiser_register.jpeg" alt="Advertiser Registration" style="zoom:50%;" />
+<img src="./extra/advertiser_register.jpeg" alt="Advertiser Registration" style="zoom:50%;" />
 
 ### 5.2 Login
 
 After the registration, the user is redirected to login page using `/login` URL which opens advertiser login page. The user is expected to provide `username` and `password` . If its the first time the user will need to verify the email and phone using two factor authentication.
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/advertiser_login.jpeg" alt="Advertiser Login" style="zoom:50%;" />
+<img src="./extra/advertiser_login.jpeg" alt="Advertiser Login" style="zoom:50%;" />
 
 ### 5.3 Dashboard
 
 The main page on the advertiser interface is the dashboard. It tracks and displays values related to advertisement the advertiser has subscribed. These includes: `total impression`, `total clicked`, `view credit remaining` and `click credit remaining`. Total impression refers to number of times a web banner has been viewed on the web. These adds together the views on all impression advertisement type that advertiser has subscribed. Total clicked refers the number of times a web banner ad has been clicked on the web. These also adds together the clicks of all click advertisement type that advertiser has subscribed. The credit remaining on the impressions viewed and credit remaining on the clicked advertisements. 
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/advertiser_dashboard.jpeg" alt="Advertiser Dashboard" style="zoom:50%;" />
+<img src="./extra/advertiser_dashboard.jpeg" alt="Advertiser Dashboard" style="zoom:50%;" />
 
 ### 5.4 Profile
 
 This page shows the advertiser information that includes: `Name`, `Email`, `Mobile`, `Country` and `City`. The advertiser can update this information by editing the field and clicking on the Update Profile button. The advertiser can also change the password by adding and confirming a new password.
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/adveriser_profile.jpeg" alt="Advertiser Profile" style="zoom:50%;" />
+<img src="./extra/adveriser_profile.jpeg" alt="Advertiser Profile" style="zoom:50%;" />
 
 ### 5.5 Deposit
 
 The advertiser has to deposit funds into his account to be able to buy advertisement credit. In this interface the different deposit methods are shown that an advertiser can choose. This deposit methods are created and configured by the administrator in the Deposit Tab, under payment gateways. When the advertiser click on the `Deposit Now` button on any of the method, it opens a pop-up view to `Enter Desposit amount` and clicks `Deposit Preview` it initiates the deposit payment. This open the deposit preview page and the total amount to be paid including overall charges. When advertiser clicks the `PAY NOW` button the gateway procedure of payment is initiated and API calls is initiated which redirects the web page to gateway payment authorization and actual money transfer. If the process is successful, the amount is transferred to KIT accounts and then displayed on the `Plans` tab
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/deposit.jpeg" alt="Advertiser Deposit" style="zoom:30%;" />
+<img src="./extra/deposit.jpeg" alt="Advertiser Deposit" style="zoom:30%;" />
 
 ### 5.6 Advertisements
 
 This page shows the type of advertisements the advertiser can create, either `Banner Ad`, `Sidebar Ad`, `Footer Ad` and `Inner Ad`. The advertiser can click the `create Ad` to create a new advert details which include `redirect URL`, `Ad type`, `Estimated amount of clicks/impression`, `upload image file of the ad`, `advertisement category`,`advertisement sub-category`, and the description of the advert. All the details are required and when `Create Ad` button is clicked the advertisement is added to the list of advertisers ads in the `Current Advertisements` table. The table columns includes: `Ad Type`, `Redirect URL`, `Ad Type`, `Estimated Amount`, `Clicked`, `Impression`, `Status` and `View`. Advertiser can create as many ads to fit all the needs. 
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/advertisements.jpeg" alt="Advertisements" style="zoom:50%;" />
+<img src="./extra/advertisements.jpeg" alt="Advertisements" style="zoom:50%;" />
 
 ### 5.7 Plans
 
 This interface shows the credit plans the administrator has created, Impression credit advertiser has bought, amount balance of the deposit and Clicks credit advertiser has purchased. The administrator creates a plan to target specific advertiser. If the advertiser is ineterested with a plan they can click on `Get Now` button to purchase the credit using the amount in the balance. 
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/advertiser_plans.jpeg" alt="Advertiser Plans" style="zoom:50%;" />
+<img src="./extra/advertiser_plans.jpeg" alt="Advertiser Plans" style="zoom:50%;" />
 
 ### 5.8 Transaction Logs
 
 The deposit and credit purchases are recorded as transaction logs for history purpose. These can be easy for the advertiser to verify claims and track the credit use. The table has columns which include: `Amount`, `Balance`, `Details`, `Transaction ID` and `Transaction Time`. 
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/transaction_log.jpeg" alt="Advertiser Transaction Logs" style="zoom:50%;" />
+<img src="./extra/transaction_log.jpeg" alt="Advertiser Transaction Logs" style="zoom:50%;" />
 
 ## 6. Publisher Portal
 
@@ -568,37 +568,37 @@ Use can make their advertisement with himself or he can also take helps of adver
 
 To access must be registration using publisher registration form. It can be accessed using `/publisher` URL which open the registration form. A user is required to provide `Name`, `username`, `email`, `country of origin`, `state or region`, `phone`, `password` and `confirm password`. 
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/publisher_registration.jpeg" alt="Publisher Registration" style="zoom:50%;" />
+<img src="./extra/publisher_registration.jpeg" alt="Publisher Registration" style="zoom:50%;" />
 
 ### 6.2 Login
 
 After the registration, the publisher is redirected to login page using `/login` URL which opens publisher login page. The user is expected to provide `username` and `password` . If its the first time the publisher will need to verify the email and phone using two factor authentication.
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/publisher_login.jpeg" alt="Publisher Login" style="zoom:50%;" />
+<img src="./extra/publisher_login.jpeg" alt="Publisher Login" style="zoom:50%;" />
 
 ### 6.3 Dashboard
 
 The main page on the publisher interface is the dashboard to track `total impression`, `total clicked`, and `Earnings`. Total impression refers to number of times a web banner has been viewed on the web.  Total clicked refers the number of times a web banner ad has been clicked on the web. The amount of earning calculated using `CPV` or `CPC` using the rates set by administrator on the `general settings` tab .  There's also a table layout of the logs of all withdrawal transaction made by the publisher. The Details of the logs include `Amount`, `Method`, `Account`, `Status` and `TransactionTime`
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/publisher_dashboard.jpeg" alt="Publisher Dashboard" style="zoom:50%;" />
+<img src="./extra/publisher_dashboard.jpeg" alt="Publisher Dashboard" style="zoom:50%;" />
 
 ### 6.4 Profile
 
 This page shows the publisher's information that includes: `Name`, `Email`, `Mobile`, `Country` and `City`. The publisher can update this information by editing the field and clicking on the Update Profile button. The publisher can also change the password by adding and confirming a new password.
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/publisher_profile.jpeg" alt="Publisher Profile" style="zoom:50%;" />
+<img src="./extra/publisher_profile.jpeg" alt="Publisher Profile" style="zoom:50%;" />
 
 ### 6.5 Withdraw
 
 This page shows withdraw methods created by the administrator on the `Withdraw` tab under `Withdraw Methods`. These are payment gateways that KIT uses to payout the publishers the withdraw requests. Each with draw method has a limit amount that can be withdrawn and the transaction cost. When publisher select to withdraw using a specific method that can click on `WITHDRAW NOW` button, which opens a pop-up view to add amount and account to be sent to. These is added as a withdraw request and it can only be approved by the administrator. If the publisher account has enough amount to withdraw the amount will be transferred to the account specified. A transaction log is saved for history purpose for verification purpose.
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/withdraw_methods.jpeg" alt="Publisher Withdraw" style="zoom:50%;" />
+<img src="./extra/withdraw_methods.jpeg" alt="Publisher Withdraw" style="zoom:50%;" />
 
 ### 6.6 Advertisements
 
 This page shows the type of advertisements the publisher can create whether `Banner Ad`, `Sidebar Ad`, `Footer Ad` and `Inner Ad`. The  columns describe each advertisement type by either: `Ad Name`, `Ad Type`, `Ad Width`, `Ad height`, `script` and `Action`. A publisher can copy a script and place it on their web page to start receiving ads on their web page. The script has a unique number that identifies the publisher. 
 
-<img src="/media/edd/CCCOMA_X64FRE_EN-US_DV9/files/screenshot/types_of_advertisement.jpeg" alt="Publisher Advertisements" style="zoom:50%;" />
+<img src="./extra/types_of_advertisement.jpeg" alt="Publisher Advertisements" style="zoom:50%;" />
 
 
 
