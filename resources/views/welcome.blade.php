@@ -325,21 +325,7 @@
                     </div><!-- //.footer widget -->
                 </div>
 
-                <div class="col-lg-3">
-                    <div class="footer-widget contact">
-                        <div class="widget-title">
-                            <h4 class="title">Latest Posts</h4>
-                        </div>
-                        <div class="widget-body">
-                            <ul>
-                                @foreach ($posts as $item)
-                                <li><a href="{{ route('user.blog-post', $item->id) }}"> <img src="{{  asset('images/blog')  }}/{{ $item->photo }}" style="max-width:40px;" alt="blog images">
-                                        {{ substr($item->heading, 0,50) }}</a> </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+               
                 <div class="col-lg-3">
                     <div class="footer-widget contact">
                         <!-- footer widget -->
@@ -360,6 +346,20 @@
                         </div>
                     </div><!-- //.footer widget -->
                 </div>
+		<div class="col-md-3 col-md-offset-1 hidden-sm hidden-xs">
+            <div class="card-icons">
+                <div class="card-icons__box logo-visa"></div>
+                <div class="card-icons__box logo-visa_secure"><a class="logo-visa_secure__link" target="_blank" rel="noopener noreferrer" href="https://usa.visa.com/pay-with-visa/featured-technologies/verified-by-visa.html"></a></div>
+                <div class="card-icons__box logo-visa_electron"></div>
+                <div class="card-icons__box logo-ep"></div>
+                <div class="card-icons__box logo-mc"></div>
+                <div class="card-icons__box logo-ms"></div>
+                <div class="card-icons__box logo-mc_idcheck"></div>
+                <div class="card-icons__box logo-paxum"></div>
+                <div class="card-icons__box logo-paypal"></div>
+                <div class="card-icons__box logo-webmoney"></div>
+            </div>
+        </div>
             </div>
         </div>
     </section>

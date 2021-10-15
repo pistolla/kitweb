@@ -126,19 +126,76 @@ KenyansInTexas.co.ke domain is publicly accessible and anyone can access the web
 
 
 
-KenyansInTexas.co.ke is classified Ads website where members publish Ads that contains author member name, an image, Ad description, Ad link and Ad phone. The classified Ad post can be commented, liked, shared or reported. This post are search-optimized for search engines and can be target uniquely using HTML meta tags. The administrator can also publish blog posts to improve the search ranks of the website. The members who wish to promote the published Ads post via web banner advertising the create an advertising account and buy credit to promote their content. The content to promote is not necessarily only Ads posted on KenyansInTexas.co.ke but their own website. The traffic to these classified ads is increased and tracked. This has a return of value to the advertisers and members can market their content across the WWW web. Publishers who wish to earn by displaying web banners on their website can create an account and copy javascript link URL on their website.
+KenyansInTexas.co.ke is classified Ads website where members publish Ads that contains author name, an image, Ad description, Ad link and Ad phone. The classified Ad post can be commented, liked, shared or reported. This post are search-optimized for search engines and can be target uniquely using HTML meta tags. The administrator can also publish blog posts to improve the search ranks of the website. The members who wish to promote the published Ads post via web banner advertising the create an advertising account and buy credit to promote their content. The content to promote is not necessarily only Ads posted on KenyansInTexas.co.ke but their own website. The traffic to these classified ads is increased and tracked. This has a return of value to the advertisers and members can market their content across the WWW web. Publishers who wish to earn by displaying web banners on their website can create an account and copy JavaScript snippet on their website.
 
 ### 2.1 Content Generation and Marketing
 
-Content is king, and rules over rules over search rankings. The Internet was founded for the purpose of exchanging *content*. In order to feed the search engine *beast*  we have optimized and recommend the following guidelines to provide the most relevant to search result.
+Content is king, and rules over search rankings. The Internet was founded for the purpose of exchanging *content*. In order to feed the search engine we have optimized for meta tags SEO and we recommend the following guidelines to provide the most relevant to search result.
 
 |                                                              |                                                              |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| **2.1.1 Publish Classified Advertisements that benefits target audience. Understanding who your audience is and what you want them to do when they click on your article will help guide your Blog strategy.** | ![benefit-target](./extra/trust-how-content-marketing-works-1024x512.png) |
-| ![](./extra/target-989bad67062e87566f47c0d1e29588c167460c73.png) | **2.1.2 Use more targeted right keywords such as *'How to..'*, *'How do I'*  Repeat your keyword phrase several times throughout the page—once or twice in the opening and closing paragraphs, and two to four more times throughout the remaining content.** |
-| **2.1.3 Use Images related to the Advertisement content. In order to achieve a coveted spot in an image pack or a video snippet, you’ll want to design creative graphics, use original photos and videos, and add descriptive alt text to every visual element within your *Blog* post.** | ![use-related-images](./extra/stick-figure-holding-large-magnet-260nw-218826733.jpg) |
-| ![catchy-title](./extra/seopressor-blog-title-descriptive.jpg) | **2.1.4 Use Catchy title. A catchy title uses data, asks a question, or leads with curiosity to pique the reader’s interest.** |
-| **2.1.5 Update Your Content Regularly. Regularly updated content is viewed as one of the best indicators of a site's relevancy, so be sure to keep it fresh** | ![update-content](./extra/Update.jpg)            |
+| **2.1.1 Publish Classified Advertisements that benefits target audience. Understanding who your audience is and what you want them to do when they click on your article will help guide your Blog strategy.** | ![benefit-target](./extra/write-helpful-content.png)         |
+| ![](./extra/use-right-words.png)                             | **2.1.2 Use more targeted right keywords such as *'How to..'*, *'How do I'*  Repeat your keyword phrase several times throughout the page—once or twice in the opening and closing paragraphs, and two to four more times throughout the remaining content.** |
+| **2.1.3 Use Images related to the Advertisement content. In order to achieve a coveted spot in an image pack or a video snippet, you’ll want to design creative graphics, use original photos and videos, and add descriptive alt text to every visual element within your *Blog* post.** | ![use-related-images](./extra/use-related-images.jpg)        |
+| ![catchy-title](./extra/catchy-titles.jpg)                   | **2.1.4 Use Catchy title. A catchy title uses data, asks a question, or leads with curiosity to pique the reader’s interest.** |
+| **2.1.5 Update Your Content Regularly. Regularly updated content is viewed as one of the best indicators of a site's relevancy, so be sure to keep it fresh** | ![update-content](./extra/update-content-regularly.jpg)      |
+|                                                              | **2.1.6 Building a following on Social platforms like Facebook, Instagram and Twitter can give your traffic a huge boost.** |
+
+### 2.2 Advertising and Monetizing
+
+Website monetization is the process of earning money from website by using it as an advertising platform for companies with content and offers relative to that site. KenyansInTexas.co.ke is selling ad space to monetize the website where you have to find companies, and provide them with space on your site where they will display their ads. Pay-per-click (PPC) advertising is calculated for each click that advertisers ads receives. Cost per thousand (CPM) expense of costs incurred for every thousand potential consumers who have viewed an advertisement. CPM rates are usually $2.00 while PPC the advertiser pays for a fixed number of clicks. These is set and can be updated on administrator portal in the general setting section.
+
+
+
+### 2.3 Payments integration
+
+Payment gateways connect the merchant’s website and their payment processing bank, allowing for the secure transference of financial details. It transfers the key information between websites/mobile devices and payment processors/banks, and vice versa. We have ensured all sensitive information; wallet keys, phone credit card number, expiration date, CVV code, API key; are encrypted before saving. We have integrated with Mpesa, Paypal, Stripe, PerfectMoney, Skrill and CoinBlock. 
+
+
+
+#### 2.3.1 Setting up gateways
+
+MPesa payment gateway requires a production paybill number. You need to apply to Safaricom PLC for a paybill for user to pay. You also need to create an account with PayPal, Perfect Money, Skrill and Stripe to set the account. In case where users want to pay using crypto-currencies you need to have an account with CoinGate, CoinPayment, or Block.io   If a payment gateway is not set or active, it will not be visible as payment option to advertiser or publishers.
+
+![](./extra/payment_methods.png)
+
+Setting up the gateway is done on the administrator portal.  The process is similar for all the gateway. You only required to know :
+
+1. Account number or Email account or PIN
+2. Account access token or private key or API key
+3. Maximum amount payable
+4. Minimum amount payable
+5. Deposit charges (either a fixed value or percentage) 
+6. The current rate of exchange to the Currency preferred
+
+
+
+### 2.4 Data collection, analysis and presentation
+
+#### 2.4.1 Website dashboard
+
+The administrator, advertiser, publisher dashboard provides a minimalist overview presentation of the data tracked, namely Number of Advertisers, publishers, Withdrawal requests, Total Deposits, Total Ads, Total impression and Total Clicks.  
+
+![](./extra/admin minimal dashboard.png)
+
+#### 2.4.2 Google Analytics, Facebook Pixel and Google Tag Manager
+
+We have also integrated with Google Analytics which tracks user activity. The Facebook pixel is one of the ways to send those data signals into the Facebook system to enhance your advertising performance. Using [Google Tag Manager](https://intigress.com/blog/digital-marketing/what-is-google-tag-manager) to better manage website tracking, we also added Facebook pixel to Google Tag Manager (GTM). This ahas unified the data sources and improves data collection. 
+
+![](./extra/gtag1.jpeg)
+
+<img src="./extra/gtag2.jpeg" style="zoom:67%;" />
+
+### 2.5 Maintenance and updates
+
+Website maintenance is the act of regularly checking your website for issues and mistakes and keeping it updated and relevant. Kenyansintexas.co.ke is fully tracked for error and maintenance logs to determine when an update is required. It is easy to maintain and the whole source code is already hosted and available for maintenance. We recommend regularly maintenance to ensure it is kept are up to date, secure and fast. The following list of main issue that needs regular checking:
+
+1. Database backup and maintenance
+2. Web vulnerability scanning
+3. Security updates
+4. Framework Code updates
+5. SEO and performance tuning
+6. Site file maintenance
 
 
 
@@ -158,7 +215,7 @@ This is the topmost section on the home page, which displays the logo, website n
 
 #### 3.1.2 Services section
 
-This section displays below the jumbotron and show the service offered by the KIT platform. It also includes description for each service offered. The content can be modified on the Administrator page.
+This section displays below the *jumbotron* and show the service offered by the KIT platform. It also includes description for each service offered. The content can be modified on the Administrator page.
 
 <img src="./extra/Screenshot (2).png" alt="Screenshot (2)" style="zoom:50%;" />
 
