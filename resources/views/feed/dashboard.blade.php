@@ -32,10 +32,16 @@
                     <textarea class="form-control border-0" placeholder="Write a post" name="details" rows="3"></textarea>
                   </div>
                   <div class="preview-panel d-flex justify-content-start" id="preview"></div>
+                  <div class="preview-panel row p-2">
+                    <span class="col-4"><i class="fa fa-link"></i>&nbsp;<small id="preview-link">Not set</small></span>
+                    <span class="col-4"><i class="fa fa-phone"></i>&nbsp;<small id="preview-phone">Not set</small></span>
+                  </div>
                   <input type="hidden" id="linkurl" name="link_url" />
+                  <input type="hidden" id="telephone" name="link_phone" />
                   <div class="d-flex justify-content-end">
                     <button type="button" class="btn btn-media btn-file"><i class="fa fa-image"></i><input id="custom-file-input" type="file" name="photos" multiple></button>
                     <button type="button" class="btn btn-media" data-target="#linkModal" data-toggle="modal"><i class="fa fa-link"></i></button>
+                    <button type="button" class="btn btn-media" data-target="#linkModal" data-toggle="modal"><i class="fa fa-phone"></i></button>
                     <button type="submit" class="btn btn-default">Post</button>
                     <button type="cancel" class="btn btn-default">Clear</button>
                   </div>
@@ -330,12 +336,14 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="close"><span aria-hidden="true">&times;</span></button>
         </div>
         <div class="modal-body">
-          <input type="text" class="form-control" name="linkInput" id="linkInput" placeholder="paste or type a url">
-          <div id="urlcontent" class="text-center"></div>
+          <input type="text" class="form-control mb-2" name="linkInput" id="linkInput" placeholder="Enter ad URL">
+          <div id="urlcontent"></div>
+          <input type="tel" id="phoneInput" class="form-control" name="phoneInput" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" placeholder="Enter ad phone">
+          <div id="phonecontent"></div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save Link</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" id="saveLink">Save Link</button>
         </div>
       </div>
     </div>
@@ -343,30 +351,66 @@
 </section>
 @endsection
 
-
-@section('page-scripts')
-<script type="text/javascript" src="{{asset('/js/jquery-3.2.1.min.js')}}"></script>
+@section('page_scripts')
 <script type="text/javascript" src="{{asset('/js/forum.js')}}"></script>
 <script type="text/javascript">
-  (function($) {
-      "use strict";
-      jQuery(document).ready(function($) {
-        $(function() {
-          var forum = new Forum();
-          console.log(forum);
-          userID = 1;
-          lastID = 5;
-          searchToken = "";
-          forum.refresh();
-          $("#forum-form").submit(function(event) {
-            event.preventDefault();
-            var form = $.this;
-            var formData = new FormData(form);
-            forum.send(formData);
-          });
-
+  $(document).ready(function(){
+        var timer;
+        var delay = 600;
+        var regexp = /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+        var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+        var validUrl = '';
+        var validPhone = '';
+        $('#linkInput').on('input',function(e){
+          $('#urlcontent').html("<span class='text-info'>Loading... "+e.target.value+"</span>");
+          if(e.target.value.match(regexp)) {
+            $('#urlcontent').html("<span class='text-success'>URL " + e.target.value + " is valid</span>");
+            validUrl = e.target.value;
+          }
+          else {
+            $('#urlcontent').html("<span class='text-danger'>URL " + e.target.value + " is not valid</span>");
+          }
         });
-      })(jQuery);
-    });
+        $('#phoneInput').on('input',function(e){
+          $('#phonecontent').html("<span class='text-info'>validating... "+e.target.value+"</span>");
+          if(e.target.value.match(phoneno)) {
+            $('#phonecontent').html("<span class='text-success'>Phone number " + e.target.value + " is valid</span>");
+            validPhone = e.target.value;
+          }
+          else {
+            $('#phonecontent').html("<span class='text-danger'>Phone number " + e.target.value + " is not valid</span>");
+          }
+        });
+
+        $('#saveLink').on('click',function(e){
+          if(validUrl != ''){
+            $('#linkurl').val(validUrl);
+            $('#preview-link').text(validUrl);
+          }
+          if(validPhone != ''){
+            $('#telephone').val(validPhone);
+            $('#preview-phone').text(validPhone);
+          }
+          $("#linkModal").hide();
+          $("#linkModal").modal('hide');
+        });
+
+
+        // $(function() {
+        //   var forum = new Forum();
+        //   console.log(forum);
+        //   userID = 1;
+        //   lastID = 5;
+        //   searchToken = "";
+        //   forum.refresh();
+        //   $("#forum-form").submit(function(event) {
+        //     event.preventDefault();
+        //     var form = $.this;
+        //     var formData = new FormData(form);
+        //     forum.send(formData);
+        //   });
+
+        // });
+      });
 </script>
 @endsection

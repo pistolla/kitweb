@@ -224,8 +224,12 @@ class CommunityController extends Controller
                 $images[] = $fileName;
             }
             $post['image_url'] = implode(";", $images);
-        } elseif ($request->has('link_url') && !empty($request->link_url)) {
+        }
+        if ($request->has('link_url') && !empty($request->link_url)) {
             $post['link_url'] = $request->link_url;
+        }
+        if ($request->has('link_phone') && !empty($request->link_phone)) {
+            $post['link_phone'] = $request->link_phone;
         }
         Activity::create($post);
         return back()->with('success', 'Your post is now available');

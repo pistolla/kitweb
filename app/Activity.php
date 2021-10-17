@@ -14,7 +14,7 @@ class Activity extends Model
 {
     use Notifiable;
 
-    protected $fillable = array('heading', 'details', 'member_id', 'image_url', 'link_url','slug','views','shares');
+    protected $fillable = array('heading', 'details', 'member_id', 'image_url', 'link_url', 'link_phone','slug','views','shares');
 
     public function likedBy(Member $member)
     {

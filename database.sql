@@ -357,6 +357,7 @@ CREATE TABLE `activities` (
   `slug` varchar(200) NOT NULL,
   `image_url` varchar(300) COLLATE utf8mb4_unicode_ci NULL,
   `link_url` varchar(500) COLLATE utf8mb4_unicode_ci NULL,
+  `link_phone` varchar(500) COLLATE utf8mb4_unicode_ci NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

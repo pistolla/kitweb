@@ -168,22 +168,7 @@
             reader.readAsDataURL(input.files[0]);
         }
     });
-    var timer;
-    var delay = 600;
-    $('#linkInput').on('input',function(e){
-       console.log(e.target.value);
-        window.clearTimeout(timer);
-        timer = window.setTimeout(function(){
-            $('#urlcontent').html("<span class='text-info'>Loading... "+e.target.value+"</span>");
-            $.get(e.target.value, function( data ) {
-                $('#urlcontent').html("<span class='text-success'>" + e.target.value + " URL is correct</span>");
-                $('#linkurl').val(e.target.value);
-                alert( "Load was performed." );
-            });
-        }, delay);
-        
-        
-    });
+    
     $(document).on('click','.depoButton', function(){
         $('#ModalLabel').text($(this).data('name'));
         $('#gateWay').val($(this).data('gate'));
