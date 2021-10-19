@@ -1588,6 +1588,8 @@ ul {
     text-transform: capitalize;
     position: relative;
     font-family: "Nunito", cursive;
+    font-size: 1.25em;
+    font-weight: 700;
 }
 
 .navbar-area .navbar-collapse .navbar-nav .nav-item .nav-link:before {
