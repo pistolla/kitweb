@@ -115,7 +115,7 @@ src="https://www.facebook.com/tr?id=563483551579133&ev=PageView&noscript=1"
                         </div>
                     </li>
                     @endif
-                    @if(!Auth::check() && !Auth::guard('publisher')->check())
+                    @if((!Auth::check() && !Auth::guard('publisher')->check()) || Auth::guard('feed')->check())
                     <li class="nav-item">
                         <a class="nav-link" href="{{url('/')}}#Service">SERVICE</a>
                     </li>
