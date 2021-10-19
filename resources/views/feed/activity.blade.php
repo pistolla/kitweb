@@ -47,26 +47,28 @@
                   @endif
 
                   <div class="comment-meta d-flex justify-content-end">
+                    <a href="tel:{{$post->link_phone}}" class="btn mx-2 comment-like"><i class="fa fa-phone" aria-hidden="true"></i> Call Now</a>
+                    <a href="{{$post->link_url}}" class="btn mx-2 comment-like"><i class="fa fa-link" aria-hidden="true"></i> Website</a>
                     @if(Auth::guard('feed')->check())
                     @if (!$post->likedBy($post->member))
                     <form action="{{ route('feed.postlikes') }}" method="post" class="mr-1">
                       @csrf
                       <input type="hidden" name="activity" value="{{$post->id}}">
-                      <button class="btn comment-like"><i class="fa fa-thumbs-up" aria-hidden="true"></i> {{$post->likes->count()}}</button>
+                      <button class="btn comment-like mt-1"><i class="fa fa-thumbs-up" aria-hidden="true"></i> {{$post->likes->count()}}</button>
                     </form>
                     @else
                     <form action="{{ route('feed.postdislikes', $post) }}" method="post" class="mr-1">
                       @csrf
                       @method('DELETE')
                       <input type="hidden" name="activity" value="{{$post->id}}">
-                      <button class="btn comment-like"><i class="fa fa-thumbs-up" aria-hidden="true" style="color: blue;"></i> {{ $post->likes->count()}}</button>
+                      <button class="btn comment-like mt-1"><i class="fa fa-thumbs-up" aria-hidden="true" style="color: blue;"></i> {{ $post->likes->count()}}</button>
                     </form>
                     @endif
                     @endif
-                    <button class="btn comment-reply reply-popup" id="{{$post->id}}"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</button>
+                    <button class="btn comment-reply reply-popup mx-2" id="{{$post->id}}"><i class="fa fa-reply-all" aria-hidden="true"></i> Comment</button>
 
 
-                    <span class="share-button sharer" style="display: inline-block;">
+                    <span class="share-button sharer mt-2 mx-2" style="display: inline-block;">
                       <button class="comment-share" data-button="{{ url('/').'feed/'.$post->id}}"><i class="fa fa-share" aria-hidden="true"></i> Share</button>
                       <span class="social top center networks-5 d-flex">
                         <!-- Facebook Share Button -->
@@ -89,7 +91,7 @@
                         <input type="hidden" name="activity" value="{{ $post->id }}" />
                         <textarea class="form-control" placeholder="Add a public reply" rows="2" name="comment"></textarea>
                         <div class="d-flex justify-content-end">
-                          <button type="submit" class="btn btn-default">Reply</button>
+                          <button type="submit" class="btn btn-default">Post</button>
                           <button type="cancel" class="btn btn-default reply-popup">Cancel</button>
                         </div>
                       </form>
@@ -146,30 +148,14 @@
                       <span class="commenter-name">
                         <small> <span class="comment-time"></span></small>
                       </span>
-                      @if (isset($activity->image_url))
                       <div class="card" style="border: none; background-color: transparent;">
                         <img class="card-img-top" src="{{ asset('/images/community/'.$activity->image_url)}}" alt="loading...">
                         <div class="card-body">
                           <p class="card-txt">{{ $activity->details }}</p>
                         </div>
                       </div>
-                      @elseif (isset($activity->link_url))
-                      @php
-                      $embed = new Embed\Embed();
-                      $embed->get($activity->link_url);
-                      @endphp
-                      <div class="card" style="border: none;">
-                        <div class="card-body">
-                          <div class="card-title">{{$embed->title}}</div>
-                          <img class="card-img-top" src="{{ $embed->image }}" alt="loading...">
-                          <p class="card-txt">{{ $activity->details }}</p>
-                        </div>
-                      </div>
-                      @else
-                      <p class="comment-txt">{{ $activity->details }}</p>
-                      @endif
                       <div class="comment-meta d-flex justify-content-center">
-                        <a class="btn btn-info"><i class="fa fa-expand" aria-hidden="true"></i> View Post</a>
+                        <a class="btn btn-info"><i class="fa fa-expand" aria-hidden="true"></i> View Ad</a>
                       </div>
                     </div>
                   </div>

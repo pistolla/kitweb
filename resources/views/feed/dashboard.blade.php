@@ -80,27 +80,29 @@
                   @endif
 
                   <div class="comment-meta d-flex justify-content-end">
+                    <a href="tel:{{$post->link_phone}}" class="btn mx-2 comment-like"><i class="fa fa-phone" aria-hidden="true"></i> Call Now</a>
+                    <a href="{{$post->link_url}}" class="btn mx-2 comment-like"><i class="fa fa-link" aria-hidden="true"></i> Website</a>
                     @if(Auth::guard('feed')->check())
                     @if (!$post->likedBy($post->member))
                     <form action="{{ route('feed.postlikes') }}" method="post" class="mr-1">
                       @csrf
                       <input type="hidden" name="activity" value="{{$post->id}}">
-                      <button class="comment-like"><i class="fa fa-thumbs-up" aria-hidden="true"></i> {{$post->likes->count()}}</button>
+                      <button class="comment-like mt-2"><i class="fa fa-thumbs-up" aria-hidden="true"></i> {{$post->likes->count()}}</button>
                     </form>
                     @else
                     <form action="{{ route('feed.postdislikes', $post) }}" method="post" class="mr-1">
                       @csrf
                       @method('DELETE')
                       <input type="hidden" name="activity" value="{{$post->id}}">
-                      <button class="comment-like"><i class="fa fa-thumbs-up" aria-hidden="true" style="color: blue;"></i> {{ $post->likes->count()}}</button>
+                      <button class="comment-like mt-2"><i class="fa fa-thumbs-up" aria-hidden="true" style="color: blue;"></i> {{ $post->likes->count()}}</button>
                     </form>
                     @endif
                     @endif
-                    <button class="comment-reply reply-popup" id="{{$post->id}}"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</button>
+                    <button class="comment-reply reply-popup" id="{{$post->id}}"><i class="fa fa-reply-all" aria-hidden="true"></i> Comment</button>
 
 
-                    <span class="share-button sharer" style="display: inline-block;">
-                      <button class="comment-share" data-button="{{ url('/').'feed/'.$post->id}}"><i class="fa fa-share" aria-hidden="true"></i> Share</button>
+                    <span class="share-button sharer mx-2 mt-2" style="display: inline-block;">
+                      <button class="comment-share" data-button="{{ url('/').'feed/'.$post->id}}"><i class="fa fa-share-alt" aria-hidden="true"></i> Share</button>
                       <span class="social top center networks-5 d-flex">
                         <!-- Facebook Share Button -->
                         <a class="fbtn share facebook" href="https://www.facebook.com/sharer/sharer.php?u={{url('/').'/feed/'.$post->slug}}"><i class="fab fa-facebook-f"></i></a>
@@ -145,14 +147,14 @@
                       <form action="{{ route('feed.commentlikes') }}" method="post" class="mr-1">
                         @csrf
                         <input type="hidden" name="comment" value="{{$comment->id}}">
-                        <button class="comment-like"><i class="fa fa-thumbs-up" aria-hidden="true"></i> {{$comment->likes->count()}}</button>
+                        <button class="comment-like mt-2"><i class="fa fa-thumbs-up" aria-hidden="true"></i> {{$comment->likes->count()}}</button>
                       </form>
                       @else
                       <form action="{{ route('feed.commentdislikes') }}" method="post" class="mr-1">
                         @csrf
                         @method('DELETE')
                         <input type="hidden" name="comment" value="{{$comment->id}}">
-                        <button class="comment-like"><i class="fa fa-thumbs-up" aria-hidden="true" style="color: blue;"></i> {{ $comment->likes->count()}}</button>
+                        <button class="comment-like mt-2"><i class="fa fa-thumbs-up" aria-hidden="true" style="color: blue;"></i> {{ $comment->likes->count()}}</button>
                       </form>
                       @endif
                       @endif
@@ -173,52 +175,35 @@
                     <a href="{{ route('feed.fetch', $activity->slug) }}" class="h4">{{ $activity->heading }}</a><br>
                     <small>posted by</small> {{$activity->member->username }} <small>{{$activity->created_at->diffForHumans() }}</small>
                   </span>
-                  @if (isset($activity->image_url))
                   <div class="card" style="border: none; background-color: transparent;">
                     <img class="card-img-top" src="{{ asset('/images/community/'.$activity->image_url)}}" alt="loading...">
                     <div class="card-body">
                       <p class="card-txt">{{ $activity->details }}</p>
                     </div>
                   </div>
-                  @elseif (isset($activity->link_url))
-                  @php
-                  try {
-                    $embed = new Embed\Embed();
-                    $embed->get($activity->link_url);
-                   } catch (\Exception $e){
-                   }
-                  @endphp
-                  <div class="card" style="border: none;">
-                    <div class="card-body">
-                      <div class="card-title">{{isset($embed->title) ? $embed->title : $activity->heading }}</div>
-                      <img class="card-img-top" src="{{ isset($embed->image) ? $embed->image : asset('/images/community/broken_link.jpg') }}" alt="loading...">
-                      <p class="card-txt"><a href="{{ $activity->link_url }}" title="{{ $activity->link_url }}">{{ $activity->details }}</a></p>
-                    </div>
-                  </div>
-                  @else
-                  <p class="comment-txt">{{ $activity->details }}</p>
-                  @endif
                   <div class="comment-meta d-flex justify-content-end">
+                    <a href="tel:{{$activity->link_phone}}" class="btn mx-2 comment-like"><i class="fa fa-phone" aria-hidden="true"></i> Call Now</a>
+                    <a href="{{$activity->link_url}}" class="btn mx-2 comment-like"><i class="fa fa-link" aria-hidden="true"></i> Website</a>
                     @if(Auth::guard('feed')->check())
                     @if (!$activity->likedBy($post->member))
                     <form action="{{ route('feed.postlikes') }}" method="post" class="mr-1">
                       @csrf
                       <input type="hidden" name="activity" value="{{$activity->id}}">
-                      <button class="comment-like"><i class="fa fa-thumbs-up" aria-hidden="true"></i> {{$activity->likes->count()}}</button>
+                      <button class="comment-like mt-2"><i class="fa fa-thumbs-up" aria-hidden="true"></i> {{$activity->likes->count()}}</button>
                     </form>
                     @else
                     <form action="{{ route('feed.postdislikes') }}" method="post" class="mr-1">
                       @csrf
                       @method('DELETE')
                       <input type="hidden" name="activity" value="{{$activity->id}}">
-                      <button class="comment-like"><i class="fa fa-thumbs-up" aria-hidden="true" style="color: blue;"></i> {{ $activity->likes->count()}}</button>
+                      <button class="comment-like mt-2"><i class="fa fa-thumbs-up" aria-hidden="true" style="color: blue;"></i> {{ $activity->likes->count()}}</button>
                     </form>
                     @endif
                     @endif
-                    <button class="comment-reply reply-popup" id="{{$activity->id}}"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</button>
+                    <button class="comment-reply reply-popup" id="{{$activity->id}}"><i class="fa fa-reply-all" aria-hidden="true"></i> Comment</button>
 
-                    <span class="share-button sharer" style="display: inline-block;">
-                      <button class="comment-share" data-button="{{ url('/').'feed/'.$activity->id}}"><i class="fa fa-share" aria-hidden="true"></i> Share</button>
+                    <span class="share-button sharer mx-2 mt-2" style="display: inline-block;">
+                      <button class="comment-share" data-button="{{ url('/').'feed/'.$activity->id}}"><i class="fa fa-share-alt" aria-hidden="true"></i> Share</button>
                       <span class="social top center networks-5 d-flex">
                         <!-- Facebook Share Button -->
                         <a class="fbtn share facebook" href="https://www.facebook.com/sharer/sharer.php?u={{url('/').'/feed/'.$activity->slug}}"><i class="fab fa-facebook-f"></i></a>
