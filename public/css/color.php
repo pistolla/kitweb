@@ -129,3 +129,23 @@ color: <?php echo $color; ?>;
     -o-transition: background-color .2s ease-in-out;
     transition: background-color .2s ease-in-out
 }
+
+@media only screen and (max-width: 767px) {
+	.navbar-area .navbar-collapse {
+		background: <?php echo $color; ?>;
+	}
+
+	.dropdown-item {
+		background: <?php echo $color; ?>;
+	}
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+	.navbar-area .navbar-collapse {
+		background: <?php echo $color; ?>;
+	}
+
+	.dropdown-item {
+		background: <?php echo $color; ?>;
+	}
+}
