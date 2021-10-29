@@ -84,31 +84,44 @@ class CommunityController extends Controller
         return view('feed.dashboard', compact('activities', 'post', 'suggested', 'tag'));
     }
 
-    public function enquireLatest(Request $req)
+    public function getLatest(Request $req)
     {
         $lastId = $req->input('last_id');
         $search = $req->input('search');
+        $userId = $req->input('user_id');
 
-        $activity = Activity::query()
+        $activities = Activity::query()
             ->where('id', ' > ', $lastId)
+            ->where('member_id', ' = ', $userId)
             ->orWhere('details', 'LIKE', "%{$search}%")
-            ->first();
+            ->get();
 
-        if ($activity && !empty($activity)) {
-            return json_encode(
-                [
-                    "data" => true,
-                    "activity_id" => $activity->id
-                ]
-            );
-        } else {
-            return json_encode(
-                [
-                    "data" => false,
-                    "activity_id" => ""
-                ]
-            );
+        $arr = [];
+        foreach($activities as $activity){
+            $ar = $activity->toArray();
+            $ar['created_at'] = $activity->created_at->diffForHumans();
+            $ar['updated_at'] = $activity->updated_at->diffForHumans();
+            $member = $activity->member;
+            $member_arr = $member->toArray();
+
+            unset($member_arr["tauth"]);unset($member_arr["tfver"]);unset($member_arr["emailv"]);unset($member_arr["smsv"]);unset($member_arr["status"]);unset($member_arr["vsent"]);unset($member_arr["vercode"]);unset($member_arr["secretcode"]);unset($member_arr["created_at"]);unset($member_arr["updated_at"]);unset($member_arr["facebook"]);unset($member_arr["whatsapp"]);unset($member_arr["website"]);unset($member_arr["bio"]);
+            $ar['member'] = $member_arr;
+            if(Auth::check() && Auth::user()->id == $userId){
+                $ar['is_member_logged_in'] = true;
+            } else {
+                $ar['is_member_logged_in'] = false;
+            }
+
+            if($activity->likedBy($member)){
+                $ar['member_liked'] = true;
+            } else{
+                $ar['member_liked'] = false;
+            }
+            $ar['number_of_likes'] = $activity->likes->count();
+
+            $arr[] = $ar;
         }
+        return json_encode($arr, JSON_PRETTY_PRINT);
     }
 
     function removeCommonWords($input)

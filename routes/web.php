@@ -336,6 +336,7 @@ Route::prefix('feed')->group(function() {
     //Public Forums
     Route::get('/dashboard/{tag?}', 'CommunityController@dashboard')->name('feed.dashboard');
     Route::get('/search-post', 'CommunityController@searchPost')->name('feed.searchpost');
+    Route::get('/get-latest', 'CommunityController@getLatest')->name('feed.getlatest');
     Route::get('/{slug}', 'CommunityController@fetchActivity')->name('feed.fetch');
 
     //dynamic dropdown country and states
@@ -353,7 +354,6 @@ Route::prefix('feed')->group(function() {
         Route::post('/like-comment', 'CommunityController@likeComment')->name('feed.commentlikes');
         Route::delete('/dislike-comment', 'CommunityController@dislikeComment')->name('feed.commentdislikes');         
         Route::post('/create-comment', 'CommunityController@createComment')->name('feed.commentpost');
-        Route::get('/enquirelatest', 'CommunityController@enquireLatest')->name('feed.enquire');
         Route::get('/profile/{name}', 'CommunityController@getProfileData')->name('feed.profile-data');
         Route::post('/update-profile', 'CommunityController@updateProfile')->name('feed.update-profile');        
         Route::post('/change-password', 'CommunityController@changePassword')->name('feed.change-passwordpost');

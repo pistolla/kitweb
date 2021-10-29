@@ -52,7 +52,7 @@
                 @if (isset($post))
                 <div class="comment-box">
                   <span class="commenter-pic">
-                    <img src="{{ asset('/images/logo/icon.png') }}" class="img-fluid">
+                    <img src="{{ asset('/images/community/'.$post->member->photo) }}" class="img-fluid" height="65" width="65">
                   </span>
                   <span class="commenter-name">
                     <a href="{{ route('feed.fetch', $post->slug) }}" class="h4">{{ $post->heading }}</a><br>
@@ -60,7 +60,7 @@
                   </span>
                   @if (isset($post->image_url))
                   <div class="card" style="border: none;">
-                    <img class="card-img-top" src="{{ asset('/images/community/'.$post->image_url)}}" alt="loading...">
+                    <img class="card-img-top" src="{{ asset('/images/community/'.$post->image_url)}}" alt="loading..." height="500">
                     <div class="card-body">
                       <p class="card-txt">{{ $post->details }}</p>
                     </div>
@@ -118,7 +118,7 @@
                   </div>
                   <div class="comment-box add-comment reply-box" id="reply-{{$post->id}}">
                     <span class="commenter-pic">
-                      <img src="{{ asset('/images/logo/icon.png') }}" class="img-fluid">
+                      <img src="{{ asset('/images/community/'.$post->member->photo) }}" class="img-fluid">
                     </span>
                     <div class="row">
                       <form class="contact-form col-md-12" method="POST" action="{{ route('feed.commentpost') }}">
@@ -135,7 +135,7 @@
                   @foreach ($post->comments as $comment)
                   <div class="comment-box replied">
                     <span class="commenter-pic">
-                      <img src="{{ asset('/images/logo/icon.png') }}" class="img-fluid">
+                      <img src="{{ asset('/images/community/'.$comment->member->photo) }}" class="img-fluid" height="65" width="65">
                     </span>
                     <span class="commenter-name">
                       <a href="#">{{ $comment->member->username }}</a> <span class="comment-time">{{ $comment->created_at->diffForHumans()}}</span>
@@ -169,14 +169,14 @@
                 @foreach ($activities as $activity)
                 <div class="comment-box">
                   <span class="commenter-pic">
-                    <img src="{{ asset('/images/logo/icon.png') }}" class="img-fluid">
+                    <img src="{{ asset('/images/community/'. $activity->member->photo) }}" class="img-fluid" height="65" width="65">
                   </span>
                   <span class="commenter-name">
                     <a href="{{ route('feed.fetch', $activity->slug) }}" class="h4">{{ $activity->heading }}</a><br>
                     <small>posted by</small> {{$activity->member->username }} <small>{{$activity->created_at->diffForHumans() }}</small>
                   </span>
                   <div class="card" style="border: none; background-color: transparent;">
-                    <img class="card-img-top" src="{{ asset('/images/community/'.$activity->image_url)}}" alt="loading...">
+                    <img class="card-img-top" src="{{ asset('/images/community/'.$activity->image_url)}}" alt="loading..." height="500">
                     <div class="card-body">
                       <p class="card-txt">{{ $activity->details }}</p>
                     </div>
@@ -337,6 +337,7 @@
 @endsection
 
 @section('page_scripts')
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script type="text/javascript" src="{{asset('/js/forum.js')}}"></script>
 <script type="text/javascript">
   $(document).ready(function(){
@@ -381,21 +382,13 @@
         });
 
 
-        // $(function() {
-        //   var forum = new Forum();
-        //   console.log(forum);
-        //   userID = 1;
-        //   lastID = 5;
-        //   searchToken = "";
-        //   forum.refresh();
-        //   $("#forum-form").submit(function(event) {
-        //     event.preventDefault();
-        //     var form = $.this;
-        //     var formData = new FormData(form);
-        //     forum.send(formData);
-        //   });
+        var ads = new Classifieds()
+        userID = '{{ Auth::check() && Auth::user() ? Auth::user()->id : ""}}'
+        lastID = '{{$activities->count() > 0 ? $activities->first()->id: ""}}'
+        token = '{{ csrf_token() }}'
 
-        // });
+        ads.update();
+        
       });
 </script>
 @endsection
